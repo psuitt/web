@@ -5,7 +5,12 @@
     <artifactId>Avent</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-
+    
+    <properties>
+         <spring.version>3.0.3.RELEASE</spring.version>
+         <spring.security.version>3.0.3.RELEASE</spring.security.version>
+    </properties>
+    
     <build>
         <sourceDirectory>src</sourceDirectory>
         <plugins>
@@ -38,10 +43,6 @@
             </resource>
         </resources>
     </build>
-    <properties>
-         <spring.version>3.0.3.RELEASE</spring.version>
-    </properties>
-
 
     <dependencies>
         <dependency>
@@ -71,26 +72,30 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
+        <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
+        
+         <!-- EhCache -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
               <artifactId>ehcache</artifactId>
@@ -104,7 +109,7 @@
         <!-- END SPRING DEPENDENCIES -->
 
 
-        <!-- SimpleJPA Dependencies -->
+        <!-- SimpleJPA Dependencies
         <dependency>
             <groupId>net.sf.scannotation</groupId>
             <artifactId>scannotation</artifactId>
@@ -122,7 +127,7 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- End SimpleJPA Dependencies -->
+         End SimpleJPA Dependencies -->
 
 
 
@@ -150,7 +155,7 @@
         <!-- End Apache Commons -->
 
 
-        <!-- Servlet related Libraries -->
+        <!-- Servlet related Libraries 
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
@@ -168,7 +173,8 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <!-- End Servlet related Libraries -->
+        -->
+        <!-- End Servlet related Libraries
 
         <dependency>
             <groupId>org.directwebremoting</groupId>
@@ -177,7 +183,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/WebContent/WEB-INF/lib/dwr.jar</systemPath>
         </dependency>
-
+		 -->
 
         <!-- Libraries for testing and debugging -->
         <dependency>
