@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
     <modelVersion>4.0.0</modelVersion>
     <groupId>Avent</groupId>
     <artifactId>Avent</artifactId>
@@ -9,6 +10,7 @@
     <properties>
          <spring.version>3.0.3.RELEASE</spring.version>
          <spring.security.version>3.0.3.RELEASE</spring.security.version>
+         <jackson.version>1.4.5</jackson.version>
     </properties>
     
     <build>
@@ -17,9 +19,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <debug>true</debug>
                     <debuglevel>source</debuglevel>
                 </configuration>
@@ -27,17 +30,32 @@
             <plugin>
               <artifactId>maven-war-plugin</artifactId>
               <configuration>
-                 <webappDirectory>WebContent/</webappDirectory>
+              	<webResources>
+              	    <resource>
+              	        <directory>WebContent</directory>
+              	        <includes>
+              	            <include>**/*.xml</include>
+              	            <include>_resources/**</include>
+              	        </includes>
+              	    </resource>
+              	    <resource>
+              	        <directory>src</directory>
+              	        <targetPath>WEB-INF/classes</targetPath>
+              	        <includes>
+              	            <include>**/*.xml</include>
+              	            <include>**/*.properties</include>
+              	        </includes>
+              	    </resource>
+              	</webResources>
+                <webappDirectory>WebContent/</webappDirectory>
               </configuration>
            </plugin>
         </plugins>
         <resources>
             <resource>
-                <directory>src</directory>
+                <directory>src/main/java</directory>
                 <includes>
-                    <include>simplejpa.properties</include>
                     <include>AwsCredentials.properties</include>
-                    <include>messages.properties</include>
                     <include>log4j.xml</include>
                 </includes>
             </resource>
@@ -51,6 +69,18 @@
             <version>1.0.002</version>
         </dependency>
 
+        <!-- Jackson -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
         <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -106,6 +136,7 @@
           <artifactId>cglib-nodep</artifactId>
           <version>2.2</version>
         </dependency>
+        
         <!-- END SPRING DEPENDENCIES -->
 
 

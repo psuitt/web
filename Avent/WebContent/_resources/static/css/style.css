@@ -1,0 +1,14 @@
+/*
+We highly recommend you use SASS and write your custom styles in sass/_custom.scss.
+However, this blank file is available if you prefer
+*/
+
+.va-m {
+	vertical-align:middle !important;	
+}
+
+input.text.input.smalltext {
+	height:23px; 
+	margin:0;
+	line-height:16px;
+}
