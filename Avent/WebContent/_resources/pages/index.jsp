@@ -9,10 +9,14 @@
 	
 		<link rel="stylesheet" href="_resources/static/css/gumby.css">
 		<link rel="stylesheet" href="_resources/static/css/style.css">
+		<link rel="stylesheet" href="_resources/static/css/fullcalendar.css"  />
+		<link rel="stylesheet" href="_resources/static/css/fullcalendar.print.css" media="print" />
 	
 		<script src="_resources/static/js/libs/modernizr-2.6.2.min.js"></script>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		
+		<script src="_resources/static/js/libs/fullcalendar.js"></script>
 		
 		<script src="_resources/static/js/libs/gumby.min.js"></script>
   		<script src="_resources/static/js/plugins.js"></script>
@@ -61,17 +65,17 @@
 	                </li>
 	                
 	                <li>
+	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Create</a>
+	                </li>
+	                
+	                <li>
 	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Profile</a>
 	                </li>
 	                
 	                <li>
 	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Calendar</a>
 	                </li>
-	                
-	                <li>
-	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Create</a>
-	                </li>
-	                
+	                 
 	            </ul>	
 		            	
 	        </div>
@@ -85,7 +89,7 @@
 					    </li>
 					</ul>
 				</div> 
-				<div class="valign row"><p>test</p></div>   
+				<div class="valign row"><%@ include file="views/calendar.html" %></div>   
 			
 			</div>	
 			

@@ -12,3 +12,7 @@ input.text.input.smalltext {
 	margin:0;
 	line-height:16px;
 }
+
+#calendar span.fc-header-title h2 {
+	font-size:18px;
+}
