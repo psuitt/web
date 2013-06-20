@@ -11,6 +11,7 @@
          <spring.version>3.0.3.RELEASE</spring.version>
          <spring.security.version>3.0.3.RELEASE</spring.security.version>
          <jackson.version>1.4.5</jackson.version>
+         <apache.tiles.version>3.0.1</apache.tiles.version>
     </properties>
     
     <build>
@@ -139,6 +140,17 @@
         
         <!-- END SPRING DEPENDENCIES -->
 
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>${apache.tiles.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
 
         <!-- SimpleJPA Dependencies
         <dependency>
@@ -230,27 +242,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-          <version>1.2.15</version>
-          <exclusions>
-            <exclusion>
-              <groupId>javax.mail</groupId>
-              <artifactId>mail</artifactId>
-            </exclusion>
-            <exclusion>
-              <groupId>javax.jms</groupId>
-              <artifactId>jms</artifactId>
-            </exclusion>
-            <exclusion>
-              <groupId>com.sun.jdmk</groupId>
-              <artifactId>jmxtools</artifactId>
-            </exclusion>
-            <exclusion>
-              <groupId>com.sun.jmx</groupId>
-              <artifactId>jmxri</artifactId>
-            </exclusion>
-          </exclusions>
+	        <groupId>log4j</groupId>
+	        <artifactId>log4j</artifactId>
+	        <version>1.2.15</version>
+	          <exclusions>
+	            <exclusion>
+	              <groupId>javax.mail</groupId>
+	              <artifactId>mail</artifactId>
+	            </exclusion>
+	            <exclusion>
+	              <groupId>javax.jms</groupId>
+	              <artifactId>jms</artifactId>
+	            </exclusion>
+	            <exclusion>
+	              <groupId>com.sun.jdmk</groupId>
+	              <artifactId>jmxtools</artifactId>
+	            </exclusion>
+	            <exclusion>
+	              <groupId>com.sun.jmx</groupId>
+	              <artifactId>jmxri</artifactId>
+	            </exclusion>
+	          </exclusions>
         </dependency>
         <!-- End libraries for testing and debugging -->
 

@@ -19,7 +19,16 @@ Gumby.touch(function() {
 });
 
 // Document ready
-$(function() {
-
+$(document).ready(function() {
+	$("#sidebar-nav li a").on("click", function() {
+		$("#sidebar-nav li").removeClass("selected");
+		$(this).parent().addClass("selected");
+        // Prevent the anchor link.
+        return false;
+   });
 });
+
+var selectMenuItemColor = function() {
+	$("#sidebar-nav ul li a").removeClass("selected");
+};
 
