@@ -23,6 +23,7 @@ input.text.input.smalltext {
  ***************************************************************************/
 #sidebar-nav li a {
 	padding-left:10px;
+	cursor:pointer;
 }
 
 #sidebar-nav li.selected {

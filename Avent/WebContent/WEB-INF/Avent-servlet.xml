@@ -10,7 +10,8 @@
     	http://www.springframework.org/schema/beans/spring-beans.xsd
     	http://www.springframework.org/schema/context
     	http://www.springframework.org/schema/context/spring-context.xsd ">
-    
+
+    <mvc:resources location="/_resources/**" mapping="/_resources/"/>
     <!-- Spring annotations -->
     <mvc:annotation-driven />
     <!-- Scan for components -->
@@ -23,7 +24,24 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
     
+    <bean id="multipartResolver"
+         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="cacheSeconds" value="0" ></property>
+    </bean>
+    
     <!-- 
+    	<mvc:interceptors>
+	        <mvc:interceptor>
+	            <mvc:mapping path="/**" />
+	        	<bean class="com.web.avent.servlet.interceptor.AuthorizationFilterInterceptor" />
+	        </mvc:interceptor>
+	    </mvc:interceptors>
+    
+    
+    
     <bean id="viewResolver"
 	    class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	    <property name="viewClass">

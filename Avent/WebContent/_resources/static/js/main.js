@@ -18,17 +18,3 @@ Gumby.touch(function() {
 	console.log("This is a touch enabled device...");
 });
 
-// Document ready
-$(document).ready(function() {
-	$("#sidebar-nav li a").on("click", function() {
-		$("#sidebar-nav li").removeClass("selected");
-		$(this).parent().addClass("selected");
-        // Prevent the anchor link.
-        return false;
-   });
-});
-
-var selectMenuItemColor = function() {
-	$("#sidebar-nav ul li a").removeClass("selected");
-};
-

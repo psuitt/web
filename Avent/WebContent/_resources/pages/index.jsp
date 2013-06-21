@@ -5,6 +5,8 @@
 
 	<head>
 	
+		<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
+	
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 		<link rel="stylesheet" href="_resources/static/css/gumby.css">
@@ -60,20 +62,20 @@
 			
 				<ul id="sidebar-nav">
 	                
-	                <li>
-	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Search</a>
+	                <li class="selected" >
+	                  <a>Search</a>
 	                </li>
 	                
 	                <li>
-	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Create</a>
+	                  <a>Create</a>
 	                </li>
 	                
 	                <li>
-	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Profile</a>
+	                  <a>Profile</a>
 	                </li>
 	                
 	                <li>
-	                  <a href="#icons" class="skip" gumby-easing="easeOutQuad" gumby-duration="600" gumby-goto="[data-target='icons']">Calendar</a>
+	                  <a>Calendar</a>
 	                </li>
 	                 
 	            </ul>	
@@ -84,12 +86,12 @@
 				<div class="valign row">  
 					<ul class="six columns">
 					    <li class="append field" >
-							<input class="text input smalltext va-m" type="text" />				
+							<input id="search" class="text input smalltext va-m" type="text" />				
 					    	<div class="small primary btn va-m"><a href="#">Search</a></div>
 					    </li>
 					</ul>
 				</div> 
-				<div class="valign row"><%@ include file="views/calendar.html" %></div>   
+				<div id="view" class="valign row"></div>   
 			
 			</div>	
 			
@@ -98,4 +100,35 @@
 			
 	</body>
 	
+	<script>
+	
+		//Document ready
+		$(document).ready(function() {
+			$("#sidebar-nav li a").on("click", function() {
+				var jThis = $(this);
+				$("#sidebar-nav li").removeClass("selected");
+				jThis.parent().addClass("selected");
+				
+				$.ajax({
+					  type: "GET",
+					  url: "home/" + jThis.html().toLowerCase() + ".",
+					}).done(function( data ) {
+						$("#view").html(data);
+					});
+				
+				
+			     // Prevent the anchor link.
+			     return false;
+			});
+			$("#search").autocomplete();
+		});
+		
+		var selectMenuItemColor = function() {
+			$("#sidebar-nav ul li a").removeClass("selected");
+		};
+	
+
+	</script>
+	
 </html>
+

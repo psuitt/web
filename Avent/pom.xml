@@ -2,17 +2,24 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
-    <groupId>Avent</groupId>
-    <artifactId>Avent</artifactId>
+    <groupId>avent</groupId>
+    <artifactId>avent</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
     
     <properties>
-         <spring.version>3.0.3.RELEASE</spring.version>
-         <spring.security.version>3.0.3.RELEASE</spring.security.version>
+         <spring.version>3.0.7.RELEASE</spring.version>
+         <spring.security.version>3.1.4.RELEASE</spring.security.version>
          <jackson.version>1.4.5</jackson.version>
          <apache.tiles.version>3.0.1</apache.tiles.version>
     </properties>
+    
+     <repositories>
+	  	<repository>
+	  		<id>Java.Net</id>
+	  		<url>http://download.java.net/maven/2/</url>
+	  	</repository>
+	</repositories>
     
     <build>
         <sourceDirectory>src</sourceDirectory>
@@ -104,7 +111,7 @@
             <version>${spring.version}</version>
         </dependency>
         
-        <!-- Spring Security -->
+        <!-- Spring Security
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -125,6 +132,7 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
+         -->
         
          <!-- EhCache -->
         <dependency>
@@ -149,7 +157,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.5</version>
+			<version>1.4.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.4.2</version>
 		</dependency>
 
         <!-- SimpleJPA Dependencies
@@ -195,10 +209,23 @@
             <artifactId>commons-compress</artifactId>
             <version>1.0</version>
         </dependency>
+        
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+        
         <!-- End Apache Commons -->
 
 
-        <!-- Servlet related Libraries 
+        <!-- Servlet related Libraries -->
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
@@ -216,7 +243,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        -->
+        
         <!-- End Servlet related Libraries
 
         <dependency>
