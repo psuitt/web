@@ -120,7 +120,7 @@
 			     // Prevent the anchor link.
 			     return false;
 			});
-			$("#search").autocomplete();
+			//$("#search").autocomplete();
 		});
 		
 		var selectMenuItemColor = function() {
