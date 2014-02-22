@@ -1,0 +1,6 @@
+<template name="home">
+	<div name="homeDiv" id="homeDiv">
+		<h3>No Foods</h3>
+		<input name="search" type="text"/>
+	</div>
+</template>
