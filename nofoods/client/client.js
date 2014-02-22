@@ -1,10 +1,10 @@
 // All Tomorrow's Parties -- client
 
-Meteor.subscribe("directory");
-Meteor.subscribe("parties");
 
-// If no party selected, or if the selected party was deleted, select one.
+
+/* If no party selected, or if the selected party was deleted, select one.
 Meteor.startup(function () {
+
   Deps.autorun(function () {
     var selected = Session.get("selected");
     if (! selected || ! Parties.findOne(selected)) {
@@ -15,7 +15,7 @@ Meteor.startup(function () {
         Session.set("selected", null);
     }
   });
-});
+});*/
 
 ///////////////////////////////////////////////////////////////////////////////
 // Party details sidebar
