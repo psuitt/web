@@ -1,9 +1,0 @@
-#homeDiv {
-	top: 20%;
-	width: 100%;
-	text-align: center;
-}
-
-#search {
-	width: 350px;
-}
