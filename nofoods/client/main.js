@@ -12,6 +12,14 @@ Router.map(function () {
     }
   });
 
+	this.route('home', {
+    path:'/foods/add',
+    template: 'foodsAdd',
+		layoutTemplate: 'mainLayout',
+    before: function () {
+    }
+  });
+
   this.route('parties', {
     path:'/parties',
     template: 'page',
