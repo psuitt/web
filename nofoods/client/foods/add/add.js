@@ -4,16 +4,22 @@
 			if (template.find(".rating.selected")) {
 				template.find(".rating.selected").className = "rating";
 			}
-    	event.target.className = "rating selected";
-			t = template.find(".rating.selected").className;
-			r = template.find(".rating").className;
+			event.target.className = "rating selected";
 		},
 
 		'click #save': function (event, template) {
-    	var name = template.find("#name").value;
-			var rating = template.find(".selected").innerHTML;
+			var name = template.find("#name").value;
+			var brand = template.find("#brand").value;
+			var rating = parseInt(template.find(".selected").innerHTML, 10); 
+		
+			var id = createFood({
+				rating: rating,
+				name: name,
+				brand: brand			
+			});
+
 		}
 
 	});
-
 })();
+

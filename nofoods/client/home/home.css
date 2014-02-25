@@ -5,5 +5,10 @@
 }
 
 #search {
-	width: 350px;
+	min-width:400px;
+	width: 40%;
+}
+
+#resultsDiv {
+	text-align: center;
 }

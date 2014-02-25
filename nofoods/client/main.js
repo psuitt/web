@@ -9,6 +9,7 @@ Router.map(function () {
     template: 'home',
 		layoutTemplate: 'mainLayout',
     before: function () {
+			Meteor.subscribe("foods");
     }
   });
 
@@ -19,6 +20,30 @@ Router.map(function () {
     before: function () {
     }
   });
+
+	this.route('foodsPage', {
+    path: '/foods/:_id',
+    template: 'foodsTemplate',
+    layoutTemplate: 'mainLayout',
+    notFoundTemplate: 'notFound',
+    before: function () {
+      if (!Meteor.user()) {
+              // render the login template but keep the url in the browser the same
+              //this.render('login');
+
+              // stop the rest of the before hooks and the action function 
+              //this.stop();
+      }       
+    },
+    
+    waitOn: function () {
+			return Meteor.subscribe('foods');
+    },
+    
+    data: function () {
+    }
+	});
+
 
   this.route('parties', {
     path:'/parties',
