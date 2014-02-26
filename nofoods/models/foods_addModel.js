@@ -1,5 +1,7 @@
 Ratings = new Meteor.Collection("ratings");
 Foods = new Meteor.Collection("foods");
+Drinks = new Meteor.Collection("drinks");
+Brands = new Meteor.Collection("brands");
 
 Foods.allow({
   insert: function (userId, food) {
@@ -64,21 +66,22 @@ Meteor.methods({
 			_id: Match.Optional(NonEmptyString)
     });
 
-    if (! this.userId)
+    if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
 		var id = options._id || Random.id();
 
 		var rating_Id = Ratings.insert({
 			_id: id,
-			user_id: this.user, 
+			user_id: this.userId, 
 			rating: options.rating
 		});
 
 		Foods.insert({
 			_id: Random.id(),
 			name: options.name, 
-			brand: options.brand, 
+			brand: options.brand,
+			ratingTotal_calc: options.rating,  
 			ratings: [rating_Id]
 		});
 

@@ -6,5 +6,10 @@
 	<div id="login">
     {{loginButtons align="right"}}
   </div>
-  {{yield}}
+	<div id="mainContent" >
+  	{{yield}}
+	</div>
+	<footer> 
+		{{yield 'footer'}}
+	</footer>
 </template>

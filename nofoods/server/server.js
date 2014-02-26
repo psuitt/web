@@ -12,3 +12,7 @@ Meteor.publish("parties", function () {
 Meteor.publish("foods", function () {
   return Foods.find({});
 });
+
+Meteor.publish("ratings", function () {
+  return Ratings.find({});
+});

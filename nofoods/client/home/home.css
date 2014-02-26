@@ -12,3 +12,16 @@
 #resultsDiv {
 	text-align: center;
 }
+
+#resultsDiv td {
+	text-align:left;
+	width: 30%;
+}
+
+#resultsDiv .brand {
+	width: 30%;
+}
+
+#resultsTable {
+	margin:20px auto;
+}

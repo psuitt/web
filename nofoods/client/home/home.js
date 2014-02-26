@@ -15,12 +15,24 @@ var doSearch = function(searchVal, template) {
 
 	results.forEach(function(food) {
 
-		htmlBuilder.push("<div>");
+		htmlBuilder.push("<tr>");
+		htmlBuilder.push("<td class='brand'>");
+		htmlBuilder.push(food.brand);
+		htmlBuilder.push("</td>");
+		htmlBuilder.push("<td>");
+		htmlBuilder.push("<a href='food/page/");
+		htmlBuilder.push(food._id);
+		htmlBuilder.push("'>");
 		htmlBuilder.push(food.name);
-		htmlBuilder.push("</div>");
+		htmlBuilder.push("</a>");
+		htmlBuilder.push("</td>");
+		htmlBuilder.push("<td>");
+		htmlBuilder.push(food.ratingTotal_calc);
+		htmlBuilder.push("</td>");
+		htmlBuilder.push("</tr>");
 		
 	});
 
-	template.find('#resultsDiv').innerHTML = htmlBuilder.join('');
+	template.find('#results').innerHTML = htmlBuilder.join('');
 
 };

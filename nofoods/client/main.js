@@ -13,8 +13,14 @@ Router.map(function () {
     }
   });
 
-	this.route('home', {
-    path:'/foods/add',
+	this.route('error404', {
+    path:'/404',
+    template: 'error404',
+		layoutTemplate: 'mainLayout'
+  });
+
+	this.route('add', {
+    path:'/food/add',
     template: 'foodsAdd',
 		layoutTemplate: 'mainLayout',
     before: function () {
@@ -22,28 +28,16 @@ Router.map(function () {
   });
 
 	this.route('foodsPage', {
-    path: '/foods/:_id',
+    path: '/food/page/:_id',
     template: 'foodsTemplate',
     layoutTemplate: 'mainLayout',
-    notFoundTemplate: 'notFound',
-    before: function () {
-      if (!Meteor.user()) {
-              // render the login template but keep the url in the browser the same
-              //this.render('login');
-
-              // stop the rest of the before hooks and the action function 
-              //this.stop();
-      }       
-    },
-    
-    waitOn: function () {
-			return Meteor.subscribe('foods');
-    },
-    
-    data: function () {
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    before: function () {  
+			PARAMS = this.params;   
     }
 	});
-
 
   this.route('parties', {
     path:'/parties',

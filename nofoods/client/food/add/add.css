@@ -1,0 +1,8 @@
+span.rating {
+	cursor:pointer;
+}
+
+span.rating.selected {
+	color:red;
+	font-weight:bold;
+}
