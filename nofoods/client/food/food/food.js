@@ -12,8 +12,7 @@ Template.foodsTemplate.rendered = function() {
   if (Meteor.user()) {
 		var userRating = Ratings.findOne({_id: { $in: result.ratings}, user_id: Meteor.userId()});
 		if (userRating) {
-			var className = this.find('.rating.' + userRating.rating).className;
-			this.find('.rating.' + userRating.rating).className = className + " selected";
+			setRatingSelected(userRating.rating);
 		}
          // this.render('foodsTemplate');
 
@@ -21,3 +20,27 @@ Template.foodsTemplate.rendered = function() {
           //this.stop();
   }  
 };
+
+Template.foodsTemplate.events({
+		'click .rating': function (event, template) {
+			if (template.find(".rating.selected")) {
+				template.find(".rating.selected").className = "rating";
+			}
+			event.target.className = "rating selected";
+
+			var rating = parseInt(template.find(".selected").innerHTML, 10); 
+		
+			var id = updateFood({
+				rating: rating,
+				_id: PARAMS._id		
+			});
+		}
+});
+
+var setRatingSelected = function(n) {
+	$('.rating.selected').removeClass('selected');
+	$('.rating').eq(n-1).addClass('selected');
+};
+
+
+

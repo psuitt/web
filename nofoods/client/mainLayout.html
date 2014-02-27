@@ -3,9 +3,15 @@
 		<title>No Foods? - A peanut gallery production</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
-	<div id="login">
-    {{loginButtons align="right"}}
-  </div>
+	<div id="menu">
+		<a href="/" >Home</a>
+		{{#if currentUser}}
+		<a href='/food/add'>Add</a>
+		{{/if}}
+		<div id="login">
+		  {{loginButtons align="right"}}
+		</div>
+	</div>
 	<div id="mainContent" >
   	{{yield}}
 	</div>

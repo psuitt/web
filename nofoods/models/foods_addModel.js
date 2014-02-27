@@ -45,6 +45,10 @@ createFood = function (options) {
   return id;
 };
 
+updateFood = function (options) {
+  Meteor.call('updateFood', options);
+};
+
 var NonEmptyString = Match.Where(function (x) {
   check(x, String);
   return x.length !== 0;
@@ -56,8 +60,8 @@ var RatingCheck = Match.Where(function (x) {
 });
 
 Meteor.methods({
-  // options should include: title, description, x, y, public
-  createFood: function (options) {
+  
+	createFood: function (options) {
 
 		check(options, {
       name: NonEmptyString,
@@ -89,5 +93,52 @@ Meteor.methods({
 
     return id;
   },
+
+	updateFood: function (options) {
+
+		check(options, {
+      rating: RatingCheck,
+			_id: NonEmptyString
+    });
+
+    if (!this.userId)
+      throw new Meteor.Error(403, "You must be logged in");
+
+		var toUpdate = Foods.findOne({_id: options._id});
+
+		var userRating = Ratings.findOne({_id: { $in: toUpdate.ratings}, user_id: this.userId});
+
+		var ratings = [];
+
+		if (!userRating) {
+			var rating_Id = Ratings.insert({
+				_id: Random.id(),
+				user_id: this.userId, 
+				rating: options.rating
+			});
+
+			ratings = toUpdate.ratings;
+
+			ratings.push(rating_Id);
+
+			Foods.update(options._id, { $set: {ratings: ratings } } );
+		} else {
+			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
+			ratings.push(userRating._id);
+		}
+
+		//Recalculate Rating total
+		var userRatings = Ratings.find({_id: { $in: ratings}});
+		var total = 0;
+
+		userRatings.forEach(function(rating) {
+			total += rating.rating;
+		});
+
+		var avg = (total/ratings.length);
+
+		Foods.update(options._id, { $set: {ratingTotal_calc: avg } } );
+
+	}
 });
 

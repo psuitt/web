@@ -34,7 +34,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {  
+    before: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -59,5 +59,5 @@ Router.map(function () {
     }
   });
 
-
 });
+

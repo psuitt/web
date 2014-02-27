@@ -1,5 +1,14 @@
 #login {
-	text-align:right;
-	margin-top:30px;
-	margin-right:30px;
+	float:right;
+	margin-top:10px;
+	display: inline-block;
+}
+
+#menu {
+	padding:0 30px;
+}
+
+#menu>a {
+	margin-top:10px;
+	display: inline-block;
 }
