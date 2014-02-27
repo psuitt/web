@@ -73,23 +73,23 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
-		var id = options._id || Random.id();
-
 		var rating_Id = Ratings.insert({
-			_id: id,
+			_id: Random.id(),
 			user_id: this.userId, 
 			rating: options.rating
 		});
 
+		var id = options._id || Random.id();
+
 		Foods.insert({
-			_id: Random.id(),
+			_id: id,
 			name: options.name, 
 			brand: options.brand,
 			ratingTotal_calc: options.rating,  
 			ratings: [rating_Id]
 		});
 
-		var results = Foods.find({});
+		//var results = Foods.find({});
 
     return id;
   },
@@ -108,7 +108,7 @@ Meteor.methods({
 
 		var userRating = Ratings.findOne({_id: { $in: toUpdate.ratings}, user_id: this.userId});
 
-		var ratings = [];
+		var ratings = toUpdate.ratings;
 
 		if (!userRating) {
 			var rating_Id = Ratings.insert({
@@ -117,14 +117,11 @@ Meteor.methods({
 				rating: options.rating
 			});
 
-			ratings = toUpdate.ratings;
-
 			ratings.push(rating_Id);
 
 			Foods.update(options._id, { $set: {ratings: ratings } } );
 		} else {
 			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
-			ratings.push(userRating._id);
 		}
 
 		//Recalculate Rating total
@@ -135,7 +132,12 @@ Meteor.methods({
 			total += rating.rating;
 		});
 
-		var avg = (total/ratings.length);
+		var avg = (total/parseFloat(ratings.length)).toFixed(2);
+
+		if (avg.lastIndexOf('0') === 3) {
+			avg = avg.substring(0, 3);
+			avg = avg.replace('.0', '');
+		}
 
 		Foods.update(options._id, { $set: {ratingTotal_calc: avg } } );
 

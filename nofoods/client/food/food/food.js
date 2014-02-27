@@ -1,24 +1,8 @@
 Template.foodsTemplate.rendered = function() {
-	Meteor.subscribe('foods'); 
-	Meteor.subscribe('ratings');
-	var result = Foods.findOne({ _id: PARAMS._id});
-
-	//if(!result)
-		//Router.go('/404');
-
-	this.find('.name').innerHTML = result.name;
-	this.find('.totalRating').innerHTML = result.ratingTotal_calc;
+	Meteor.subscribe('foods', function() {
+		Meteor.subscribe('ratings', function() {done();});
+	}); 
 	
-  if (Meteor.user()) {
-		var userRating = Ratings.findOne({_id: { $in: result.ratings}, user_id: Meteor.userId()});
-		if (userRating) {
-			setRatingSelected(userRating.rating);
-		}
-         // this.render('foodsTemplate');
-
-          // stop the rest of the before hooks and the action function 
-          //this.stop();
-  }  
 };
 
 Template.foodsTemplate.events({
@@ -36,6 +20,27 @@ Template.foodsTemplate.events({
 			});
 		}
 });
+
+var done = function() {
+	var result = Foods.findOne({ _id: PARAMS._id});
+
+	//if(!result)
+		//Router.go('/404');
+
+	$('.name').html(result.name);
+	$('.totalRating').html(result.ratingTotal_calc);
+	
+  if (Meteor.user()) {
+		var userRating = Ratings.findOne({_id: { $in: result.ratings}, user_id: Meteor.userId()});
+		if (userRating) {
+			setRatingSelected(userRating.rating);
+		}
+         // this.render('foodsTemplate');
+
+          // stop the rest of the before hooks and the action function 
+          //this.stop();
+  }  
+};
 
 var setRatingSelected = function(n) {
 	$('.rating.selected').removeClass('selected');

@@ -4,6 +4,10 @@
 	display: inline-block;
 }
 
+#login .login-link-text {
+	text-decoration:none;
+}
+
 #menu {
 	padding:0 30px;
 }

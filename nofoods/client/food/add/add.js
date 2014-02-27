@@ -17,6 +17,8 @@
 				name: name,
 				brand: brand			
 			});
+ 
+			Router.go('foodsPage', {_id:id});
 
 		}
 
