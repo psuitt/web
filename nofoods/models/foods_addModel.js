@@ -3,7 +3,23 @@ Foods = new Meteor.Collection("foods");
 Drinks = new Meteor.Collection("drinks");
 Brands = new Meteor.Collection("brands");
 
+// Subset lists
+//FoodsItem = new Meteor.Collection("foodsitem");
+
 Foods.allow({
+  insert: function (userId, food) {
+    return false;
+  },
+  update: function (userId, food) {
+    return false;
+  },
+  remove: function (userId, food) {
+    // not possibly yet
+    return false;
+  }
+});
+
+Drinks.allow({
   insert: function (userId, food) {
     return false;
   },
@@ -59,6 +75,11 @@ var RatingCheck = Match.Where(function (x) {
   return x === 1 || x === 2 || x === 3 || x === 4 || x === 5;
 });
 
+var FoodTypeCheck = Match.Where(function (x) {
+  check(x, String);
+  return x === "Drink" || x === "Food";
+});
+
 Meteor.methods({
   
 	createFood: function (options) {
@@ -67,31 +88,54 @@ Meteor.methods({
       name: NonEmptyString,
       brand: NonEmptyString,
       rating: RatingCheck,
-			_id: Match.Optional(NonEmptyString)
+			type: FoodTypeCheck,
+			_id: NonEmptyString,
+			brand_id: Match.Optional(NonEmptyString)
     });
 
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
-		var rating_Id = Ratings.insert({
+		var brand_id = Brands.insert({
+			_id: Random.id(),
+			name: options.brand, 
+			rating_calc: options.rating
+		});
+
+		var ratingObj = {
 			_id: Random.id(),
 			user_id: this.userId, 
 			rating: options.rating
-		});
+		};
 
-		var id = options._id || Random.id();
+		switch (options.type) {
+			case "Food":
+				Foods.insert({
+					_id: options._id,
+					brand_id: brand_id,
+					name: options.name,
+					rating_calc: options.rating
+				});
+				ratingObj.food_id = options._id;
+				break;
+			case "Drink":
+				Drinks.insert({
+					_id: options._id,
+					brand_id: brand_id,
+					name: options.name,
+					rating_calc: options.rating
+				});
+				ratingObj.drink_id = options._id;
+				break;
+			default:
+				throw new Meteor.Error(501, "The server does not support this functionality");
+		}
+		
 
-		Foods.insert({
-			_id: id,
-			name: options.name, 
-			brand: options.brand,
-			ratingTotal_calc: options.rating,  
-			ratings: [rating_Id]
-		});
+		var rating_Id = Ratings.insert(ratingObj);
 
-		//var results = Foods.find({});
+    return options._id;
 
-    return id;
   },
 
 	updateFood: function (options) {
@@ -104,42 +148,39 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
-		var toUpdate = Foods.findOne({_id: options._id});
-
-		var userRating = Ratings.findOne({_id: { $in: toUpdate.ratings}, user_id: this.userId});
-
-		var ratings = toUpdate.ratings;
+		var userRating = Ratings.findOne({food_id: options._id, user_id: this.userId});
 
 		if (!userRating) {
+
 			var rating_Id = Ratings.insert({
 				_id: Random.id(),
+				food_id: options._id,
 				user_id: this.userId, 
 				rating: options.rating
 			});
 
-			ratings.push(rating_Id);
-
-			Foods.update(options._id, { $set: {ratings: ratings } } );
 		} else {
 			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
 		}
 
 		//Recalculate Rating total
-		var userRatings = Ratings.find({_id: { $in: ratings}});
-		var total = 0;
+		var foodRatings = Ratings.find({food_id: options._id});
+		var total = 0,
+				length = 0;
 
-		userRatings.forEach(function(rating) {
+		foodRatings.forEach(function(rating) {
 			total += rating.rating;
+			length += 1;
 		});
 
-		var avg = (total/parseFloat(ratings.length)).toFixed(2);
+		var avg = (total/parseFloat(length)).toFixed(2);
 
 		if (avg.lastIndexOf('0') === 3) {
 			avg = avg.substring(0, 3);
 			avg = avg.replace('.0', '');
 		}
 
-		Foods.update(options._id, { $set: {ratingTotal_calc: avg } } );
+		Foods.update(options._id, { $set: {rating_calc: avg } } );
 
 	}
 });

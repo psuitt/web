@@ -1,6 +1,6 @@
 Template.foodsTemplate.rendered = function() {
-	Meteor.subscribe('foods', function() {
-		Meteor.subscribe('ratings', function() {done();});
+	Meteor.subscribe('foods_item', PARAMS._id, function() {
+		done();
 	}); 
 	
 };
@@ -22,23 +22,22 @@ Template.foodsTemplate.events({
 });
 
 var done = function() {
-	var result = Foods.findOne({ _id: PARAMS._id});
+	var food = Foods.findOne({});
 
-	//if(!result)
-		//Router.go('/404');
+	if(!food)
+		Router.go('/404');
 
-	$('.name').html(result.name);
-	$('.totalRating').html(result.ratingTotal_calc);
+	$('.name').html(food.name);
+	$('.totalRating').html(food.rating_calc);
 	
   if (Meteor.user()) {
-		var userRating = Ratings.findOne({_id: { $in: result.ratings}, user_id: Meteor.userId()});
-		if (userRating) {
-			setRatingSelected(userRating.rating);
-		}
-         // this.render('foodsTemplate');
+		Meteor.subscribe('ratings', function() {
+			var userRating = Ratings.findOne({food_id: food._id, user_id: Meteor.userId()});
+			if (userRating) {
+				setRatingSelected(userRating.rating);
+			}
+		});
 
-          // stop the rest of the before hooks and the action function 
-          //this.stop();
   }  
 };
 

@@ -13,6 +13,11 @@ Meteor.publish("foods", function () {
   return Foods.find({});
 });
 
+Meteor.publish("foods_item", function (id) {
+	check(id, String);
+  return Foods.find({_id: id});
+});
+
 Meteor.publish("ratings", function () {
   return Ratings.find({});
 });

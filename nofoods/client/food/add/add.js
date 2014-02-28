@@ -8,6 +8,7 @@
 		},
 
 		'click #save': function (event, template) {
+			var type = $("input[name='type']:checked").val(); 
 			var name = template.find("#name").value;
 			var brand = template.find("#brand").value;
 			var rating = parseInt(template.find(".selected").innerHTML, 10); 
@@ -15,7 +16,8 @@
 			var id = createFood({
 				rating: rating,
 				name: name,
-				brand: brand			
+				brand: brand,
+				type: type			
 			});
  
 			Router.go('foodsPage', {_id:id});
