@@ -13,6 +13,12 @@ Router.map(function () {
     }
   });
 
+	this.route('myfoods', {
+    path:'/myfoods',
+    template: 'myfoods',
+		layoutTemplate: 'mainLayout'
+  });
+
 	this.route('error404', {
     path:'/404',
     template: 'error404',

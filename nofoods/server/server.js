@@ -18,6 +18,21 @@ Meteor.publish("foods_item", function (id) {
   return Foods.find({_id: id});
 });
 
+Meteor.publish("foods_items", function (ids) {
+	check(ids, Array);
+  return Foods.find( { _id: { $in: ids } } );
+});
+
+Meteor.publish("drinks_items", function (ids) {
+	check(ids, Array);
+  return Drinks.find( { _id: { $in: ids } } );
+});
+
 Meteor.publish("ratings", function () {
   return Ratings.find({});
 });
+
+Meteor.publish("ratings_my", function () {
+  return Ratings.find({user_id: this.userId});
+});
+

@@ -113,6 +113,7 @@ Meteor.methods({
 				Foods.insert({
 					_id: options._id,
 					brand_id: brand_id,
+					brand_view: options.brand, 
 					name: options.name,
 					rating_calc: options.rating
 				});
@@ -122,6 +123,7 @@ Meteor.methods({
 				Drinks.insert({
 					_id: options._id,
 					brand_id: brand_id,
+					brand_view: options.brand, 
 					name: options.name,
 					rating_calc: options.rating
 				});
