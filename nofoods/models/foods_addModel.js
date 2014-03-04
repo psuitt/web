@@ -80,8 +80,14 @@ var FoodTypeCheck = Match.Where(function (x) {
   return x === "Drink" || x === "Food";
 });
 
+var tokenize = function(s) {
+	var l = s.toLowerCase();
+	var sp = l.split(" ");
+	return sp;
+};
+
 Meteor.methods({
-  
+
 	createFood: function (options) {
 
 		check(options, {
@@ -108,12 +114,15 @@ Meteor.methods({
 			rating: options.rating
 		};
 
+		var tokens = tokenize(options.name + " " + options.brand);
+
 		switch (options.type) {
 			case "Food":
 				Foods.insert({
 					_id: options._id,
 					brand_id: brand_id,
 					brand_view: options.brand, 
+					keywords: tokens,
 					name: options.name,
 					rating_calc: options.rating
 				});
@@ -124,6 +133,7 @@ Meteor.methods({
 					_id: options._id,
 					brand_id: brand_id,
 					brand_view: options.brand, 
+					keywords: tokens,
 					name: options.name,
 					rating_calc: options.rating
 				});

@@ -9,19 +9,8 @@
 	width: 40%;
 }
 
-#resultsDiv {
-	text-align: center;
+#searchResults {
+	width: 100%;
+	margin: 0 auto;
 }
 
-#resultsDiv td {
-	text-align:left;
-	width: 30%;
-}
-
-#resultsDiv .brand {
-	width: 30%;
-}
-
-#resultsTable {
-	margin:20px auto;
-}

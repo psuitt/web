@@ -23,6 +23,44 @@ Meteor.publish("foods_items", function (ids) {
   return Foods.find( { _id: { $in: ids } } );
 });
 
+Meteor.publish("foods_search", function (search) {
+	
+	check(search, String);
+	
+	var tokens = search.toLowerCase().split(" "),
+			length = 0,
+			rCountPrev = -1;
+
+	for (var i, l = tokens.length ; i < l ; i += 1) {
+		
+		var subArray = tokens.slice(0, (l - i)),
+				returned = Foods.find( { keywords: { $all: subArray } } ),
+				rCount = returned.count();
+
+		if (rCount > 10 || rCountPrev >= rCount) {
+
+			return returned;	
+	
+		} else if (i > 0) {
+
+			subArray = tokens.slice(i, l);
+			returned = Foods.find( { keywords: { $all: subArray } } );
+			rCount = returned.count();
+
+			if (rCount > 10 || rCountPrev >= rCount) {
+				return returned;		
+			}
+
+		}
+
+		rCountPrev = rCount;
+
+	}
+
+  return Foods.find( { keywords: { $in: tokens } } );
+
+});
+
 Meteor.publish("drinks_items", function (ids) {
 	check(ids, Array);
   return Drinks.find( { _id: { $in: ids } } );

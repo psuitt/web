@@ -7,11 +7,17 @@ Router.map(function () {
 	this.route('home', {
     path:'/',
     template: 'home',
-		layoutTemplate: 'mainLayout',
-    before: function () {
-			Meteor.subscribe("foods");
-    }
+		layoutTemplate: 'mainLayout'
   });
+
+	this.route('searchResults', {
+    path: '/search/:search',
+    template: 'search',
+		layoutTemplate: '',
+    before: function () {	  
+			PARAMS = this.params;   
+    }
+	});
 
 	this.route('myfoods', {
     path:'/myfoods',

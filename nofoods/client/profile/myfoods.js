@@ -1,8 +1,16 @@
 Template.myfoods.rendered = function() {
+
+	if (!Meteor.userId()) {
+		$("#myfoods_ratings").append("Please log in to view your ratings.");		
+		return;	
+	}
+
 	Meteor.subscribe('ratings_my', function() {
 		var food_ids = [],
 				drink_ids = [],
 				jDiv = $("#myfoods_ratings");
+
+		jDiv.html("");
 
 		Ratings.find({}).forEach(function(rating) {
 			
