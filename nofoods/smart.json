@@ -1,6 +1,5 @@
 {
   "packages": {
-    "iron-router": {},
-    "publish-with-relations": {}
+    "iron-router": {}
   }
 }

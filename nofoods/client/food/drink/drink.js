@@ -1,11 +1,11 @@
-Template.foodsTemplate.rendered = function() {
-	Meteor.subscribe('foods_item', PARAMS._id, function() {
+Template.drinksTemplate.rendered = function() {
+	Meteor.subscribe('drinks_item', PARAMS._id, function() {
 		done();
 	}); 
 	
 };
 
-Template.foodsTemplate.events({
+Template.drinksTemplate.events({
 		'click .rating': function (event, template) {
 			if (template.find(".rating.selected")) {
 				template.find(".rating.selected").className = "rating";
@@ -14,7 +14,7 @@ Template.foodsTemplate.events({
 
 			var rating = parseInt(template.find(".selected").innerHTML, 10); 
 		
-			var id = updateFood({
+			var id = updateDrink({
 				rating: rating,
 				_id: PARAMS._id		
 			});
@@ -23,14 +23,14 @@ Template.foodsTemplate.events({
 
 var done = function() {
 	// This can sometime contain more data if froming from another page.
-	var food = Foods.findOne({_id : PARAMS._id});
+	var drink = Drinks.findOne({_id : PARAMS._id});
 
-	if(!food)
+	if(!drink)
 		Router.go('/404');
 
-	$('.name').html(food.name);
-	$('.brand').html(food.brand_view);
-	$('.totalRating').html(food.rating_calc);
+	$('.name').html(drink.name);
+	$('.brand').html(drink.brand_view);
+	$('.totalRating').html(drink.rating_calc);
 	
   if (Meteor.user()) {
 		Meteor.subscribe('ratings', function() {

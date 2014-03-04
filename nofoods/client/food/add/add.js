@@ -20,7 +20,11 @@
 				type: type			
 			});
  
-			Router.go('foodsPage', {_id:id});
+			if (type === "food") {
+				Router.go('foodsPage', {_id:id});
+			} else {
+				Router.go('drinksPage', {_id:id});
+			}
 
 		}
 

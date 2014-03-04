@@ -83,7 +83,12 @@ var FoodTypeCheck = Match.Where(function (x) {
 var tokenize = function(s) {
 	var l = s.toLowerCase();
 	var sp = l.split(" ");
-	return sp;
+	var uniqueArray = [];
+	for (var i = 0, l = sp.length; i < l ; i += 1) {
+		if (uniqueArray.indexOf(sp[i]) === -1)
+			uniqueArray.push(sp[i]);	
+	};
+	return uniqueArray;
 };
 
 Meteor.methods({

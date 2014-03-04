@@ -51,6 +51,18 @@ Router.map(function () {
     }
 	});
 
+	this.route('drinksPage', {
+    path: '/drink/page/:_id',
+    template: 'drinksTemplate',
+    layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    before: function () {	  
+			PARAMS = this.params;   
+    }
+	});
+
   this.route('parties', {
     path:'/parties',
     template: 'page',

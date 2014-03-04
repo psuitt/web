@@ -2,15 +2,13 @@
 	text-align: center;
 }
 
-#resultsDiv td {
-	text-align:left;
-	width: 30%;
+#searchTabs {
+	width: 100px;
+	display:inline-block;
+	vertical-align:top;
 }
 
-#resultsDiv .brand {
-	width: 30%;
+#searchTabsContent {
+	display:inline-block;
 }
 
-#resultsTable {
-	margin:20px auto;
-}
