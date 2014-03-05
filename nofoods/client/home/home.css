@@ -5,8 +5,8 @@
 }
 
 #search {
-	min-width:400px;
-	width: 40%;
+	max-width:400px;
+	width: 80%;
 }
 
 #searchResults {

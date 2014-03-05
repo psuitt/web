@@ -20,7 +20,11 @@ var doSearchFoods = function() {
 
 			htmlBuilder.push("<tr>");
 			htmlBuilder.push("<td class='brand'>");
+			htmlBuilder.push("<a href='/brand/page/");
+			htmlBuilder.push(food.brand_id);
+			htmlBuilder.push("' target='_top'>");
 			htmlBuilder.push(food.brand_view);
+			htmlBuilder.push("</a>");
 			htmlBuilder.push("</td>");
 			htmlBuilder.push("<td>");
 			htmlBuilder.push("<a href='/food/page/");
@@ -55,7 +59,11 @@ var doSearchDrinks = function() {
 
 			htmlBuilder.push("<tr>");
 			htmlBuilder.push("<td class='brand'>");
+			htmlBuilder.push("<a href='/brand/page/");
+			htmlBuilder.push(drink.brand_id);
+			htmlBuilder.push("' target='_top'>");
 			htmlBuilder.push(drink.brand_view);
+			htmlBuilder.push("</a>");
 			htmlBuilder.push("</td>");
 			htmlBuilder.push("<td>");
 			htmlBuilder.push("<a href='/drink/page/");

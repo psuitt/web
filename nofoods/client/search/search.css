@@ -1,14 +1,23 @@
 #resultsDiv {
 	text-align: center;
+	width: 80%;
+	margin: 0 auto;
 }
 
 #searchTabs {
+	float: left;
 	width: 100px;
-	display:inline-block;
-	vertical-align:top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 #searchTabsContent {
-	display:inline-block;
+	float: left;
+	display: inline-block;
+	margin-left: 10%
+}
+
+#searchTabsContent td {
+	text-align: left;
 }
 

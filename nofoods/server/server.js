@@ -9,6 +9,11 @@ Meteor.publish("parties", function () {
     {$or: [{"public": true}, {invited: this.userId}, {owner: this.userId}]});
 });
 
+Meteor.publish("brands_item", function (id) {
+	check(id, String);
+  return Brands.find({_id: id});
+});
+
 Meteor.publish("foods", function () {
   return Foods.find({});
 });
@@ -21,6 +26,11 @@ Meteor.publish("foods_item", function (id) {
 Meteor.publish("foods_items", function (ids) {
 	check(ids, Array);
   return Foods.find( { _id: { $in: ids } } );
+});
+
+Meteor.publish("foods_brand", function (id) {
+	check(id, String);
+  return Foods.find( { brand_id: id } );
 });
 
 Meteor.publish("foods_search", function (search) {
@@ -69,6 +79,11 @@ Meteor.publish("drinks_item", function (id) {
 Meteor.publish("drinks_items", function (ids) {
 	check(ids, Array);
   return Drinks.find( { _id: { $in: ids } } );
+});
+
+Meteor.publish("drinks_brand", function (id) {
+	check(id, String);
+  return Drinks.find( { brand_id: id } );
 });
 
 Meteor.publish("drinks_search", function (search) {

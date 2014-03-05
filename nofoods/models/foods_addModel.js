@@ -65,6 +65,10 @@ updateFood = function (options) {
   Meteor.call('updateFood', options);
 };
 
+updateDrink = function (options) {
+  Meteor.call('updateDrink', options);
+};
+
 var NonEmptyString = Match.Where(function (x) {
   check(x, String);
   return x.length !== 0;
@@ -198,6 +202,52 @@ Meteor.methods({
 		}
 
 		Foods.update(options._id, { $set: {rating_calc: avg } } );
+
+	},
+
+	updateDrink: function (options) {
+
+		check(options, {
+      rating: RatingCheck,
+			_id: NonEmptyString
+    });
+
+    if (!this.userId)
+      throw new Meteor.Error(403, "You must be logged in");
+
+		var userRating = Ratings.findOne({drink_id: options._id, user_id: this.userId});
+
+		if (!userRating) {
+
+			var rating_Id = Ratings.insert({
+				_id: Random.id(),
+				drink_id: options._id,
+				user_id: this.userId, 
+				rating: options.rating
+			});
+
+		} else {
+			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
+		}
+
+		//Recalculate Rating total
+		var drinkRatings = Ratings.find({drink_id: options._id});
+		var total = 0,
+				length = 0;
+
+		drinkRatings.forEach(function(rating) {
+			total += rating.rating;
+			length += 1;
+		});
+
+		var avg = (total/parseFloat(length)).toFixed(2);
+
+		if (avg.lastIndexOf('0') === 3) {
+			avg = avg.substring(0, 3);
+			avg = avg.replace('.0', '');
+		}
+
+		Drinks.update(options._id, { $set: {rating_calc: avg } } );
 
 	}
 });

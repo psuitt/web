@@ -34,7 +34,7 @@ var done = function() {
 	
   if (Meteor.user()) {
 		Meteor.subscribe('ratings', function() {
-			var userRating = Ratings.findOne({food_id: food._id, user_id: Meteor.userId()});
+			var userRating = Ratings.findOne({drink_id: drink._id, user_id: Meteor.userId()});
 			if (userRating) {
 				setRatingSelected(userRating.rating);
 			}
