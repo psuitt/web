@@ -1,8 +1,23 @@
+Template.myfoods.events({
+		'click #save': function (event, template) {
+			var profile = {
+				name: template.find('#name').value		
+			};
+			Meteor.call('updateProfile', profile);
+		}
+});
+
 Template.myfoods.rendered = function() {
 
 	if (!Meteor.userId()) {
 		$("#myfoods_ratings").append("Please log in to view your ratings.");		
 		return;	
+	}
+
+	var user = Meteor.user();
+
+	if (user.profile) {
+		$('#name').val(user.profile.name);
 	}
 
 	Meteor.subscribe('ratings_my', function() {

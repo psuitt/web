@@ -18,6 +18,7 @@ var doSearchFoods = function() {
 
 		results.forEach(function(food) {
 
+			/*
 			htmlBuilder.push("<tr>");
 			htmlBuilder.push("<td class='brand'>");
 			htmlBuilder.push("<a href='/brand/page/");
@@ -37,10 +38,13 @@ var doSearchFoods = function() {
 			htmlBuilder.push(food.rating_calc);
 			htmlBuilder.push("</td>");
 			htmlBuilder.push("</tr>");
+			*/
 		
+			$('#foods').append(getSearchRow('/food/page/', food));	
+
 		});
 
-		$('#foodsResults').html(htmlBuilder.join(''));
+		//$('#foodsResults').html(htmlBuilder.join(''));
 
 	});
 
@@ -57,6 +61,7 @@ var doSearchDrinks = function() {
 
 		results.forEach(function(drink) {
 
+			/*
 			htmlBuilder.push("<tr>");
 			htmlBuilder.push("<td class='brand'>");
 			htmlBuilder.push("<a href='/brand/page/");
@@ -76,11 +81,47 @@ var doSearchDrinks = function() {
 			htmlBuilder.push(drink.rating_calc);
 			htmlBuilder.push("</td>");
 			htmlBuilder.push("</tr>");
-		
+			*/
+			$('#drinks').append(getSearchRow('/drink/page/', drink));	
+
 		});
 
-		$('#drinksResults').html(htmlBuilder.join(''));
+		//$('#drinksResults').html(htmlBuilder.join(''));
 
 	});
+
+};
+
+var getSearchRow = function(link, item) {
+	var div = $('<div></div>'),
+			icon = $('<span></span>'),
+			name = $('<span></span>'),
+			brand = $('<span></span>'),
+			rating = $('<span></span>'),
+			aName = $("<a target='_top'></a>"),
+			aBrand = $("<a target='_top'></a>");
+
+	div.addClass('item');
+	icon.addClass('itemIcon');
+	name.addClass('itemName');
+	brand.addClass('itemBrand');
+	rating.addClass('itemRating');
+
+	aName.attr('href', link + item._id);
+	aName.html(item.name);
+
+	aBrand.attr('href', '/brand/page/' + item.brand_id);
+	aBrand.html(item.brand_view);
+
+	rating.html(item.rating_calc)
+
+	name.append(aName);	
+	brand.append(aBrand);
+	name.append(brand);
+	div.append(icon);
+	div.append(name);
+	div.append(rating);
+	
+	return div;
 
 };

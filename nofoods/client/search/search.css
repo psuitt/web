@@ -1,6 +1,6 @@
 #resultsDiv {
 	text-align: center;
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 }
 
@@ -21,3 +21,34 @@
 	text-align: left;
 }
 
+#searchTabsContent div.item {
+	text-align: left;
+}
+
+#searchTabsContent span.itemIcon {
+	width:80px;
+	height:80px;
+	vertical-align: top;
+	display:inline-block;
+}
+
+#searchTabsContent span.itemIcon.large {
+	height:160px;
+}
+
+#searchTabsContent span.itemName {
+	font-size:24px;
+	vertical-align: top;
+	display:inline-block;
+}
+
+#searchTabsContent span.itemBrand {
+	font-size:18px;
+	display:block;
+}
+
+#searchTabsContent span.itemRating {
+	float: right;
+	vertical-align: top;
+	display: inline-block;
+}

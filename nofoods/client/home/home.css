@@ -6,11 +6,12 @@
 
 #search {
 	max-width:400px;
-	width: 80%;
+	width: 85%;
 }
 
 #searchResults {
 	width: 100%;
 	margin: 0 auto;
+ 	overflow: hidden;
 }
 
