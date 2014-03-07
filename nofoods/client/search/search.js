@@ -41,9 +41,11 @@ var doSearchFoods = function() {
 			*/
 		
 			$('#foods').append(getSearchRow('/food/page/', food));	
+			
 
 		});
 
+		window.parent.recalcFrame($('#foods').outerHeight());	
 		//$('#foodsResults').html(htmlBuilder.join(''));
 
 	});
@@ -86,6 +88,7 @@ var doSearchDrinks = function() {
 
 		});
 
+		window.parent.recalcFrame($('#drinks').outerHeight());
 		//$('#drinksResults').html(htmlBuilder.join(''));
 
 	});
@@ -114,6 +117,11 @@ var getSearchRow = function(link, item) {
 	aBrand.html(item.brand_view);
 
 	rating.html(item.rating_calc)
+	var i = (Math.round((item.rating_calc * 2))*10).toString();
+			
+	rating.addClass('rating');
+	rating.addClass("x"+i);
+
 
 	name.append(aName);	
 	brand.append(aBrand);

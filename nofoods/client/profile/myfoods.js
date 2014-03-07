@@ -42,8 +42,10 @@ Template.myfoods.rendered = function() {
 				drink_ids.push(rating.drink_id);			
 			}
 
+			var i = (Math.round((rating.rating * 2))*10).toString();
+			
 			ratingSpan.html(rating.rating);
-			ratingSpan.addClass(rating.rating);
+			ratingSpan.addClass("x"+i);
 
 			div.append(title);
 			div.append(brand);

@@ -3,11 +3,14 @@
 		'keypress #search': function(evt, template) {
 			if (evt.which == 13) {
 				$('#searchResults').attr("src", '/search/' + evt.target.value);
-				$('#searchResults').load(function() {
-						var height = $(this).find("#searchTabsContent").outerHeight();
-						this.height = height;					
-				});
 			}
 		}
 	};
+
+	recalcFrame = function(height) {
+		if ($('#searchResults')[0].height < height) {
+			$('#searchResults')[0].height = height;
+		}
+	};
 })();
+

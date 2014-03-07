@@ -20,50 +20,49 @@
 span.rating {
 	height:22px;
 	width:22px;
-	margin: 0 -2px;
 	display: inline-block;
-	background-image: url('/rating/rating.png');
+	background-image: url('/rating/rating_border.png');
 	bachgroun-position: center center;
 	background-size: 24px 24px;
 	background-repeat: no-repeat;
 }
 
-span.rating.10 {
-	background-image: url('/rating/rating_10.png');
+span.rating.x10 {
+	background-image: url('/rating/rating_10_border.png');
 }
 
-span.rating.20 {
-	background-image: url('/rating/rating_20.png');
+span.rating.x20 {
+	background-image: url('/rating/rating_20_border.png');
 }
 
-span.rating.30 {
-	background-image: url('/rating/rating_30.png');
+span.rating.x30 {
+	background-image: url('/rating/rating_30_border.png');
 }
 
-span.rating.40 {
-	background-image: url('/rating/rating_40.png');
+span.rating.x40 {
+	background-image: url('/rating/rating_40_border.png');
 }
 
-span.rating.50 {
-	background-image: url('/rating/rating_50.png');
+span.rating.x50 {
+	background-image: url('/rating/rating_50_border.png');
 }
 
-span.rating.60 {
-	background-image: url('/rating/rating_60.png');
+span.rating.x60 {
+	background-image: url('/rating/rating_60_border.png');
 }
 
-span.rating.70 {
-	background-image: url('/rating/rating_70.png');
+span.rating.x70 {
+	background-image: url('/rating/rating_70_border.png');
 }
 
-span.rating.80 {
-	background-image: url('/rating/rating_80.png');
+span.rating.x80 {
+	background-image: url('/rating/rating_80_border.png');
 }
 
-span.rating.90 {
-	background-image: url('/rating/rating_90.png');
+span.rating.x90 {
+	background-image: url('/rating/rating_90_border.png');
 }
 
-span.rating.full {
-	background-image: url('/rating/rating_full.png');
+span.rating.x100 {
+	background-image: url('/rating/rating_full_border.png');
 }

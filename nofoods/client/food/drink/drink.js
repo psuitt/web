@@ -1,24 +1,25 @@
 Template.drinksTemplate.rendered = function() {
 	Meteor.subscribe('drinks_item', PARAMS._id, function() {
 		done();
-	}); 
+	});
+
+	$('div.ratingDiv span.rating').on('click', function() {
+		var index = $(this).index();			
+		$('div.ratingDiv span.rating').each(function() {
+			$(this).toggleClass('x100', $(this).index() <= index);						
+		});
+		var last = $('div.ratingDiv span.rating.x100').last();
+		var rating = parseInt((last.index() + 1), 10);
+	
+		var id = updateDrink({
+			rating: rating,
+			_id: PARAMS._id		
+		});		
+	});	  
 	
 };
 
 Template.drinksTemplate.events({
-		'click .rating': function (event, template) {
-			if (template.find(".rating.selected")) {
-				template.find(".rating.selected").className = "rating";
-			}
-			event.target.className = "rating selected";
-
-			var rating = parseInt(template.find(".selected").innerHTML, 10); 
-		
-			var id = updateDrink({
-				rating: rating,
-				_id: PARAMS._id		
-			});
-		}
 });
 
 var done = function() {
@@ -44,8 +45,9 @@ var done = function() {
 };
 
 var setRatingSelected = function(n) {
-	$('.rating.selected').removeClass('selected');
-	$('.rating').eq(n-1).addClass('selected');
+	$('div.ratingDiv span.rating').each(function() {
+		$(this).toggleClass('x100', $(this).index() <= (n-1));						
+	});	
 };
 
 

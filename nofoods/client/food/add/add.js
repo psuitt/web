@@ -1,9 +1,9 @@
 (function() {
 	Template.foodsAdd.rendered = function() {
-		$('#ratingDiv span.rating').on('click', function() {
+		$('div.ratingDiv span.rating').on('click', function() {
 			var index = $(this).index();			
-			$('#ratingDiv span.rating').each(function() {
-				$(this).toggleClass('full', $(this).index() <= index);						
+			$('div.ratingDiv span.rating').each(function() {
+				$(this).toggleClass('x100', $(this).index() <= index);						
 			});		
 		});	
 
@@ -14,7 +14,7 @@
 			var type = $("input[name='type']:checked").val(); 
 			var name = template.find("#name").value;
 			var brand = template.find("#brand").value;
-			var last = $('#ratingDiv span.rating.full').last();
+			var last = $('div.ratingDiv span.rating.x100').last();
 			var rating = parseInt((last.index() + 1), 10); 
 		
 			var id = createFood({
