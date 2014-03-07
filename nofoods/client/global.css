@@ -16,3 +16,54 @@
 	margin-top:10px;
 	display: inline-block;
 }
+
+span.rating {
+	height:22px;
+	width:22px;
+	margin: 0 -2px;
+	display: inline-block;
+	background-image: url('/rating/rating.png');
+	bachgroun-position: center center;
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+}
+
+span.rating.10 {
+	background-image: url('/rating/rating_10.png');
+}
+
+span.rating.20 {
+	background-image: url('/rating/rating_20.png');
+}
+
+span.rating.30 {
+	background-image: url('/rating/rating_30.png');
+}
+
+span.rating.40 {
+	background-image: url('/rating/rating_40.png');
+}
+
+span.rating.50 {
+	background-image: url('/rating/rating_50.png');
+}
+
+span.rating.60 {
+	background-image: url('/rating/rating_60.png');
+}
+
+span.rating.70 {
+	background-image: url('/rating/rating_70.png');
+}
+
+span.rating.80 {
+	background-image: url('/rating/rating_80.png');
+}
+
+span.rating.90 {
+	background-image: url('/rating/rating_90.png');
+}
+
+span.rating.full {
+	background-image: url('/rating/rating_full.png');
+}
