@@ -258,6 +258,21 @@ Meteor.methods({
 
 		Meteor.users.update({_id: this.userId}, { $set: { "profile.name": options.name } });
 
+	},
+
+	addToWishList: function (options) {
+		check(options, {
+      food_id: Match.Optional(NonEmptyString),
+			drink_id: Match.Optional(NonEmptyString)
+    });
+
+		var wish = {
+			food_id: options.food_id,
+			drink_id: options.drink_id
+		};
+
+		Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.wishlist": wish } });
+
 	}
 	
 });

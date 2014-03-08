@@ -102,7 +102,7 @@ var getSearchRow = function(link, item) {
 			brand = $('<span></span>'),
 			rating = $('<span></span>'),
 			aName = $("<a target='_top'></a>"),
-			aBrand = $("<a target='_top'></a>");
+			aBrand = $("<a class='brand' target='_top'></a>");
 
 	div.addClass('item');
 	icon.addClass('itemIcon');

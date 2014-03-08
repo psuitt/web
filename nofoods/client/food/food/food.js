@@ -15,7 +15,11 @@ Template.foodsTemplate.rendered = function() {
 			rating: rating,
 			_id: PARAMS._id		
 		});		
-	});	 
+	});	
+
+	$('span.addToWishList').on('click', function() {
+		Meteor.call('addToWishList', {food_id: PARAMS._id});	
+	}); 
 	
 };
 
