@@ -22,9 +22,13 @@
 				name: name,
 				brand: brand,
 				type: type			
+			}, function(error) {
+				if (error) {
+					alert(error);					
+				}			
 			});
  
-			if (type === "food") {
+			if (type === "Food") {
 				Router.go('foodsPage', {_id:id});
 			} else {
 				Router.go('drinksPage', {_id:id});

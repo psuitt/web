@@ -12,10 +12,15 @@
 }
 
 #searchTabsContent {
-	max-width:800px;
+	max-width:1000px;
 	min-width:70%;
 	display: inline-block;
 	margin-left: 15px;
+}
+
+#searchTabsContent div.resultsTotals {
+	color: gray;
+	text-align: left;
 }
 
 #searchTabsContent div.item {
