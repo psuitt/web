@@ -97,7 +97,7 @@ var doSearchDrinks = function() {
 
 var getSearchRow = function(link, item) {
 	var div = $('<div></div>'),
-			icon = $('<span></span>'),
+			icon = $('<span>NO IMAGE AVAILABLE</span>'),
 			name = $('<span></span>'),
 			brand = $('<span></span>'),
 			rating = $('<span></span>'),

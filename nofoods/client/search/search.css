@@ -1,24 +1,21 @@
 #resultsDiv {
 	text-align: center;
-	width: 90%;
+	width: 100%;
+	max-width: 900px;
 	margin: 0 auto;
 }
 
 #searchTabs {
-	float: left;
-	width: 100px;
+	min-width: 100px;
 	display: inline-block;
 	vertical-align: top;
 }
 
 #searchTabsContent {
-	float: left;
+	max-width:800px;
+	min-width:70%;
 	display: inline-block;
-	margin-left: 10%
-}
-
-#searchTabsContent td {
-	text-align: left;
+	margin-left: 15px;
 }
 
 #searchTabsContent div.item {

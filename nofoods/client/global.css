@@ -22,12 +22,12 @@ a.brand {
 }
 
 span.rating {
-	height:22px;
-	width:22px;
+	height:24px;
+	width:24px;
 	display: inline-block;
-	background-image: url('/rating/rating_border.png');
+	background-image: url('/rating/heart_empty.svg');
 	bachgroun-position: center center;
-	background-size: 24px 24px;
+	background-size: 24px 22px;
 	background-repeat: no-repeat;
 }
 
@@ -48,7 +48,7 @@ span.rating.x40 {
 }
 
 span.rating.x50 {
-	background-image: url('/rating/rating_50_border.png');
+	background-image: url('/rating/heart_half.svg');
 }
 
 span.rating.x60 {
@@ -68,5 +68,16 @@ span.rating.x90 {
 }
 
 span.rating.x100 {
-	background-image: url('/rating/rating_full_border.png');
+	background-image: url('/rating/heart_full.svg');
+}
+
+span.wishstar {
+	height:24px;
+	width:24px;
+	display: inline-block;
+	background-image: url('/rating/star_full.svg');
+	bachgroun-position: center center;
+	background-size: 24px 22px;
+	background-repeat: no-repeat;
+	cursor: pointer;
 }

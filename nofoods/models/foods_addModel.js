@@ -133,7 +133,8 @@ Meteor.methods({
 					brand_view: options.brand, 
 					keywords: tokens,
 					name: options.name,
-					rating_calc: options.rating
+					rating_calc: options.rating,
+					date: Date.now()
 				});
 				ratingObj.food_id = options._id;
 				break;
@@ -144,7 +145,8 @@ Meteor.methods({
 					brand_view: options.brand, 
 					keywords: tokens,
 					name: options.name,
-					rating_calc: options.rating
+					rating_calc: options.rating,
+					date: Date.now()
 				});
 				ratingObj.drink_id = options._id;
 				break;
@@ -268,7 +270,8 @@ Meteor.methods({
 
 		var wish = {
 			food_id: options.food_id,
-			drink_id: options.drink_id
+			drink_id: options.drink_id,
+			date: Date.now()
 		};
 
 		Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.wishlist": wish } });
