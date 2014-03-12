@@ -189,7 +189,8 @@ Meteor.methods({
 		}
 
 		//Recalculate Rating total
-		var foodRatings = Ratings.find({food_id: options._id});
+		var foodRatings = Ratings.find({food_id: options._id}),
+				count = foodRatings.count();
 		var total = 0,
 				length = 0;
 
@@ -205,7 +206,7 @@ Meteor.methods({
 			avg = avg.replace('.0', '');
 		}
 
-		Foods.update(options._id, { $set: {rating_calc: avg } } );
+		Foods.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
 
 	},
 
@@ -235,7 +236,8 @@ Meteor.methods({
 		}
 
 		//Recalculate Rating total
-		var drinkRatings = Ratings.find({drink_id: options._id});
+		var drinkRatings = Ratings.find({drink_id: options._id}),
+				count = drinkRatings.count();
 		var total = 0,
 				length = 0;
 
@@ -251,7 +253,7 @@ Meteor.methods({
 			avg = avg.replace('.0', '');
 		}
 
-		Drinks.update(options._id, { $set: {rating_calc: avg } } );
+		Drinks.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
 
 	},
 

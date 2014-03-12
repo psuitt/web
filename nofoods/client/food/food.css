@@ -2,6 +2,7 @@ div.content {
 	text-align: left;
 	width:70%;
 	max-width:1000px;
+	min-height: 800px;
 	margin:50px auto;
 }
 
@@ -30,6 +31,10 @@ label.inputlabel {
 
 div.ratingDiv {
 	display: inline-block;
+}
+
+div.ratingDiv span.rating {
+	vertical-align: middle;
 }
 
 span.totalRating {

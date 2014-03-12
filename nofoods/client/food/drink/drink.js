@@ -15,7 +15,11 @@ Template.drinksTemplate.rendered = function() {
 			rating: rating,
 			_id: PARAMS._id		
 		});		
-	});	  
+	});	
+
+	$('span.wishstar').on('click', function() {
+		Meteor.call('addToWishList', {drink_id: PARAMS._id});	
+	});   
 	
 };
 
@@ -32,6 +36,7 @@ var done = function() {
 	$('.name').html(drink.name);
 	$('.brand').html(drink.brand_view);
 	$('.totalRating').html(drink.rating_calc);
+	$('.totalCount').html(drink.ratingcount_calc);
 	
   if (Meteor.user()) {
 		Meteor.subscribe('ratings', function() {

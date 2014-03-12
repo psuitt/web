@@ -1,13 +1,19 @@
 <template name="drinksTemplate">
-	<h2 class="name"></h2>
-	<h4 class="brand"></h4>
-	<label>Rating</label>
-		<div class="ratingDiv">
-			<span class="rating" >1</span>
-			<span class="rating" >2</span>
-			<span class="rating" >3</span>
-			<span class="rating" >4</span>
-			<span class="rating" >5</span>
-		</div>
-	<label>Total:</label><span class="totalRating"></span>
+	<div class="content" >
+		<div class="searchbar"><span class="logo">No...Foods?</span><input type="text"></input></div>
+		<span class="name"></span><span class="wishstar" title="Click to add to wishlist."></span>
+		<span class="brand"></span>
+		<label class="inputlabel" >Rating:</label>
+			<div class="ratingDiv">
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+			</div>
+		<span class="totalRating"></span>
+		<span class="ratingdivider">(</span>
+		<span class="totalCount"></span>
+		<span class="ratingdivider">)</span>
+	</div>
 </template>
