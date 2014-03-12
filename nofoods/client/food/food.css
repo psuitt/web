@@ -1,0 +1,42 @@
+div.content {
+	text-align: left;
+	width:70%;
+	max-width:1000px;
+	margin:50px auto;
+}
+
+div.searchbar {
+	vertical-align: middle;
+}
+
+span.name {
+	display: inline-block;
+	vertical-align: middle;
+	font-size:32px;
+	margin: 10px 10px 10px 0;
+}
+
+span.brand {
+	display: block;
+	vertical-align: middle;
+	font-size:24px;
+	margin: 10px 0 50px 0;
+	color: #808080;
+}
+
+label.inputlabel {
+	font-weight: bold;
+}
+
+div.ratingDiv {
+	display: inline-block;
+}
+
+span.totalRating {
+	color: #428bca;
+}
+
+span.totalCount {
+	
+}
+

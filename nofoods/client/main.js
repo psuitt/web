@@ -22,7 +22,10 @@ Router.map(function () {
 	this.route('myfoods', {
     path:'/myfoods',
     template: 'myfoods',
-		layoutTemplate: 'mainLayout'
+		layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		}
   });
 
 	this.route('error404', {
@@ -35,6 +38,9 @@ Router.map(function () {
     path:'/food/add',
     template: 'foodsAdd',
 		layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
     before: function () {
     }
   });

@@ -134,6 +134,7 @@ Meteor.methods({
 					keywords: tokens,
 					name: options.name,
 					rating_calc: options.rating,
+					ratingcount_calc: 1,
 					date: Date.now()
 				});
 				ratingObj.food_id = options._id;
@@ -146,6 +147,7 @@ Meteor.methods({
 					keywords: tokens,
 					name: options.name,
 					rating_calc: options.rating,
+					ratingcount_calc: 1,
 					date: Date.now()
 				});
 				ratingObj.drink_id = options._id;

@@ -17,6 +17,19 @@
 	display: inline-block;
 }
 
+#mainContent {
+	text-align:center;
+}
+
+#footer {
+	text-align: right;
+	background:#DDD;
+	width: 100%;
+	padding: 5px 10px;
+	margin-top: 100px;
+	border-top: 1px solid #CCC;
+}
+
 a.brand {
  color: gray;
 }
@@ -75,6 +88,7 @@ span.wishstar {
 	height:24px;
 	width:24px;
 	display: inline-block;
+	vertical-align: middle;
 	background-image: url('/rating/star_full.svg');
 	bachgroun-position: center center;
 	background-size: 24px 22px;
