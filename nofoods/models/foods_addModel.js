@@ -277,8 +277,18 @@ Meteor.methods({
 			drink_id: options.drink_id,
 			date: Date.now()
 		};
+		
+		var query = {
+			_id: this.userId, 
+			"profile.wishlist.food_id": options.food_id,
+			"profile.wishlist.drink_id": options.drink_id
+		};
 
-		Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.wishlist": wish } });
+		var findOne = Meteor.users.findOne(query);
+
+		if (!findOne) {
+			Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.wishlist": wish } });
+		}
 
 	}
 	

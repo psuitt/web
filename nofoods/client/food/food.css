@@ -2,12 +2,48 @@ div.content {
 	text-align: left;
 	width:70%;
 	max-width:1000px;
-	min-height: 800px;
+	min-height: 600px;
 	margin:50px auto;
 }
 
 div.searchbar {
 	vertical-align: middle;
+	padding: 10px 5px 10px 5px;
+	background: #EEE;
+	border-top: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	background: #EEE;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+div.searchbar span {
+	vertical-align: middle;
+}
+
+div.searchbar input {
+	vertical-align: middle;
+	margin-bottom: 0;
+}
+
+div.contentbody {
+	overflow:hidden;
+	padding: 10px;
+	border-right: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+}
+
+div.image {
+	display: inline-block;
+	float: right;
+	height: 150px;
+	width: 200px;
+	border: 1px solid #000;
 }
 
 span.name {

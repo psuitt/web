@@ -1,8 +1,6 @@
 Template.foodsTemplate.rendered = function() {
-	Meteor.subscribe('foods_item', PARAMS._id, function() {
-		done();
-	});
-
+	Meteor.subscribe('foods_item', PARAMS._id, function() {done();});
+	
 	$('div.ratingDiv span.rating').on('click', function() {
 		var index = $(this).index();			
 		$('div.ratingDiv span.rating').each(function() {
@@ -14,11 +12,15 @@ Template.foodsTemplate.rendered = function() {
 		var id = updateFood({
 			rating: rating,
 			_id: PARAMS._id		
-		});		
+		});
+
+		done();
+		
 	});	
 
 	$('span.wishstar').on('click', function() {
-		Meteor.call('addToWishList', {food_id: PARAMS._id});	
+		Meteor.call('addToWishList', {food_id: PARAMS._id});
+		$(".wishstar").toggleClass("x100", true);	
 	}); 
 	
 };
@@ -38,8 +40,10 @@ var done = function() {
 	$('.brand').html(food.brand_view);
 	$('.totalRating').html(food.rating_calc);
 	$('.totalCount').html(food.ratingcount_calc);
-	
+
   if (Meteor.user()) {
+		loadUserData();
+
 		Meteor.subscribe('ratings', function() {
 			var userRating = Ratings.findOne({food_id: food._id, user_id: Meteor.userId()});
 			if (userRating) {
@@ -49,6 +53,25 @@ var done = function() {
 
   }  
 };
+
+var loadUserData = function() {
+
+	var user = Meteor.user();
+
+	if (user.profile) {
+
+		if (user.profile.wishlist) {
+			for (var i = 0, l = user.profile.wishlist.length; i < l; i += 1) {
+				if (user.profile.wishlist[i].food_id === PARAMS._id) {
+					$(".wishstar").toggleClass("x100", true);
+					break;
+				}
+			}
+		}
+
+	}
+
+}
 
 var setRatingSelected = function(n) {
 	$('div.ratingDiv span.rating').each(function() {

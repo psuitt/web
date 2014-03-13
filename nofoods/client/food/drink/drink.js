@@ -1,7 +1,5 @@
 Template.drinksTemplate.rendered = function() {
-	Meteor.subscribe('drinks_item', PARAMS._id, function() {
-		done();
-	});
+	Meteor.subscribe('drinks_item', PARAMS._id, function() {done();});
 
 	$('div.ratingDiv span.rating').on('click', function() {
 		var index = $(this).index();			
@@ -14,11 +12,15 @@ Template.drinksTemplate.rendered = function() {
 		var id = updateDrink({
 			rating: rating,
 			_id: PARAMS._id		
-		});		
+		});	
+
+		done();
+	
 	});	
 
 	$('span.wishstar').on('click', function() {
-		Meteor.call('addToWishList', {drink_id: PARAMS._id});	
+		Meteor.call('addToWishList', {drink_id: PARAMS._id});
+		$(".wishstar").toggleClass("x100", true);		
 	});   
 	
 };
@@ -39,6 +41,9 @@ var done = function() {
 	$('.totalCount').html(drink.ratingcount_calc);
 	
   if (Meteor.user()) {
+
+		loadUserData();
+		
 		Meteor.subscribe('ratings', function() {
 			var userRating = Ratings.findOne({drink_id: drink._id, user_id: Meteor.userId()});
 			if (userRating) {
@@ -48,6 +53,25 @@ var done = function() {
 
   }  
 };
+
+var loadUserData = function() {
+
+	var user = Meteor.user();
+
+	if (user.profile) {
+
+		if (user.profile.wishlist) {
+			for (var i = 0, l = user.profile.wishlist.length; i < l; i += 1) {
+				if (user.profile.wishlist[i].drink_id === PARAMS._id) {
+					$(".wishstar").toggleClass("x100", true);
+					break;
+				}
+			}
+		}
+
+	}
+
+}
 
 var setRatingSelected = function(n) {
 	$('div.ratingDiv span.rating').each(function() {

@@ -31,7 +31,7 @@ var doSearchFoods = function() {
 
 		}
 
-		window.parent.recalcFrame($('#foods').outerHeight());	
+		window.parent.recalcFrame($('#resultsDiv').outerHeight());	
 
 	});
 
@@ -57,7 +57,7 @@ var doSearchDrinks = function() {
 
 		}
 
-		window.parent.recalcFrame($('#drinks').outerHeight());
+		window.parent.recalcFrame($('#resultsDiv').outerHeight());
 
 	});
 

@@ -23,7 +23,7 @@
 
 #footer {
 	text-align: right;
-	background:#DDD;
+	background:#EEE;
 	width: 100%;
 	padding: 5px 10px;
 	margin-top: 100px;
@@ -89,9 +89,13 @@ span.wishstar {
 	width:24px;
 	display: inline-block;
 	vertical-align: middle;
-	background-image: url('/rating/star_full.svg');
-	bachgroun-position: center center;
+	background-image: url('/rating/star_empty.svg');
+	background-position: center center;
 	background-size: 24px 22px;
 	background-repeat: no-repeat;
 	cursor: pointer;
+}
+
+span.wishstar.x100 {
+	background-image: url('/rating/star_full.svg');
 }
