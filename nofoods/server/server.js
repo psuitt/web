@@ -9,11 +9,6 @@ Meteor.publish("parties", function () {
     {$or: [{"public": true}, {invited: this.userId}, {owner: this.userId}]});
 });
 
-Meteor.publish("brands_item", function (id) {
-	check(id, String);
-  return Brands.find({_id: id});
-});
-
 Meteor.publish("foods", function () {
   return Foods.find({});
 });

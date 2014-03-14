@@ -17,7 +17,7 @@ Template.myfoods.rendered = function() {
 	var user = Meteor.user();
 
 	if (user.profile) {
-		$('#name').val(user.profile.name);
+		$('#myfoods-name').val(user.profile.name);
 	}
 
 	Meteor.subscribe('ratings_my', function() {

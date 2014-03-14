@@ -99,3 +99,13 @@ span.wishstar {
 span.wishstar.x100 {
 	background-image: url('/rating/star_full.svg');
 }
+
+div.autocomplete {
+	display:block;
+	position:fixed;	
+	z-index:100;
+}
+
+div.autocomplete.hide {
+	display:none;
+}

@@ -75,9 +75,14 @@ div.ratingDiv span.rating {
 
 span.totalRating {
 	color: #428bca;
+	margin: 0 5px;
+	font-size: 18px;
+	vertical-align: middle;
 }
 
-span.totalCount {
-	
+span.totalCount,
+span.ratingdivider {
+	font-size: 18px;
+	vertical-align: middle;
 }
 

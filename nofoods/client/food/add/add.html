@@ -1,15 +1,19 @@
 <template name="foodsAdd">
-	<input class="type" type="radio" name="type" value="Food" checked>Food</input>
-	<input class="type" type="radio" name="type" value="Drink">Drink</input>	
-	<label>Name:</label><input id="name" type="text" />
-	<label>Brand:</label><input id="brand" type="text" />	
-	<label>Rating</label>
-		<div class="ratingDiv">
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-		</div>
-	<input id="save" type="button" value="save"/>
+	<div class="content">
+		<input class="type" type="radio" name="type" value="Food" checked>Food</input>
+		<input class="type" type="radio" name="type" value="Drink">Drink</input>	
+		<label>Name:</label><input id="name" type="text" />
+		<label>Brand:</label><input id="foodsadd-brand" type="text" class="typeahead" placeholder="Brand" />
+		<ul id="foodsadd-brand-autocomplete" class="autocomplete hide">	
+		</ul>	
+		<label>Rating</label>
+			<div class="ratingDiv">
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+			</div>
+		<input id="save" type="button" value="save"/>
+	</div>
 </template>
