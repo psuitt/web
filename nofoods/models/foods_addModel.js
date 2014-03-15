@@ -111,7 +111,7 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
-		var brand_id = Brands.insert({
+		var brand_id = options.brand_id || Brands.insert({
 			_id: Random.id(),
 			name: options.brand, 
 			rating_calc: options.rating

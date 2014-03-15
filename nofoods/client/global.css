@@ -109,3 +109,23 @@ div.autocomplete {
 div.autocomplete.hide {
 	display:none;
 }
+
+ul.nofoods-autocomplete {
+	top: 0;
+	left: 0;
+	width:auto;
+	background: #FFF;
+	border: 1px solid #DDD;
+	position:absolute;
+	list-style-type: none;
+	padding: 2px;
+	z-index: 100;
+}
+
+ul.nofoods-autocomplete li {
+	padding: 2px 3px;
+}
+
+ul.nofoods-autocomplete li.selected {
+	background: #0088cc;
+}

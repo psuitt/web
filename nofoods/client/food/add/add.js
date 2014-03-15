@@ -7,20 +7,24 @@
 			});		
 		});
 
+		$('#foodsadd-brand').nofoodsautocomplete();
+
 	};
 	
 	Template.foodsAdd.events({
 		'click #save': function (event, template) {
-			var type = $("input[name='type']:checked").val(); 
-			var name = template.find("#name").value;
-			var brand = template.find("#foodsadd-brand").value;
-			var last = $('div.ratingDiv span.rating.x100').last();
-			var rating = parseInt((last.index() + 1), 10); 
+			var type = $("input[name='type']:checked").val(),
+					name = template.find("#name").value,
+					brand = template.find("#foodsadd-brand").value,
+					brand_id = $("#foodsadd-brand").data("brand_id"),
+					last = $('div.ratingDiv span.rating.x100').last(),
+					rating = parseInt((last.index() + 1), 10); 
 		
 			var id = createFood({
 				rating: rating,
 				name: name,
 				brand: brand,
+				brand_id: brand_id,
 				type: type			
 			}, function(error) {
 				if (error) {
@@ -34,11 +38,11 @@
 				Router.go('drinksPage', {_id:id});
 			}
 
-		},
+		}/*,
 
 		'keyup #foodsadd-brand': function (event, template) {
 			getBrands();
-		}
+		}*/
 
 	});
 
