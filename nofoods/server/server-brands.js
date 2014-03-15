@@ -5,6 +5,7 @@ Meteor.publish("brands_item", function (id) {
 
 Meteor.publish("brands_search", function (search) {
 	check(search, String);
+	
 	var query = {
 	name : {
     $regex: ".*" + search + ".*",

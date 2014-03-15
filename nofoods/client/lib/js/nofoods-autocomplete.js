@@ -8,6 +8,10 @@
 		var self = this,
 				_list = $("<ul></ul>")
 								.addClass("nofoods-autocomplete")
+								.insertAfter(this),
+				_info = $("<span></span>")
+								.addClass("label label-info")
+								.toggle(false)
 								.insertAfter(this);
 
 		_list.width(self.outerWidth());
@@ -16,14 +20,8 @@
 			var code = event.keyCode || event.which;
 			switch(code) {
 				case 9:
-					var li = _list.find("li.selected");
-					self.val(li.html());
-					self.data("brand_id", li.data('brand_id'));
-					break;
 				case 13:
-					var li = _list.find("li.selected");
-					self.val(li.html());
-					self.data("brand_id", li.data('brand_id'));
+					_updateSelected();
 					break;
 				case 38:
 					event.preventDefault();
@@ -34,8 +32,7 @@
 				default:
 					break;
 			}
-		})
-		.keyup(function( event ) {
+		}).keyup(function( event ) {
 
 			var code = event.keyCode || event.which;			
 
@@ -69,14 +66,21 @@
 					break;
 				default:
 					_list.html("");
+
+					if (self.val().trim().length == 0) {
+						break;
+					}
+
 					var sub = Meteor.subscribe("brands_search", self.val(), function() {
+						var hasMatches = false;
 						Brands.find({}).forEach(function(brand) {
 							var li = $('<li></li>');
 							li.html(brand.name);
 							li.data("brand_id", brand._id)
 							_list.append(li);
+							hasMatches = true;
 						});
-						_show();
+						hasMatches && _show() || addNewBrandFlag();
 						sub.stop();
 					});
 					break;
@@ -84,8 +88,14 @@
 
 		});	
 
+		_list.on('click', 'li', function() {
+			$(this).parent().find("li.selected").removeClass('selected');
+			$(this).addClass("selected");
+			_updateSelected();
+		});
+
 		self.focusout(function( event ) {
-			_hide();
+			setTimeout(_hide, 100);
 		});	
 
 		var _options = {
@@ -113,6 +123,17 @@
 
 		var _hide = function() {
 			_list.is(":visible") && _list.toggle(false);
+		};
+
+		var _updateSelected = function() {
+			var li = _list.find("li.selected");
+					self.val(li.html());
+					self.data("brand_id", li.data('brand_id'));
+			_info.toggle(false);		
+		};
+
+		var addNewBrandFlag = function() {
+			_info.html("New Brand").toggle(true);
 		};
 
 		return this;

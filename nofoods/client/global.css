@@ -124,6 +124,7 @@ ul.nofoods-autocomplete {
 
 ul.nofoods-autocomplete li {
 	padding: 2px 3px;
+	cursor:pointer;
 }
 
 ul.nofoods-autocomplete li.selected {
