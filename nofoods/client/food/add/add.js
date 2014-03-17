@@ -20,22 +20,22 @@
 					last = $('div.ratingDiv span.rating.x100').last(),
 					rating = parseInt((last.index() + 1), 10); 
 		
-			var id = createFood({
+			var response = createFood({
 				rating: rating,
 				name: name,
 				brand: brand,
 				brand_id: brand_id,
 				type: type			
-			}, function(error) {
-				if (error) {
-					alert(error);					
-				}			
 			});
- 
-			if (type === "Food") {
-				Router.go('foodsPage', {_id:id});
+
+			if (response.error) {
+				$(".message").addClass("alert alert-error").html(response.error.reason);									
 			} else {
-				Router.go('drinksPage', {_id:id});
+				if (type === "Food") {
+					Router.go('foodsPage', {_id:response.id});
+				} else {
+					Router.go('drinksPage', {_id:response.id});
+				}
 			}
 
 		}/*,

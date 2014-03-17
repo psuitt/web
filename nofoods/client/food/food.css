@@ -53,12 +53,21 @@ span.name {
 	margin: 10px 10px 10px 0;
 }
 
+span.name.lower {
+	font-size:14px;
+}
+
 span.brand {
 	display: block;
 	vertical-align: middle;
 	font-size:24px;
 	margin: 10px 0 50px 0;
 	color: #808080;
+}
+
+span.brand.myfoods {
+	display: inline-block;
+	font-size:14px;
 }
 
 label.inputlabel {
@@ -84,5 +93,13 @@ span.totalCount,
 span.ratingdivider {
 	font-size: 18px;
 	vertical-align: middle;
+}
+
+div.content label {
+	font-weight: bold;
+}
+
+div.message {
+	display:inline-block;
 }
 

@@ -1,0 +1,8 @@
+div.myrating>span {
+	vertical-align: middle;
+	margin:0;
+}
+
+#myfoods_wishlist {
+	display: block;
+}

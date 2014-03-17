@@ -9,8 +9,8 @@
 				_list = $("<ul></ul>")
 								.addClass("nofoods-autocomplete")
 								.insertAfter(this),
-				_info = $("<span></span>")
-								.addClass("label label-info")
+				_info = $("<div></div>")
+								.addClass("message alert alert-info")
 								.toggle(false)
 								.insertAfter(this);
 

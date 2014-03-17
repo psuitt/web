@@ -32,6 +32,18 @@ Drinks.allow({
   }
 });
 
+Brands.allow({
+  insert: function () {
+    return false;
+  },
+  update: function () {
+    return false;
+  },
+  remove: function () {
+    return false;
+  }
+});
+
 Ratings.allow({
   insert: function (userId, food) {
     return false; 
@@ -56,9 +68,16 @@ Ratings.allow({
 });
 
 createFood = function (options) {
-  var id = Random.id();
-  Meteor.call('createFood', _.extend({ _id: id }, options));
-  return id;
+  var id = Random.id(),
+			response = {};
+
+  Meteor.call('createFood', _.extend({ _id: id }, options), function(e) {
+		response.error = e;
+	});
+
+	response.id = id;
+
+  return response;
 };
 
 updateFood = function (options) {
@@ -111,6 +130,10 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
+		var tokens = tokenize(options.name + " " + options.brand);
+
+		Meteor.call('validate', tokens);
+			
 		var brand_id = options.brand_id || Brands.insert({
 			_id: Random.id(),
 			name: options.brand, 
@@ -120,10 +143,9 @@ Meteor.methods({
 		var ratingObj = {
 			_id: Random.id(),
 			user_id: this.userId, 
-			rating: options.rating
+			rating: options.rating,
+			date: Date.now()
 		};
-
-		var tokens = tokenize(options.name + " " + options.brand);
 
 		switch (options.type) {
 			case "Food":
@@ -181,11 +203,12 @@ Meteor.methods({
 				_id: Random.id(),
 				food_id: options._id,
 				user_id: this.userId, 
-				rating: options.rating
+				rating: options.rating,
+				date: Date.now()
 			});
 
 		} else {
-			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
+			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		}
 
 		//Recalculate Rating total
@@ -228,11 +251,12 @@ Meteor.methods({
 				_id: Random.id(),
 				drink_id: options._id,
 				user_id: this.userId, 
-				rating: options.rating
+				rating: options.rating,
+				date: Date.now()
 			});
 
 		} else {
-			Ratings.update(userRating._id, { $set: { rating: options.rating } } );
+			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		}
 
 		//Recalculate Rating total
