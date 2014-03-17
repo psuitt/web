@@ -67,15 +67,16 @@ Ratings.allow({
   }
 });
 
-createFood = function (options) {
+createFood = function (options, callback) {
   var id = Random.id(),
 			response = {};
 
+	response.id = id;
+
   Meteor.call('createFood', _.extend({ _id: id }, options), function(e) {
 		response.error = e;
-	});
-
-	response.id = id;
+		callback && callback(response);
+	});	
 
   return response;
 };

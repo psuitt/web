@@ -14,29 +14,35 @@
 	Template.foodsAdd.events({
 		'click #save': function (event, template) {
 			var type = $("input[name='type']:checked").val(),
-					name = template.find("#name").value,
+					name = template.find("#foodsadd-name").value,
 					brand = template.find("#foodsadd-brand").value,
 					brand_id = $("#foodsadd-brand").data("brand_id"),
 					last = $('div.ratingDiv span.rating.x100').last(),
 					rating = parseInt((last.index() + 1), 10); 
-		
-			var response = createFood({
+
+			var data = {
 				rating: rating,
 				name: name,
 				brand: brand,
-				brand_id: brand_id,
 				type: type			
-			});
+			};
 
-			if (response.error) {
-				$(".message").addClass("alert alert-error").html(response.error.reason);									
-			} else {
-				if (type === "Food") {
-					Router.go('foodsPage', {_id:response.id});
+			if (brand_id) 
+				data.brand_id = brand_id;
+		
+			createFood(data, function(response) {
+
+				if (response.error) {
+					$(".message").addClass("alert alert-error").html(response.error.reason);									
 				} else {
-					Router.go('drinksPage', {_id:response.id});
+					if (type === "Food") {
+						Router.go('foodsPage', {_id:response.id});
+					} else {
+						Router.go('drinksPage', {_id:response.id});
+					}
 				}
-			}
+
+			});
 
 		}/*,
 
