@@ -96,7 +96,7 @@ var getSearchRow = function(link, item) {
 	aBrand.attr('href', '/brand/page/' + item.brand_id);
 	aBrand.html(item.brand_view);
 
-	rating.html(item.rating_calc)
+	rating.attr("title", item.rating_calc)
 	var i = (Math.round((item.rating_calc * 2))*10).toString();
 			
 	rating.addClass('rating');

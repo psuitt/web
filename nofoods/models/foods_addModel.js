@@ -125,7 +125,8 @@ Meteor.methods({
       rating: RatingCheck,
 			type: FoodTypeCheck,
 			_id: NonEmptyString,
-			brand_id: Match.Optional(NonEmptyString)
+			brand_id: Match.Optional(NonEmptyString),
+			image: Match.Optional(NonEmptyString)
     });
 
     if (!this.userId)
@@ -147,31 +148,27 @@ Meteor.methods({
 			date: Date.now()
 		};
 
+		var fooddrink = {
+			_id: options._id,
+			brand_id: brand_id,
+			brand_view: options.brand, 
+			keywords: tokens,
+			name: options.name,
+			rating_calc: options.rating,
+			ratingcount_calc: 1,
+			date: Date.now()
+		};
+
+		if (options.image) 
+			fooddrink.image = options.image;
+
 		switch (options.type) {
 			case "Food":
-				Foods.insert({
-					_id: options._id,
-					brand_id: brand_id,
-					brand_view: options.brand, 
-					keywords: tokens,
-					name: options.name,
-					rating_calc: options.rating,
-					ratingcount_calc: 1,
-					date: Date.now()
-				});
+				Foods.insert(fooddrink);
 				ratingObj.food_id = options._id;
 				break;
 			case "Drink":
-				Drinks.insert({
-					_id: options._id,
-					brand_id: brand_id,
-					brand_view: options.brand, 
-					keywords: tokens,
-					name: options.name,
-					rating_calc: options.rating,
-					ratingcount_calc: 1,
-					date: Date.now()
-				});
+				Drinks.insert(fooddrink);
 				ratingObj.drink_id = options._id;
 				break;
 			default:
