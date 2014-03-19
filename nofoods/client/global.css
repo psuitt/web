@@ -1,20 +1,25 @@
 #login {
 	float:right;
 	margin-top:10px;
+	margin-bottom:10px;
 	display: inline-block;
 }
 
 #login .login-link-text {
 	text-decoration:none;
+	font-weight: bold;
 }
 
 #menu {
 	padding:0 30px;
+	background: #383838;
 }
 
 #menu>a {
 	margin-top:10px;
+	margin-bottom:10px;
 	display: inline-block;
+	font-weight: bold;
 }
 
 #mainContent {
