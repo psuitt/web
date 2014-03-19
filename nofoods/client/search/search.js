@@ -11,22 +11,28 @@ var doSearchFoods = function() {
 	
 	var htmlBuilder = [];
 
-	$('#foods').html("");
+	$('#search-foods').html("");
 
 	Meteor.subscribe("foods_search", PARAMS.search, function() {
 		var results = Foods.find({ }),
 				count = results.count();
 
+		if (count < 99) {
+			$('#search-foodslink').html("Foods (" + count + ")");
+		} else {
+			$('#search-foodslink').html("Foods (100+)");
+		}
+
 		if (count === 0) {
 
-			$('#foods').html("<div class='resultsTotals'>No results found</div>");
+			$('#search-foods').html("<div class='resultsTotals'>No results found</div>");
 
 		} else {
 
-			$('#foods').html("<div class='resultsTotals'>" + count + " results found</div>");
+			$('#search-foods').html("<div class='resultsTotals'>" + count + " results found</div>");
 
 			results.forEach(function(food) {
-				$('#foods').append(getSearchRow('/food/page/', food));	
+				$('#search-foods').append(getSearchRow('/food/page/', food));	
 			});
 
 		}
@@ -41,18 +47,24 @@ var doSearchDrinks = function() {
 	
 	var htmlBuilder = [];
 
-	$('#drinks').html("");
+	$('#search-drinks').html("");
 
 	Meteor.subscribe("drinks_search", PARAMS.search, function() {
 		var results = Drinks.find({ })
 				count = results.count();
 
-		if (count === 0) {
-			$('#drinks').html("<div class='resultsTotals'>No results found</div>");
+		if (count < 99) {
+			$('#search-drinkslink').html("Drinks (" + count + ")");
 		} else {
-			$('#drinks').html("<div class='resultsTotals'>" + count + " results found</div>");
+			$('#search-drinkslink').html("Drinks (100+)");
+		}
+
+		if (count === 0) {
+			$('#search-drinks').html("<div class='resultsTotals'>No results found</div>");			
+		} else {
+			$('#search-drinks').html("<div class='resultsTotals'>" + count + " results found</div>");
 			results.forEach(function(drink) {
-				$('#drinks').append(getSearchRow('/drink/page/', drink));	
+				$('#search-drinks').append(getSearchRow('/drink/page/', drink));	
 			});
 
 		}
