@@ -137,8 +137,7 @@ Meteor.methods({
 			
 		var brand_id = options.brand_id || Brands.insert({
 			_id: Random.id(),
-			name: options.brand, 
-			rating_calc: options.rating
+			name: options.brand
 		});
 
 		var ratingObj = {

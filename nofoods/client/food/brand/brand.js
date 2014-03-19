@@ -13,27 +13,40 @@ var done = function() {
 		Router.go('/404');
 
 	$('.brand').html(brand.name);
-	$('.totalRating').html(brand.rating_calc);
-
-	$("#foodsList").html("");	
-	$("#drinksList").html(""); 
 
 	Meteor.subscribe('foods_brand', brand._id, function() {
+		var foodRating = 0,
+				foodTotal = 0;
+
+		$("#brand-foodsList").html("");	
+		$('.brand-foodtotalrating').html(""); 
+
 		Foods.find({}).forEach(function(food) {
 			var li = $("<li></li>");
 			li.html(food.name);
-			$("#foodsList").append(li);
+			$("#brand-foodsList").append(li);
+			foodRating += food.rating_calc;
+			foodTotal += 1;
 		});
+		foodRating > 0 && $('.brand-foodtotalrating').html((foodRating/parseFloat(foodTotal)).toFixed(2));
 	}); 	
 
 	Meteor.subscribe('drinks_brand', brand._id, function() {
+		var drinkRating = 0,
+				drinkTotal = 0;
+
+		$("#brand-drinksList").html("");
+		$('.brand-drinktotalrating').html("");
+
 		Drinks.find({}).forEach(function(drink) {
 			var li = $("<li></li>");
 			li.html(drink.name);
-			$("#drinksList").append(li);
+			$("#brand-drinksList").append(li);
+			drinkRating += drink.rating_calc;
+			drinkTotal += 1;
 		});
+		drinkRating > 0 &&	$('.brand-drinktotalrating').html((drinkRating/parseFloat(drinkTotal)).toFixed(2));
 	}); 	
-	
 
 };
 

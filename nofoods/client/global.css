@@ -45,19 +45,19 @@ span.rating {
 }
 
 span.rating.x10 {
-	background-image: url('/rating/rating_10_border.png');
+	background-image: url('/rating/heart_1.svg');
 }
 
 span.rating.x20 {
-	background-image: url('/rating/rating_20_border.png');
+	background-image: url('/rating/heart_2.svg');
 }
 
 span.rating.x30 {
-	background-image: url('/rating/rating_30_border.png');
+	background-image: url('/rating/heart_3.svg');
 }
 
 span.rating.x40 {
-	background-image: url('/rating/rating_40_border.png');
+	background-image: url('/rating/heart_4.svg');
 }
 
 span.rating.x50 {
@@ -65,19 +65,19 @@ span.rating.x50 {
 }
 
 span.rating.x60 {
-	background-image: url('/rating/rating_60_border.png');
+	background-image: url('/rating/heart_6.svg');
 }
 
 span.rating.x70 {
-	background-image: url('/rating/rating_70_border.png');
+	background-image: url('/rating/heart_7.svg');
 }
 
 span.rating.x80 {
-	background-image: url('/rating/rating_80_border.png');
+	background-image: url('/rating/heart_8.svg');
 }
 
 span.rating.x90 {
-	background-image: url('/rating/rating_90_border.png');
+	background-image: url('/rating/heart_9.svg');
 }
 
 span.rating.x100 {
