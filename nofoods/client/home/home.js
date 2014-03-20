@@ -2,7 +2,7 @@
 	Template.home.events = {
 		'keypress #search': function(evt, template) {
 			if (evt.which == 13) {
-				$('#searchResults').attr("src", '/search/' + evt.target.value);
+				$('#searchResults').attr("src", '/search/food/' + evt.target.value);
 			}
 		}
 	};

@@ -18,8 +18,14 @@
 #menu>a {
 	margin-top:10px;
 	margin-bottom:10px;
+	margin-left: 2px;
 	display: inline-block;
 	font-weight: bold;
+}
+
+#menu>a.leftborder {
+	border-left: 1px solid #EEE;
+	padding-left: 5px;
 }
 
 #mainContent {
@@ -45,7 +51,7 @@ span.rating {
 	width:24px;
 	display: inline-block;
 	background-image: url('/rating/heart_empty.svg');
-	bachgroun-position: center center;
+	background-position: center center;
 	background-size: 24px 22px;
 	background-repeat: no-repeat;
 }

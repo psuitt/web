@@ -1,3 +1,9 @@
+if (Meteor.isClient) {
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_EMAIL'
+  });
+}
+
 Router.configure({
   layoutTemplate: 'mainLayout'
 });
@@ -11,7 +17,7 @@ Router.map(function () {
   });
 
 	this.route('searchResults', {
-    path: '/search/:search',
+    path: '/search/:type/:search',
     template: 'search',
 		layoutTemplate: '',
     before: function () {	  

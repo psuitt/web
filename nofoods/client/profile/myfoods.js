@@ -1,7 +1,7 @@
 Template.myfoods.events({
-		'click #save': function (event, template) {
+		'click #myfoods-save': function (event, template) {
 			var profile = {
-				name: template.find('#name').value		
+				name: template.find('#myfoods-name').value		
 			};
 			Meteor.call('updateProfile', profile);
 		}

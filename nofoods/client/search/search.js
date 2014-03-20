@@ -1,10 +1,81 @@
 Template.search.rendered = function() {
-	doSearchFoods();
-	doSearchDrinks();
+
+	switch(PARAMS.type ) {
+		case "food":
+			doSearchFoods();
+			doSearchDrinks();
+			break;
+		case "people":
+			$('#search-foodslink').toggle(false);
+			$('#search-foods').toggle(false);
+			$('#search-drinkslink').toggle(false);
+			$('#search-drinks').toggle(false);
+			$('#searchTabs li').removeClass('active');
+			$('#searchTabsContent div').removeClass('active');
+			$('#search-peoplelink').parent().addClass('active');
+			$('#search-people').addClass('active');
+			doSearchPeople();
+			break;
+		default:
+			Router.go('/404');
+			break;
+	}
+	
 	$('#searchTabs a').click(function(e) {
 		e.preventDefault();	
 		$(this).tab('show');	
 	});
+};
+
+var doSearchPeople = function() {
+	
+	var htmlBuilder = [];
+
+	$('#search-people').html("");
+
+	Meteor.subscribe("users_search", PARAMS.search, function() {
+		var results = Meteor.users.find({ }),
+			count = results.count();
+
+		if (count < 19) {
+			$('#search-peoplelink').html("People (" + count + ")");
+		} else {
+			$('#search-peoplelink').html("People (20+)");
+		}
+
+		if (count === 0) {
+
+			$('#search-people').html("<div class='resultsTotals'>No results found</div>");
+
+		} else {
+
+			$('#search-people').html("<div class='resultsTotals'>" + count + " results found</div>");
+
+			results.forEach(function(user) {
+				var div = $('<div></div>'),
+						icon = $('<span>NO IMAGE AVAILABLE</span>'),
+						name = $('<span></span>'),
+						aName = $("<a target='_top'></a>");
+
+						div.addClass('item');
+						icon.addClass('itemIcon');
+						name.addClass('itemName');
+						
+						aName.attr('href', '/people/page/' + user.username);
+						aName.html(user.username);
+
+						name.append(aName);	
+						div.append(icon);
+						div.append(name);
+				$('#search-people').append(div);	
+			});
+
+		}
+
+		window.parent.recalcFrame($('#resultsDiv').outerHeight());	
+
+	});
+
 };
 
 var doSearchFoods = function() {
