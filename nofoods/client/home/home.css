@@ -28,6 +28,11 @@
 	cursor: pointer;
 }
 
+#home-searchtype span.home-searchval {
+	width: 50px;
+	display: inline-block;
+}
+
 #home-search {
 	border-radius: 0;
 	max-width:450px;

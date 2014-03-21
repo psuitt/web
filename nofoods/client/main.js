@@ -86,6 +86,18 @@ Router.map(function () {
 			PARAMS = this.params;   
     }
 	});
+	
+	this.route('peoplesPage', {
+    path: '/people/page/:username',
+    template: 'people',
+    layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    before: function () {	  
+			PARAMS = this.params;   
+    }
+	});
 
   this.route('parties', {
     path:'/parties',

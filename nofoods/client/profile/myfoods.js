@@ -20,13 +20,14 @@ Template.myfoods.rendered = function() {
 	if (user.profile) {
 		$('#myfoods-name').val(user.profile.name);
 		wishlist = user.profile.wishlist;
+		loadLinks(user.profile.links);
 	}
 
 	Meteor.subscribe('ratings_my', function() {
 		var food_ids = [],
 				drink_ids = [],
 				jDiv = $("#myfoods_ratings"),
-				wDiv = $("#myfoods_wishlist");
+				wDiv = $("#myfoods-wishlist");
 
 		jDiv.html("");
 		wDiv.html("");
@@ -125,4 +126,40 @@ var findUserFoods = function(food_ids, drink_ids) {
 		}); 
 
 };
+
+var loadLinks = function(links) {
+	
+	var contentDiv = $("#myfoods-links");
+	
+	contentDiv.html("");
+	
+	if (links) {
+
+		for (var i = 0, l = links.length; i < l ; i += 1) {
+
+			var div = $("<div class='myrating myfoods'></div>");
+			var title = $("<a class='name myfoods'></a>");
+			var username = links[i].username;
+
+			if (!username)
+				continue;
+
+			title.addClass("lower");
+			
+			title.attr('href', '/people/page/' + username);
+			title.html(username);
+
+			div.append(title);
+
+			// Reverse the order they were added.
+			contentDiv.prepend(div);		
+
+		}
+
+	} else {
+		contentDiv.append("No links found");
+	}
+
+	
+}
 

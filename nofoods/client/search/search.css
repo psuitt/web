@@ -16,6 +16,7 @@
 	min-width:70%;
 	display: inline-block;
 	margin-left: 15px;
+	overflow: hidden;
 }
 
 #searchTabsContent div.resultsTotals {

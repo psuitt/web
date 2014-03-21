@@ -276,32 +276,6 @@ Meteor.methods({
 
 		Drinks.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
 
-	},
-
-	addToWishList: function (options) {
-		check(options, {
-      food_id: Match.Optional(NonEmptyString),
-			drink_id: Match.Optional(NonEmptyString)
-    });
-
-		var wish = {
-			food_id: options.food_id,
-			drink_id: options.drink_id,
-			date: Date.now()
-		};
-		
-		var query = {
-			_id: this.userId, 
-			"profile.wishlist.food_id": options.food_id,
-			"profile.wishlist.drink_id": options.drink_id
-		};
-
-		var findOne = Meteor.users.findOne(query);
-
-		if (!findOne) {
-			Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.wishlist": wish } });
-		}
-
 	}
 	
 });

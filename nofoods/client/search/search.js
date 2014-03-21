@@ -56,19 +56,19 @@ var doSearchPeople = function() {
 
 			results.forEach(function(user) {
 				var div = $('<div></div>'),
-						icon = $('<span>NO IMAGE AVAILABLE</span>'),
+						//icon = $('<span>NO IMAGE AVAILABLE</span>'),
 						name = $('<span></span>'),
 						aName = $("<a target='_top'></a>");
 
 						div.addClass('item');
-						icon.addClass('itemIcon');
+						//icon.addClass('itemIcon');
 						name.addClass('itemName');
 						
 						aName.attr('href', '/people/page/' + user.username);
 						aName.html(user.username);
 
 						name.append(aName);	
-						div.append(icon);
+						//div.append(icon);
 						div.append(name);
 				user_id !== user._id && $('#search-people').append(div);	
 			});

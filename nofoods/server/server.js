@@ -128,6 +128,11 @@ Meteor.publish("ratings_my", function () {
   return Ratings.find({user_id: this.userId}, {sort: {date: -1}});
 });
 
+Meteor.publish("ratings_user", function (userId) {
+	check(userId, String);
+  return Ratings.find({user_id: userId}, {sort: {date: -1}});
+});
+
 Meteor.publish("brands_items", function (ids) {
 	check(ids, Array);
   return Brands.find( { _id: { $in: ids } } );
