@@ -1,9 +1,15 @@
 (function() {
 	Template.home.events = {
-		'keypress #search': function(evt, template) {
+		'keypress #home-search': function(evt, template) {
 			if (evt.which == 13) {
-				$('#searchResults').attr("src", '/search/food/' + evt.target.value);
+				doSearch(evt.target.value);
 			}
+		},
+		'click #home-searchgo': function(evt, template) {
+			doSearch($('#home-search').val());
+		},
+		'click #home-searchtype ul li a': function(e) {
+			$('#home-searchtype .home-searchval').html(e.target.innerHTML)
 		}
 	};
 
@@ -12,5 +18,12 @@
 			$('#searchResults')[0].height = height;
 		}
 	};
+
+	var doSearch = function(search) {
+		var val = $('#home-searchtype .home-searchval').html().toLowerCase();
+		if (val)
+			$('#searchResults').attr("src", '/search/' + val + '/' + search);
+	}	
+	
 })();
 

@@ -2,6 +2,8 @@ Template.search.rendered = function() {
 
 	switch(PARAMS.type ) {
 		case "food":
+			$('#search-peoplelink').toggle(false);
+			$('#search-people').toggle(false);
 			doSearchFoods();
 			doSearchDrinks();
 			break;
@@ -35,19 +37,20 @@ var doSearchPeople = function() {
 
 	Meteor.subscribe("users_search", PARAMS.search, function() {
 		var results = Meteor.users.find({ }),
-			count = results.count();
+				count = results.count() - 1,
+				user_id = Meteor.userId();
 
-		if (count < 19) {
-			$('#search-peoplelink').html("People (" + count + ")");
-		} else {
-			$('#search-peoplelink').html("People (20+)");
-		}
-
-		if (count === 0) {
+		if (count < 1) {
 
 			$('#search-people').html("<div class='resultsTotals'>No results found</div>");
 
 		} else {
+			
+			if (count < 19) {
+				$('#search-peoplelink').html("People (" + count + ")");
+			} else {
+				$('#search-peoplelink').html("People (20+)");
+			}
 
 			$('#search-people').html("<div class='resultsTotals'>" + count + " results found</div>");
 
@@ -67,7 +70,7 @@ var doSearchPeople = function() {
 						name.append(aName);	
 						div.append(icon);
 						div.append(name);
-				$('#search-people').append(div);	
+				user_id !== user._id && $('#search-people').append(div);	
 			});
 
 		}

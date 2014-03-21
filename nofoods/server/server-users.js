@@ -4,7 +4,7 @@ Meteor.publish("users_search", function (username) {
 		check(username, String);
 	
 		var query = {
-		name : {
+		username : {
     	$regex: ".*" + username + ".*",
     	$options: 'i'
 			}

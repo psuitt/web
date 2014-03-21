@@ -2,12 +2,19 @@
 	<div name="homeDiv" id="homeDiv">
 		<h3>No Foods</h3>
 		<div>
-			<select>
-				<option>Food</option>
-				<option>People</option>			
-			</select>
-    		<input name="search" id="search" type="text"/>
-    		<button class="btn">Go</button>
+			<div id="home-searchtype" class="btn-group">
+    		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    			<span class="home-searchval">Food</span>
+    			<span class="caret"></span>
+    		</a>
+    		<ul class="dropdown-menu">
+    			<li><a>Food</a></li>
+    			<li><a>People</a></li>
+    			<li><a>Cuisine</a></li>
+    		</ul>
+    	</div>
+    	<input name="home-search" id="home-search" type="text"/>
+    	<button id="home-searchgo" class="btn">Go</button>
 		</div>	
 	</div>
 	<iframe id="searchResults" frameBorder="0" />

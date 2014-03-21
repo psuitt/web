@@ -1,10 +1,35 @@
 #homeDiv {
 	margin-top: 100px;
+	margin-bottom: 20px;
 	width: 100%;
 	text-align: center;
 }
 
-#search {
+#homeDiv input,
+#homeDiv button {
+	margin: 0;
+	vertical-align: middle;
+	margin-left: -5px;
+}
+
+#home-searchtype {
+	text-align: left;
+}
+
+#home-searchtype>a {
+	text-align: left;
+}
+
+#home-searchtype ul {
+	width: auto;
+}
+
+#home-searchtype ul li a {
+	cursor: pointer;
+}
+
+#home-search {
+	border-radius: 0;
 	max-width:450px;
 	width: 85%;
 }
