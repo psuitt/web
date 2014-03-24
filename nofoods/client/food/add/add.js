@@ -1,4 +1,5 @@
 (function() {
+	
 	Template.foodsAdd.rendered = function() {
 		$('div.ratingDiv span.rating').on('click', function() {
 			var index = $(this).index();			
@@ -8,6 +9,28 @@
 		});
 
 		$('#foodsadd-brand').nofoodsautocomplete();
+		
+		var input = document.getElementById('foodsadd-location');
+		var defaultBounds = new google.maps.LatLngBounds(
+  		new google.maps.LatLng(-33.8902, 151.1759),
+  		new google.maps.LatLng(-33.8474, 151.2631)
+  	);
+
+		var options = {
+  		bounds: defaultBounds
+		};
+	
+		var autocomplete = new google.maps.places.Autocomplete(input, options);	
+		
+		if (navigator.geolocation) {
+   		navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+
 
 	};
 	
