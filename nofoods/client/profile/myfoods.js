@@ -9,8 +9,14 @@ Template.myfoods.events({
 
 Template.myfoods.rendered = function() {
 
+	$('#myfoods-nav a').click(function(e) {
+		e.preventDefault();	
+		$(this).tab('show');	
+	});
+
 	if (!Meteor.userId()) {
-		$("#myfoods_ratings").append("Please log in to view your ratings.");		
+		$("#myfoods-ratingsfoods").append("Please log in to view your ratings.");	
+		$("#myfoods-ratingsdrinks").append("Please log in to view your ratings.");		
 		return;	
 	}
 
@@ -26,10 +32,12 @@ Template.myfoods.rendered = function() {
 	Meteor.subscribe('ratings_my', function() {
 		var food_ids = [],
 				drink_ids = [],
-				jDiv = $("#myfoods_ratings"),
+				fDiv = $("#myfoods-ratingsfoods"),
+				dDiv = $("#myfoods-ratingsdrinks"),
 				wDiv = $("#myfoods-wishlist");
 
-		jDiv.html("");
+		fDiv.html("");
+		dDiv.html("");
 		wDiv.html("");
 
 		Ratings.find({}).forEach(function(rating) {
@@ -38,16 +46,19 @@ Template.myfoods.rendered = function() {
 			var title = $("<span class='name myfoods'></span>");
 			var brand = $("<span class='brand myfoods'></span>");
 			var ratingSpan = $("<span class='rating'></span>");
-			var ratingNumber = $("<span class='ratingNum'></span>");
+			var ratingNumber = $("<span class='ratingNum'></span>"),
+					toAdd = null;
 			
 			title.addClass("lower");
 
 			if (rating.food_id) {
 				div.addClass(rating.food_id);
 				food_ids.push(rating.food_id);
+				toAdd = fDiv;
 			} else {
 				div.addClass(rating.drink_id);
-				drink_ids.push(rating.drink_id);			
+				drink_ids.push(rating.drink_id);
+				toAdd = dDiv;	
 			}
 
 			var i = (Math.round((rating.rating * 2))*10).toString();
@@ -60,7 +71,7 @@ Template.myfoods.rendered = function() {
 			div.append(ratingSpan);
 			div.append(ratingNumber);
 
-			jDiv.append(div);
+			toAdd.append(div);
 		});
 
 		if (wishlist) {
@@ -96,7 +107,8 @@ Template.myfoods.rendered = function() {
 		if (food_ids.length != 0 || drink_ids.length != 0) {
 			findUserFoods(food_ids, drink_ids);
 		} else {
-			jDiv.append("No ratings found");
+			fDiv.append("No ratings found");
+			dDiv.append("No ratings found");
 		}
 
 	}); 

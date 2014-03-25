@@ -1,12 +1,44 @@
 <template name="myfoods">
 	<div class="content" >
-		<input id="myfoods-save" type="button" value="save"/>
-		<label>Name:</label><input id="myfoods-name" type="text" />
-		<label>Your Ratings</label>
-		<div id="myfoods_ratings"></div>
-		<label>Your Want List</label>
-		<div id="myfoods-wishlist"></div>
-		<label>Your Links</label>
-		<div id="myfoods-links"></div>
+		<div id="myfoods-nav">
+			<ul class="nav nav-list">
+    		<li class="active"><a href="#myfoods-profile">Profile</a></li>
+    		<li class="nav-header">Ratings</li>
+    		<li class=""><a href="#myfoods-foods">Foods</a></li>
+    		<li class=""><a href="#myfoods-drinks">Drinks</a></li>
+    		<li class="nav-header">Other</li>
+    		<li class=""><a href="#myfoods-wishlistpage">Wishlist</a></li>
+    		<li class=""><a href="#myfoods-linkspage">Links</a></li>
+    	</ul>
+		</div>
+		<div id="myfoods-pages" class="tab-content">
+
+			<div class="tab-pane active" id="myfoods-profile">
+				<input id="myfoods-save" type="button" value="save"/>
+				<label>Name:</label><input id="myfoods-name" type="text" />
+			</div>
+	
+			<div class="tab-pane" id="myfoods-foods">
+				<label>Your Ratings</label>
+				<div id="myfoods-ratingsfoods"></div>
+			</div>
+			
+			<div class="tab-pane" id="myfoods-drinks">
+				<label>Your Ratings</label>
+				<div id="myfoods-ratingsdrinks"></div>
+			</div>
+
+			<div class="tab-pane" id="myfoods-wishlistpage">
+				<label>Your Want List</label>
+				<div id="myfoods-wishlist"></div>
+			</div>
+			
+			<div class="tab-pane" id="myfoods-linkspage">
+				<label>Your Links</label>
+				<div id="myfoods-links"></div>
+			</div>
+		
+		</div>
+		
 	</div>
 </template>
