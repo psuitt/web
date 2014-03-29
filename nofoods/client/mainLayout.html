@@ -12,13 +12,13 @@
 		<a href='/food/add'>Add</a>
 		{{/if}}
 		<div id="login">
-		  {{loginButtons align="right"}}
+		  {{> loginButtons align="right"}}
 		</div>
 	</div>
 	<div id="mainContent" >
-  	{{yield}}
+  	{{> yield}}
 	</div>
 	<footer> 
-		{{yield 'footer'}}
+		{{> yield region='footer'}}
 	</footer>
 </template>

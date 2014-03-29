@@ -62,12 +62,11 @@ span.brand {
 	vertical-align: middle;
 	font-size:24px;
 	margin: 10px 0 50px 0;
-	color: #808080;
+	color: #808080 !important;
 }
 
-span.brand.myfoods {
-	display: inline-block;
-	font-size:14px;
+span.brand a {
+	color: #808080 !important;
 }
 
 label.inputlabel {

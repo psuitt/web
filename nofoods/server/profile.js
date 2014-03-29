@@ -14,6 +14,12 @@ Accounts.validateNewUser(function (user) {
     return user.username !== "root";
 });
 
+Accounts.onCreateUser(function(options, user) {
+	user.profile = {
+		date: new Date()	
+	};
+	return user;
+});
 
 // EMAIL CODE
 

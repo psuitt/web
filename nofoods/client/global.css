@@ -112,6 +112,7 @@ span.wishstar.x100 {
 	background-image: url('/rating/star_full.svg');
 }
 
+// AUTO COMPLETE
 div.autocomplete {
 	display:block;
 	position:fixed;	
@@ -141,4 +142,30 @@ ul.nofoods-autocomplete li {
 
 ul.nofoods-autocomplete li.selected {
 	background: #0088cc;
+}
+
+// SEARCH
+.nofoodssearch.type {
+	text-align: left;
+}
+
+.nofoodssearch.type>a {
+	text-align: left;
+}
+
+.nofoodssearch.type ul {
+	width: auto;
+}
+
+.nofoodssearch.type ul li a {
+	cursor: pointer;
+}
+
+.nofoodssearch.type span.text {
+	width: 50px;
+	display: inline-block;
+}
+
+.nofoodssearch.type span.caret {
+	margin-top: 0;
 }

@@ -24,6 +24,18 @@ Router.map(function () {
 			PARAMS = this.params;   
     }
 	});
+	
+	this.route('results', {
+    path: '/results/:type/:search',
+    template: 'results',
+		layoutTemplate: 'mainLayout',
+    yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+		data: function() {
+			return { "src": '/search/' + this.params.type + "/" + this.params.search };
+		}
+	});
 
 	this.route('myfoods', {
     path:'/myfoods',

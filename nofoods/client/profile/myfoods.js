@@ -17,13 +17,16 @@ Template.myfoods.rendered = function() {
 	if (!Meteor.userId()) {
 		$("#myfoods-ratingsfoods").append("Please log in to view your ratings.");	
 		$("#myfoods-ratingsdrinks").append("Please log in to view your ratings.");		
+		alert("Not logged in!");
 		return;	
 	}
 
 	var user = Meteor.user(),
 			wishlist;
 
-	if (user.profile) {
+	if (user && user.profile) {
+		$('#myfoods-username').html(user.username);
+		$('#myfoods-joined').html("Joined " + user.profile.date);
 		$('#myfoods-name').val(user.profile.name);
 		wishlist = user.profile.wishlist;
 		loadLinks(user.profile.links);
@@ -42,14 +45,16 @@ Template.myfoods.rendered = function() {
 
 		Ratings.find({}).forEach(function(rating) {
 			
-			var div = $("<div class='myrating myfoods'></div>");
-			var title = $("<span class='name myfoods'></span>");
-			var brand = $("<span class='brand myfoods'></span>");
-			var ratingSpan = $("<span class='rating'></span>");
-			var ratingNumber = $("<span class='ratingNum'></span>"),
+			var div = $("<div class='myrating myfoods'></div>"),
+					name = $("<span class='name myfoods'></span>"),
+					nameLink = $("<a target='_blank' ></a>"),
+					brand = $("<span class='brand myfoods'></span>"),
+					brandLink = $("<a target='_blank' ></a>"),
+					ratingSpan = $("<span class='rating'></span>"),
+					ratingNumber = $("<span class='ratingNum'></span>"),
 					toAdd = null;
 			
-			title.addClass("lower");
+			name.addClass("lower");
 
 			if (rating.food_id) {
 				div.addClass(rating.food_id);
@@ -66,7 +71,9 @@ Template.myfoods.rendered = function() {
 			ratingNumber.html(rating.rating);
 			ratingSpan.addClass("x"+i);	
 
-			div.append(title);
+			name.append(nameLink);
+			brand.append(brandLink);
+			div.append(name);
 			div.append(brand);
 			div.append(ratingSpan);
 			div.append(ratingNumber);
@@ -79,8 +86,8 @@ Template.myfoods.rendered = function() {
 			for (var i = 0, l = wishlist.length; i < l ; i += 1) {
 
 				var div = $("<div class='myrating myfoods'></div>");
-				var title = $("<span class='name myfoods'></span>");
-				var brand = $("<span class='brand myfoods'></span>");
+				var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
+				var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
 
 				title.addClass("lower");
 
@@ -121,8 +128,8 @@ var findUserFoods = function(food_ids, drink_ids) {
 		Meteor.subscribe('foods_items', food_ids, function() {
 		
 			Foods.find({}).forEach(function(food) {
-				$("." + food._id + " .name").html(food.name);
-				$("." + food._id + " .brand").html(food.brand_view);
+				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
+				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
 			});
 
 		}); 
@@ -131,8 +138,8 @@ var findUserFoods = function(food_ids, drink_ids) {
 		Meteor.subscribe('drinks_items', drink_ids, function() {
 		
 			Drinks.find({}).forEach(function(drink) {
-				$("." + drink._id + " .name").html(drink.name);
-				$("." + drink._id + " .brand").html(drink.brand_view);
+				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
+				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(drink.brand_view);
 			});
 
 		}); 

@@ -6,9 +6,15 @@
 	display:inline-block;
 }
 
-#myfoods-pages{
+#myfoods-pages {
 	vertical-align: top;
 	display:inline-block;
+}
+
+#myfoods-pages span.brand,
+#myfoods-pages span.name {
+	width: 200px;
+	text-overflow: ellipsis;
 }
 
 div.myrating>span {
@@ -16,6 +22,15 @@ div.myrating>span {
 	margin:0;
 }
 
+#myfoods-profile>span {
+	display: block;
+}
+
 #myfoods_wishlist {
 	display: block;
+}
+
+span.brand.myfoods {
+	display: inline-block;
+	font-size:14px;
 }

@@ -36,7 +36,7 @@
 	
 	Template.foodsAdd.events({
 		'click #save': function (event, template) {
-			var type = $("input[name='type']:checked").val(),
+			var type = $("input[name='type']:checked").attr("value"),
 					name = template.find("#foodsadd-name").value,
 					brand = template.find("#foodsadd-brand").value,
 					brand_id = $("#foodsadd-brand").data("brand_id"),
