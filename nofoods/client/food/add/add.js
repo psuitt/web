@@ -1,5 +1,7 @@
 (function() {
 	
+	var place;
+	
 	Template.foodsAdd.rendered = function() {
 		$('div.ratingDiv span.rating').on('click', function() {
 			var index = $(this).index();			
@@ -20,13 +22,13 @@
   		bounds: defaultBounds
 		};
 	
-		var autocomplete = new google.maps.places.Autocomplete(input, options);	
+		place = new google.maps.places.Autocomplete(input, options);	
 		
 		if (navigator.geolocation) {
    		navigator.geolocation.getCurrentPosition(function(position) {
       var geolocation = new google.maps.LatLng(
           position.coords.latitude, position.coords.longitude);
-      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+      place.setBounds(new google.maps.LatLngBounds(geolocation,
           geolocation));
     });
   }
@@ -52,6 +54,8 @@
 
 			if (brand_id) 
 				data.brand_id = brand_id;
+		
+			setPlaceDetails(data);		
 		
 			createFood(data, function(response) {
 
@@ -90,7 +94,38 @@
 		});
 	};
 
-
+	var setPlaceDetails = function(data) {
+		
+		var placeDetails = place.getPlace();
+		
+		if (placeDetails) {
+		
+			if (placeDetails.address_components) {
+				
+				data.address = placeDetails.formatted_address;
+				data.address_id = placeDetails.id;
+				data.longitude = placeDetails.geometry.location.lng();
+				data.latitude = placeDetails.geometry.location.lat();
+				
+				for (var i = 0, l = placeDetails.address_components.length; i < l ; i += 1) {
+					component = placeDetails.address_components[i];
+					if (component.types.indexOf("political") != -1) {
+						if (component.types.indexOf("locality") != -1) {
+							data.city = component.long_name;
+						} else if (component.types.indexOf("administrative_area_level_1") != -1) {
+							data.state = component.long_name;
+							data.statecode = component.short_name;
+						} else if (component.types.indexOf("country") != -1) {
+							data.country = component.long_name;
+							data.countrycode = component.short_name;
+						}
+					}
+				}			
+			}			
+					
+		}		
+	
+	};
 
 })();
 

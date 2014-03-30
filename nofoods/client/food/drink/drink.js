@@ -41,6 +41,7 @@ var done = function() {
 	$('.brand').html(drink.brand_view);
 	$('.totalRating').html(drink.rating_calc);
 	$('.totalCount').html(drink.ratingcount_calc);
+	$('.foods-location').html(drink.address_view);
 	
   if (Meteor.user()) {
 

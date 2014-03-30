@@ -126,7 +126,16 @@ Meteor.methods({
 			type: FoodTypeCheck,
 			_id: NonEmptyString,
 			brand_id: Match.Optional(NonEmptyString),
-			image: Match.Optional(NonEmptyString)
+			image: Match.Optional(NonEmptyString),
+			address_id: Match.Optional(NonEmptyString),
+			address: Match.Optional(NonEmptyString),
+			longitude: Match.Optional(Number),
+			latitude: Match.Optional(Number),
+			city: Match.Optional(NonEmptyString),
+			state: Match.Optional(NonEmptyString),
+			statecode: Match.Optional(NonEmptyString),
+			country: Match.Optional(NonEmptyString),
+			countrycode: Match.Optional(NonEmptyString)
     });
 
     if (!this.userId)
@@ -135,10 +144,24 @@ Meteor.methods({
 		var tokens = tokenize(options.name + " " + options.brand);
 
 		Meteor.call('validate', tokens);
+		
+		var address = {
+			address_id: options.address_id,
+			address: options.address,
+			longitude: options.longitude,
+			latitude: options.latitude,
+			city: options.city,
+			state: options.state,
+			statecode: options.statecode,
+			country: options.country,
+			countrycode: options.countrycode
+		};
 			
 		var brand_id = options.brand_id || Brands.insert({
 			_id: Random.id(),
-			name: options.brand
+			name: options.brand,
+			locations: [address],
+			date: Date.now()
 		});
 
 		var ratingObj = {
@@ -151,7 +174,8 @@ Meteor.methods({
 		var fooddrink = {
 			_id: options._id,
 			brand_id: brand_id,
-			brand_view: options.brand, 
+			brand_view: options.brand,
+			address_view: options.address, 
 			keywords: tokens,
 			name: options.name,
 			rating_calc: options.rating,

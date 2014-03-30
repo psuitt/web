@@ -42,6 +42,7 @@ var done = function() {
 	$('.brand').html(food.brand_view);
 	$('.totalRating').html(food.rating_calc);
 	$('.totalCount').html(food.ratingcount_calc);
+	$('.foods-location').html(food.address_view);
 
   if (Meteor.user()) {
 		loadUserData();

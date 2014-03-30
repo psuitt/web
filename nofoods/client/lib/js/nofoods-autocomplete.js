@@ -19,7 +19,9 @@
 		self.keydown(function ( event ) {
 			var code = event.keyCode || event.which;
 			switch(code) {
+				// Tab Key
 				case 9:
+				// Enter Key
 				case 13:
 					_updateSelected();
 					break;
@@ -37,6 +39,13 @@
 			var code = event.keyCode || event.which;			
 
 			switch(code) {
+				// Tab Key
+				case 9:
+				// Enter Key
+				case 13:
+					self.next('input').focus();
+					event.preventDefault();
+					break;
 				case 38:
 
 					var li = _list.find("li.selected").removeClass('selected');
@@ -80,7 +89,11 @@
 							_list.append(li);
 							hasMatches = true;
 						});
-						hasMatches && _show() || addNewBrandFlag();
+						if (hasMatches){
+							_show() || addNewBrandFlag();
+						} else {
+							_hide();
+						}
 						sub.stop();
 					});
 					break;
@@ -127,8 +140,12 @@
 
 		var _updateSelected = function() {
 			var li = _list.find("li.selected");
-					self.val(li.html());
-					self.data("brand_id", li.data('brand_id'));
+			if (li && li.html().length > 0) {
+				self.val(li.html());
+				self.data("brand_id", li.data('brand_id'));
+			} else {
+				self.data("brand_id", null);
+			}
 			_info.toggle(false);		
 		};
 
