@@ -10,6 +10,12 @@ Router.configure({
 
 Router.map(function () {
 
+	this.route('error404', {
+    path:'/404',
+    template: 'error404',
+		layoutTemplate: 'mainLayout'
+  });
+
 	this.route('home', {
     path:'/',
     template: 'home',
@@ -44,12 +50,6 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		}
-  });
-
-	this.route('error404', {
-    path:'/404',
-    template: 'error404',
-		layoutTemplate: 'mainLayout'
   });
 
 	this.route('add', {
@@ -97,6 +97,15 @@ Router.map(function () {
     before: function () {	  
 			PARAMS = this.params;   
     }
+	});
+	
+	this.route('popular', {
+    path: '/popular',
+    template: 'popular',
+    layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		}
 	});
 	
 	this.route('peoplesPage', {

@@ -181,7 +181,14 @@ Meteor.methods({
 			rating_calc: options.rating,
 			ratingcount_calc: 1,
 			date: Date.now()
-		};
+		},
+			countryStat = false;
+			
+		if (options.country && options.countrycode) {
+			countryStat = {};
+			countryStat.country = options.country;
+			countryStat.countrycode = options.countrycode;
+		}
 
 		if (options.image) 
 			fooddrink.image = options.image;
@@ -190,17 +197,22 @@ Meteor.methods({
 			case "Food":
 				Foods.insert(fooddrink);
 				ratingObj.food_id = options._id;
+				countryStat.food_id = options._id;
 				break;
 			case "Drink":
 				Drinks.insert(fooddrink);
 				ratingObj.drink_id = options._id;
+				countryStat.drink_id = options._id;
 				break;
 			default:
 				throw new Meteor.Error(501, "The server does not support this functionality");
 		}
 		
-
 		var rating_Id = Ratings.insert(ratingObj);
+		
+		if (countryStat) {
+			Meteor.call('addCountry', countryStat);
+		}
 
     return options._id;
 
