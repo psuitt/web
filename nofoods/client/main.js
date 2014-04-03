@@ -99,9 +99,9 @@ Router.map(function () {
     }
 	});
 	
-	this.route('popular', {
-    path: '/popular',
-    template: 'popular',
+	this.route('explore', {
+    path: '/explore',
+    template: 'explore',
     layoutTemplate: 'mainLayout',
 		yieldTemplates: {
 			'footer': {to: 'footer'}		

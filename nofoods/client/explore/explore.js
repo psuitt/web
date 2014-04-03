@@ -1,6 +1,6 @@
 MAP_DATA = {};
 
-Template.popular.rendered = function() {
+Template.explore.rendered = function() {
 	
 	Meteor.subscribe('statistics_country', function() {
 		
@@ -24,7 +24,7 @@ Template.popular.rendered = function() {
 
 var initMap = function () {
 	
-	$("#popular-worldmap").vectorMap({
+	$("#explore-worldmap").vectorMap({
 		map: 'world_en',
 		backgroundColor: '#a5bfdd',
 		borderColor: '#818181',
@@ -40,17 +40,14 @@ var initMap = function () {
 		selectedRegion: null,
 		showTooltip: true,
 	  onLabelShow: function(element, label, code) {
+	  	
 	  	if (MAP_DATA[code.toUpperCase()]) {
 	  		label.append("</br>Foods and Drinks: " + MAP_DATA[code.toUpperCase()].numberofitems);
 	  	}
+	  
 	  },
 		onRegionClick: function(element, code, region) {
-			var message = 'You clicked "'
-	            + region 
-	            + '" which has the code: '
-	            + code.toUpperCase();
-             
-	        alert(message);
+			$("#explore-info h4").html(region);
 	  }
 	});
 	
