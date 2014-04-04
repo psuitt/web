@@ -24,8 +24,16 @@ Template.explore.rendered = function() {
 
 var initMap = function () {
 	
+	var map = 'world_en';
+	
+	if (typeof PARAMS != "undefined") {
+		if (PARAMS.maptype.length > 0) {
+			map = PARAMS.maptype + '_en';
+		}	
+	}
+
 	$("#explore-worldmap").vectorMap({
-		map: 'world_en',
+		map: map,
 		backgroundColor: '#a5bfdd',
 		borderColor: '#818181',
 		borderOpacity: 0.25,
@@ -48,6 +56,8 @@ var initMap = function () {
 	  },
 		onRegionClick: function(element, code, region) {
 			$("#explore-info h4").html(region);
+			$("#explore-content").html("");
+			MAP_DATA[code.toUpperCase()] && $("#explore-content").html("Total Foods and Drinks: " + MAP_DATA[code.toUpperCase()].numberofitems);
 	  }
 	});
 	

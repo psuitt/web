@@ -26,7 +26,7 @@ Router.map(function () {
     path: '/search/:type/:search',
     template: 'search',
 		layoutTemplate: '',
-    before: function () {	  
+    onBeforeAction: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -59,7 +59,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {
+    onBeforeAction: function () {
     }
   });
 
@@ -70,7 +70,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {	  
+    onBeforeAction: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -82,7 +82,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {	  
+    onBeforeAction: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -94,7 +94,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {	  
+    onBeforeAction: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -108,6 +108,18 @@ Router.map(function () {
 		}
 	});
 	
+	this.route('explore', {
+    path: '/explore/:maptype',
+    template: 'explore',
+    layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    onBeforeAction: function () {	  
+			PARAMS = this.params;   
+    }
+	});
+	
 	this.route('peoplesPage', {
     path: '/people/page/:username',
     template: 'people',
@@ -115,7 +127,7 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    before: function () {	  
+    onBeforeAction: function () {	  
 			PARAMS = this.params;   
     }
 	});
@@ -124,7 +136,7 @@ Router.map(function () {
     path:'/parties',
     template: 'page',
 		layoutTemplate: 'mainLayout',
-    before: function () {
+    onBeforeAction: function () {
       Meteor.subscribe("directory");
       Meteor.subscribe("parties");
       Deps.autorun(function () {
