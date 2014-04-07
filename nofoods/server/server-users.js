@@ -1,4 +1,23 @@
 //Search user names
+Meteor.publish("userdata", function () {
+  if (this.userId) {
+	
+		var query = {
+			_id : this.userId
+		};
+		var filter = {
+			fields: {
+				username: 1,
+				profile: 1			
+			}
+		};
+  	return Meteor.users.find(query, filter);
+  } else {
+    this.ready();
+  }
+});
+
+//Search user names
 Meteor.publish("users_search", function (username) {
   if (this.userId) {
 		check(username, String);

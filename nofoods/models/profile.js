@@ -56,10 +56,36 @@ Meteor.methods({
 
 	},
 	
+	removeFromWishList: function (options) {
+		
+		check(options, {
+      food_id: Match.Optional(NonEmptyString),
+			drink_id: Match.Optional(NonEmptyString)
+    });
+    
+    if (!this.userId)
+      throw new Meteor.Error(403, "You must be logged in");
+      
+		if (!options.food_id && !options.drink_id) 
+			throw new Meteor.Error(500, "A food or drink must be removed from the wishlist");
+		    
+      
+    var toRemove = {};
+    
+    if (options.food_id) {
+			toRemove.food_id = options.food_id;   
+    } else {
+    	toRemove.drink_id = options.drink_id;
+    }
+		
+		Meteor.users.update({_id: this.userId}, { $pull: { "profile.wishlist": toRemove } });
+
+	},
+	
 	addToLinks: function (options) {
 		
 		check(options, {
-      username: Match.Optional(NonEmptyString)
+      username: NonEmptyString
     });
     
     if (!this.userId)
@@ -81,6 +107,19 @@ Meteor.methods({
 			
 			Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.links": link } });
 		}
+
+	},
+
+	removeFromLinks: function (options) {
+		
+		check(options, {
+      username: NonEmptyString
+    });
+    
+    if (!this.userId)
+      throw new Meteor.Error(403, "You must be logged in");
+		
+		Meteor.users.update({_id: this.userId}, { $pull: { "profile.links": { username: options.username } } });
 
 	}
 

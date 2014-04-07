@@ -17,6 +17,16 @@
 	text-overflow: ellipsis;
 }
 
+#myfoods-pages a.name {
+	width: 200px;
+	display: inline-block;
+	text-overflow: ellipsis;
+}
+
+#myfoods-pages a.remove {
+	margin-left:10px;
+}
+
 div.myrating>span {
 	vertical-align: middle;
 	margin:0;

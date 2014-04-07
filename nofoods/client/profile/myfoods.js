@@ -21,17 +21,44 @@ Template.myfoods.rendered = function() {
 		return;	
 	}
 
-	var user = Meteor.user(),
-			wishlist;
+	Meteor.subscribe('userdata', function() { 
+		var user = Meteor.user(),
+				wishlist;
 
-	if (user && user.profile) {
-		$('#myfoods-username').html(user.username);
-		$('#myfoods-joined').html("Joined " + user.profile.date);
-		$('#myfoods-name').val(user.profile.name);
-		wishlist = user.profile.wishlist;
-		loadLinks(user.profile.links);
-	}
+		if (user && user.profile) {
+			$('#myfoods-username').html(user.username);
+			$('#myfoods-joined').html("Joined " + user.profile.date);
+			$('#myfoods-name').val(user.profile.name);
+			wishlist = user.profile.wishlist;
+			loadLinks(user.profile.links);
+		}
+		
+		loadRatings(wishlist);	
+	
+	});
 
+	$('#myfoods-wishlist').on('click', 'a.remove', function(e) {
+		var options = {};
+		if ($(this).data('food_id')) {
+			options.food_id = $(this).data('food_id');
+		} else {
+			options.drink_id = $(this).data('drink_id');
+		}
+		Meteor.call( 'removeFromWishList', options );	
+		$(this).parent().remove();
+		e.preventDefault();
+	});
+	
+	$('#myfoods-links').on('click', 'a.remove', function(e) {
+		Meteor.call( 'removeFromLinks', { username: $(this).data('username') } );	
+		$(this).parent().remove();
+		e.preventDefault();
+	});
+	
+};
+
+var loadRatings = function(wishlist) {
+	
 	Meteor.subscribe('ratings_my', function() {
 		var food_ids = [],
 				drink_ids = [],
@@ -88,19 +115,23 @@ Template.myfoods.rendered = function() {
 				var div = $("<div class='myrating myfoods'></div>");
 				var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
 				var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
+				var removeLink = $("<a class='remove myfoods' href='#'>Remove</a>");
 
 				title.addClass("lower");
 
 				if (wishlist[i].food_id) {
 					div.addClass(wishlist[i].food_id);
-					food_ids.push(wishlist[i].food_id);										
+					food_ids.push(wishlist[i].food_id);	
+					removeLink.data('food_id', wishlist[i].food_id);									
 				} else {
 					div.addClass(wishlist[i].drink_id);
 					drink_ids.push(wishlist[i].drink_id);
+					removeLink.data('drink_id', wishlist[i].drink_id);
 				}	
 
 				div.append(title);
 				div.append(brand);
+				div.append(removeLink);
 
 				// Reverse the order they were added.
 				wDiv.prepend(div);		
@@ -119,7 +150,7 @@ Template.myfoods.rendered = function() {
 		}
 
 	}); 
-	
+
 };
 
 var findUserFoods = function(food_ids, drink_ids) {
@@ -158,6 +189,7 @@ var loadLinks = function(links) {
 
 			var div = $("<div class='myrating myfoods'></div>");
 			var title = $("<a class='name myfoods'></a>");
+			var removeLink = $("<a class='remove myfoods' href='#'>Remove</a>");
 			var username = links[i].username;
 
 			if (!username)
@@ -168,7 +200,10 @@ var loadLinks = function(links) {
 			title.attr('href', '/people/page/' + username);
 			title.html(username);
 
+			removeLink.data('username', username);
+
 			div.append(title);
+			div.append(removeLink);
 
 			// Reverse the order they were added.
 			contentDiv.prepend(div);		

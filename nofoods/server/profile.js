@@ -1,6 +1,6 @@
 Accounts.config({ 
 	sendVerificationEmail: true,
-	loginExpirationInDays: 1
+	loginExpirationInDays: 90
 });
 
 // Validate username, sending a specific error message on failure.
@@ -16,6 +16,7 @@ Accounts.validateNewUser(function (user) {
 
 Accounts.onCreateUser(function(options, user) {
 	user.profile = {
+		bonusStars: 10,
 		date: new Date()	
 	};
 	return user;
