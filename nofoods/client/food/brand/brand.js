@@ -1,6 +1,12 @@
 Template.brandsTemplate.rendered = function() {
+	
 	Meteor.subscribe('brands_item', PARAMS._id, function() {
 		done();
+	});
+	
+	$('.nofoods-pagenav a').click(function(e) {
+		e.preventDefault();	
+		$(this).tab('show');	
 	}); 
 	
 };
@@ -22,9 +28,14 @@ var done = function() {
 		$('.brand-foodtotalrating').html(""); 
 
 		Foods.find({}).forEach(function(food) {
-			var li = $("<li></li>");
-			li.html(food.name);
-			$("#brand-foodsList").append(li);
+			var div = $("<div></div>"),
+					link = $("<a target='_blank' ></a>");
+			
+			link.attr('href', '/food/page/' + food._id).html(food.name);
+			
+			div.append(link);			
+			
+			$("#brand-foodsList").append(div);
 			foodRating += food.rating_calc;
 			foodTotal += 1;
 		});
@@ -39,9 +50,14 @@ var done = function() {
 		$('.brand-drinktotalrating').html("");
 
 		Drinks.find({}).forEach(function(drink) {
-			var li = $("<li></li>");
-			li.html(drink.name);
-			$("#brand-drinksList").append(li);
+			var div = $("<div></div>"),
+					link = $("<a target='_blank' ></a>");
+			
+			link.attr('href', '/drink/page/' + drink._id).html(drink.name);
+			
+			div.append(link);
+			
+			$("#brand-drinksList").append(div);
 			drinkRating += drink.rating_calc;
 			drinkTotal += 1;
 		});

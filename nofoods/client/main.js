@@ -21,6 +21,15 @@ Router.map(function () {
     template: 'home',
 		layoutTemplate: 'mainLayout'
   });
+  
+  this.route('searchResultsEmpty', {
+    path: '/search/:type/',
+    template: 'search',
+		layoutTemplate: '',
+    onBeforeAction: function () {	  
+			PARAMS = this.params;   
+    }
+	});
 
 	this.route('searchResults', {
     path: '/search/:type/:search',

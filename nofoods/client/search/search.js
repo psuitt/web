@@ -1,6 +1,6 @@
 Template.search.rendered = function() {
 
-	switch(PARAMS.type ) {
+	switch(PARAMS.type) {
 		case "food":
 			$('#search-peoplelink').toggle(false);
 			$('#search-people').toggle(false);

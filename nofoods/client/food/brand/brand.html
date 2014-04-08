@@ -1,11 +1,36 @@
 <template name="brandsTemplate">
+
 	<div class="content"> 
+	
 		<h3 class="brand"></h3>
-		<label>Total Food Rating:</label><span class="brand-foodtotalrating"></span>
-		<label>Total Drink Rating:</label><span class="brand-drinktotalrating"></span>
-		<label>Foods List:</label>
-		<ul id="brand-foodsList"></ul>
-		<label>Drinks List:</label>
-		<ul id="brand-drinksList"></ul>
+		
+		<div id="brands-nav" class="nofoods-pagenav">
+			<ul class="nav nav-list">
+    		<li class="active"><a href="#brand-details">Details</a></li>
+    		<li class="nav-header">Ratings</li>
+    		<li class=""><a href="#brand-foods">Foods</a></li>
+    		<li class=""><a href="#brand-drinks">Drinks</a></li>
+    	</ul>
+		</div>
+		
+		<div id="brand-pages" class="tab-content nofoods-navpages">
+
+			<div class="tab-pane active" id="brand-details">
+				<label>Total Food Rating</label><span class="brand-foodtotalrating"></span>
+				<label>Total Drink Rating</label><span class="brand-drinktotalrating"></span>
+			</div>
+	
+			<div class="tab-pane" id="brand-foods">
+				<label>Foods List</label>
+				<div id="brand-foodsList"></div>
+			</div>
+			
+			<div class="tab-pane" id="brand-drinks">
+				<label>Drinks List</label>
+				<div id="brand-drinksList"></div>
+			</div>
+		
+		</div>
+		
 	</div>
 </template>
