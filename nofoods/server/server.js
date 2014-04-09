@@ -28,6 +28,14 @@ Meteor.publish("foods_brand", function (id) {
   return Foods.find( { brand_id: id } );
 });
 
+Meteor.publish("foods_toprated", function () {
+	var filter = {
+			sort: {rating_calc: -1},
+			limit: 20
+			}
+  return Foods.find( { }, filter );
+});
+
 Meteor.publish("foods_search", function (search) {
 	
 	check(search, String);

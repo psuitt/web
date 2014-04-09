@@ -19,6 +19,30 @@ Template.explore.rendered = function() {
 	});
 	
 	initMap();
+	
+	var foodSub = Meteor.subscribe('foods_toprated', function() {
+		
+		Foods.find({}).forEach(function(food) {
+			var div = $("<div class='myrating myfoods'></div>");
+			var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
+			var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
+
+			title.addClass("lower");									
+				
+			div.prepend(food.rating_calc);
+			div.append(title);
+			div.append(brand);
+
+			title.find('a').attr('href', '/food/page/' + food._id).html(food.name);
+			brand.find('a').attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+		
+			$('#explore-content').append(div);		
+		
+		});
+			
+		foodSub.stop();
+
+	});
 		
 };
 

@@ -12,12 +12,29 @@ Statistics.allow({
   }
 });
 
+var RatingCheck = Match.Where(function (x) {
+  check(x, Number);
+  return x === 1 || x === 2 || x === 3 || x === 4 || x === 5 || x === 6;
+});
+
 var NonEmptyString = Match.Where(function (x) {
   check(x, String);
   return x.length !== 0;
 });
 
 Meteor.methods({
+
+	addRating: function(options) {
+		if (!this.userId)
+      throw new Meteor.Error(403, "You must be logged in");
+	
+		check(options, {
+			ratingcount: Number,
+      food_id: Match.Optional(NonEmptyString),
+      drink_id: Match.Optional(NonEmptyString)
+    });
+    
+	},
 
 	addCountry: function(options) {
 	
