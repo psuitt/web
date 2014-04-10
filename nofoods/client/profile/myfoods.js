@@ -29,6 +29,7 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-username').html(user.username);
 			$('#myfoods-joined').html("Joined " + user.profile.date);
 			$('#myfoods-name').val(user.profile.name);
+			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			wishlist = user.profile.wishlist;
 			loadLinks(user.profile.links);
 		}

@@ -100,7 +100,15 @@ span.rating.x100 {
 	background-image: url('/rating/heart_full.svg');
 }
 
+span.rating.dashed.x100 {
+	background-image: url('/rating/heart_full_gold_dashed.svg');
+}
+
 span.rating.x110 {
+	background-image: url('/rating/heart_full_gold_dashed.svg');
+}
+
+span.rating.x120 {
 	background-image: url('/rating/heart_full_gold_dashed.svg');
 }
 

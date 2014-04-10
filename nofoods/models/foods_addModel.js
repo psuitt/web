@@ -230,7 +230,22 @@ Meteor.methods({
 
 		var userRating = Ratings.findOne({food_id: options._id, user_id: this.userId});
 
+		var user = Meteor.users.findOne( {_id: this.userId} ),
+				bonusHearts = user.profile.bonusHearts;
+		
+		if (!user.profile.bonusHearts && user.profile.bonusHearts !== 0) {
+			Meteor.users.update({_id: this.userId}, { $set: { "profile.bonusHearts": 10 } } );
+			bonusHearts = 10;
+		}
+	
+		if (bonusHearts < 1 && options.rating > 5) {
+			throw new Meteor.Error(500, "You can not rate thins above a 5");
+		}
+
 		if (!userRating) {
+
+			if (options.rating === 6)
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
 			var rating_Id = Ratings.insert({
 				_id: Random.id(),
@@ -241,6 +256,11 @@ Meteor.methods({
 			});
 
 		} else {
+			if (userRating.rating === 6 && options.rating !== 6) {
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": 1 } } );
+			} else if (userRating.rating !== 6 && options.rating === 6) {
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
+			}
 			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		}
 
@@ -278,7 +298,22 @@ Meteor.methods({
 
 		var userRating = Ratings.findOne({drink_id: options._id, user_id: this.userId});
 
+		var user = Meteor.users.findOne( {_id: this.userId} ),
+				bonusHearts = user.profile.bonusHearts;
+		
+		if (!user.profile.bonusHearts) {
+			Meteor.users.update({_id: this.userId}, { $set: { "profile.bonusHearts": 10 } } );
+			bonusHearts = 10;
+		}
+	
+		if (bonusHearts < 1 && options.rating > 5) {
+			throw new Meteor.Error(500, "You can not rate thins above a 5");
+		}
+
 		if (!userRating) {
+			
+			if (options.rating === 6)
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
 			var rating_Id = Ratings.insert({
 				_id: Random.id(),
@@ -289,6 +324,11 @@ Meteor.methods({
 			});
 
 		} else {
+			if (userRating.rating === 6 && options.rating !== 6) {
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": 1 } } );
+			} else if (userRating.rating !== 6 && options.rating === 6) {
+				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
+			}
 			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		}
 

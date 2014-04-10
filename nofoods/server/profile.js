@@ -16,7 +16,7 @@ Accounts.validateNewUser(function (user) {
 
 Accounts.onCreateUser(function(options, user) {
 	user.profile = {
-		bonusStars: 10,
+		bonusHearts: 10,
 		date: new Date()	
 	};
 	return user;
