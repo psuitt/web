@@ -1,3 +1,21 @@
+body {
+}
+
+#mainContent {
+	background: #FFF;
+	text-align:center;
+}
+
+#footer {
+	bottom: 0;
+	text-align: right;
+	background:#EEE;
+	display: block;
+	padding: 5px 10px;
+	margin-top: 0;
+	border-top: 1px solid #CCC;
+}
+
 #login {
 	float:right;
 	margin-top:10px;
@@ -28,18 +46,8 @@
 	padding-left: 5px;
 }
 
-#mainContent {
-	text-align:center;
-}
-
-#footer {
-	bottom: 0;
-	text-align: right;
-	background:#EEE;
-	display: block;
-	padding: 5px 10px;
-	margin-top: 100px;
-	border-top: 1px solid #CCC;
+#menu>a.current {
+	border-bottom: 1px dashed #FFF;
 }
 
 a.brand {
@@ -126,6 +134,10 @@ span.wishstar {
 
 span.wishstar.x100 {
 	background-image: url('/rating/star_full.svg');
+}
+
+span.date {
+	color: green;
 }
 
 /* PAGE CUSTOMIZATION */

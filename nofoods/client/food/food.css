@@ -1,9 +1,17 @@
 div.content {
+	background: #FFF;
+	border-left: 2px solid #EEE;
+	border-right: 2px solid #EEE;
 	text-align: left;
 	width:70%;
 	max-width:1000px;
-	min-height: 600px;
-	margin:50px auto;
+	min-height: 700px;
+	padding: 0px 5px 0 5px;
+	margin:0 auto;
+}
+
+div.content>h3 {
+	margin-top:0px;
 }
 
 div.searchbar {

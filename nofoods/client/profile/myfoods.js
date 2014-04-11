@@ -27,7 +27,7 @@ Template.myfoods.rendered = function() {
 
 		if (user && user.profile) {
 			$('#myfoods-username').html(user.username);
-			$('#myfoods-joined').html("Joined " + user.profile.date);
+			$('#myfoods-joined').html("Joined " + NoFoods.lib.formatDate(user.profile.date));
 			$('#myfoods-name').val(user.profile.name);
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			wishlist = user.profile.wishlist;
@@ -171,7 +171,7 @@ var findUserFoods = function(food_ids, drink_ids) {
 		
 			Drinks.find({}).forEach(function(drink) {
 				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
-				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(drink.brand_view);
+				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
 			});
 
 		}); 

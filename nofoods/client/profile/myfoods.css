@@ -36,6 +36,10 @@ div.myrating>span {
 	display: block;
 }
 
+#myfoods-profile span.date {
+	margin-bottom: 15px;
+}
+
 #myfoods_wishlist {
 	display: block;
 }
