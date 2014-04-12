@@ -288,7 +288,7 @@ Meteor.methods({
 
 		Foods.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
 		
-		return {rating_calc: avg, ratingtotal_calc: length};
+		return {rating_calc: avg, ratingcount_calc: length};
 
 	},
 
