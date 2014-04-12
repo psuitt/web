@@ -127,13 +127,20 @@ Meteor.publish("drinks_search", function (search) {
 
 });
 
-
-Meteor.publish("ratings", function () {
-  return Ratings.find({});
+Meteor.publish("ratings_my", function () {
+	if (this.userId) 
+  	return Ratings.find({user_id: this.userId}, {sort: {date: -1}});
+  this.ready();
 });
 
-Meteor.publish("ratings_my", function () {
-  return Ratings.find({user_id: this.userId}, {sort: {date: -1}});
+Meteor.publish("ratings_food", function (food_id) {
+	check(food_id, String);
+  return Ratings.find({food_id: food_id});
+});
+
+Meteor.publish("ratings_drink", function (drink_id) {
+	check(drink_id, String);
+  return Ratings.find({drink_id: drink_id});
 });
 
 Meteor.publish("ratings_user", function (userId) {

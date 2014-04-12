@@ -75,9 +75,9 @@ var loadRatings = function(wishlist) {
 			
 			var div = $("<div class='myrating myfoods'></div>"),
 					name = $("<span class='name myfoods'></span>"),
-					nameLink = $("<a target='_blank' ></a>"),
+					nameLink = $("<a></a>"),
 					brand = $("<span class='brand myfoods'></span>"),
-					brandLink = $("<a target='_blank' ></a>"),
+					brandLink = $("<a></a>"),
 					ratingSpan = $("<span class='rating'></span>"),
 					ratingNumber = $("<span class='ratingNum'></span>"),
 					toAdd = null;
@@ -114,8 +114,8 @@ var loadRatings = function(wishlist) {
 			for (var i = 0, l = wishlist.length; i < l ; i += 1) {
 
 				var div = $("<div class='myrating myfoods'></div>");
-				var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
-				var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
+				var title = $("<span class='name myfoods'><a></a></span>");
+				var brand = $("<span class='brand myfoods'><a></a></span>");
 				var removeLink = $("<a class='remove myfoods' href='#'>Remove</a>");
 
 				title.addClass("lower");

@@ -6,3 +6,12 @@ span.rating.selected {
 	color:red;
 	font-weight:bold;
 }
+
+#foodsadd-food,
+#foodsadd-drink,
+label[for='foodsadd-food'],
+label[for='foodsadd-drink'] {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0;
+}
