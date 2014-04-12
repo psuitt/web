@@ -78,11 +78,15 @@ createFood = function (options, callback) {
 		callback && callback(response);
 	});	
 
-  return response;
 };
 
-updateFood = function (options) {
-  Meteor.call('updateFood', options);
+updateFood = function (options, callback) {
+  var response = {};
+  Meteor.call('updateFood', options, function(err, data) {
+	response.error = e;
+	response.data = data;
+	callback && callback(response);
+  });
 };
 
 updateDrink = function (options) {
