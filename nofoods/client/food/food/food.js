@@ -12,9 +12,7 @@ Template.foodsTemplate.rendered = function() {
 		var id = updateFood({
 			rating: rating,
 			_id: PARAMS._id		
-		});
-
-		done();
+		}, reload);
 		
 	});	
 
@@ -74,7 +72,14 @@ var loadUserData = function() {
 
 	}
 
-}
+};
+
+var reload = function(response) {
+
+	$('.totalRating').html(response.rating_calc);
+	$('.totalCount').html(response.ratingcount_calc);
+
+};
 
 var setRatingSelected = function(n) {
 	$('div.ratingDiv span.rating').each(function() {
