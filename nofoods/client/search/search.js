@@ -1,5 +1,4 @@
 Template.search.rendered = function() {
-
 	switch(PARAMS.type) {
 		case "food":
 			$('#search-peoplelink').toggle(false);
@@ -75,7 +74,8 @@ var doSearchPeople = function() {
 
 		}
 
-		window.parent.recalcFrame($('#resultsDiv').outerHeight());	
+		$('div.loading').addClass('hide');	
+		window.parent.recalcFrame($('#resultsDiv').outerHeight());
 
 	});
 
@@ -111,8 +111,9 @@ var doSearchFoods = function() {
 
 		}
 
-		window.parent.recalcFrame($('#resultsDiv').outerHeight());	
-
+		$('div.loading').addClass('hide');
+		window.parent.recalcFrame($('#resultsDiv').outerHeight());
+		
 	});
 
 };
@@ -143,7 +144,9 @@ var doSearchDrinks = function() {
 
 		}
 
+		$('div.loading').addClass('hide');
 		window.parent.recalcFrame($('#resultsDiv').outerHeight());
+	
 
 	});
 

@@ -1,4 +1,5 @@
 (function() {
+	
 	Template.home.events = {
 		'keypress #home-search': function(evt, template) {
 			if (evt.which == 13) {
@@ -21,8 +22,9 @@
 
 	var doSearch = function(search) {
 		var val = $('#home-searchtype .home-searchval').html().toLowerCase();
-		if (val)
+		if (val) {
 			$('#searchResults').attr("src", '/search/' + val + '/' + search);
+		}	
 	}	
 	
 })();

@@ -140,6 +140,20 @@ span.date {
 	color: green;
 }
 
+div.loading {
+	left:50%;
+	width: 42px;
+	min-height: 42px;
+	position: absolute;
+	background-image:url('ajax-loader.gif');
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+div.loading.hide {
+	display: none;
+}
+
 /* PAGE CUSTOMIZATION */
 
 div.nofoods-pagenav {
