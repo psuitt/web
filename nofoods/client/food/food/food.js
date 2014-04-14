@@ -45,7 +45,7 @@ var done = function() {
   if (Meteor.user()) {
 		loadUserData();
 
-		var ratingSub = Meteor.subscribe('ratings_food', food._id, function() {
+		var ratingSub = Meteor.subscribe('ratings_myfood', food._id, function() {
 			var userRating = Ratings.findOne({user_id: Meteor.userId()});
 			if (userRating) {
 				setRatingSelected(userRating.rating);
@@ -76,8 +76,8 @@ var loadUserData = function() {
 
 var reload = function(response) {
 
-	$('.totalRating').html(response.rating_calc);
-	$('.totalCount').html(response.ratingcount_calc);
+	$('.totalRating').html(response.data.rating_calc);
+	$('.totalCount').html(response.data.ratingcount_calc);
 
 };
 

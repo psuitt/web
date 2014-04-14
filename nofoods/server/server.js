@@ -138,9 +138,19 @@ Meteor.publish("ratings_food", function (food_id) {
   return Ratings.find({food_id: food_id});
 });
 
+Meteor.publish("ratings_myfood", function (food_id) {
+	check(food_id, String);
+  return Ratings.find({food_id: food_id, user_id: this.userId});
+});
+
 Meteor.publish("ratings_drink", function (drink_id) {
 	check(drink_id, String);
   return Ratings.find({drink_id: drink_id});
+});
+
+Meteor.publish("ratings_mydrink", function (drink_id) {
+	check(drink_id, String);
+  return Ratings.find({drink_id: drink_id, user_id: this.userId});
 });
 
 Meteor.publish("ratings_user", function (userId) {

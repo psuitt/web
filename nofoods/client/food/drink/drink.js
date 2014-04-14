@@ -12,9 +12,7 @@ Template.drinksTemplate.rendered = function() {
 		var id = updateDrink({
 			rating: rating,
 			_id: PARAMS._id		
-		});	
-
-		done();
+		}, reload);	
 	
 	});	
 
@@ -47,7 +45,7 @@ var done = function() {
 
 		loadUserData();
 		
-		var ratingSub = Meteor.subscribe('ratings_drink', drink._id, function() {
+		var ratingSub = Meteor.subscribe('ratings_mydrink', drink._id, function() {
 			var userRating = Ratings.findOne({user_id: Meteor.userId()});
 			if (userRating) {
 				setRatingSelected(userRating.rating);
@@ -75,6 +73,13 @@ var loadUserData = function() {
 	}
 
 }
+
+var reload = function(response) {
+
+	$('.totalRating').html(response.data.rating_calc);
+	$('.totalCount').html(response.data.ratingcount_calc);
+
+};
 
 var setRatingSelected = function(n) {
 	$('div.ratingDiv span.rating').each(function() {
