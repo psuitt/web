@@ -8,6 +8,12 @@ div.content {
 	min-height: 700px;
 	padding: 5px 5px 0 5px;
 	margin:0 auto;
+	box-shadow: 0 5px 5px 2px #444;
+	-moz-box-shadow: 0 5px 5px #444;
+	-webkit-box-shadow: 0 5px 5px #444;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='#444444')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Color=#444444, Strength=5, Direction=90),
+     			progid:DXImageTransform.Microsoft.Shadow(Color=#444444, Strength=5, Direction=180)
 }
 
 div.content>h3 {

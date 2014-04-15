@@ -1,5 +1,9 @@
 (function() {
 	
+	Template.home.rendered = function() {
+		
+	};
+	
 	Template.home.events = {
 		'keypress #home-search': function(evt, template) {
 			if (evt.which == 13) {

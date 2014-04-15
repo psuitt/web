@@ -2,7 +2,7 @@ body {
 }
 
 #mainContent {
-	background: #FFF;
+	background: #F0F8FF;
 	text-align:center;
 }
 
@@ -190,6 +190,7 @@ ul.nofoods-autocomplete {
 	list-style-type: none;
 	padding: 2px;
 	z-index: 100;
+	display: none;
 }
 
 ul.nofoods-autocomplete li {

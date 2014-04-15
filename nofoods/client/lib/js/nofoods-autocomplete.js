@@ -77,6 +77,7 @@
 					_list.html("");
 
 					if (self.val().trim().length == 0) {
+						_hide();
 						break;
 					}
 
