@@ -1,5 +1,5 @@
 <head>
-	<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>-->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 </head>
 <template name="foodsAdd">
 	<div class="content">
@@ -20,6 +20,7 @@
 			<span class="rating" ></span>
 		</div>
 		<label>Location</label><input id="foodsadd-location" type="text" placeholder="19th Street..." />
+		<div id='foodsadd-map'></div>		
 		<input id="save" type="button" value="save"/>
 	</div>
 </template>

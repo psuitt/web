@@ -15,3 +15,8 @@ label[for='foodsadd-drink'] {
 	vertical-align: middle;
 	margin: 0;
 }
+
+#foodsadd-map {
+	height: 300px;
+	width: 550px;
+}
