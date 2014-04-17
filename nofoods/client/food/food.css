@@ -20,6 +20,11 @@ div.content>h3 {
 	margin-top:0px;
 }
 
+div.alertmessage {
+	display: none;
+	position:absolute;
+}
+
 div.searchbar {
 	vertical-align: middle;
 	padding: 10px 5px 10px 5px;
@@ -131,6 +136,6 @@ div.content label {
 	font-weight: bold;
 }
 
-div.message {
+div.nofoods-autocomplete.message {
 	display:inline-block;
 }

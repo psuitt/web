@@ -10,7 +10,7 @@
 								.addClass("nofoods-autocomplete")
 								.insertAfter(this),
 				_info = $("<div></div>")
-								.addClass("message alert alert-info")
+								.addClass("nofoods-autocomplete message alert alert-info")
 								.toggle(false)
 								.insertAfter(this);
 

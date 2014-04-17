@@ -3,7 +3,11 @@ Template.myfoods.events({
 			var profile = {
 				name: template.find('#myfoods-name').value		
 			};
-			Meteor.call('updateProfile', profile);
+			Meteor.call('updateProfile', profile, function(err) {
+				if (!err)
+					$('div.alertmessage').html('Save was successful!');
+					$('div.alertmessage').show().delay(3500).fadeOut(1000);
+			});
 		}
 });
 

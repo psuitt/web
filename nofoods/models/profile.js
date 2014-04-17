@@ -13,7 +13,7 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
 
-		if (options.name) {
+		if (!options.name) {
 			return;
 		}
 
