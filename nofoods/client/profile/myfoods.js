@@ -1,3 +1,8 @@
+var userDataSub,
+		ratingSub,
+		foodSub,
+		drinkSub;
+
 Template.myfoods.events({
 		'click #myfoods-save': function (event, template) {
 			var profile = {
@@ -10,6 +15,13 @@ Template.myfoods.events({
 			});
 		}
 });
+
+Template.myfoods.destroyed = function() {
+	userDataSub.stop();
+	ratingSub.stop();
+	foodSub.stop();
+	drinkSub.stop();
+};
 
 Template.myfoods.rendered = function() {
 
@@ -25,7 +37,7 @@ Template.myfoods.rendered = function() {
 		return;	
 	}
 
-	Meteor.subscribe('userdata', function() { 
+	userDataSub = Meteor.subscribe('userdata', function() { 
 		var user = Meteor.user(),
 				wishlist;
 
@@ -64,7 +76,7 @@ Template.myfoods.rendered = function() {
 
 var loadRatings = function(wishlist) {
 	
-	Meteor.subscribe('ratings_my', function() {
+	ratingSub = Meteor.subscribe('ratings_my', function() {
 		var food_ids = [],
 				drink_ids = [],
 				fDiv = $("#myfoods-ratingsfoods"),
@@ -161,7 +173,7 @@ var loadRatings = function(wishlist) {
 var findUserFoods = function(food_ids, drink_ids) {
 	
 	if (food_ids.length > 0) 
-		Meteor.subscribe('foods_items', food_ids, function() {
+		foodSub = Meteor.subscribe('foods_items', food_ids, function() {
 		
 			Foods.find({}).forEach(function(food) {
 				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
@@ -171,7 +183,7 @@ var findUserFoods = function(food_ids, drink_ids) {
 		}); 
 
 	if (drink_ids.length > 0) 
-		Meteor.subscribe('drinks_items', drink_ids, function() {
+		drinkSub = Meteor.subscribe('drinks_items', drink_ids, function() {
 		
 			Drinks.find({}).forEach(function(drink) {
 				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);

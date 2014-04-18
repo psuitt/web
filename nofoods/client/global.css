@@ -1,8 +1,21 @@
 body {
+	font-family: 'Lato', helvetica, sans-serif;
+}
+
+h3.pagetitle {
+	color: white;
+	padding: 3px 10px;
+	background-color: #2E3642;
+	background-color: #272F3A;
 }
 
 #mainContent {
 	background: #F0F8FF;
+	background-image: url('/backgrounds/test.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: 100% auto;
 	text-align:center;
 }
 
@@ -13,11 +26,11 @@ body {
 #footer {
 	bottom: 0;
 	text-align: right;
-	background:#EEE;
+	color: white;
+	background: #2E3642;
 	display: block;
 	padding: 5px 10px;
 	margin-top: 0;
-	border-top: 1px solid #CCC;
 }
 
 #login {
@@ -34,7 +47,7 @@ body {
 
 #menu {
 	padding:0 30px;
-	background: #383838;
+	background: #white;
 }
 
 #menu>a {

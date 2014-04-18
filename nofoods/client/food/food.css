@@ -1,20 +1,26 @@
 div.content {
 	display: inline-block;
 	background: #FFF;
-	border-left: 2px solid #EEE;
-	border-right: 2px solid #EEE;
 	text-align: left;
 	width:70%;
 	max-width:900px;
 	min-height: 700px;
-	padding: 5px 5px 0 5px;
-	margin:0 auto;
+	margin:40px auto;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+	/*
 	box-shadow: 0 5px 5px 2px #444;
 	-moz-box-shadow: 0 5px 5px #444;
 	-webkit-box-shadow: 0 5px 5px #444;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=90, Color='#444444')";
 	filter: progid:DXImageTransform.Microsoft.Shadow(Color=#444444, Strength=5, Direction=90),
      			progid:DXImageTransform.Microsoft.Shadow(Color=#444444, Strength=5, Direction=180)
+  */
+}
+
+div.subcontent {
+	padding: 0 10px;
 }
 
 div.content>h3 {
@@ -36,9 +42,8 @@ div.alertmessage {
 div.searchbar {
 	vertical-align: middle;
 	padding: 10px 5px 10px 5px;
-	background: #EEE;
-	border: 1px solid #CCC;
-	background: #EEE;
+	background: #2E3642;
+	color: white;
 }
 
 div.searchbar span {
@@ -62,10 +67,7 @@ div.searchbar input {
 	border-right: 0;
 	border-left: 0;
 	-webkit-border-radius: 0;
-	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
 	border-radius: 0;
 }
 

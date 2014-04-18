@@ -3,24 +3,24 @@
 </head>
 <template name="foodsAdd">
 	<div class="content">
-		<h3>Add Food or Drink</h3>
+		<h3 class="pagetitle" >Add Food or Drink</h3>
 		<div class="message"></div>
-		<input id="foodsadd-food" class="type" type="radio" name="type" value="Food" checked /><label for="foodsadd-food">Food</label>
-		<input id="foodsadd-drink" class="type" type="radio" name="type" value="Drink" /><label for="foodsadd-drink">Drink</label>
-		<label>Name</label><input id="foodsadd-name" type="text" placeholder="Name, Beef, ect..." />
-		<label>Brand</label><input id="foodsadd-brand" type="text" class="typeahead" placeholder="Brand, Company, Restaurant..." />
-		<ul id="foodsadd-brand-autocomplete" class="autocomplete hide">	
-		</ul>	
-		<label>Rating</label>
-		<div class="ratingDiv">
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
-			<span class="rating" ></span>
+		<div class="subcontent">
+			<input id="foodsadd-food" class="type" type="radio" name="type" value="Food" checked /><label for="foodsadd-food">Food</label>
+			<input id="foodsadd-drink" class="type" type="radio" name="type" value="Drink" /><label for="foodsadd-drink">Drink</label>
+			<label>Name</label><input id="foodsadd-name" type="text" placeholder="Name, Beef, ect..." />
+			<label>Brand</label><input id="foodsadd-brand" type="text" class="typeahead" placeholder="Brand, Company, Restaurant..." />
+			<label>Rating</label>
+			<div class="ratingDiv">
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+				<span class="rating" ></span>
+			</div>
+			<label>Location</label><input id="foodsadd-location" type="text" placeholder="19th Street..." />
+			<div id='foodsadd-map'></div>		
+			<input id="save" type="button" value="save"/>
 		</div>
-		<label>Location</label><input id="foodsadd-location" type="text" placeholder="19th Street..." />
-		<div id='foodsadd-map'></div>		
-		<input id="save" type="button" value="save"/>
 	</div>
 </template>
