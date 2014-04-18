@@ -6,6 +6,10 @@ body {
 	text-align:center;
 }
 
+#mainContent.white {
+	background: #FFF;
+}
+
 #footer {
 	bottom: 0;
 	text-align: right;

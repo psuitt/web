@@ -1,7 +1,11 @@
 (function() {
 	
 	Template.home.rendered = function() {
-		
+		$('#mainContent').addClass('white');
+	};
+	
+	Template.home.destroyed = function() {
+		$('#mainContent').removeClass('white');
 	};
 	
 	Template.home.events = {
