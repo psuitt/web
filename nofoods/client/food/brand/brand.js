@@ -1,6 +1,12 @@
+var brandSub;
+
+Template.brandsTemplate.destroyed = function () {
+	brandSub.stop();
+};
+
 Template.brandsTemplate.rendered = function() {
 	
-	Meteor.subscribe('brands_item', PARAMS._id, function() {
+	brandSub = Meteor.subscribe('brands_item', PARAMS._id, function() {
 		done();
 	});
 	

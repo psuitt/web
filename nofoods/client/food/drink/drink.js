@@ -1,5 +1,14 @@
+var drinkSub;
+
+Template.drinksTemplate.destroyed = function () {
+	drinkSub.stop();
+};
+
 Template.drinksTemplate.rendered = function() {
-	Meteor.subscribe('drinks_item', PARAMS._id, function() {done();});
+	
+	drinkSub = Meteor.subscribe('drinks_item', PARAMS._id, function() {
+		done();
+	});
 
 	$('div.ratingDiv span.rating').on('click', function() {
 		var index = $(this).index();			
@@ -50,6 +59,7 @@ var done = function() {
 			if (userRating) {
 				setRatingSelected(userRating.rating);
 			}
+			ratingSub.stop();
 		});
 
   }  

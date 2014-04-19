@@ -1,5 +1,12 @@
+var foodSub;
+
+Template.foodsTemplate.destroyed = function () {
+	foodSub.stop();
+};
+
 Template.foodsTemplate.rendered = function() {
-	Meteor.subscribe('foods_item', PARAMS._id, function() {done();});
+	
+	foodSub = Meteor.subscribe('foods_item', PARAMS._id, function() {done();});
 	
 	$('div.ratingDiv span.rating').on('click', function() {
 		var index = $(this).index();			
@@ -50,6 +57,7 @@ var done = function() {
 			if (userRating) {
 				setRatingSelected(userRating.rating);
 			}
+			ratingSub.stop();
 		});
 
   }  
