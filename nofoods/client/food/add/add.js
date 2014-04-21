@@ -4,6 +4,9 @@
 			map;
 	
 	Template.foodsAdd.rendered = function() {
+		
+		setPath();
+		
 		$('div.ratingDiv span.rating').on('click', function() {
 			var index = $(this).index();			
 			$('div.ratingDiv span.rating').each(function() {

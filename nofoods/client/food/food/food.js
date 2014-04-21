@@ -28,8 +28,6 @@ Template.foodsTemplate.rendered = function() {
 		$(".wishstar").toggleClass("x100", true);	
 	}); 
 	
-	$('.searchbar input').nofoodssearch();
-	
 };
 
 Template.foodsTemplate.events({

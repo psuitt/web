@@ -24,6 +24,8 @@ Template.myfoods.destroyed = function() {
 };
 
 Template.myfoods.rendered = function() {
+	
+	setPath();
 
 	$('#myfoods-nav a').click(function(e) {
 		e.preventDefault();	

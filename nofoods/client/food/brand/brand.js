@@ -6,6 +6,8 @@ Template.brandsTemplate.destroyed = function () {
 
 Template.brandsTemplate.rendered = function() {
 	
+	setUp();
+	
 	brandSub = Meteor.subscribe('brands_item', PARAMS._id, function() {
 		done();
 	});

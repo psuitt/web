@@ -39,48 +39,6 @@ div.alertmessage {
 	position:absolute;
 }
 
-div.searchbar {
-	vertical-align: middle;
-	padding: 10px 5px 10px 5px;
-	background: #2E3642;
-	color: white;
-}
-
-div.searchbar span {
-	vertical-align: middle;
-}
-
-div.searchbar div.btn-group>a {
-	height: 20px;
-	border-right: 0;
-	-webkit-border-top-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-moz-border-radius-topright: 0;
-	-moz-border-radius-bottomright: 0;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-div.searchbar input {
-	vertical-align: middle;
-	margin-bottom: 0;
-	border-right: 0;
-	border-left: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-}
-
-div.searchbar button {
-	border-left: 0;
-	-webkit-border-top-left-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	-moz-border-radius-bottomleft: 0;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-
 div.contentbody {
 	overflow:hidden;
 	padding: 10px;

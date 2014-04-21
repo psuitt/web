@@ -5,13 +5,18 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	</head>
 	<div id="menu">
+		<span class="logo">No-Foods</span>
 		<a href="/" >Home</a>
 		<a href="/explore" >Explore</a>		
 		{{#if currentUser}}
-		<a href='/myfoods' class='leftborder'>MyFoods</a>
+		<span class='leftborder'></span>
+		<a href='/myfoods'>MyFoods</a>
 		<a href='/food/add'>Add</a>
 		{{/if}}
-		<div id="login">
+		<div id="login">	
+			<div class="searchbar">	
+				<input type="text" />
+			</div>
 		  {{> loginButtons align="right"}}
 		</div>
 	</div>

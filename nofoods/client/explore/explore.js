@@ -2,6 +2,8 @@ MAP_DATA = {};
 
 Template.explore.rendered = function() {
 	
+	setPath();
+	
 	Meteor.subscribe('statistics_country', function() {
 		
 		Statistics.find({}).forEach(function(stat) {

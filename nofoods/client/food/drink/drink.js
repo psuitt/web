@@ -30,8 +30,6 @@ Template.drinksTemplate.rendered = function() {
 		$(".wishstar").toggleClass("x100", true);		
 	});   
 	
-	$('.searchbar input').nofoodssearch();
-	
 };
 
 Template.drinksTemplate.events({

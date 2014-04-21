@@ -3,3 +3,7 @@ recalcFrame = function(height) {
 		$('#results-searchresults')[0].height = height;
 	}
 };
+
+Template.results.rendered = function() {
+	setPath();
+};

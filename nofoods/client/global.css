@@ -32,6 +32,8 @@ h3.pagetitle {
 	margin-top: 0;
 }
 
+/* MENU */
+
 #login {
 	float:right;
 	margin-top:10px;
@@ -45,7 +47,7 @@ h3.pagetitle {
 }
 
 #menu {
-	padding:0 30px;
+	padding:10px 30px 20px 30px;
 	background: #white;
 }
 
@@ -57,14 +59,69 @@ h3.pagetitle {
 	font-weight: bold;
 }
 
-#menu>a.leftborder {
+#menu>a:hover {
+	text-decoration: none;
+}
+
+#menu>span.leftborder {
 	border-left: 1px solid #EEE;
 	padding-left: 5px;
 }
 
 #menu>a.current {
-	border-bottom: 1px dashed #FFF;
+	border-bottom: 3px solid #2E3642;
 }
+
+span.logo {
+	font-weight: 700;
+	display: inline-block;
+}
+
+/* MAIN SEARCH */
+
+div.searchbar {
+	margin:0 20px;
+	vertical-align: middle;
+	color: white;
+	display: inline-block;
+}
+
+div.searchbar span {
+	vertical-align: middle;
+}
+
+div.searchbar div.btn-group>a {
+	height: 20px;
+	border-right: 0;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-bottomright: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+div.searchbar input {
+	vertical-align: middle;
+	margin-bottom: 0;
+	border-right: 0;
+	border-left: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+div.searchbar button {
+	border-left: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+/* GLOBAL COLORS */
 
 a.brand {
  color: gray;
@@ -238,6 +295,8 @@ ul.nofoods-autocomplete li.selected {
 .nofoodssearch.type span.text {
 	width: 50px;
 	display: inline-block;
+	margin-top: -3px;
+	line-height: 14px;
 }
 
 .nofoodssearch.type span.caret {
