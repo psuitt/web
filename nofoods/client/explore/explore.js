@@ -1,10 +1,15 @@
 MAP_DATA = {};
+var statsSub;
+
+Template.explore.destroyed = function() {
+	statsSub.stop();
+};
 
 Template.explore.rendered = function() {
 	
 	setPath();
 	
-	Meteor.subscribe('statistics_country', function() {
+	statsSub = Meteor.subscribe('statistics_country', function() {
 		
 		Statistics.find({}).forEach(function(stat) {
 			
@@ -53,7 +58,7 @@ var initMap = function () {
 	var map = 'world_en';
 	
 	if (typeof PARAMS != "undefined") {
-		if (PARAMS.maptype.length > 0) {
+		if (PARAMS && PARAMS.maptype && PARAMS.maptype.length > 0) {
 			map = PARAMS.maptype + '_en';
 		}	
 	}

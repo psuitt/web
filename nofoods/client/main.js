@@ -114,7 +114,10 @@ Router.map(function () {
     layoutTemplate: 'mainLayout',
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
-		}
+		},
+		onBeforeAction: function () {	  
+			PARAMS = false;   
+    }
 	});
 	
 	this.route('explore', {
