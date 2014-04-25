@@ -1,8 +1,10 @@
 MAP_DATA = {};
-var statsSub;
+var statsSub,
+		foodSub;
 
 Template.explore.destroyed = function() {
-	statsSub.stop();
+	statsSub && statsSub.stop();
+	foodSub && foodSub.stop();
 };
 
 Template.explore.rendered = function() {
@@ -27,7 +29,7 @@ Template.explore.rendered = function() {
 	
 	initMap();
 	
-	var foodSub = Meteor.subscribe('foods_toprated', function() {
+	foodSub = Meteor.subscribe('foods_toprated', function() {
 		
 		Foods.find({}).forEach(function(food) {
 			var div = $("<div class='myrating myfoods'></div>");
@@ -46,8 +48,6 @@ Template.explore.rendered = function() {
 			$('#explore-content').append(div);		
 		
 		});
-			
-		foodSub.stop();
 
 	});
 		

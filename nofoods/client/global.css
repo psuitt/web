@@ -3,13 +3,13 @@ body {
 }
 
 h3.pagetitle {
-	color: white;
+	color: #DAA520;
 	padding: 3px 10px;
-	background-color: #2E3642;
+	background-color: #222222;
 }
 
 #mainContent {
-	background: #F0F8FF;
+	background: #FFFFFF;
 	background-image: url('/backgrounds/newyork_background.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -47,14 +47,15 @@ h3.pagetitle {
 }
 
 #menu {
-	padding:10px 30px 20px 30px;
-	background: #white;
+	padding:0 30px 5px 30px;
+	background: #222222;
 }
 
 #menu>a {
-	margin-top:10px;
-	margin-bottom:10px;
-	margin-left: 2px;
+	margin-top:15px;
+	margin-bottom:5px;
+	margin-left: 1px;
+	margin-right: 1px;
 	display: inline-block;
 	font-weight: bold;
 }
@@ -63,18 +64,24 @@ h3.pagetitle {
 	text-decoration: none;
 }
 
-#menu>span.leftborder {
-	border-left: 1px solid #EEE;
-	padding-left: 5px;
+#menu>div.spacer {
+	width: 2px;
+	height: 23px;
+	margin: 0 2px;
+	background: #DAA520;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 #menu>a.current {
-	border-bottom: 3px solid #2E3642;
+	border-bottom: 3px solid #DAA520;
 }
 
 span.logo {
 	font-weight: 700;
 	display: inline-block;
+	margin-right: 30px;
+	color: #DAA520;
 }
 
 /* MAIN SEARCH */

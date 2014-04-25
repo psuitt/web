@@ -17,10 +17,10 @@ Template.myfoods.events({
 });
 
 Template.myfoods.destroyed = function() {
-	userDataSub.stop();
-	ratingSub.stop();
-	foodSub.stop();
-	drinkSub.stop();
+	userDataSub && userDataSub.stop();
+	ratingSub && ratingSub.stop();
+	foodSub && foodSub.stop();
+	drinkSub && drinkSub.stop();
 };
 
 Template.myfoods.rendered = function() {

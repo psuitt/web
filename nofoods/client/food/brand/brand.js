@@ -1,7 +1,7 @@
 var brandSub;
 
 Template.brandsTemplate.destroyed = function () {
-	brandSub.stop();
+	brandSub && brandSub.stop();
 };
 
 Template.brandsTemplate.rendered = function() {

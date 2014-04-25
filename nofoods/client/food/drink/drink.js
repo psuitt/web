@@ -1,7 +1,7 @@
 var drinkSub;
 
 Template.drinksTemplate.destroyed = function () {
-	drinkSub.stop();
+	drinkSub && drinkSub.stop();
 };
 
 Template.drinksTemplate.rendered = function() {

@@ -1,7 +1,7 @@
 var foodSub;
 
 Template.foodsTemplate.destroyed = function () {
-	foodSub.stop();
+	foodSub && foodSub.stop();
 };
 
 Template.foodsTemplate.rendered = function() {
