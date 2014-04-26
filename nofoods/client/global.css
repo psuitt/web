@@ -117,6 +117,7 @@ div.searchbar {
 	vertical-align: middle;
 	color: white;
 	display: inline-block;
+	min-height: 30px;
 }
 
 div.searchbar span {
