@@ -1,12 +1,16 @@
-var brandSub;
+var brandSub,
+		foodSub,
+		drinkSub;
 
 Template.brandsTemplate.destroyed = function () {
 	brandSub && brandSub.stop();
+	foodSub && foodSub.stop();
+	drinkSub && drinkSub.stop();
 };
 
 Template.brandsTemplate.rendered = function() {
 	
-	setUp();
+	//setUp();
 	
 	brandSub = Meteor.subscribe('brands_item', PARAMS._id, function() {
 		done();
@@ -28,7 +32,7 @@ var done = function() {
 
 	$('.brand').html(brand.name);
 
-	Meteor.subscribe('foods_brand', brand._id, function() {
+	foodSub = Meteor.subscribe('foods_brand', brand._id, function() {
 		var foodRating = 0,
 				foodTotal = 0;
 
@@ -44,13 +48,13 @@ var done = function() {
 			div.append(link);			
 			
 			$("#brand-foodsList").append(div);
-			foodRating += food.rating_calc;
+			foodRating += parseInt(food.rating_calc, 10);
 			foodTotal += 1;
 		});
 		foodRating > 0 && $('.brand-foodtotalrating').html((foodRating/parseFloat(foodTotal)).toFixed(2));
 	}); 	
 
-	Meteor.subscribe('drinks_brand', brand._id, function() {
+	drinkSub = Meteor.subscribe('drinks_brand', brand._id, function() {
 		var drinkRating = 0,
 				drinkTotal = 0;
 
@@ -66,7 +70,7 @@ var done = function() {
 			div.append(link);
 			
 			$("#brand-drinksList").append(div);
-			drinkRating += drink.rating_calc;
+			drinkRating += parseInt(drink.rating_calc, 10);
 			drinkTotal += 1;
 		});
 		drinkRating > 0 &&	$('.brand-drinktotalrating').html((drinkRating/parseFloat(drinkTotal)).toFixed(2));
