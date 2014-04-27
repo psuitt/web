@@ -32,6 +32,14 @@ h3.pagetitle {
 	background-color: #222222;
 }
 
+h3.pagetitle.username {
+	color: #FFFFFF;
+}
+
+h3.pagetitle span {
+	vertical-align: middle;
+}
+
 #mainContent {
 	background: #FFFFFF;
 	background-image: url('/backgrounds/newyork_background.png');
@@ -76,6 +84,7 @@ h3.pagetitle {
 }
 
 #menu>a {
+	color: #FFFFFF;
 	margin-top:15px;
 	margin-bottom:5px;
 	margin-left: 1px;

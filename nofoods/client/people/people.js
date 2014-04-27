@@ -1,6 +1,18 @@
+var userDataSub,
+		ratingSub,
+		foodSub,
+		drinkSub;
+		
+Template.people.destroyed = function () {
+	userDataSub && userDataSub.stop();
+	ratingSub && ratingSub.stop();
+	foodSub && foodSub.stop();
+	drinkSub && drinkSub.stop();
+};		
+
 Template.people.rendered = function() {
 	
-	Meteor.subscribe('users_searchexact', PARAMS.username, function() {
+	userDataSub = Meteor.subscribe('users_searchexact', PARAMS.username, function() {
 		// This will contains your user info and the searched.
 		var user = Meteor.users.findOne({username: PARAMS.username});
 		
@@ -15,9 +27,14 @@ Template.people.rendered = function() {
 			$(".wishstar").toggleClass("x100", true);		
 		});
 		
+		loadUserData();
+		
 	});
 	
-	loadUserData();
+	$('div.nofoods-pagenav a').click(function(e) {
+		e.preventDefault();	
+		$(this).tab('show');	
+	}); 
 
 };
 
@@ -42,12 +59,14 @@ var loadUserData = function() {
 
 var findUserRatings = function(user) {
 
-	Meteor.subscribe('ratings_user', user._id, function() {
+	ratingSub = Meteor.subscribe('ratings_user', user._id, function() {
 		var food_ids = [],
 				drink_ids = [],
-				jDiv = $("#people_ratings");
+				fDiv = $("#people-foodsList"),
+				dDiv = $("#people-drinksList");
 
-		jDiv.html("");
+		fDiv.html("");
+		dDiv.html("");
 
 		Ratings.find({}).forEach(function(rating) {
 			
@@ -77,13 +96,24 @@ var findUserRatings = function(user) {
 			div.append(ratingSpan);
 			div.append(ratingNumber);
 
-			jDiv.append(div);
+			if (rating.food_id) {
+				fDiv.append(div);
+			} else {
+				dDiv.append(div);
+			}
+			
 		});
 
-		if (food_ids.length != 0 || drink_ids.length != 0) {
+		if (food_ids.length !== 0 || drink_ids.length !== 0) {
 			findUserFoods(food_ids, drink_ids);
+			if (food_ids.length === 0) {
+				fDiv.append("No ratings found");
+			} else if (drink_ids.length === 0) {
+				dDiv.append("No ratings found");
+			}
 		} else {
-			jDiv.append("No ratings found");
+			fDiv.append("No ratings found");
+			dDiv.append("No ratings found");
 		}
 
 	}); 
@@ -94,7 +124,7 @@ var findUserRatings = function(user) {
 var findUserFoods = function(food_ids, drink_ids) {
 	
 	if (food_ids.length > 0) 
-		Meteor.subscribe('foods_items', food_ids, function() {
+		foodSub = Meteor.subscribe('foods_items', food_ids, function() {
 		
 			Foods.find({}).forEach(function(food) {
 				$("." + food._id + " .name").html(food.name);
@@ -104,7 +134,7 @@ var findUserFoods = function(food_ids, drink_ids) {
 		}); 
 
 	if (drink_ids.length > 0) 
-		Meteor.subscribe('drinks_items', drink_ids, function() {
+		drinkSub = Meteor.subscribe('drinks_items', drink_ids, function() {
 		
 			Drinks.find({}).forEach(function(drink) {
 				$("." + drink._id + " .name").html(drink.name);
