@@ -116,13 +116,14 @@ var loadRatings = function(wishlist) {
 			
 			ratingNumber.html(rating.rating);
 			ratingSpan.addClass("x"+i);	
+			
 
 			name.append(nameLink);
 			brand.append(brandLink);
 			div.append(name);
 			div.append(brand);
-			div.append(ratingSpan);
-			div.append(ratingNumber);
+			div.append(ratingSpan);	
+			div.append(ratingNumber);	
 
 			toAdd.append(div);
 		});

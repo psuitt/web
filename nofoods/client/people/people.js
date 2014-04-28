@@ -71,8 +71,8 @@ var findUserRatings = function(user) {
 		Ratings.find({}).forEach(function(rating) {
 			
 			var div = $("<div class='myrating myfoods'></div>");
-			var title = $("<span class='name myfoods'></span>");
-			var brand = $("<span class='brand myfoods'></span>");
+			var title = $("<span class='name myfoods'><a></a></span>");
+			var brand = $("<span class='brand myfoods'><a></a></span>");
 			var ratingSpan = $("<span class='rating'></span>");
 			var ratingNumber = $("<span class='ratingNum'></span>");
 			
@@ -127,8 +127,8 @@ var findUserFoods = function(food_ids, drink_ids) {
 		foodSub = Meteor.subscribe('foods_items', food_ids, function() {
 		
 			Foods.find({}).forEach(function(food) {
-				$("." + food._id + " .name").html(food.name);
-				$("." + food._id + " .brand").html(food.brand_view);
+				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
+				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
 			});
 
 		}); 
@@ -137,8 +137,8 @@ var findUserFoods = function(food_ids, drink_ids) {
 		drinkSub = Meteor.subscribe('drinks_items', drink_ids, function() {
 		
 			Drinks.find({}).forEach(function(drink) {
-				$("." + drink._id + " .name").html(drink.name);
-				$("." + drink._id + " .brand").html(drink.brand_view);
+				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
+				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
 			});
 
 		}); 

@@ -11,18 +11,6 @@
 	display:inline-block;
 }
 
-#myfoods-pages span.brand,
-#myfoods-pages span.name {
-	width: 200px;
-	text-overflow: ellipsis;
-}
-
-#myfoods-pages a.name {
-	width: 200px;
-	display: inline-block;
-	text-overflow: ellipsis;
-}
-
 #myfoods-pages a.remove {
 	margin-left:10px;
 }
