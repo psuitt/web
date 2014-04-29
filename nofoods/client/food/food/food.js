@@ -26,7 +26,16 @@ Template.foodsTemplate.rendered = function() {
 	$('span.wishstar').on('click', function() {
 		Meteor.call('addToWishList', {food_id: PARAMS._id});
 		$(".wishstar").toggleClass("x100", true);	
-	}); 
+	});
+	
+	document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+	}; 
 	
 };
 
