@@ -2,9 +2,9 @@ setPath = function () {
 	var path = window.location.pathname,
 			last = false;
 	
-	$('#leftmenu>a').removeClass('current');
+	$('#links>a').removeClass('current');
 	
-	$('#leftmenu>a').each(function() {
+	$('#links>a').each(function() {
 		
 		if (path.indexOf($(this).attr('href')) != -1) {
 			last = $(this);		
