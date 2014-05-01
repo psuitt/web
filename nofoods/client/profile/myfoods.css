@@ -15,6 +15,10 @@
 	margin-left:10px;
 }
 
+#myfoods-pages h3 {
+	margin: -10px	0 0 0;
+}
+
 div.myrating>span {
 	vertical-align: middle;
 	margin:0;
