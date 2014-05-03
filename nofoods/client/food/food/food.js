@@ -28,14 +28,32 @@ Template.foodsTemplate.rendered = function() {
 		$(".wishstar").toggleClass("x100", true);	
 	});
 	
-	document.getElementById('links').onclick = function (event) {
+	document.getElementById('gallerylinks').onclick = function (event) {
     event = event || window.event;
     var target = event.target || event.srcElement,
         link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
+        options = {
+   				fullScreen: false,
+        	index: link, 
+        	event: event},
         links = this.getElementsByTagName('a');
     blueimp.Gallery(links, options);
 	}; 
+	
+	$('div.content.images').removeClass('hidden');
+	
+	$("div.imagesbutton").click(function() {
+		var o = $(this);
+		if (o.hasClass("show"))	{
+			o.removeClass("show");
+			o.find("span").html("Hide Images");	
+			$('#gallerylinks').show(400);	
+		} else {
+			o.addClass("show");
+			o.find("span").html("Show More Images");
+			$('#gallerylinks').hide(400);
+		}
+	});
 	
 };
 

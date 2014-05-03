@@ -319,6 +319,19 @@ div.myfoods.rating {
 	cursor: default;
 }
 
+/* LABELS */
+
+label.uploadlabel {
+	margin: auto;
+	display:inline-block;
+	padding:5px 10px;
+	background: #255DAF;
+	color: white;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+}
+
 /* AUTO COMPLETE */
 div.autocomplete {
 	display:block;

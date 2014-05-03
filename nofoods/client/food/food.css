@@ -19,6 +19,10 @@ div.content {
   */
 }
 
+div.content .hidden {
+	display: none;
+}
+
 div.content:nth-child(2) {
 	min-height: 100px;
 	margin-top: 0;
@@ -52,6 +56,11 @@ div.subcontent {
 	padding: 0 10px;
 }
 
+div.contentbody {
+	overflow:hidden;
+	padding: 0 10px 10px 10px;
+}
+
 div.content>h3 {
 	margin-top:0px;
 }
@@ -59,19 +68,6 @@ div.content>h3 {
 div.alertmessage {
 	display: none;
 	position:absolute;
-}
-
-div.contentbody {
-	overflow:hidden;
-	padding: 10px;
-}
-
-div.image {
-	display: inline-block;
-	float: right;
-	height: 150px;
-	width: 200px;
-	border: 1px solid #000;
 }
 
 span.name {
@@ -128,4 +124,48 @@ div.content label {
 
 div.nofoods-autocomplete.message {
 	display:inline-block;
+}
+
+div.content.images .contentbody {
+	text-align: center;
+}
+
+div.content.images div.upload {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+div.contentbody .mainimage {
+	max-height: 200px;
+	max-width:  200px;
+}
+
+div.image {
+	display: inline-block;
+	float: right;
+	height: 200px;
+	width: 250px;
+	border: 1px solid #000;
+}
+
+div.imagesbutton {
+	display: block;
+	text-align: center;
+	min-height: 50px;
+	line-height: 50px;
+	background: #255DAF;
+	margin-top: 10px;
+	cursor: pointer;
+	opacity: .9;
+}
+
+div.imagesbutton:hover {
+	opacity: 1;
+}
+
+div.imagesbutton span {
+	color: #FFFFFF;
+	font-size: 24px;
+	vertical-align: middle;
+	cursor: pointer;
 }

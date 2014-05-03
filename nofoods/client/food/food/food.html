@@ -19,9 +19,13 @@
 			<span class="foods-location"></span>	
 		</div>
 	</div>
-	<div class="content" >
+	<div class="content hidden images" >
 	 	<h3 class="pagetitle" >Images</h3>
 		<div class="contentbody">
+			<div class="upload" >
+				<label for="foods-fileupload" class="uploadlabel">Choose a picture to upload...</label>
+				<input id="foods-fileupload" type="file" style="display: none;" />
+			</div>
 			<div id="blueimp-gallery" class="blueimp-gallery">
     		<div class="slides"></div>
     		<h3 class="title"></h3>
@@ -31,13 +35,17 @@
     		<a class="play-pause"></a>
     		<ol class="indicator"></ol>
 			</div>
-			<div id="links">
+			<img src="/backgrounds/newyork_background.png" alt="New York" class="mainimage">
+			<div id="gallerylinks" style="display: none;">
     		<a href="/backgrounds/denver_colorado.png" title="Colorado">
-        	<img src="/backgrounds/denver_colorado.png" alt="Colorado" height="50" width="50">
+        	<img src="/backgrounds/denver_colorado.png" alt="Colorado" height="75" width="75">
     		</a>
     		<a href="/backgrounds/newyork_background.png" title="New York">
-        	<img src="/backgrounds/newyork_background.png" alt="New York" height="50" width="50">
+        	<img src="/backgrounds/newyork_background.png" alt="New York" height="75" width="75">
    			</a>
+			</div>
+			<div class="imagesbutton show">
+				<span>Show More Images</span>
 			</div>
 		</div>
 	</div>
