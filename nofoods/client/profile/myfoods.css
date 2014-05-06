@@ -19,6 +19,11 @@
 	margin: -10px	0 0 0;
 }
 
+#myfoods-pages .ratingsearch {
+	width: 200px;
+	margin: 10px 0;
+}
+
 div.myrating>span {
 	vertical-align: middle;
 	margin:0;

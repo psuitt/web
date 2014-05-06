@@ -79,7 +79,7 @@ span.logo {
 	background: #222222;
 	height: 45px;
 	min-width: 1000px;
-	overflow: hidden;
+	overflow: visible;
 }
 
 #links {
