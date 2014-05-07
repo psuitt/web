@@ -41,6 +41,13 @@ div.myrating>span {
 	display: block;
 }
 
+span.pagetitle {
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
 span.brand.myfoods {
 	display: inline-block;
 	font-size:14px;

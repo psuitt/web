@@ -69,7 +69,7 @@ var done = function() {
 		Router.go('/404');
 
 	$('.name').html(food.name);
-	$('.brand').html(food.brand_view);
+	$('.brand').html(NoFoods.lib.createBrandLink(food.brand_id, food.brand_view));
 	$('.totalRating').html(food.rating_calc);
 	$('.totalCount').html(food.ratingcount_calc);
 	$('.foods-location').html(food.address_view);
