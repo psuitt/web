@@ -133,6 +133,19 @@ Meteor.publish("ratings_my", function () {
   this.ready();
 });
 
+Meteor.publish("ratings_my_food_page", function (page) {
+	check(page, Number);
+	if (this.userId) {
+  	return Ratings.find(
+  		{user_id: this.userId}, 
+  		{ sort: {date: -1},
+  			skip: 1*page,
+  			limit: 1
+  		});
+  }
+  this.ready();
+});
+
 Meteor.publish("ratings_food", function (food_id) {
 	check(food_id, String);
   return Ratings.find({food_id: food_id});
