@@ -66,3 +66,27 @@ Meteor.publish("users_searchexact", function (username) {
     this.ready();
   }
 });
+
+Meteor.methods({
+	
+	getUserFoodRatings: function (page) {
+		
+		check(page, Number);
+		
+		var query = {
+			user_id: this.userId,
+			food_id: { $exists: true }
+		};
+		
+		var filter = {
+			sort: {date: -1},
+			skip: 1*page,
+			limit: 1
+		};		
+		
+		if (this.userId) 
+  		return Ratings.find(query, filter).fetch();
+  	return false;
+	}
+	
+});

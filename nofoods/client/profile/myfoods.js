@@ -74,6 +74,11 @@ Template.myfoods.rendered = function() {
 		e.preventDefault();
 	});
 	
+	Meteor.call('getUserFoodRatings', 1, function(err, data) {
+		response.error = err;
+		response.data = data;
+  });
+	
 };
 
 var loadRatings = function(wishlist) {
