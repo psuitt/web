@@ -41,7 +41,7 @@ h3.pagetitle span {
 }
 
 #mainContent {
-	background: #FFFFFF;
+	background: rgb(245,245,245);
 	background-image: url('/backgrounds/denver_colorado.png');
 	background-repeat: repeat-y;
 	background-attachment: fixed;
@@ -180,6 +180,12 @@ div.searchbar button {
 	-moz-border-radius: 0;
 	border-radius: 0;
 	background: #DAA520;
+}
+
+/* Header */
+
+#header {
+	min-height: 200px;
 }
 
 /* GLOBAL COLORS */

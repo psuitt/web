@@ -23,13 +23,16 @@ div.content .hidden {
 	display: none;
 }
 
+#mainContent div.content:last-child {
+	margin-top: 15px; /* Find out why this is needed. */
+}
+
 #mainContent div.content:nth-child(1) {
 	min-height: 600px;
 	margin:40px auto 0 auto;
 }
 
 #mainContent div.content:last-child {
-	margin-top: 15px; /* Find out why this is needed. */
 	margin-bottom:40px;
 }
 
