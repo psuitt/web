@@ -74,11 +74,6 @@ Template.myfoods.rendered = function() {
 		e.preventDefault();
 	});
 	
-	Meteor.call('getUserFoodRatings', 1, function(err, data) {
-		response.error = err;
-		response.data = data;
-  });
-	
 };
 
 var loadRatings = function(wishlist) {
@@ -96,16 +91,7 @@ var loadRatings = function(wishlist) {
 
 		Ratings.find({}).forEach(function(rating) {
 			
-			var div = $("<div class='myrating myfoods'></div>"),
-					name = $("<span class='name myfoods'></span>"),
-					nameLink = $("<a></a>"),
-					brand = $("<span class='brand myfoods'></span>"),
-					brandLink = $("<a></a>"),
-					ratingSpan = $("<span class='rating'></span>"),
-					ratingNumber = $("<span class='ratingNum'></span>"),
-					toAdd = null;
-			
-			name.addClass("lower");
+			var div = createRatingDiv(rating);	
 
 			if (rating.food_id) {
 				div.addClass(rating.food_id);
@@ -117,21 +103,10 @@ var loadRatings = function(wishlist) {
 				toAdd = dDiv;	
 			}
 
-			var i = (Math.round((rating.rating * 2))*10).toString();
-			
-			ratingNumber.html(rating.rating);
-			ratingSpan.addClass("x"+i);	
-			
-
-			name.append(nameLink);
-			brand.append(brandLink);
-			div.append(name);
-			div.append(brand);
-			div.append(ratingSpan);	
-			div.append(ratingNumber);	
-
 			toAdd.append(div);
 		});
+		
+		$("#myfoods-foods").append(NoFoods.lib.createPagingDiv(food_ids.length / 2, getFoodsPage));
 
 		if (wishlist) {
 
@@ -240,5 +215,62 @@ var loadLinks = function(links) {
 	}
 
 	
-}
+};
+
+var getFoodsPage = function(page) {
+	Meteor.call('getUserFoodRatings', page, function(err, data) {
+		
+		if (!err) {
+			
+			var fDiv = $("#myfoods-ratingsfoods");
+			
+			fDiv.html("");
+			
+			for (var i = 0, len = data.ratings.length; i < len; i += 1) {
+				var rating = data.ratings[i],
+						div = createRatingDiv(rating);
+				div.addClass(rating.food_id);
+				fDiv.append(div);
+			}		
+			
+			for (var f = 0, len = data.foods.length; f < len; f += 1) {
+				var food = data.foods[f];
+				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
+				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+			}			
+			
+		}
+		
+  });
+};
+
+var createRatingDiv = function(rating) {
+
+	var div = $("<div class='myrating myfoods'></div>"),
+			name = $("<span class='name myfoods'></span>"),
+			nameLink = $("<a></a>"),
+			brand = $("<span class='brand myfoods'></span>"),
+			brandLink = $("<a></a>"),
+			ratingSpan = $("<span class='rating'></span>"),
+			ratingNumber = $("<span class='ratingNum'></span>"),
+			toAdd = null;
+	
+	name.addClass("lower");
+
+	var i = (Math.round((rating.rating * 2))*10).toString();
+	
+	ratingNumber.html(rating.rating);
+	ratingSpan.addClass("x"+i);	
+	
+
+	name.append(nameLink);
+	brand.append(brandLink);
+	div.append(name);
+	div.append(brand);
+	div.append(ratingSpan);	
+	div.append(ratingNumber);
+	
+	return div;
+
+};
 

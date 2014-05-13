@@ -184,7 +184,7 @@ div.searchbar button {
 
 /* Header */
 
-#header {
+#header.active {
 	min-height: 200px;
 }
 
@@ -325,13 +325,15 @@ div.myfoods.rating {
 	cursor: default;
 }
 
+/* PAGING */
+
 div.pagingdiv {
 	text-align: right;
 	margin-top: 10px;
 	overflow: visible;
 }
 
-div.pagingdiv span.paging {
+div.pagingdiv span {
 	color: #800000;
 	cursor: pointer;
 	margin: 5px;
@@ -339,19 +341,19 @@ div.pagingdiv span.paging {
 }
 
 
-div.pagingdiv span.paging:hover {
+div.pagingdiv span:hover {
 	color: #255DAF;
 	box-shadow: 0 0 5px 2px #255DAF;
 	-moz-box-shadow: 0 0 5px #255DAF;
 	-webkit-box-shadow: 0 0 5px #255DAF;
 }
 
-div.pagingdiv span.paging.leftarrow {
+div.pagingdiv span.leftarrow {
 	margin-right: 10px;
 	margin-left: 0;
 }
 
-div.pagingdiv span.paging.rightarrow {
+div.pagingdiv span.rightarrow {
 	margin-right: 0;
 	margin-left: 10px;
 }

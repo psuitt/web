@@ -73,6 +73,8 @@ Meteor.methods({
 		
 		check(page, Number);
 		
+		var response = false;
+		
 		var query = {
 			user_id: this.userId,
 			food_id: { $exists: true }
@@ -80,13 +82,31 @@ Meteor.methods({
 		
 		var filter = {
 			sort: {date: -1},
-			skip: 1*page,
-			limit: 1
+			skip: 2*page,
+			limit: 2
 		};		
 		
-		if (this.userId) 
-  		return Ratings.find(query, filter).fetch();
-  	return false;
+		
+		
+		if (this.userId) {
+			var food_ids = [];
+
+			response = {
+				ratings: []
+			};		
+			
+  		Ratings.find(query, filter).forEach(function (rating) {
+  			food_ids.push(rating.food_id);
+  			response.ratings.push(rating);
+  		});
+
+			if (response.ratings.length > 0) {
+				response.foods = Foods.find( { _id: { $in: food_ids } } ).fetch();			
+			}  		
+  		
+  	}
+  	
+  	return response;
 	}
 	
 });
