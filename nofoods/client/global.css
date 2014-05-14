@@ -42,7 +42,7 @@ h3.pagetitle span {
 
 #mainContent {
 	background: rgb(245,245,245);
-	background-image: url('/backgrounds/denver_colorado.png');
+	/*background-image: url('/backgrounds/denver_colorado.png');*/
 	background-repeat: repeat-y;
 	background-attachment: fixed;
 	background-position: center center;
@@ -184,8 +184,19 @@ div.searchbar button {
 
 /* Header */
 
-#header.active {
+#header {
 	min-height: 200px;
+	background: rgb(245,245,245);
+	background-image: url('/backgrounds/denver_colorado.png');
+	background-repeat: repeat-y;
+	background-attachment: fixed;
+	background-position: center center;
+	background-size: 100% auto;
+	text-align:center;
+}
+
+#header.hidden {
+	display: none;
 }
 
 /* GLOBAL COLORS */
@@ -331,6 +342,9 @@ div.pagingdiv {
 	text-align: right;
 	margin-top: 10px;
 	overflow: visible;
+	bottom: 0;
+	right: 0;
+	position: absolute;
 }
 
 div.pagingdiv span {

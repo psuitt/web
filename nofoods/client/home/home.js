@@ -6,11 +6,13 @@ Template.home.rendered = function() {
 	setPath();
 		
 	$('#mainContent').addClass('white');
+	$('#header').addClass('hidden');
 	
 };
 	
 Template.home.destroyed = function() {
 	$('#mainContent').removeClass('white');
+	$('#header').removeClass('hidden');
 	$('#login .logo').show();
 	$('#login .searchbar').show();
 };

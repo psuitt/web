@@ -9,6 +9,8 @@
 #myfoods-pages {
 	vertical-align: top;
 	display:inline-block;
+	min-height: 520px;
+	position: relative;
 }
 
 #myfoods-pages a.remove {
@@ -22,6 +24,10 @@
 #myfoods-pages .ratingsearch {
 	width: 200px;
 	margin: 10px 0;
+}
+
+#myfoods-pages .tab-pane {
+	min-height: 520px;
 }
 
 div.myrating>span {

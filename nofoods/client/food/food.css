@@ -28,7 +28,7 @@ div.content .hidden {
 }
 
 #mainContent div.content:nth-child(1) {
-	min-height: 600px;
+	min-height: 650px;
 	margin:40px auto 0 auto;
 }
 
