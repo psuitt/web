@@ -85,28 +85,23 @@ var loadRatings = function(wishlist) {
 				dDiv = $("#myfoods-ratingsdrinks"),
 				wDiv = $("#myfoods-wishlist");
 
-		fDiv.html("");
-		dDiv.html("");
 		wDiv.html("");
 
 		Ratings.find({}).forEach(function(rating) {
 			
-			var div = createRatingDiv(rating);	
-
 			if (rating.food_id) {
-				div.addClass(rating.food_id);
 				food_ids.push(rating.food_id);
-				toAdd = fDiv;
 			} else {
-				div.addClass(rating.drink_id);
 				drink_ids.push(rating.drink_id);
-				toAdd = dDiv;	
 			}
 
-			toAdd.append(div);
 		});
 		
 		$("#myfoods-foods").append(NoFoods.lib.createPagingDiv(food_ids.length / 2, getFoodsPage));
+		$("#myfoods-drinks").append(NoFoods.lib.createPagingDiv(drink_ids.length / 2, getDrinksPage));
+
+		getFoodsPage(1);
+		getDrinksPage(1);
 
 		if (wishlist) {
 
@@ -237,6 +232,33 @@ var getFoodsPage = function(page) {
 				var food = data.foods[f];
 				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
 				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+			}			
+			
+		}
+		
+  });
+};
+
+var getDrinksPage = function(page) {
+	Meteor.call('getUserDrinkRatings', page, function(err, data) {
+		
+		if (!err) {
+			
+			var dDiv = $("#myfoods-ratingsdrinks");
+			
+			dDiv.html("");
+			
+			for (var i = 0, len = data.ratings.length; i < len; i += 1) {
+				var rating = data.ratings[i],
+						div = createRatingDiv(rating);
+				div.addClass(rating.drink_id);
+				dDiv.append(div);
+			}		
+			
+			for (var f = 0, len = data.drinks.length; f < len; f += 1) {
+				var drink = data.drinks[f];
+				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
+				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
 			}			
 			
 		}
