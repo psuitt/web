@@ -362,14 +362,24 @@ div.pagingdiv span:hover {
 	-webkit-box-shadow: 0 0 5px #255DAF;
 }
 
-div.pagingdiv span.leftarrow {
+div.pagingdiv span.left.arrow {
 	margin-right: 10px;
 	margin-left: 0;
 }
 
-div.pagingdiv span.rightarrow {
+div.pagingdiv span.right.arrow {
 	margin-right: 0;
 	margin-left: 10px;
+}
+
+div.pagingdiv span.first.arrow {
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+div.pagingdiv span.last.arrow {
+	margin-right: 0;
+	margin-left: 5px;
 }
 
 div.pagingdiv span.paging.current {
