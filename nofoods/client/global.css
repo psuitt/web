@@ -41,7 +41,7 @@ h3.pagetitle span {
 }
 
 #mainContent {
-	background: rgb(245,245,245);
+	background: rgb(240,248,255); /* Alice Blue */
 	/*background-image: url('/backgrounds/denver_colorado.png');*/
 	background-repeat: repeat-y;
 	background-attachment: fixed;
@@ -71,6 +71,12 @@ span.logo {
 	margin-right: 30px;
 	color: #DAA520;
 	font-size: 18px;
+}
+
+span.logo a,
+span.logo a:hover {
+	color: #DAA520;
+	text-decoration: none;
 }
 
 #menu {
@@ -162,6 +168,7 @@ div.searchbar div.btn-group>a {
 	-moz-border-radius-bottomright: 0;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
+	border: 0;
 }
 
 div.searchbar input {
@@ -172,6 +179,7 @@ div.searchbar input {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
+	border: 0;
 }
 
 div.searchbar button {
@@ -179,7 +187,13 @@ div.searchbar button {
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
+	border: 0;
 	background: #DAA520;
+}
+
+div.searchbar button:hover {
+	background: #255DAF;
+	color: white;
 }
 
 /* Header */
@@ -188,10 +202,10 @@ div.searchbar button {
 	min-height: 200px;
 	background: rgb(245,245,245);
 	background-image: url('/backgrounds/denver_colorado.png');
-	background-repeat: repeat-y;
-	background-attachment: fixed;
-	background-position: center center;
-	background-size: 100% auto;
+	/*background-repeat: repeat-y;*/
+	/*background-attachment: fixed;*/
+	background-position: center bottom;
+	background-size: cover;
 	text-align:center;
 }
 

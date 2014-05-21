@@ -13,8 +13,25 @@
 								.addClass("nofoods-autocomplete message alert alert-info")
 								.toggle(false)
 								.insertAfter(this);
+								
+		
+		var _options = {
+			position: {
+				/* Where the 2nd object will attach. Horizontal Vertical */
+				my: "left top",	
+				/* Where the base object will attach. Horizontal (Left, Right, Center) Vertical(Top, Bottom, Center) */
+				at: "left bottom",
+				/* Horizontal Vertical */
+				offset: "0 0",
+				/* What to do if it collides with the window. */
+				collision: "fit flip"		
+			}
+		};						
 
 		_list.width(self.outerWidth());
+		
+		var positionCss = $.extend({}, _options.position, {of: self.get(0)});
+		_list.position(positionCss);
 
 		self.keydown(function ( event ) {
 			var code = event.keyCode || event.which;
@@ -25,9 +42,11 @@
 				case 13:
 					_updateSelected();
 					break;
+				// Up 
 				case 38:
 					event.preventDefault();
 					break;
+				// Down
 				case 40:
 					event.preventDefault();
 					break;
@@ -43,7 +62,7 @@
 				case 9:
 				// Enter Key
 				case 13:
-					self.next('input').focus();
+					_hide();
 					event.preventDefault();
 					break;
 				case 38:
@@ -112,18 +131,7 @@
 			setTimeout(_hide, 100);
 		});	
 
-		var _options = {
-			position: {
-				/* Where the 2nd object will attach. Horizontal Vertical */
-				my: "left top",	
-				/* Where the base object will attach. Horizontal (Left, Right, Center) Vertical(Top, Bottom, Center) */
-				at: "left bottom",
-				/* Horizontal Vertical */
-				offset: "0 0",
-				/* What to do if it collides with the window. */
-				collision: "fit flip"		
-			}
-		};
+		// Functions
 
 		var _show = function() {
 			var positionCss = $.extend({}, _options.position, {of: self.get(0)});

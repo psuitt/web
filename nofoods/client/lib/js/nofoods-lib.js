@@ -20,10 +20,10 @@ NoFoods.lib = function() {
 				return "";	
 			
 			var div = $("<div class='myfoods-paging pagingdiv'></div>"),
-					firstArrow = $("<span class='first arrow'>&#60;&#60;</span>"),
-					leftArrow = $("<span class='left arrow'>&#60;</span>"),
-					rightArrow = $("<span class='right arrow'>&#62;</span>"),
-					lastArrow = $("<span class='last arrow'>&#62;&#62;</span>"),
+					firstArrow = $("<span class='first arrow' title='First Page'>&#60;&#60;</span>"),
+					leftArrow = $("<span class='left arrow' title='Page Left'>&#60;</span>"),
+					rightArrow = $("<span class='right arrow' title='Page Right'>&#62;</span>"),
+					lastArrow = $("<span class='last arrow' title='Last Page'>&#62;&#62;</span>"),
 					lastPage = MAX_PAGE_AMOUNT,
 					maxVal= Math.round(max);
 					
