@@ -67,16 +67,25 @@ Meteor.publish("users_searchexact", function (username) {
   }
 });
 
+var NonEmptyString = Match.Where(function (x) {
+  check(x, String);
+  return x.trim().length !== 0;
+});
+
 Meteor.methods({
 	
-	getUserFoodRatings: function (page) {
+	getUserFoodRatings: function (options) {
 		
-		check(page, Number);
+		check(options, {
+      page: Number,
+			user_id: Match.Optional(NonEmptyString)
+    });
 		
-		var response = false;
+		var response = false,
+				page = options.page;
 		
 		var query = {
-			user_id: this.userId,
+			user_id: options.user_id ? options.user_id : this.userId,
 			food_id: { $exists: true }
 		};
 		
@@ -107,14 +116,18 @@ Meteor.methods({
   	return response;
 	},
 	
-	getUserDrinkRatings: function (page) {
+	getUserDrinkRatings: function (options) {
 		
-		check(page, Number);
+		check(options, {
+      page: Number,
+			user_id: Match.Optional(NonEmptyString)
+    });
 		
-		var response = false;
+		var response = false,
+				page = options.page;
 		
 		var query = {
-			user_id: this.userId,
+			user_id: options.user_id ? options.user_id : this.userId,
 			drink_id: { $exists: true }
 		};
 		
@@ -125,6 +138,7 @@ Meteor.methods({
 		};		
 		
 		if (this.userId) {
+			
 			var drink_ids = [];
 
 			response = {

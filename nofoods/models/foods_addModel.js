@@ -3,9 +3,6 @@ Foods = new Meteor.Collection("foods");
 Drinks = new Meteor.Collection("drinks");
 Brands = new Meteor.Collection("brands");
 
-// Subset lists
-//FoodsItem = new Meteor.Collection("foodsitem");
-
 Brands.allow({
   insert: function () {
     return false;

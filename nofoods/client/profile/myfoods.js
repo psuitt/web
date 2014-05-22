@@ -213,7 +213,12 @@ var loadLinks = function(links) {
 };
 
 var getFoodsPage = function(page) {
-	Meteor.call('getUserFoodRatings', page, function(err, data) {
+	
+	var obj = { 
+		page: page 
+	};
+	
+	Meteor.call('getUserFoodRatings', obj, function(err, data) {
 		
 		if (!err) {
 			
@@ -223,7 +228,7 @@ var getFoodsPage = function(page) {
 			
 			for (var i = 0, len = data.ratings.length; i < len; i += 1) {
 				var rating = data.ratings[i],
-						div = createRatingDiv(rating);
+						div = NoFoods.widgetlib.createRatingDiv(rating);
 				div.addClass(rating.food_id);
 				fDiv.append(div);
 			}		
@@ -240,7 +245,12 @@ var getFoodsPage = function(page) {
 };
 
 var getDrinksPage = function(page) {
-	Meteor.call('getUserDrinkRatings', page, function(err, data) {
+
+	var obj = { 
+		page: page 
+	};	
+	
+	Meteor.call('getUserDrinkRatings', obj, function(err, data) {
 		
 		if (!err) {
 			
@@ -250,7 +260,7 @@ var getDrinksPage = function(page) {
 			
 			for (var i = 0, len = data.ratings.length; i < len; i += 1) {
 				var rating = data.ratings[i],
-						div = createRatingDiv(rating);
+						div = NoFoods.widgetlib.createRatingDiv(rating);
 				div.addClass(rating.drink_id);
 				dDiv.append(div);
 			}		
@@ -264,35 +274,5 @@ var getDrinksPage = function(page) {
 		}
 		
   });
-};
-
-var createRatingDiv = function(rating) {
-
-	var div = $("<div class='myrating myfoods'></div>"),
-			name = $("<span class='name myfoods'></span>"),
-			nameLink = $("<a></a>"),
-			brand = $("<span class='brand myfoods'></span>"),
-			brandLink = $("<a></a>"),
-			ratingSpan = $("<span class='rating'></span>"),
-			ratingNumber = $("<span class='ratingNum'></span>"),
-			toAdd = null;
-	
-	name.addClass("lower");
-
-	var i = (Math.round((rating.rating * 2))*10).toString();
-	
-	ratingNumber.html(rating.rating);
-	ratingSpan.addClass("x"+i);	
-	
-
-	name.append(nameLink);
-	brand.append(brandLink);
-	div.append(name);
-	div.append(brand);
-	div.append(ratingSpan);	
-	div.append(ratingNumber);
-	
-	return div;
-
 };
 

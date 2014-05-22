@@ -352,10 +352,16 @@ div.myfoods.rating {
 
 /* PAGING */
 
+.tab-content.paging {
+	vertical-align: top;
+	display:inline-block;
+	min-height: 520px;
+	position: relative;
+}
+
 div.pagingdiv {
 	text-align: right;
-	margin-top: 10px;
-	overflow: visible;
+	overflow: hidden;
 	bottom: 0;
 	right: 0;
 	position: absolute;
@@ -366,6 +372,12 @@ div.pagingdiv span {
 	cursor: pointer;
 	margin: 5px;
 	font-size: 14px;
+	padding: 2px;
+	display:inline-block;
+	border: 1px solid;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
 }
 
 
