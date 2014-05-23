@@ -1,3 +1,15 @@
+Brands.allow({
+  insert: function () {
+    return false;
+  },
+  update: function () {
+    return false;
+  },
+  remove: function () {
+    return false;
+  }
+});
+
 Meteor.publish("brands_item", function (id) {
 	check(id, String);
   return Brands.find({_id: id});

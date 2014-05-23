@@ -20,3 +20,8 @@ label[for='foodsadd-drink'] {
 	height: 300px;
 	width: 550px;
 }
+
+#save {
+	margin-top: 10px;
+	display: block;
+}
