@@ -1,4 +1,5 @@
-var drinkSub;
+var drinkSub,
+		nofoodsRating;
 
 Template.drinksTemplate.destroyed = function () {
 	drinkSub && drinkSub.stop();
@@ -9,21 +10,16 @@ Template.drinksTemplate.rendered = function() {
 	drinkSub = Meteor.subscribe('drinks_item', PARAMS._id, function() {
 		done();
 	});
-
-	$('div.ratingDiv span.rating').on('click', function() {
-		var index = $(this).index();			
-		$('div.ratingDiv span.rating').each(function() {
-			$(this).toggleClass('x100', $(this).index() <= index);						
-		});
-		var last = $('div.ratingDiv span.rating.x100').last();
-		var rating = parseInt((last.index() + 1), 10);
 	
-		var id = updateDrink({
-			rating: rating,
-			_id: PARAMS._id		
-		}, reload);	
-	
-	});	
+	nofoodsRating = $('div.ratingDiv').nofoodsrating({
+		hearts:6,
+		select: function(rating) {
+			var id = updateDrink({
+				rating: rating,
+				_id: PARAMS._id		
+			}, reload);	
+		}
+	});		
 
 	$('span.wishstar').on('click', function() {
 		Meteor.call('addToWishList', {drink_id: PARAMS._id});

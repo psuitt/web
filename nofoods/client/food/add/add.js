@@ -1,16 +1,12 @@
 var placeauto,
-		map;
+		map,
+		nofoodsRating;
 
 Template.foodsAdd.rendered = function() {
 	
 	setPath();
 	
-	$('div.ratingDiv span.rating').on('click', function() {
-		var index = $(this).index();			
-		$('div.ratingDiv span.rating').each(function() {
-			$(this).toggleClass('x100', $(this).index() <= index);						
-		});		
-	});
+	nofoodsRating = $('div.ratingDiv').nofoodsrating();
 
 	$('#foodsadd-brand').nofoodsautocomplete();
 	
@@ -24,8 +20,7 @@ Template.foodsAdd.events({
 				name = template.find("#foodsadd-name").value,
 				brand = template.find("#foodsadd-brand").value,
 				brand_id = $("#foodsadd-brand").data("brand_id"),
-				last = $('div.ratingDiv span.rating.x100').last(),
-				rating = parseInt((last.index() + 1), 10); 
+				rating = nofoodsRating.getValue(); 
 
 		var data = {
 			rating: rating,

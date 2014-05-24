@@ -1,4 +1,5 @@
-var foodSub;
+var foodSub,
+		nofoodsRating;
 
 Template.foodsTemplate.destroyed = function () {
 	foodSub && foodSub.stop();
@@ -8,19 +9,14 @@ Template.foodsTemplate.rendered = function() {
 	
 	foodSub = Meteor.subscribe('foods_item', PARAMS._id, function() {done();});
 	
-	$('div.ratingDiv span.rating').on('click', function() {
-		var index = $(this).index();			
-		$('div.ratingDiv span.rating').each(function() {
-			$(this).toggleClass('x100', $(this).index() <= index);						
-		});
-		var last = $('div.ratingDiv span.rating.x100').last();
-		var rating = parseInt((last.index() + 1), 10);
-	
-		var id = updateFood({
-			rating: rating,
-			_id: PARAMS._id		
-		}, reload);
-		
+	nofoodsRating = $('div.ratingDiv').nofoodsrating({
+		hearts:6,
+		select: function(rating) {
+			var id = updateFood({
+				rating: rating,
+				_id: PARAMS._id		
+			}, reload);
+		}
 	});	
 
 	$('span.wishstar').on('click', function() {
