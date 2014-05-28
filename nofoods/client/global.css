@@ -47,6 +47,7 @@ h3.pagetitle span {
 	background-attachment: fixed;
 	background-position: center center;
 	background-size: 100% auto;
+	text-align: center;
 }
 
 #mainContent.white {
