@@ -1,7 +1,9 @@
 var userDataSub,
 		ratingSub,
 		foodSub,
-		drinkSub;
+		drinkSub,
+		foodSearch,
+		drinkSearch;
 
 Template.myfoods.events({
 		'click #myfoods-save': function (event, template) {
@@ -13,7 +15,7 @@ Template.myfoods.events({
 					$('div.alertmessage').html('Save was successful!');
 					$('div.alertmessage').show().delay(3500).fadeOut(1000);
 			});
-		}
+		}	
 });
 
 Template.myfoods.destroyed = function() {
@@ -72,6 +74,28 @@ Template.myfoods.rendered = function() {
 		Meteor.call( 'removeFromLinks', { username: $(this).data('username') } );	
 		$(this).parent().remove();
 		e.preventDefault();
+	});
+	
+	$('#myfoods-foods .ratingsearch').on('keyup', function(e) {
+		var code = NoFoods.lib.key.getCode(e),
+				self = $(this);
+		
+		if (code == 13) {
+			foodSearch = self.val();
+			getFoodsPage(1);
+		}	
+	
+	});
+	
+	$('#myfoods-drinks .ratingsearch').on('keyup', function(e) {
+		var code = NoFoods.lib.key.getCode(e),
+				self = $(this);
+		
+		if (code == 13) {
+			drinkSearch = self.val();
+			getDrinksPage(1);
+		}	
+	
 	});
 	
 };
@@ -218,6 +242,9 @@ var getFoodsPage = function(page) {
 		page: page 
 	};
 	
+	if (foodSearch)
+		obj['search'] = foodSearch;
+	
 	Meteor.call('getUserFoodRatings', obj, function(err, data) {
 		
 		if (!err) {
@@ -249,6 +276,9 @@ var getDrinksPage = function(page) {
 	var obj = { 
 		page: page 
 	};	
+	
+	if (drinkSearch)
+		obj['search'] = drinkSearch;
 	
 	Meteor.call('getUserDrinkRatings', obj, function(err, data) {
 		

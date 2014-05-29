@@ -120,7 +120,7 @@ div.content>h3 {
 
 /* MENU */
 span.logo {
-	font-weight: 700;
+	font-weight: bold;
 	display: inline-block;
 	margin-right: 30px;
 	color: #DAA520;
@@ -369,21 +369,30 @@ div.pagingdiv {
 }
 
 div.pagingdiv span {
-	color: #800000;
+	color: #FFFFFF;
+	min-height: 20px;
+	min-width: 20px;
+	padding: 1px;
 	cursor: pointer;
 	margin: 5px;
 	font-size: 14px;
+	font-weight: bold;
 	padding: 2px;
 	display:inline-block;
-	border: 1px solid;
+	background-color: #800000;
+	border: 1px solid #222222;
+	box-shadow: 0 0 5px 2px #222222;
+	-moz-box-shadow: 0 0 5px #222222;
+	-webkit-box-shadow: 0 0 5px #222222;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
+	text-align: center;
 }
 
 
 div.pagingdiv span:hover {
-	color: #255DAF;
+	background-color: #255DAF;
 	box-shadow: 0 0 5px 2px #255DAF;
 	-moz-box-shadow: 0 0 5px #255DAF;
 	-webkit-box-shadow: 0 0 5px #255DAF;
@@ -410,8 +419,8 @@ div.pagingdiv span.last.arrow {
 }
 
 div.pagingdiv span.paging.current {
-	color: #000000;
-	font-weight: 700;
+	color: #FFFFFF;
+	background-color: #255DAF;
 }
 
 /* LABELS */

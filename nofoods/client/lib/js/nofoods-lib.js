@@ -127,6 +127,16 @@ NoFoods.lib = function() {
 
 }();
 
+NoFoods.lib.key = function() {
+
+	return {
+		getCode: function(e) {
+			return e.keyCode || e.which;
+		}
+	};
+
+}();
+
 NoFoods.widgetlib = function() {
 	
 	return {
