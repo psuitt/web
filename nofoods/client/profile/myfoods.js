@@ -121,8 +121,15 @@ var loadRatings = function(wishlist) {
 
 		});
 		
-		$("#myfoods-foods").append(NoFoods.lib.createPagingDiv(food_ids.length / 2, getFoodsPage));
-		$("#myfoods-drinks").append(NoFoods.lib.createPagingDiv(drink_ids.length / 2, getDrinksPage));
+		$("#myfoods-drinks .myfoods-paging").nofoodspaging({
+			max: drink_ids.length / 2,
+			select: getDrinksPage
+		});
+		
+		$("#myfoods-foods .myfoods-paging").nofoodspaging({
+			max: food_ids.length / 2,
+			select: getFoodsPage
+		});
 
 		getFoodsPage(1);
 		getDrinksPage(1);

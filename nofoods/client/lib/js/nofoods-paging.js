@@ -3,73 +3,199 @@
 
  */
 (function ( $ ) {
+	
+	var MAX_PAGE_AMOUNT = 3;
+	
 	$.fn.nofoodspaging = function(options) {
 
-		var self = this;				
-		
+		var self = this;
+
 		var _options = {
-			callback: false
+			max: 0,
+			select: false
 		};	
 		
 		if (options)
-			_options = $.extend(_options, options);				
+			_options = $.extend(_options, options);	
+
+		var firstArrow = $("<span class='first arrow' title='First Page'>&#60;&#60;</span>"),
+				leftArrow = $("<span class='left arrow disabled' title='Page Left'>&#60;</span>"),
+				rightArrow = $("<span class='right arrow' title='Page Right'>&#62;</span>"),
+				lastArrow = $("<span class='last arrow' title='Last Page'>&#62;&#62;</span>"),
+				lastPage = MAX_PAGE_AMOUNT,
+				maxVal = Math.round(_options.max);
+				
+		self.addClass('pagingdiv');
+		
+		var _setMax = function(newMax) {
 			
-		self.addClass('ratingDiv');
+			_options.max = newMax;
+			
+			lastPage = MAX_PAGE_AMOUNT;
+			maxVal= Math.round(_options.max);
+			
+			if (maxVal < lastPage) 
+				lastPage = maxVal;
+			
+			for (var i = 1; i <= lastPage; i += 1 ) {
+				var span = $("<span class='paging'>" + i + "</span>");
+				
+				if (i === 1) 
+					span.addClass('current');		
+				
+				self.append(span);
+			}
+			
+			if (maxVal <= MAX_PAGE_AMOUNT)
+				rightArrow.addClass('disabled');
 		
-		for (var i = 0; i < _options.hearts ; i += 1) {
-			var heart = $('<span></span>');
-			heart.addClass('rating');
-			if (i > 4)	
-				heart.addClass('dashed');
-			self.append(heart);
-		}	
-
-		self.find('span.rating').bind('click', function() {
-			var index = $(this).index();			
-			self.find('span.rating').each(function() {
-				$(this).toggleClass('x100', $(this).index() <= index);						
-			});
-			_options.select && _options.select(_getValue());		
-		});
-		
-		self.find('span.rating').bind('mouseenter', function() {
-			var index = $(this).index();			
-			self.find('span.rating').each(function() {
-				var i = $(this).index();
-				if (i <= index) {
-					$(this).fadeTo(50, 1).toggleClass('tempx100', true);
-				}	else {
-					$(this).fadeTo(50, .5).toggleClass('tempx100', false);						
-				}			
-			});
-		});
-		
-		self.bind('mouseleave', function() {
-			self.find('span.rating').each(function() {
-				$(this).fadeTo(50, 1).toggleClass('tempx100', false);				
-			});
-		});
-
-		// Functions
-		
-		var _setValue = function(i) {
-			self.find('span.rating').each(function() {
-				$(this).toggleClass('x100', $(this).index() <= i);						
-			});	
 		};
-
-		var _getValue = function() {
-			var last = self.find('span.rating.x100').last();
-			return parseInt((last.index() + 1), 10); 
+		
+		var _recenterNumbers = function(c) {
+		
+			if (c > 1 && c < maxVal) {
+			
+				var pages = self.find('.paging');
+				
+				// If the center page is not current have to check the sides.
+				if (pages.length > 2 && !pages.eq(1).hasClass('current')) {
+					
+					if (pages.eq(0).hasClass('current')) {
+						
+						var index = parseInt(pages.eq(0).html(), 10);
+						
+						if (index > 1)
+							leftArrow.click();
+						
+					} else {
+						// The end is current.
+						var index = parseInt(pages.eq(2).html(), 10);
+						
+						if (index < maxVal)
+							rightArrow.click();
+						
+					}
+					
+				}
+			
+			}
+		
 		};
-
-		return {
-			setValue: function(i) {
-				_setValue(i);			
-			},
-			getValue: function() {
-				return _getValue();			
+		
+		_setMax(_options.max);
+		
+		leftArrow.bind("click", function() {
+			var first = self.find('.paging').first(),
+					firstVal = parseInt(first.html(), 10);
+	
+			if (firstVal > 1) {
+				self.find('.paging').last().remove();
+				$(this).after($("<span class='paging'>" + (firstVal - 1) + "</span>"));
+				var last = self.find(".paging").last(),
+						lastVal = parseInt(last.html(), 10);
+				if (maxVal > lastVal)
+					rightArrow.removeClass('disabled');		
+			}
+			
+			if (firstVal === 2) {
+				$(this).addClass('disabled');	
 			}	
+					
+		});	
+		
+		rightArrow.bind("click", function() {
+			
+			var last = self.find(".paging").last(),
+					lastVal = parseInt(last.html(), 10),
+					maxVal = parseInt(_options.max, 10);	
+								
+			if (maxVal > lastVal) {
+				self.find(".paging").first().remove();
+				$(this).before($("<span class='paging'>" + (lastVal + 1) + "</span>"));
+				var first = self.find('.paging').first(),
+						firstVal = parseInt(first.html(), 10);
+				if (firstVal > 1)
+					leftArrow.removeClass('disabled');
+			}
+			
+			if (maxVal === (lastVal + 1)) {
+				$(this).addClass('disabled');
+			}	
+			
+		});				
+		
+		self.prepend(leftArrow);
+		self.append(rightArrow);
+		
+		if (_options.select) {
+			
+			self.on('click', 'span.paging', function() {
+				self.find('span.current').removeClass('current'); 
+				$(this).addClass('current');
+				_recenterNumbers(parseInt($(this).html(), 10));
+				_options.select(parseInt($(this).html(), 10));			
+			});
+			
+			firstArrow.bind("click", function() {
+				
+				self.find(".paging").remove();	
+						
+				for (var i = 1; i <= lastPage; i += 1 ) {
+					var span = $("<span class='paging'>" + i + "</span>");
+					
+					if (i === 1) 
+						span.addClass('current');		
+					
+					rightArrow.before(span);
+				}
+				
+				var last = self.find(".paging").last(),
+						lastVal = parseInt(last.html(), 10),
+						maxVal = parseInt(_options.max, 10);
+				if (maxVal > lastVal)
+					rightArrow.removeClass('disabled');
+				
+				_options.select(1);	
+							
+			});	
+			
+			lastArrow.bind("click", function() {
+				
+				var maxVal = parseInt(_options.max, 10),
+						v = maxVal - MAX_PAGE_AMOUNT;
+				
+				if (v < 0)
+					v = 0;	
+				
+				self.find(".paging").remove();	
+						
+				for (var i = maxVal; i > v; i -= 1 ) {
+					var span = $("<span class='paging'>" + i + "</span>");
+					
+					if (i === maxVal) 
+						span.addClass('current');		
+					
+					leftArrow.after(span);
+				}
+				
+				var first = self.find('.paging').first(),
+						firstVal = parseInt(first.html(), 10);
+				if (firstVal > 1)
+					leftArrow.removeClass('disabled');
+				
+				_options.select(maxVal);
+				
+			});
+			
+			self.prepend(firstArrow);
+			self.append(lastArrow);	
+			
+		}		
+		
+		return {
+			setMax: function(i) {
+				_setMax(i);			
+			}
 		};
 
 	};

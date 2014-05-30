@@ -418,9 +418,16 @@ div.pagingdiv span.last.arrow {
 	margin-left: 5px;
 }
 
+div.pagingdiv span.arrow.disabled {
+	background-color: #222222;
+	opacity: .4;
+	cursor: default;
+}
+
 div.pagingdiv span.paging.current {
 	color: #FFFFFF;
 	background-color: #255DAF;
+	padding:3px;
 }
 
 /* LABELS */

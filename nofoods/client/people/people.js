@@ -1,5 +1,6 @@
 var userDataSub,
-		ratingSub;
+		ratingSub,
+		currentUser_id;
 		
 Template.people.destroyed = function () {
 	userDataSub && userDataSub.stop();
@@ -74,9 +75,18 @@ var findUserRatings = function(user) {
 
 		});
 		
-		$("#people-foods").append(NoFoods.lib.createPagingDiv(food_ids.length / 2, getFoodsPage, user._id));
-		$("#people-drinks").append(NoFoods.lib.createPagingDiv(drink_ids.length / 2, getDrinksPage,  user._id));
-
+		currentUser_id = user._id;
+		
+		$("#people-foods .people-paging").nofoodspaging({
+			max: food_ids.length / 2,
+			select: getFoodsPage
+		});
+		
+		$("#people-drinks .people-paging").nofoodspaging({
+			max: drink_ids.length / 2,
+			select: getDrinksPage
+		});
+		
 		getFoodsPage(1);
 		getDrinksPage(1);
 
@@ -95,11 +105,11 @@ var findUserRatings = function(user) {
 
 };
 
-var getFoodsPage = function(page, _id) {
+var getFoodsPage = function(page) {
 	
 	var obj = { 
 		page: page,
-		user_id: _id
+		user_id: currentUser_id
 	};
 	
 	Meteor.call('getUserFoodRatings', obj, function(err, data) {
@@ -128,11 +138,11 @@ var getFoodsPage = function(page, _id) {
   });
 };
 
-var getDrinksPage = function(page, _id) {
+var getDrinksPage = function(page) {
 
 	var obj = { 
 		page: page,
-		user_id: _id
+		user_id: currentUser_id
 	};	
 	
 	Meteor.call('getUserDrinkRatings', obj, function(err, data) {

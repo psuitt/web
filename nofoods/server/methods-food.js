@@ -45,6 +45,7 @@ Meteor.methods({
 				var foodsQuery = addSearch({ _id: { $in: food_ids } }, options);;
 				response.foods = Foods.find( foodsQuery ).fetch();
 				
+				/* Re think logic
 				if (options['search']) {
 					var ratingsFilter = [];
 					for (var i = 0, l = response.ratings.length; i < l; i += 1) {
@@ -55,7 +56,7 @@ Meteor.methods({
 					}	
 					response.ratings = ratingsFilter;
 					response.length = l;
-				}	
+				}	*/
 						
 			}  		
   		
@@ -113,6 +114,7 @@ Meteor.methods({
 
 var addSearch = function(query, options) {
 	
+	/*
 	if (options['search']) {	
 		
 		var newQuery = { $and: [ query, { keywords: {
@@ -121,7 +123,7 @@ var addSearch = function(query, options) {
 		} } ]}	
 			
 		return newQuery;	
-	}
+	}*/
 	
 	return query;
 
