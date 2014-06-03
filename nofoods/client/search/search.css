@@ -55,3 +55,19 @@
 	vertical-align: top;
 	display: inline-block;
 }
+
+#searchTabsContent span.itemRating {
+	float: right;
+	vertical-align: top;
+	display: inline-block;
+}
+
+#searchTabsContent div.search-results {
+	width:100%;
+	position:relative;
+}
+
+#searchTabsContent div.search-paging.pagingdiv {
+	width:100%;
+	position:relative;
+}

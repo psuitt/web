@@ -364,8 +364,8 @@ div.pagingdiv {
 	text-align: right;
 	overflow: hidden;
 	bottom: 0;
-	right: 0;
 	position: absolute;
+	width: 100%;
 }
 
 div.pagingdiv span {
@@ -427,7 +427,8 @@ div.pagingdiv span.arrow.disabled {
 div.pagingdiv span.paging.current {
 	color: #FFFFFF;
 	background-color: #255DAF;
-	padding:3px;
+	padding:4px;
+	margin:3px;
 }
 
 /* LABELS */

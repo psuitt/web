@@ -1,3 +1,8 @@
+var foodResults = false,
+		drinkResults = false,
+		
+		MAX_RESULTS = 3;
+
 Template.search.rendered = function() {
 	switch(PARAMS.type) {
 		case "food":
@@ -83,39 +88,77 @@ var doSearchPeople = function() {
 
 var doSearchFoods = function() {
 	
-	var htmlBuilder = [];
-
-	$('#search-foods').html("");
-
-	Meteor.subscribe("foods_search", PARAMS.search, function() {
-		var results = Foods.find({ }),
-				count = results.count();
-
-		if (count < 99) {
-			$('#search-foodslink').html("Foods (" + count + ")");
-		} else {
-			$('#search-foodslink').html("Foods (100+)");
-		}
-
-		if (count === 0) {
-
-			$('#search-foods').html("<div class='resultsTotals'>No results found</div>");
-
-		} else {
-
-			$('#search-foods').html("<div class='resultsTotals'>" + count + " results found</div>");
-
-			results.forEach(function(food) {
-				$('#search-foods').append(getSearchRow('/food/page/', food));	
-			});
-
-		}
-
-		$('div.loading').addClass('hide');
-		window.parent.recalcFrame($('#resultsDiv').outerHeight());
+	$('#search-foods div.search-results').html("");
+	
+	if (!PARAMS['search']) {
+		return;
+	}
+	
+	var obj = {
+		'search': PARAMS['search']
+	};
+	
+	Meteor.call('foodSearch', obj, function(err, response) {
 		
-	});
+		if (!err) {
+			
+			if (response.data) {
+			
+				var count = response.data.length;
+				
+				foodResults = response.data;
+			
+				if (count < 99) {
+					$('#search-foodslink').html("Foods (" + count + ")");
+				} else {
+					$('#search-foodslink').html("Foods (100+)");
+				}
+		
+				if (count === 0) {
+		
+					$('#search-foods div.search-results').html("<div class='resultsTotals'>No results found</div>");
+		
+				} else {
+		
+					getFoodsPage(1);
+					
+					$('#search-foods').append("<div class='search-paging'></div>");
+					$('#search-foods .search-paging').nofoodspaging({
+						max: foodResults.length / MAX_RESULTS,
+						select: getFoodsPage
+					});	
+					
+					window.parent.recalcFrame($('#resultsDiv').outerHeight());
+		
+				}
+			
+			}		
+			
+		}
+		
+  });
+};
 
+var getFoodsPage = function(page) {
+
+	var offset = MAX_RESULTS*(page-1),
+			offsetMax = MAX_RESULTS*(page);	
+			
+	var len = foodResults.length;
+	
+	$('#search-foods div.search-results').html("<div class='resultsTotals'>" + len + " results found</div>");
+	
+	if (len > offsetMax) {
+		len = offsetMax;
+	}
+			
+	for (var i = offset; i < len; i += 1) {
+		var food = foodResults[i];
+		$('#search-foods div.search-results').append(getSearchRow('/food/page/', food));	
+	}
+	
+	window.parent.recalcFrame($('#resultsDiv').outerHeight());					
+		
 };
 
 var doSearchDrinks = function() {
