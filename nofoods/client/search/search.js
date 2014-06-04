@@ -163,36 +163,77 @@ var getFoodsPage = function(page) {
 
 var doSearchDrinks = function() {
 	
-	var htmlBuilder = [];
-
-	$('#search-drinks').html("");
-
-	Meteor.subscribe("drinks_search", PARAMS.search, function() {
-		var results = Drinks.find({ })
-				count = results.count();
-
-		if (count < 99) {
-			$('#search-drinkslink').html("Drinks (" + count + ")");
-		} else {
-			$('#search-drinkslink').html("Drinks (100+)");
-		}
-
-		if (count === 0) {
-			$('#search-drinks').html("<div class='resultsTotals'>No results found</div>");			
-		} else {
-			$('#search-drinks').html("<div class='resultsTotals'>" + count + " results found</div>");
-			results.forEach(function(drink) {
-				$('#search-drinks').append(getSearchRow('/drink/page/', drink));	
-			});
-
-		}
-
-		$('div.loading').addClass('hide');
-		window.parent.recalcFrame($('#resultsDiv').outerHeight());
+	$('#search-drinks div.search-results').html("");
 	
+	if (!PARAMS['search']) {
+		return;
+	}
+	
+	var obj = {
+		'search': PARAMS['search']
+	};
+	
+	Meteor.call('drinkSearch', obj, function(err, response) {
+		
+		if (!err) {
+			
+			if (response.data) {
+			
+				var count = response.data.length;
+				
+				drinkResults = response.data;
+			
+				if (count < 99) {
+					$('#search-drinkslink').html("Drinks (" + count + ")");
+				} else {
+					$('#search-drinkslink').html("Drinks (100+)");
+				}
+		
+				if (count === 0) {
+		
+					$('#search-drinks div.search-results').html("<div class='resultsTotals'>No results found</div>");
+		
+				} else {
+		
+					getDrinksPage(1);
+					
+					$('#search-drinks').append("<div class='search-paging'></div>");
+					$('#search-drinks .search-paging').nofoodspaging({
+						max: drinkResults.length / MAX_RESULTS,
+						select: getDrinksPage
+					});	
+					
+					window.parent.recalcFrame($('#resultsDiv').outerHeight());
+		
+				}
+			
+			}		
+			
+		}
+		
+  });
+};
 
-	});
+var getDrinksPage = function(page) {
 
+	var offset = MAX_RESULTS*(page-1),
+			offsetMax = MAX_RESULTS*(page);	
+			
+	var len = drinkResults.length;
+	
+	$('#search-drinks div.search-results').html("<div class='resultsTotals'>" + len + " results found</div>");
+	
+	if (len > offsetMax) {
+		len = offsetMax;
+	}
+			
+	for (var i = offset; i < len; i += 1) {
+		var drink = drinkResults[i];
+		$('#search-drinks div.search-results').append(getSearchRow('/drink/page/', drink));	
+	}
+	
+	window.parent.recalcFrame($('#resultsDiv').outerHeight());					
+		
 };
 
 var getSearchRow = function(link, item) {

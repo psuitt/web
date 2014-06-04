@@ -1,4 +1,10 @@
-var LETTER_NUMBER_REGEX = /^[0-9a-z]+$/i;
+var PAGE_LIMIT = 2,
+		LETTER_NUMBER_REGEX = /^[0-9a-z]+$/i;
+
+var PageNumber = Match.Where(function (x) {
+  check(x, Number);
+  return x < 101 && x > 0;
+});
 
 var NonEmptyString = Match.Where(function (x) {
   check(x, String);
@@ -10,7 +16,8 @@ Meteor.methods({
 	getUserFoodRatings: function (options) {
 		
 		check(options, {
-      page: Number,
+      page: PageNumber,
+      count: Match.Optional(Boolean),
 			user_id: Match.Optional(NonEmptyString),
 			search: Match.Optional(NonEmptyString)
     });
@@ -24,9 +31,7 @@ Meteor.methods({
 		};
 		
 		var filter = {
-			sort: {date: -1},
-			skip: 2*(page - 1),
-			limit: 2
+			sort: {date: -1}
 		};		
 		
 		if (this.userId) {
@@ -36,10 +41,39 @@ Meteor.methods({
 				ratings: []
 			};		
 			
-  		Ratings.find(query, filter).forEach(function (rating) {
-  			food_ids.push(rating.food_id);
-  			response.ratings.push(rating);
-  		});
+			if (!options.count) {
+
+				filter.skip = PAGE_LIMIT*(page - 1);
+				filter.limit = PAGE_LIMIT;	
+				
+				Ratings.find(query, filter).forEach(function (rating) {
+	  			food_ids.push(rating.food_id);
+	  			response.ratings.push(rating);
+	  		});
+	  		
+			} else {
+				
+  			var results = Ratings.find(query, filter).fetch();
+  			
+  			// set the total count.
+  			response.count = results.length;
+  			response.maxPageSize = PAGE_LIMIT;
+  			
+  			var offset = PAGE_LIMIT*(page-1),
+						offsetMax = PAGE_LIMIT*(page),	
+						len = response.count;
+	
+				if (len > offsetMax) {
+					len = offsetMax;
+				}
+			
+				for (var i = offset; i < len; i += 1) {
+					var rating = results[i];
+					food_ids.push(rating.food_id);
+	  			response.ratings.push(rating);
+				}	
+  			
+  		}
 
 			if (response.ratings.length > 0) {
 				var foodsQuery = addSearch({ _id: { $in: food_ids } }, options);;
@@ -68,7 +102,8 @@ Meteor.methods({
 	getUserDrinkRatings: function (options) {
 		
 		check(options, {
-      page: Number,
+      page: PageNumber,
+      count: Match.Optional(Boolean),
 			user_id: Match.Optional(NonEmptyString),
 			search: Match.Optional(NonEmptyString)
     });
@@ -82,9 +117,7 @@ Meteor.methods({
 		};
 		
 		var filter = {
-			sort: {date: -1},
-			skip: 2*(page - 1),
-			limit: 2
+			sort: {date: -1}
 		};		
 		
 		if (this.userId) {
@@ -95,11 +128,40 @@ Meteor.methods({
 				ratings: []
 			};		
 			
-  		Ratings.find(query, filter).forEach(function (rating) {
-  			drink_ids.push(rating.drink_id);
-  			response.ratings.push(rating);
-  		});
+  		if (!options.count) {
 
+				filter.skip = PAGE_LIMIT*(page - 1);
+				filter.limit = PAGE_LIMIT;	
+				
+				Ratings.find(query, filter).forEach(function (rating) {
+	  			drink_ids.push(rating.drink_id);
+	  			response.ratings.push(rating);
+	  		});
+	  		
+			} else {
+				
+  			var results = Ratings.find(query, filter).fetch();
+  			
+  			// set the total count.
+  			response.count = results.length;
+  			response.maxPageSize = PAGE_LIMIT;
+  			
+  			var offset = PAGE_LIMIT*(page-1),
+						offsetMax = PAGE_LIMIT*(page),	
+						len = response.count;
+	
+				if (len > offsetMax) {
+					len = offsetMax;
+				}
+			
+				for (var i = offset; i < len; i += 1) {
+					var rating = results[i];
+					drink_ids.push(rating.drink_id);
+	  			response.ratings.push(rating);
+				}	
+  			
+  		}
+  		
 			if (response.ratings.length > 0) {
 				var drinksQuery = addSearch({ _id: { $in: drink_ids } }, options);;
 				response.drinks = Drinks.find( drinksQuery ).fetch();			

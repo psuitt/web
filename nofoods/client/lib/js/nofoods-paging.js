@@ -27,6 +27,8 @@
 				
 		self.addClass('pagingdiv');
 		
+		// Functions
+		
 		var _setMax = function(newMax) {
 			
 			_options.max = newMax;
@@ -81,6 +83,21 @@
 			}
 		
 		};
+		
+		// Functions
+		
+		var obj = {
+			setMax: function(i) {
+				_setMax(i);			
+			}
+		};
+		
+		if (_options.max < 2) {
+			// Return now there is no paging needed.			
+			return obj;
+		}	
+		
+		// Setup
 		
 		_setMax(_options.max);
 		
@@ -192,11 +209,7 @@
 			
 		}		
 		
-		return {
-			setMax: function(i) {
-				_setMax(i);			
-			}
-		};
+		return obj;
 
 	};
 
