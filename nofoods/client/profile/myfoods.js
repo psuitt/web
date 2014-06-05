@@ -147,12 +147,7 @@ var loadRatings = function(wishlist) {
 
 	if (food_ids.length != 0 || drink_ids.length != 0) {
 		findUserFoods(food_ids, drink_ids);
-	} else {
-		fDiv.append("No ratings found");
-		dDiv.append("No ratings found");
 	}
-
-	
 
 };
 
@@ -252,6 +247,10 @@ var getFoodsPage = function(page, obj, count) {
 				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
 			}		
 			
+			if (len === 0) {
+				fDiv.append("No ratings found");			
+			}
+			
 			if (count) {
 				$("#myfoods-foods .myfoods-paging").nofoodspaging({
 					max: data.count / data.maxPageSize,
@@ -296,6 +295,10 @@ var getDrinksPage = function(page, obj, count) {
 				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
 			}	
 			
+			if (len === 0) {
+				dDiv.append("No ratings found");			
+			}
+			
 			if (count) {
 				$("#myfoods-drinks .myfoods-paging").nofoodspaging({
 					max: data.count / data.maxPageSize,
@@ -308,3 +311,6 @@ var getDrinksPage = function(page, obj, count) {
   });
 };
 
+var getWishlistPage = function(page, obj, count) {
+	
+};
