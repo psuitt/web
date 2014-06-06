@@ -76,6 +76,10 @@ div.content {
   */
 }
 
+div.content:first-child {
+	min-height:500px;
+}
+
 div.content .hidden {
 	display: none;
 }

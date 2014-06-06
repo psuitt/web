@@ -56,61 +56,22 @@ var loadUserData = function() {
 
 var findUserRatings = function(user) {
 
-	ratingSub = Meteor.subscribe('ratings_user', user._id, function() {
-		var food_ids = [],
-				drink_ids = [],
-				fDiv = $("#people-foodsList"),
-				dDiv = $("#people-drinksList");
+	currentUser_id = user._id;
 
-		fDiv.html("");
-		dDiv.html("");
-
-		Ratings.find({}).forEach(function(rating) {
-			
-			if (rating.food_id) {
-				food_ids.push(rating.food_id);
-			} else {
-				drink_ids.push(rating.drink_id);
-			}
-
-		});
-		
-		currentUser_id = user._id;
-		
-		$("#people-foods .people-paging").nofoodspaging({
-			max: food_ids.length / 2,
-			select: getFoodsPage
-		});
-		
-		$("#people-drinks .people-paging").nofoodspaging({
-			max: drink_ids.length / 2,
-			select: getDrinksPage
-		});
-		
-		getFoodsPage(1);
-		getDrinksPage(1);
-
-		if (food_ids.length !== 0 || drink_ids.length !== 0) {
-			if (food_ids.length === 0) {
-				fDiv.append("No ratings found");
-			} else if (drink_ids.length === 0) {
-				dDiv.append("No ratings found");
-			}
-		} else {
-			fDiv.append("No ratings found");
-			dDiv.append("No ratings found");
-		}
-
-	}); 
+	getFoodsPage(1, false, true);
+	getDrinksPage(1, false, true);
 
 };
 
-var getFoodsPage = function(page) {
+var getFoodsPage = function(page, obj, count) {
 	
 	var obj = { 
 		page: page,
-		user_id: currentUser_id
+		user_id: currentUser_id 
 	};
+	
+	if (count) 
+		obj.count = true;
 	
 	Meteor.call('getUserFoodRatings', obj, function(err, data) {
 		
@@ -131,19 +92,33 @@ var getFoodsPage = function(page) {
 				var food = data.foods[f];
 				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
 				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
-			}			
+			}		
+			
+			if (len === 0) {
+				fDiv.append("No ratings found");			
+			}
+			
+			if (count) {
+				$("#people-foods .people-paging").nofoodspaging({
+					max: data.count / data.maxPageSize,
+					select: getFoodsPage
+				});			
+			}	
 			
 		}
 		
   });
 };
 
-var getDrinksPage = function(page) {
-
+var getDrinksPage = function(page, obj, count) {
+	
 	var obj = { 
 		page: page,
-		user_id: currentUser_id
+		user_id: currentUser_id 
 	};	
+	
+	if (count) 
+		obj.count = true;
 	
 	Meteor.call('getUserDrinkRatings', obj, function(err, data) {
 		
@@ -164,9 +139,21 @@ var getDrinksPage = function(page) {
 				var drink = data.drinks[f];
 				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
 				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
+			}	
+			
+			if (len === 0) {
+				dDiv.append("No ratings found");			
+			}
+			
+			if (count) {
+				$("#people-drinks .people-paging").nofoodspaging({
+					max: data.count / data.maxPageSize,
+					select: getDrinksPage
+				});			
 			}			
 			
 		}
 		
   });
+	
 };

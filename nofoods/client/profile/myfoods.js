@@ -48,11 +48,10 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-joined').html("Joined " + NoFoods.lib.formatDate(user.profile.date));
 			$('#myfoods-name').val(user.profile.name);
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
-			wishlist = user.profile.wishlist;
 			loadLinks(user.profile.links);
 		}
 		
-		loadRatings(wishlist);	
+		loadRatings();	
 	
 	});
 
@@ -98,7 +97,7 @@ Template.myfoods.rendered = function() {
 	
 };
 
-var loadRatings = function(wishlist) {
+var loadRatings = function() {
 	
 	var food_ids = [],
 			drink_ids = [],
@@ -110,68 +109,7 @@ var loadRatings = function(wishlist) {
 
 	getFoodsPage(1, false, true);
 	getDrinksPage(1, false, true);
-
-	if (wishlist) {
-
-		for (var i = 0, l = wishlist.length; i < l ; i += 1) {
-
-			var div = $("<div class='myrating myfoods'></div>");
-			var title = $("<span class='name myfoods'><a></a></span>");
-			var brand = $("<span class='brand myfoods'><a></a></span>");
-			var removeLink = $("<a class='remove myfoods' href='#'>Remove</a>");
-
-			title.addClass("lower");
-
-			if (wishlist[i].food_id) {
-				div.addClass(wishlist[i].food_id);
-				food_ids.push(wishlist[i].food_id);	
-				removeLink.data('food_id', wishlist[i].food_id);									
-			} else {
-				div.addClass(wishlist[i].drink_id);
-				drink_ids.push(wishlist[i].drink_id);
-				removeLink.data('drink_id', wishlist[i].drink_id);
-			}	
-
-			div.append(title);
-			div.append(brand);
-			div.append(removeLink);
-
-			// Reverse the order they were added.
-			wDiv.prepend(div);		
-
-		}
-
-	} else {
-		wDiv.append("No wish list items found");
-	}
-
-	if (food_ids.length != 0 || drink_ids.length != 0) {
-		findUserFoods(food_ids, drink_ids);
-	}
-
-};
-
-var findUserFoods = function(food_ids, drink_ids) {
-	
-	if (food_ids.length > 0) 
-		foodSub = Meteor.subscribe('foods_items', food_ids, function() {
-		
-			Foods.find({}).forEach(function(food) {
-				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
-				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
-			});
-
-		}); 
-
-	if (drink_ids.length > 0) 
-		drinkSub = Meteor.subscribe('drinks_items', drink_ids, function() {
-		
-			Drinks.find({}).forEach(function(drink) {
-				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
-				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
-			});
-
-		}); 
+	getWishlistPage(1, false, true);
 
 };
 
@@ -264,7 +202,7 @@ var getFoodsPage = function(page, obj, count) {
 };
 
 var getDrinksPage = function(page, obj, count) {
-
+	
 	var obj = { 
 		page: page 
 	};	
@@ -309,8 +247,86 @@ var getDrinksPage = function(page, obj, count) {
 		}
 		
   });
+	
 };
 
 var getWishlistPage = function(page, obj, count) {
+
+	var obj = { 
+		page: page 
+	};	
 	
+	if (drinkSearch)
+		obj['search'] = drinkSearch;
+	if (count) 
+		obj.count = true;
+	
+	Meteor.call('getUserWishlist', obj, function(err, data) {
+		
+		if (!err) {
+			
+			var wDiv = $("#myfoods-wishlist"),
+					wishlist = data.wishlist,
+					len = 0;
+			
+			wDiv.html("");
+			
+			if (wishlist) {
+			
+				for (var i = 0, l = wishlist.length; i < l ; i += 1) {
+		
+					var div = $("<div class='myrating myfoods'></div>");
+					var title = $("<span class='name myfoods'><a></a></span>");
+					var brand = $("<span class='brand myfoods'><a></a></span>");
+					var removeLink = $("<a class='remove myfoods' href='#'>Remove</a>");
+		
+					title.addClass("lower");
+		
+					if (wishlist[i].food_id) {
+						div.addClass(wishlist[i].food_id);
+						removeLink.data('food_id', wishlist[i].food_id);									
+					} else {
+						div.addClass(wishlist[i].drink_id);
+						removeLink.data('drink_id', wishlist[i].drink_id);
+					}	
+		
+					div.append(title);
+					div.append(brand);
+					div.append(removeLink);
+		
+					// Reverse the order they were added.
+					wDiv.prepend(div);		
+		
+				}
+				
+				if (data.foods)
+					for (var f = 0, len = data.foods.length; f < len; f += 1) {
+						var food = data.foods[f];
+						$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
+						$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+					}		
+				
+				if (data.drinks)
+					for (var f = 0, len = data.drinks.length; f < len; f += 1) {
+						var drink = data.drinks[f];
+						$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
+						$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
+					}	
+				
+			}
+			
+			if (len === 0) {
+				wDiv.append("No wish list items found");	
+			}
+			
+			if (count) {
+				$("#myfoods-wishlistpage .myfoods-paging").nofoodspaging({
+					max: data.count / data.maxPageSize,
+					select: getWishlistPage
+				});			
+			}			
+			
+		}
+		
+  });
 };
