@@ -37,7 +37,7 @@ Template.foodsAdd.events({
 		createFood(data, function(response) {
 
 			if (response.error) {
-				$(".message").addClass("alert alert-error").html(response.error.reason);									
+				$(".page-message.message").addClass("alert alert-error").html(response.error.reason);									
 			} else {
 				if (type === "Food") {
 					Router.go('foodsPage', {_id:response.id});

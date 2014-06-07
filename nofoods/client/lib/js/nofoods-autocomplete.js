@@ -29,6 +29,7 @@
 		};						
 
 		_list.width(self.outerWidth());
+		_info.height(self.height());
 		
 		var positionCss = $.extend({}, _options.position, {of: self.get(0)});
 		_list.position(positionCss);
@@ -121,7 +122,7 @@
 
 		});	
 
-		_list.on('click', 'li', function() {
+		_list.on('mousedown', 'li', function() {
 			$(this).parent().find("li.selected").removeClass('selected');
 			$(this).addClass("selected");
 			_updateSelected();

@@ -75,6 +75,8 @@ Meteor.methods({
 
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
+    if (!Meteor.user().active) 
+    	throw new Meteor.Error(500, "Adding is currently disabled for this account.");
 
 		var tokens = tokenize(options.name + " " + options.brand);
 

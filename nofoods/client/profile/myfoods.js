@@ -1,6 +1,4 @@
 var userDataSub,
-		foodSub,
-		drinkSub,
 		foodSearch,
 		drinkSearch;
 
@@ -19,8 +17,6 @@ Template.myfoods.events({
 
 Template.myfoods.destroyed = function() {
 	userDataSub && userDataSub.stop();
-	foodSub && foodSub.stop();
-	drinkSub && drinkSub.stop();
 };
 
 Template.myfoods.rendered = function() {

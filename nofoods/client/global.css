@@ -269,6 +269,22 @@ div.searchbar button:hover {
 
 #header.hidden {
 	display: none;
+	background-image: none;
+}
+
+#header>div {
+	display: inline-block;
+	padding: 4px 10px;
+	opacity: .8;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #222222;
+	border: 2px solid #000000;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-top: 50px;
 }
 
 /* GLOBAL COLORS */
@@ -478,7 +494,17 @@ ul.nofoods-autocomplete li {
 }
 
 ul.nofoods-autocomplete li.selected {
-	background: #0088cc;
+	background: #255DAF;
+	color: #FFFFFF;
+}
+
+div.nofoods-autocomplete.message {
+	display:inline-block;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-top: 2px;
+	margin-left: 5px;
+	vertical-align: top;
 }
 
 /* SEARCH */

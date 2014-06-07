@@ -47,10 +47,6 @@ div.content label {
 	font-weight: bold;
 }
 
-div.nofoods-autocomplete.message {
-	display:inline-block;
-}
-
 div.content.images .contentbody {
 	text-align: center;
 }

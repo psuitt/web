@@ -1,10 +1,8 @@
 var userDataSub,
-		ratingSub,
 		currentUser_id;
 		
 Template.people.destroyed = function () {
 	userDataSub && userDataSub.stop();
-	ratingSub && ratingSub.stop();
 };		
 
 Template.people.rendered = function() {
