@@ -38,9 +38,9 @@ Template.explore.rendered = function() {
 
 			title.addClass("lower");									
 				
-			div.prepend(food.rating_calc);
 			div.append(title);
 			div.append(brand);
+			div.append(NoFoods.widgetlib.createHeart(food.rating_calc, food.ratingcount_calc));
 
 			title.find('a').attr('href', '/food/page/' + food._id).html(food.name);
 			brand.find('a').attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);

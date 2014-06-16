@@ -58,10 +58,12 @@ div.content {
 	display: inline-block;
 	background: #FFF;
 	text-align: left;
-	width:70%;
+	min-width:600px;
+	width: 60%;
 	max-width:900px;
 	min-height: 100px;
-	padding-bottom: 10px;
+	padding-right: 5px;
+	padding-bottom: 20px;
 	margin: 0;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
@@ -275,11 +277,10 @@ div.searchbar button:hover {
 #header>div {
 	display: inline-block;
 	padding: 4px 10px;
-	opacity: .8;
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
-	background-color: #222222;
+	background-color: rgba(34, 34, 34, 0.5);
 	border: 2px solid #000000;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -386,6 +387,7 @@ div.pagingdiv {
 	bottom: 0;
 	position: absolute;
 	width: 100%;
+	border-top: 2px solid #800000;
 }
 
 div.pagingdiv span {
@@ -401,9 +403,6 @@ div.pagingdiv span {
 	display:inline-block;
 	background-color: #800000;
 	border: 1px solid #222222;
-	box-shadow: 0 0 5px 2px #222222;
-	-moz-box-shadow: 0 0 5px #222222;
-	-webkit-box-shadow: 0 0 5px #222222;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;

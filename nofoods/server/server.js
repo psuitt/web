@@ -15,7 +15,10 @@ Meteor.publish("foods_brand", function (id) {
 
 Meteor.publish("foods_toprated", function () {
 	var filter = {
-			sort: {rating_calc: -1},
+			sort: {
+				rating_calc: -1,
+				ratingcount_calc: -1
+			},
 			limit: 20
 			}
   return Foods.find( { }, filter );

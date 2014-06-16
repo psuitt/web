@@ -48,7 +48,7 @@ NoFoods.widgetlib = function() {
 			var i = (Math.round((rating.rating * 2))*10).toString();
 			
 			ratingNumber.html(rating.rating);
-			ratingSpan.addClass("x"+i);	
+			ratingSpan.addClass('x' + i);	
 		
 			name.append(nameLink);
 			brand.append(brandLink);
@@ -56,6 +56,30 @@ NoFoods.widgetlib = function() {
 			div.append(brand);
 			div.append(ratingSpan);	
 			div.append(ratingNumber);
+			
+			return div;
+		
+		},
+		
+		createHeart: function(val, count) {
+
+			var div = $("<div class='ratingDiv'></div>")
+					span = $('<span></span>');
+			
+			var i = (Math.round((parseFloat(val) * 2))*10).toString();
+			
+			span.addClass('rating');
+			span.addClass('x' + i);
+			span.attr('title', val);
+			
+			div.append(span);
+			
+			if(count) {
+				var totalSpan =  $("<span class='totalRating'></span>");
+				totalSpan.html(count);	
+				div.append(totalSpan);		
+			}
+			
 			
 			return div;
 		

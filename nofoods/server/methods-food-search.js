@@ -10,7 +10,7 @@ Meteor.methods({
 	foodSearch: function(options) {
 		
 		check(options, {
-      'search': String
+      'search': NonEmptyString
     });
 	
 		var response = {},
@@ -64,7 +64,7 @@ Meteor.methods({
 	drinkSearch: function(options) {
 		
 		check(options, {
-      'search': String
+      'search': NonEmptyString
     });
 	
 		var response = {},
