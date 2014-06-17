@@ -62,6 +62,7 @@ div.content {
 	width: 60%;
 	max-width:900px;
 	min-height: 100px;
+	padding-left: 5px;
 	padding-right: 5px;
 	padding-bottom: 20px;
 	margin: 0;

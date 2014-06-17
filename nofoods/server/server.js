@@ -19,7 +19,7 @@ Meteor.publish("foods_toprated", function () {
 				rating_calc: -1,
 				ratingcount_calc: -1
 			},
-			limit: 20
+			limit: 25
 			}
   return Foods.find( { }, filter );
 });
@@ -37,6 +37,18 @@ Meteor.publish("drinks_items", function (ids) {
 Meteor.publish("drinks_brand", function (id) {
 	check(id, String);
   return Drinks.find( { brand_id: id } );
+});
+
+
+Meteor.publish("drinks_toprated", function () {
+	var filter = {
+			sort: {
+				rating_calc: -1,
+				ratingcount_calc: -1
+			},
+			limit: 25
+			}
+  return Drinks.find( { }, filter );
 });
 
 Meteor.publish("ratings_my", function () {

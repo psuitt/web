@@ -1,0 +1,30 @@
+div.explore-options {
+	margin-bottom: 15px;
+}
+
+div.explore-options a {
+	margin-right: 5px;
+	cursor: pointer;
+	color: white;
+	background: #800000;
+	border: 1px solid;
+	font-weight: bold;
+	padding: 3px 7px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+div.explore-options a.selected {
+	padding: 4px 9px;
+	background: #255DAF;
+}
+
+div.explore-options a:hover {
+	background: #255DAF;
+	text-decoration: none;
+}
+
+#explore-info {
+	min-height: 400px;
+}

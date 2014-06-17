@@ -1,10 +1,10 @@
 MAP_DATA = {};
 var statsSub,
-		foodSub;
+		activeSub;
 
 Template.explore.destroyed = function() {
 	statsSub && statsSub.stop();
-	foodSub && foodSub.stop();
+	activeSub && activeSub.stop();
 };
 
 Template.explore.rendered = function() {
@@ -29,27 +29,8 @@ Template.explore.rendered = function() {
 	
 	initMap();
 	
-	foodSub = Meteor.subscribe('foods_toprated', function() {
-		
-		Foods.find({}).forEach(function(food) {
-			var div = $("<div class='myrating myfoods'></div>");
-			var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
-			var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
-
-			title.addClass("lower");									
-				
-			div.append(title);
-			div.append(brand);
-			div.append(NoFoods.widgetlib.createHeart(food.rating_calc, food.ratingcount_calc));
-
-			title.find('a').attr('href', '/food/page/' + food._id).html(food.name);
-			brand.find('a').attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
-		
-			$('#explore-content').append(div);		
-		
-		});
-
-	});
+	$('.explore-options').on('click', 'a', menuClick);
+	$('.explore-options a').eq(0).click();
 		
 };
 
@@ -92,4 +73,67 @@ var initMap = function () {
 	  }
 	});
 	
+};
+
+var menuClick = function() {
+	
+	var self = $(this),
+			dataType = self.attr('datatype'),
+			sub = self.attr('sub');
+	
+	var tempScrollTop = $(window).scrollTop();
+
+	$('#explore-content').html('');
+	$('.explore-options a').removeClass('selected');
+	self.addClass('selected');
+	
+	if (!dataType || !sub) 
+		return;
+		
+	var collection = false;		
+		
+	switch(dataType) {
+		case 'food':
+			collection = Foods;
+			break;
+		case 'drink':
+			collection = Drinks;
+			break;
+		default:
+			return;	
+	
+	}
+	
+	var list = $('<ol><ol>');
+	
+	activeSub = Meteor.subscribe(sub, function() {
+		
+		collection.find({}).forEach(function(item) {
+			var listItem = $("<li></li>");
+			var div = $("<div class='myrating myfoods'></div>");
+			var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
+			var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
+
+			title.addClass("lower");									
+				
+			div.append(title);
+			div.append(brand);
+			div.append(NoFoods.widgetlib.createHeart(item.rating_calc, item.ratingcount_calc));
+
+			title.find('a').attr('href', '/' + dataType + '/page/' + item._id).html(item.name);
+			brand.find('a').attr('href', '/brand/page/' + item.brand_id).html(item.brand_view);
+		
+			listItem.append(div);
+			list.append(listItem);
+					
+		});
+		
+		$('#explore-content').append(list);
+		
+		$(window).scrollTop(tempScrollTop);
+		
+		activeSub.stop();
+
+	});
+
 };
