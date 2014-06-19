@@ -59,3 +59,33 @@ span.brand.myfoods {
 	display: inline-block;
 	font-size:14px;
 }
+
+div.achievement {
+	display:inline-block;
+	width: 290px;
+	text-align: left;
+	padding: 4px;
+	border: 2px solid #800000;
+	margin-bottom: 10px;
+}
+
+div.achievement img {
+	vertical-align: top;
+	display:inline-block;
+	height: 80px;
+	width: 80px;
+}
+
+div.achievement div.info {
+	display:inline-block;
+	width: 200px;
+	margin-left:5px;
+}
+
+div.achievement div.date {
+	color: green;
+}
+
+div.achievement div.description {
+	color: #222222;
+}

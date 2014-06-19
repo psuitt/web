@@ -45,6 +45,7 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-name').val(user.profile.name);
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			loadLinks(user.profile.links);
+			loadAchievements(user.profile.achievements);
 		}
 		
 		loadRatings();	
@@ -149,6 +150,36 @@ var loadLinks = function(links) {
 	
 };
 
+var loadAchievements = function(achievements) {
+
+	if (achievements) {
+		
+		var parentDiv = $('#myfoods-achievements');
+		
+		for (var i = 0, l = achievements.length; i < l; i += 1) {
+			var achievement = achievements[i];
+			
+			var div = $('<div class=\'achievement\'></div>'),
+					info = $('<div class=\'info\'></div>');
+			
+			if (achievement.url)
+				div.append('<img src=\'' + achievement.url + '\'>');
+			if (achievement.date) {
+				info.append('<div class=\'date\'>' + NoFoods.lib.formatDateTime(achievement.date) + '</div>');
+			} else {
+				info.append('<div class=\'progress\'>Progress' + achievement.progress.current + '/' + achievement.progress.cap + '</div>');			
+			}
+			info.append('<div class=\'description\'>' + achievement.description + '</div>');
+			
+			div.append(info);
+			
+			parentDiv.append(div);
+			
+		}			
+	}
+
+};
+
 var getFoodsPage = function(page, obj, count) {
 	
 	var obj = { 
@@ -162,7 +193,7 @@ var getFoodsPage = function(page, obj, count) {
 	
 	Meteor.call('getUserFoodRatings', obj, function(err, data) {
 		
-		if (!err) {
+		if (!err && data.foods) {
 			
 			var fDiv = $("#myfoods-ratingsfoods");
 			
@@ -210,7 +241,7 @@ var getDrinksPage = function(page, obj, count) {
 	
 	Meteor.call('getUserDrinkRatings', obj, function(err, data) {
 		
-		if (!err) {
+		if (!err && data.drinks) {
 			
 			var dDiv = $("#myfoods-ratingsdrinks");
 			

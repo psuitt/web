@@ -206,6 +206,10 @@ Meteor.methods({
 			
 			var profile = Meteor.user().profile,
 					wishlist = profile.wishlist
+					
+			if (!wishlist) {
+				return response;			
+			}
 			
   		if (options.count) {
 				

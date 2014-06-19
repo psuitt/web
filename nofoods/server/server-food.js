@@ -195,6 +195,19 @@ Meteor.methods({
 				rating: options.rating,
 				date: Date.now()
 			});
+			
+			if (this.profile && this.profile.achievements) {
+				
+				var aIndex = NoFoods.achievements.getAchievementLastIndex(this.profile.achievements, 'COUNT_F'),
+						oldAchievement = false;			
+				
+				if (aIndex) {
+					oldAchievement = this.profile.achievements[aIndex];			
+				}	
+				
+				var achievement = NoFoods.achievements.updateAchievement('COUNT_F', oldAchievement);			
+				
+			}
 
 		} else {
 			if (userRating.rating === 6 && options.rating !== 6) {

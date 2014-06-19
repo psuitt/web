@@ -67,9 +67,9 @@ var initMap = function () {
 	  
 	  },
 		onRegionClick: function(element, code, region) {
-			$("#explore-info h4").html(region);
-			$("#explore-content").html("");
-			MAP_DATA[code.toUpperCase()] && $("#explore-content").html("Total Foods and Drinks: " + MAP_DATA[code.toUpperCase()].numberofitems);
+			//$("#explore-info h4").html(region);
+			//$("#explore-content").html("");
+			//MAP_DATA[code.toUpperCase()] && $("#explore-content").html("Total Foods and Drinks: " + MAP_DATA[code.toUpperCase()].numberofitems);
 	  }
 	});
 	
