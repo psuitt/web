@@ -182,6 +182,11 @@ Meteor.methods({
 		if (bonusHearts < 1 && options.rating > 5) {
 			throw new Meteor.Error(500, "You can not rate thins above a 5");
 		}
+		
+		var achievements = NoFoods.achievements.updateAchievement('COUNT_F', user.profile.achievements).updatedList;			
+
+		Meteor.users.update({_id: this.userId}, { $set: { "profile.achievements": achievements } } );
+
 
 		if (!userRating) {
 
@@ -196,26 +201,20 @@ Meteor.methods({
 				date: Date.now()
 			});
 			
-			if (this.profile && this.profile.achievements) {
-				
-				var aIndex = NoFoods.achievements.getAchievementLastIndex(this.profile.achievements, 'COUNT_F'),
-						oldAchievement = false;			
-				
-				if (aIndex) {
-					oldAchievement = this.profile.achievements[aIndex];			
-				}	
-				
-				var achievement = NoFoods.achievements.updateAchievement('COUNT_F', oldAchievement);			
-				
-			}
-
+			
 		} else {
+			
 			if (userRating.rating === 6 && options.rating !== 6) {
+				
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": 1 } } );
+			
 			} else if (userRating.rating !== 6 && options.rating === 6) {
+				
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
+			
 			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
+		
 		}
 
 		//Recalculate Rating total

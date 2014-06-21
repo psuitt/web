@@ -164,9 +164,12 @@ var loadAchievements = function(achievements) {
 			
 			if (achievement.url)
 				div.append('<img src=\'' + achievement.url + '\'>');
+			
+			info.append('<div class=\'title\'>' + achievement.title + '</div>');
+				
 			if (achievement.date) {
 				info.append('<div class=\'date\'>' + NoFoods.lib.formatDateTime(achievement.date) + '</div>');
-			} else {
+			} else if (achievement.progress)  {
 				info.append('<div class=\'progress\'>Progress' + achievement.progress.current + '/' + achievement.progress.cap + '</div>');			
 			}
 			info.append('<div class=\'description\'>' + achievement.description + '</div>');

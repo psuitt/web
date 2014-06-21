@@ -19,7 +19,7 @@ Accounts.onCreateUser(function(options, user) {
 	user.profile = {
 		bonusHearts: 10,
 		date: new Date(),
-		achievements: [NoFoods.achievements.updateAchievement('NEW').updated]	
+		achievements: [NoFoods.achievements.updateAchievement('NEW').updates[0].updated]	
 	};
 	return user;
 });
