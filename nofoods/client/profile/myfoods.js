@@ -46,6 +46,9 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			loadLinks(user.profile.links);
 			loadAchievements(user.profile.achievements);
+			var test = NoFoods.achievements.updateAchievement('COUNT_F', user.profile.achievements);
+			var achievements = test.updatedList;			
+
 		}
 		
 		loadRatings();	
@@ -168,9 +171,19 @@ var loadAchievements = function(achievements) {
 			info.append('<div class=\'title\'>' + achievement.title + '</div>');
 				
 			if (achievement.date) {
+				
 				info.append('<div class=\'date\'>' + NoFoods.lib.formatDateTime(achievement.date) + '</div>');
+			
 			} else if (achievement.progress)  {
-				info.append('<div class=\'progress\'>Progress' + achievement.progress.current + '/' + achievement.progress.cap + '</div>');			
+				
+				var percent = achievement.progress.current/achievement.progress.cap * 100.0;				
+				
+				info.append('<div class=\'progress\' title=\''
+					+ achievement.progress.current + '/' + achievement.progress.cap
+					+'\'>' 
+					+ '<div class=\'bar\' style=\'width: ' + percent + '%\'><div>' 
+					+ '</div>');					
+				
 			}
 			info.append('<div class=\'description\'>' + achievement.description + '</div>');
 			
