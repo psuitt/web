@@ -182,25 +182,19 @@ Meteor.methods({
 		if (bonusHearts < 1 && options.rating > 5) {
 			throw new Meteor.Error(500, "You can not rate thins above a 5");
 		}
-		
-		var achievements = NoFoods.achievements.updateAchievement('COUNT_F', user.profile.achievements).updatedList;			
-
-		Meteor.users.update({_id: this.userId}, { $set: { "profile.achievements": achievements } } );
-
-
+	
 		if (!userRating) {
 
 			if (options.rating === 6)
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
-			var rating_Id = Ratings.insert({
+			var rating_Id = NoFoods.rating.create({
 				_id: Random.id(),
 				food_id: options._id,
 				user_id: this.userId, 
 				rating: options.rating,
 				date: Date.now()
-			});
-			
+			}, this.userId);
 			
 		} else {
 			
@@ -213,7 +207,7 @@ Meteor.methods({
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
 			
-			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
+			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		
 		}
 
@@ -268,13 +262,13 @@ Meteor.methods({
 			if (options.rating === 6)
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
-			var rating_Id = Ratings.insert({
+			var rating_Id = NoFoods.rating.create({
 				_id: Random.id(),
 				drink_id: options._id,
 				user_id: this.userId, 
 				rating: options.rating,
 				date: Date.now()
-			});
+			}, this.userId);
 
 		} else {
 			if (userRating.rating === 6 && options.rating !== 6) {
@@ -282,7 +276,7 @@ Meteor.methods({
 			} else if (userRating.rating !== 6 && options.rating === 6) {
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
-			Ratings.update(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
+			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
 		}
 
 		//Recalculate Rating total

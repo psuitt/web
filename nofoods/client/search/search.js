@@ -4,12 +4,25 @@ var foodResults = false,
 		MAX_RESULTS = 3;
 
 Template.search.rendered = function() {
-	switch(PARAMS.type) {
+	
+	if (typeof PARAMS !== 'undefined')
+		DoSearch(PARAMS.type, PARAMS.search);	
+	
+	$('#searchTabs a').on('click', function(e) {
+		e.preventDefault();	
+		$(this).tab('show');	
+	});
+	
+};
+
+DoSearch = function(type, search) {
+	
+	switch(type) {
 		case "food":
 			$('#search-peoplelink').toggle(false);
 			$('#search-people').toggle(false);
-			doSearchFoods();
-			doSearchDrinks();
+			doSearchFoods(search);
+			doSearchDrinks(search);
 			break;
 		case "people":
 			$('#search-foodslink').toggle(false);
@@ -20,26 +33,22 @@ Template.search.rendered = function() {
 			$('#searchTabsContent div').removeClass('active');
 			$('#search-peoplelink').parent().addClass('active');
 			$('#search-people').addClass('active');
-			doSearchPeople();
+			doSearchPeople(search);
 			break;
 		default:
 			Router.go('/404');
 			break;
 	}
-	
-	$('#searchTabs a').click(function(e) {
-		e.preventDefault();	
-		$(this).tab('show');	
-	});
+
 };
 
-var doSearchPeople = function() {
+var doSearchPeople = function(search) {
 	
 	var htmlBuilder = [];
 
 	$('#search-people').html("");
 
-	Meteor.subscribe("users_search", PARAMS.search, function() {
+	Meteor.subscribe("users_search", search, function() {
 		var results = Meteor.users.find({ }),
 				count = results.count() - 1,
 				user_id = Meteor.userId();
@@ -80,22 +89,22 @@ var doSearchPeople = function() {
 		}
 
 		$('div.loading').addClass('hide');	
-		window.parent.recalcFrame($('#resultsDiv').outerHeight());
+		$('#resultsDiv').show();
 
 	});
 
 };
 
-var doSearchFoods = function() {
+var doSearchFoods = function(search) {
 	
 	$('#search-foods div.search-results').html("");
 	
-	if (!PARAMS['search']) {
+	if (!search) {
 		return;
 	}
 	
 	var obj = {
-		'search': PARAMS['search']
+		'search': search
 	};
 	
 	Meteor.call('foodSearch', obj, function(err, response) {
@@ -127,14 +136,15 @@ var doSearchFoods = function() {
 						max: foodResults.length / MAX_RESULTS,
 						select: getFoodsPage
 					});	
-					
-					window.parent.recalcFrame($('#resultsDiv').outerHeight());
 		
 				}
 			
 			}		
 			
 		}
+		
+		$('div.loading').addClass('hide');
+		$('#resultsDiv').show();
 		
   });
 };
@@ -155,22 +165,20 @@ var getFoodsPage = function(page) {
 	for (var i = offset; i < len; i += 1) {
 		var food = foodResults[i];
 		$('#search-foods div.search-results').append(getSearchRow('/food/page/', food));	
-	}
-	
-	window.parent.recalcFrame($('#resultsDiv').outerHeight());					
+	}				
 		
 };
 
-var doSearchDrinks = function() {
+var doSearchDrinks = function(search) {
 	
 	$('#search-drinks div.search-results').html("");
 	
-	if (!PARAMS['search']) {
+	if (!search) {
 		return;
 	}
 	
 	var obj = {
-		'search': PARAMS['search']
+		'search': search
 	};
 	
 	Meteor.call('drinkSearch', obj, function(err, response) {
@@ -202,14 +210,15 @@ var doSearchDrinks = function() {
 						max: drinkResults.length / MAX_RESULTS,
 						select: getDrinksPage
 					});	
-					
-					window.parent.recalcFrame($('#resultsDiv').outerHeight());
 		
 				}
 			
 			}		
 			
 		}
+		
+		$('div.loading').addClass('hide');	
+		$('#resultsDiv').show();
 		
   });
 };
@@ -230,9 +239,7 @@ var getDrinksPage = function(page) {
 	for (var i = offset; i < len; i += 1) {
 		var drink = drinkResults[i];
 		$('#search-drinks div.search-results').append(getSearchRow('/drink/page/', drink));	
-	}
-	
-	window.parent.recalcFrame($('#resultsDiv').outerHeight());					
+	}					
 		
 };
 

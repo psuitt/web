@@ -31,15 +31,10 @@ Template.home.events = {
 	}
 };
 
-recalcFrame = function(height) {
-	if ($('#searchResults')[0].height < height) {
-		$('#searchResults')[0].height = height;
-	}
-};
-
 var doSearch = function(search) {
 	var val = $('#home-searchtype .home-searchval').html().toLowerCase();
 	if (val) {
-		$('#searchResults').attr("src", '/search/' + val + '/' + search);
+		//$('#searchResults').attr("src", '/search/' + val + '/' + search);
+		DoSearch(val, search);
 	}	
 };

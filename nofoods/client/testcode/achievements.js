@@ -204,9 +204,7 @@ UPDATE_METHODS['RATING'] = function(code) {
 		
 		}			
 		
-	}
-	
-	
+	}	
 	
 	returned.updated = self;
 	
