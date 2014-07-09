@@ -47,8 +47,11 @@ Router.map(function () {
     yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
+		onData: function() {
+			DoSearchFlag && DoSearch(this.params.type, this.params.search);
+		},
 		data: function() {
-			return { "src": '/search/' + this.params.type + "/" + this.params.search };
+			return this.params;
 		}
 	});
 
@@ -140,26 +143,6 @@ Router.map(function () {
 			PARAMS = this.params;   
     }
 	});
-
-  this.route('parties', {
-    path:'/parties',
-    template: 'page',
-		layoutTemplate: 'mainLayout',
-    onBeforeAction: function () {
-      Meteor.subscribe("directory");
-      Meteor.subscribe("parties");
-      Deps.autorun(function () {
-			  var selected = Session.get("selected");
-			  if (! selected || ! Parties.findOne(selected)) {
-			    var party = Parties.findOne();
-					if (party)
-						Session.set("selected", party._id);
-					else
-						Session.set("selected", null);
-				}
-			});
-    }
-  });
 
 });
 

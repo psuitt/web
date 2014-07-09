@@ -84,11 +84,22 @@
 		
 		};
 		
+		var _remove = function() {
+			firstArrow.off().remove();
+			leftArrow.off().remove();
+			rightArrow.off().remove();
+			lastArrow.off().remove();
+			self.off().remove();
+		};
+		
 		// Functions
 		
 		var obj = {
 			setMax: function(i) {
 				_setMax(i);			
+			},
+			remove: function() {
+				_remove();			
 			}
 		};
 		
@@ -101,7 +112,7 @@
 		
 		_setMax(_options.max);
 		
-		leftArrow.bind("click", function() {
+		leftArrow.on("click", function() {
 			var first = self.find('.paging').first(),
 					firstVal = parseInt(first.html(), 10);
 	
@@ -120,7 +131,7 @@
 					
 		});	
 		
-		rightArrow.bind("click", function() {
+		rightArrow.on("click", function() {
 			
 			var last = self.find(".paging").last(),
 					lastVal = parseInt(last.html(), 10),
@@ -153,7 +164,7 @@
 				_options.select(parseInt($(this).html(), 10));			
 			});
 			
-			firstArrow.bind("click", function() {
+			firstArrow.on("click", function() {
 				
 				self.find(".paging").remove();	
 						
@@ -176,7 +187,7 @@
 							
 			});	
 			
-			lastArrow.bind("click", function() {
+			lastArrow.on("click", function() {
 				
 				var maxVal = parseInt(_options.max, 10),
 						v = maxVal - MAX_PAGE_AMOUNT;

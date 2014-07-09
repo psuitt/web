@@ -1,7 +1,9 @@
 var foodResults = false,
 		drinkResults = false,
 		
-		MAX_RESULTS = 3;
+		MAX_RESULTS = 3,
+		foodsPaging,
+		drinksPaging;
 
 Template.search.rendered = function() {
 	
@@ -131,11 +133,14 @@ var doSearchFoods = function(search) {
 		
 					getFoodsPage(1);
 					
+					if (foodsPaging) 
+						foodsPaging.remove();					
+					
 					$('#search-foods').append("<div class='search-paging'></div>");
-					$('#search-foods .search-paging').nofoodspaging({
+					foodsPaging = $('#search-foods .search-paging').nofoodspaging({
 						max: foodResults.length / MAX_RESULTS,
 						select: getFoodsPage
-					});	
+					});
 		
 				}
 			
@@ -205,8 +210,11 @@ var doSearchDrinks = function(search) {
 		
 					getDrinksPage(1);
 					
+					if (drinksPaging)
+						drinksPaging.remove();
+					
 					$('#search-drinks').append("<div class='search-paging'></div>");
-					$('#search-drinks .search-paging').nofoodspaging({
+					drinksPaging = $('#search-drinks .search-paging').nofoodspaging({
 						max: drinkResults.length / MAX_RESULTS,
 						select: getDrinksPage
 					});	
