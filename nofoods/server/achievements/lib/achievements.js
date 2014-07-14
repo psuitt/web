@@ -17,7 +17,11 @@ AddAchievement = function(code, title, description, type, difficulty, tiers) {
 		// Date
 	};
 	
-	achievements[code] = achievement;
+	if (!achievements[code]) {
+		achievements[code] = achievement;
+	} else {
+		throw new Meteor.Error(500, "Duplicate achievement code set for code = [" + code + "].");
+	}
 	
 };
 

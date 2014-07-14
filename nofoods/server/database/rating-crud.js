@@ -9,9 +9,16 @@ NoFoods.rating = function() {
 		if (user_id) {
 			
 			var	user = Meteor.users.findOne( {_id: user_id} );
-			var achievements = NoFoods.achievements.updateAchievement('COUNT_F', user.profile.achievements).updatedList;			
+			var achievements = false;
+			
+			if (json.food_id) {
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_F'], user.profile.achievements).updatedList;			
+			} else {
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_D'], user.profile.achievements).updatedList;			
+			}
 
-			Meteor.users.update({_id: user_id}, { $set: { "profile.achievements": achievements } } );
+			if (achievements)
+				Meteor.users.update({_id: user_id}, { $set: { "profile.achievements": achievements } } );
 			
 		}
 			
@@ -19,9 +26,25 @@ NoFoods.rating = function() {
 	
 	}; 
 	
-	var _updateOne = function(_id, update) {
+	var _updateOne = function(_id, update, user_id) {
 		
 		Ratings.update(_id, update);
+		
+		if (user_id) {
+			
+			var	user = Meteor.users.findOne( {_id: user_id} );
+			var achievements = false;
+			
+			if (json.food_id) {
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			
+			} else {
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			
+			}
+
+			if (achievements)
+				Meteor.users.update({_id: user_id}, { $set: { "profile.achievements": achievements } } );
+			
+		}
 	
 	}; 
 
@@ -31,8 +54,8 @@ NoFoods.rating = function() {
 			return _create(json, user_id);
 		},
 		
-		updateOne: function(_id, update) {
-			return _updateOne(_id, update);
+		updateOne: function(_id, update, user_id) {
+			return _updateOne(_id, update, user_id);
 		}
 		
 	};

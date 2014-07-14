@@ -391,6 +391,10 @@ div.pagingdiv {
 	border-top: 2px solid #800000;
 }
 
+div.pagingdiv.no-border {
+	border-top: 0;
+}
+
 div.pagingdiv span {
 	color: #FFFFFF;
 	min-height: 20px;

@@ -103,8 +103,9 @@
 			}
 		};
 		
-		if (_options.max < 2) {
-			// Return now there is no paging needed.			
+		if (_options.max < MAX_PAGE_AMOUNT) {
+			// Return now there is no paging needed.
+			self.addClass('no-border');			
 			return obj;
 		}	
 		

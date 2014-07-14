@@ -207,7 +207,7 @@ Meteor.methods({
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
 			
-			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
+			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
 		
 		}
 
@@ -276,7 +276,7 @@ Meteor.methods({
 			} else if (userRating.rating !== 6 && options.rating === 6) {
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
-			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } } );
+			NoFoods.rating.updateOne(userRating._id, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
 		}
 
 		//Recalculate Rating total

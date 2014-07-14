@@ -1,15 +1,5 @@
 var UPDATE_METHODS = typeof UPDATE_METHODS === 'undefined' ? {} : UPDATE_METHODS;
 
-AddAchievement('COUNT_F', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
-	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
-	{cap: 2, title: 'Novice Rater' },
-	{cap: 4, title: 'Rate your first item 3' },
-	{cap: 10, title: 'Rate your first item 4' },
-	{cap: 5, title: 'Rate your first item 5' },
-	{cap: 6, title: 'Rate your first item 6' },
-	{cap: 9001, title: 'Rate your first item' }
-]);
-
 UPDATE_METHODS['RATING'] = function(code) {
 
 	var self = this,
@@ -90,3 +80,55 @@ UPDATE_METHODS['RATING'] = function(code) {
 	return returned;
 
 };
+
+/**
+ * Increment when any new ratings occur.
+ */
+AddAchievement('COUNT_A', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
+	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
+	{cap: 2, title: 'Novice Rater' },
+	{cap: 4, title: 'Rate your first item 3' },
+	{cap: 10, title: 'Rate your first item 4' },
+	{cap: 5, title: 'Rate your first item 5' },
+	{cap: 6, title: 'Rate your first item 6' },
+	{cap: 9001, title: 'Rate your first item' }
+]);
+
+/**
+ * Increment when any new ratings occur on food.
+ */
+AddAchievement('COUNT_F', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
+	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
+	{cap: 2, title: 'Novice Rater' },
+	{cap: 4, title: 'Rate your first item 3' },
+	{cap: 10, title: 'Rate your first item 4' },
+	{cap: 5, title: 'Rate your first item 5' },
+	{cap: 6, title: 'Rate your first item 6' },
+	{cap: 9001, title: 'Rate your first item' }
+]);
+
+/**
+ * Increment when any new ratings occur on drinks.
+ */
+AddAchievement('COUNT_D', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
+	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
+	{cap: 2, title: 'Novice Rater' },
+	{cap: 4, title: 'Rate your first item 3' },
+	{cap: 10, title: 'Rate your first item 4' },
+	{cap: 5, title: 'Rate your first item 5' },
+	{cap: 6, title: 'Rate your first item 6' },
+	{cap: 9001, title: 'Rate your first item' }
+]);
+
+/**
+ * Increment when any update ratings occur.
+ */
+AddAchievement('COUNT_UD', "Undecided", 'Rate %cap different food items.', 'RATING', 1, [
+	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
+	{cap: 2, title: 'Novice Rater' },
+	{cap: 4, title: 'Rate your first item 3' },
+	{cap: 10, title: 'Rate your first item 4' },
+	{cap: 5, title: 'Rate your first item 5' },
+	{cap: 6, title: 'Rate your first item 6' },
+	{cap: 9001, title: 'Rate your first item' }
+]);
