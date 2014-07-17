@@ -131,7 +131,11 @@ var createAchievement = function(code) {
 				
 	var newAchievement = {
 		code: oldAchievement.code,
-		description: oldAchievement.description
+		title: oldAchievement.title,
+		description: oldAchievement.description,
+		type: oldAchievement.type,
+		difficulty: oldAchievement.difficulty,
+		tierLevel: oldAchievement.tierLevel
 	};	
 
 	return newAchievement;

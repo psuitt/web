@@ -1,14 +1,38 @@
-var placeauto,
+var brandSub,
+		placeauto,
 		map,
-		nofoodsRating;
+		nofoodsRating,
+		brand_id = false;
+		
+Template.foodsAdd.destroyed = function () {
+	brandSub && brandSub.stop();
+};
 
 Template.foodsAdd.rendered = function() {
+	
+	var data = Router.getData();
 	
 	setPath();
 	
 	nofoodsRating = $('div.ratingDiv').nofoodsrating();
 
-	$('#foodsadd-brand').nofoodsautocomplete();
+	if (data && data.brand_id) {
+		brand_id = data.brand_id;
+		brandSub = Meteor.subscribe('brands_item', brand_id, function() {
+			// This can sometime contain more data if froming from another page.
+			var brand = Brands.findOne({_id : brand_id});
+		
+			if(brand) {
+				$('#foodsadd-brand').attr("disabled", "disabled").val(brand.name);
+			} else {
+				brand_id = false;
+				$('#foodsadd-brand').nofoodsautocomplete();			
+			}
+		});
+	} else {
+		$('#foodsadd-brand').nofoodsautocomplete();
+	}
+
 	
 	//addLocation(); LOCATION
 
@@ -19,7 +43,7 @@ Template.foodsAdd.events({
 		var type = $("input[name='type']:checked").attr("value"),
 				name = template.find("#foodsadd-name").value,
 				brand = template.find("#foodsadd-brand").value,
-				brand_id = $("#foodsadd-brand").data("brand_id"),
+				brandId = $("#foodsadd-brand").data("brand_id"),
 				rating = nofoodsRating.getValue(); 
 
 		var data = {
@@ -29,8 +53,11 @@ Template.foodsAdd.events({
 			type: type			
 		};
 
-		if (brand_id) 
+		if (brand_id) {
 			data.brand_id = brand_id;
+		} else if (brandId) {
+			data.brand_id = brandId;
+		}
 	
 		//setPlaceDetails(data); LOCATION		
 	

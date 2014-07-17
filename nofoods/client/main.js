@@ -65,14 +65,17 @@ Router.map(function () {
   });
 
 	this.route('add', {
-    path:'/food/add',
+    path:'/food/add/:brand_id?',
     template: 'foodsAdd',
 		layoutTemplate: 'mainLayout',
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
     onBeforeAction: function () {
-    }
+    },
+		data: function() {
+			return this.params;
+		}
   });
 
 	this.route('foodsPage', {

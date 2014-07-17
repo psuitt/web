@@ -46,7 +46,7 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			loadLinks(user.profile.links);
 			loadAchievements(user.profile.achievements);
-			var test = NoFoods.achievements.updateAchievement('COUNT_F', user.profile.achievements);
+			var test = NoFoods.achievements.updateAchievement('COUNT_X', user.profile.achievements);
 			var achievements = test.updatedList;			
 
 		}
@@ -157,10 +157,17 @@ var loadAchievements = function(achievements) {
 
 	if (achievements) {
 		
-		var parentDiv = $('#myfoods-achievements');
+		var parentDiv = $('#myfoods-achievements'),
+				points = 0;
 		
 		for (var i = 0, l = achievements.length; i < l; i += 1) {
 			var achievement = achievements[i];
+			
+			if (achievement.hidden)
+				continue;
+				
+			if (achievements.difficulty)
+				points += difficulty;
 			
 			var div = $('<div class=\'achievement\'></div>'),
 					info = $('<div class=\'info\'></div>');
@@ -176,10 +183,10 @@ var loadAchievements = function(achievements) {
 			
 			} else if (achievement.progress)  {
 				
-				var percent = achievement.progress.current/achievement.progress.cap * 100.0;				
+				var percent = achievement.progress.current/achievement.cap * 100.0;				
 				
 				info.append('<div class=\'progress\' title=\''
-					+ achievement.progress.current + '/' + achievement.progress.cap
+					+ achievement.progress.current + '/' + achievement.cap
 					+'\'>' 
 					+ '<div class=\'bar\' style=\'width: ' + percent + '%\'><div>' 
 					+ '</div>');					
@@ -191,7 +198,10 @@ var loadAchievements = function(achievements) {
 			
 			parentDiv.append(div);
 			
-		}			
+		}		
+		
+		$('#myfoods-achievementspage div.pagetitle span.achievementPoints').html('(' + points + ')');
+			
 	}
 
 };

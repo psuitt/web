@@ -49,11 +49,10 @@ div.myrating>span {
 	display: block;
 }
 
-span.pagetitle {
-	display: block;
+div.pagetitle {
+	margin-bottom: 10px;
 	font-size: 20px;
 	font-weight: 700;
-	margin-bottom: 10px;
 }
 
 span.brand.myfoods {
@@ -103,4 +102,10 @@ div.achievement div.progress {
 
 div.achievement div.description {
 	color: #222222;
+}
+
+span.achievementPoints {
+	display: inline-block;
+	color: #DAA520;
+	margin-left: 10px;
 }

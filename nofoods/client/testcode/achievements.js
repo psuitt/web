@@ -22,7 +22,7 @@ var addAchievement = function(code, title, description, type, difficulty, tiers)
 };
 
 addAchievement('NEW', "Noob", 'Create an account.', 'NONE', 0);
-addAchievement('COUNT_F', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
+addAchievement('COUNT_X', "Rate Something", 'Rate %cap different food items.', 'RATING', 1, [
 	{cap: 1, title: 'Rate your first item', description: 'Rate a single food item.'},
 	{cap: 2, title: 'Novice Rater' },
 	{cap: 4, title: 'Rate your first item 3' },
@@ -148,12 +148,8 @@ UPDATE_METHODS['RATING'] = function(code) {
 			cap: tier.cap
 		};
 		
+		self = _.extend(self, tier);
 		self.description = self.description.replace('%cap', tier.cap);
-		
-		if (tier.description)
-			self.description = tier.description;
-		if (tier.title)
-			self.title = tier.title;
 		
 		returned.nextAchievement = false;		
 		
@@ -187,12 +183,8 @@ UPDATE_METHODS['RATING'] = function(code) {
 				cap: tier.cap
 			};
 			
+			newAchievement = _.extend(newAchievement, tier);
 			newAchievement.description = newAchievement.description.replace('%cap', tier.cap);
-			
-			if (tier.description)
-				newAchievement.description = tier.description;
-			if (tier.title)
-				newAchievement.title = tier.title;
 			
 			if (newAchievement.progress.current === newAchievement.progress.cap) {
 		
