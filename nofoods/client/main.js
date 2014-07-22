@@ -111,7 +111,10 @@ Router.map(function () {
 		},
     onBeforeAction: function () {	  
 			PARAMS = this.params;   
-    }
+    },
+		data: function() {
+			return {brand_id: this.params._id};
+		}
 	});
 	
 	this.route('explore', {

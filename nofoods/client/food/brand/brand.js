@@ -30,7 +30,7 @@ var done = function() {
 	if(!brand)
 		Router.go('/404');
 
-	$('.brand').html(brand.name);
+	$('.brand.pageheader span').html(brand.name);
 
 	foodSub = Meteor.subscribe('foods_brand', brand._id, function() {
 		var foodRating = 0,

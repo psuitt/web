@@ -55,7 +55,7 @@ NoFoods.achievements = function() {
 				
 			if ( aType === 'NONE' ) {
 			
-				var newAchievement = createAchievement(code);
+				var newAchievement = CreateAchievement(code);
 				
 				newAchievement.date = new Date();
 			
@@ -125,7 +125,7 @@ NoFoods.achievements = function() {
 
 }();
 
-var createAchievement = function(code) {
+CreateAchievement = function(code) {
 
 	var oldAchievement = achievements[code];
 				
