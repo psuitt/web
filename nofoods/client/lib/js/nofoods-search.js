@@ -6,7 +6,7 @@
 	$.fn.nofoodssearch = function() {
 
 		var options = {
-			values: ["Food", "People"],
+			values: ['Food', 'Brand', 'People'],
 			defaultValue: "Food"
 		};	
 

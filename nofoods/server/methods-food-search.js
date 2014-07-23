@@ -1,8 +1,6 @@
-var LETTER_NUMBER_REGEX = /^[0-9a-z\s]+$/i;
-
-var NonEmptyString = Match.Where(function (x) {
+var TypeCheck = Match.Where(function (x) {
   check(x, String);
-  return x.trim().length !== 0 && LETTER_NUMBER_REGEX.test(x);
+  return x.toLowerCase() === "food" || x.toLowerCase() === "brand";
 });
 
 Meteor.methods({
@@ -10,15 +8,13 @@ Meteor.methods({
 	foodSearch: function(options) {
 		
 		check(options, {
-      'search': NonEmptyString
+      'search': NonEmptyStringNoSpecialCharacters,
+      'type': Match.Optional(TypeCheck)
     });
-	
-		var response = {},
-				tokens = options['search'].toLowerCase().split(" "),
-				length = 0,
-				rCountPrev = -1;
-
-		var filter = {
+    
+    var response = {};
+    
+    var filter = {
 			limit: 100,
 			fields: {
 				name: 1,
@@ -26,7 +22,22 @@ Meteor.methods({
 				brand_view: 1,
 				rating_calc: 1			
 			}
-		};		
+		};
+    
+    if (options.type && options.type.toLowerCase() === 'brand') {
+			var query = {
+				brand_view : {
+			    $regex: ".*" + options.search + ".*",
+			    $options: 'i'
+				}
+			};  
+			response.data = Foods.find( query, filter ).fetch();
+	  	return response;  
+    }
+	
+		var tokens = options['search'].toLowerCase().split(" "),
+				length = 0,
+				rCountPrev = -1;
 	
 		for (var i, l = tokens.length ; i < l ; i += 1) {
 			
@@ -64,15 +75,13 @@ Meteor.methods({
 	drinkSearch: function(options) {
 		
 		check(options, {
-      'search': NonEmptyString
+      'search': NonEmptyStringNoSpecialCharacters,
+      'type': Match.Optional(TypeCheck)
     });
-	
-		var response = {},
-				tokens = options['search'].toLowerCase().split(" "),
-				length = 0,
-				rCountPrev = -1;
-
-		var filter = {
+    
+    var response = {};
+    
+    var filter = {
 			limit: 100,
 			fields: {
 				name: 1,
@@ -80,7 +89,22 @@ Meteor.methods({
 				brand_view: 1,
 				rating_calc: 1			
 			}
-		};		
+		};
+    
+    if (options.type && options.type.toLowerCase() === 'brand') {
+			var query = {
+				brand_view : {
+			    $regex: ".*" + options.search + ".*",
+			    $options: 'i'
+				}
+			};  
+			response.data = Drinks.find( query, filter ).fetch();
+	  	return response;  
+    }
+	
+		var tokens = options['search'].toLowerCase().split(" "),
+				length = 0,
+				rCountPrev = -1;	
 	
 		for (var i, l = tokens.length ; i < l ; i += 1) {
 			

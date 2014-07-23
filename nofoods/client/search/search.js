@@ -19,12 +19,16 @@ Template.search.rendered = function() {
 
 DoSearch = function(type, search) {
 	
+	if (!type || !search) 
+		return;	
+	
 	switch(type) {
 		case "food":
+		case "brand":
 			$('#search-peoplelink').toggle(false);
 			$('#search-people').toggle(false);
-			doSearchFoods(search);
-			doSearchDrinks(search);
+			doSearchFoods(search, type);
+			doSearchDrinks(search, type);
 			break;
 		case "people":
 			$('#search-foodslink').toggle(false);
@@ -38,7 +42,6 @@ DoSearch = function(type, search) {
 			doSearchPeople(search);
 			break;
 		default:
-			Router.go('/404');
 			break;
 	}
 
@@ -97,7 +100,7 @@ var doSearchPeople = function(search) {
 
 };
 
-var doSearchFoods = function(search) {
+var doSearchFoods = function(search, type) {
 	
 	$('#search-foods div.search-results').html("");
 	
@@ -106,7 +109,8 @@ var doSearchFoods = function(search) {
 	}
 	
 	var obj = {
-		'search': search
+		'search': search,
+		'type': type
 	};
 	
 	Meteor.call('foodSearch', obj, function(err, response) {
@@ -174,7 +178,7 @@ var getFoodsPage = function(page) {
 		
 };
 
-var doSearchDrinks = function(search) {
+var doSearchDrinks = function(search, type) {
 	
 	$('#search-drinks div.search-results').html("");
 	
@@ -183,7 +187,8 @@ var doSearchDrinks = function(search) {
 	}
 	
 	var obj = {
-		'search': search
+		'search': search,
+		'type': type
 	};
 	
 	Meteor.call('drinkSearch', obj, function(err, response) {
