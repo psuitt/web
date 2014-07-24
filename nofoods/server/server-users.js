@@ -36,8 +36,12 @@ Meteor.publish("users_search", function (username) {
 			}
 		};
 		var filter = {
-			fields: {username: 1},
-			sort: {username: 1},
+			fields: {
+				username: 1
+			},
+			sort: {
+				username: 1
+			},
 			limit: 20
 			};
   	return Meteor.users.find(query, filter);
@@ -58,8 +62,8 @@ Meteor.publish("users_searchexact", function (username) {
 			fields: {
 				username: 1,
 				"profile.name": 1
-				}
-			};
+			}
+		};
 		
   	return Meteor.users.find(query, filter);
   } else {

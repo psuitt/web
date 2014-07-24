@@ -1,17 +1,5 @@
 Statistics = new Meteor.Collection("statistics");
 
-Statistics.allow({
-  insert: function () {
-    return false;
-  },
-  update: function () {
-    return false;
-  },
-  remove: function () {
-    return false;
-  }
-});
-
 var RatingCheck = Match.Where(function (x) {
   check(x, Number);
   return x === 1 || x === 2 || x === 3 || x === 4 || x === 5 || x === 6;

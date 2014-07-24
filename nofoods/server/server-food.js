@@ -24,21 +24,6 @@ Drinks.allow({
   }
 });
 
-var NonEmptyString = Match.Where(function (x) {
-  check(x, String);
-  return x.length !== 0;
-});
-
-var RatingCheck = Match.Where(function (x) {
-  check(x, Number);
-  return x === 1 || x === 2 || x === 3 || x === 4 || x === 5 || x === 6;
-});
-
-var FoodTypeCheck = Match.Where(function (x) {
-  check(x, String);
-  return x === "Drink" || x === "Food";
-});
-
 var tokenize = function(s) {
 	var l = s.toLowerCase();
 	var sp = l.split(" ");
@@ -76,7 +61,7 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
     if (!Meteor.user().active) 
-    	throw new Meteor.Error(500, "Adding is currently disabled for this account.");
+    	throw new Meteor.Error(500, "Adding is currently disabled for your account.");
 
 		var tokens = tokenize(options.name + " " + options.brand);
 

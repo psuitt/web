@@ -65,6 +65,10 @@ div.pageheader a:hover {
 	color: #255DAF;
 }
 
+div.page-message {
+	display: inline-block;
+}
+
 #mainContent {
 	background: rgb(240,248,255); /* Alice Blue */
 	/*background-image: url('/backgrounds/denver_colorado.png');*/
