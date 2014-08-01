@@ -26,7 +26,9 @@ NoFoods.rating = function() {
 	
 	}; 
 	
-	var _updateOne = function(_id, update, user_id) {
+	var _updateOne = function(ratingUpdate, update, user_id) {
+		
+		var _id = ratingUpdate._id;		
 		
 		Ratings.update(_id, update);
 		
@@ -35,7 +37,7 @@ NoFoods.rating = function() {
 			var	user = Meteor.users.findOne( {_id: user_id} );
 			var achievements = false;
 			
-			if (json.food_id) {
+			if (ratingUpdate.food_id) {
 				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			
 			} else {
 				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			

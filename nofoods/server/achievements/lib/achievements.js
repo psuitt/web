@@ -1,6 +1,6 @@
 NoFoods = typeof NoFoods === 'undefined' ? {} : NoFoods;
 
-var achievements = {};
+Achievements = {};
 UPDATE_METHODS = {};
 
 AddAchievement = function(code, title, description, type, difficulty, tiers) {
@@ -17,8 +17,8 @@ AddAchievement = function(code, title, description, type, difficulty, tiers) {
 		// Date
 	};
 	
-	if (!achievements[code]) {
-		achievements[code] = achievement;
+	if (!Achievements[code]) {
+		Achievements[code] = achievement;
 	} else {
 		throw new Meteor.Error(500, "Duplicate achievement code set for code = [" + code + "].");
 	}
@@ -49,9 +49,9 @@ NoFoods.achievements = function() {
 	
 	var _handleSingleUpdate = function(code, achievement) {
 	
-		if (code in achievements) {
+		if (code in Achievements) {
 			
-			var aType = achievements[code].type;
+			var aType = Achievements[code].type;
 				
 			if ( aType === 'NONE' ) {
 			
@@ -65,7 +65,7 @@ NoFoods.achievements = function() {
 				};				
 			
 			}				
-			
+
 			return UPDATE_METHODS[aType].call(achievement, code);	
 						
 		}	
@@ -127,7 +127,7 @@ NoFoods.achievements = function() {
 
 CreateAchievement = function(code) {
 
-	var oldAchievement = achievements[code];
+	var oldAchievement = Achievements[code];
 				
 	var newAchievement = {
 		code: oldAchievement.code,

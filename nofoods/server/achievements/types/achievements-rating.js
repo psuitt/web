@@ -1,10 +1,8 @@
-var UPDATE_METHODS = typeof UPDATE_METHODS === 'undefined' ? {} : UPDATE_METHODS;
-
 UPDATE_METHODS['RATING'] = function(code) {
 
 	var self = this,
 			returned = {},
-			parentAchievement = achievements[code];
+			parentAchievement = Achievements[code];
 			
 	if (typeof this === 'undefined' || !self.valueOf()) {		
 		

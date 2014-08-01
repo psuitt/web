@@ -165,9 +165,6 @@ var loadAchievements = function(achievements) {
 			
 			if (achievement.hidden)
 				continue;
-				
-			if (achievements.difficulty)
-				points += difficulty;
 			
 			var div = $('<div class=\'achievement\'></div>'),
 					info = $('<div class=\'info\'></div>');
@@ -180,6 +177,9 @@ var loadAchievements = function(achievements) {
 			if (achievement.date) {
 				
 				info.append('<div class=\'date\'>' + NoFoods.lib.formatDateTime(achievement.date) + '</div>');
+				
+				if (achievement.difficulty)
+					points += achievement.difficulty;
 			
 			} else if (achievement.progress)  {
 				
