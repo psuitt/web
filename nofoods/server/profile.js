@@ -21,6 +21,10 @@ Accounts.onCreateUser(function(options, user) {
 		date: new Date(),
 		achievements: [NoFoods.achievements.updateAchievement('NEW').updates[0].updated]	
 	};
+	Statistics.update(
+		{_type: 'usercount'}, 
+		{ $inc: { count: 1 } }
+	);
 	return user;
 });
 

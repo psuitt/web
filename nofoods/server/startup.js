@@ -10,5 +10,29 @@ Meteor.startup(function () {
 				}
 			}
 		}
+		
+		setUpStatistics();
  		
 });
+
+var setUpStatistics = function() {
+
+	 var query = {
+    	_type: "usercount"
+		};
+    
+    var findOne = Statistics.findOne(query);
+
+		if (!findOne) {
+			
+			var stat = {
+				_id: Random.id(),
+				_type: "usercount",
+				count: 0
+			};	
+			
+			Statistics.insert(stat);
+			
+		}
+
+};

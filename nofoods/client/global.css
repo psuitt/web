@@ -70,7 +70,7 @@ div.page-message {
 }
 
 #mainContent {
-	background: rgb(240,248,255); /* Alice Blue */
+	background: rgb(245,245,245);/* rgb(240,248,255); Alice Blue */
 	/*background-image: url('/backgrounds/denver_colorado.png');*/
 	background-repeat: repeat-y;
 	background-attachment: fixed;
@@ -144,6 +144,8 @@ div.content>h3 {
 	margin-top:0px;
 }
 
+/* FOOTER */
+
 #footer {
 	bottom: 0;
 	text-align: right;
@@ -154,28 +156,55 @@ div.content>h3 {
 	margin-top: 0;
 }
 
+#footer .totalusers {
+	margin-right: 50px;
+	color: #0088cc;
+}
+
 /* MENU */
 span.logo {
 	font-weight: bold;
 	display: inline-block;
-	margin-right: 30px;
 	color: #DAA520;
 	font-size: 18px;
+	vertical-align: middle;
 }
 
 span.logo a,
 span.logo a:hover {
 	color: #DAA520;
 	text-decoration: none;
+	vertical-align: middle;
+	line-height: 24px;
 }
 
 #menu {
-	padding:0;
-	margin:0;
-	background: #222222;
+	padding: 0;
+	margin: 0;
+	background: rgb(245,245,245);
 	height: 45px;
 	min-width: 1000px;
 	overflow: visible;
+}
+
+div.menu-horizontal ul {
+	display:inline-block;
+	margin: 0;
+}
+
+div.menu-horizontal ul li {
+	display:inline-block;
+	zoom: 1;
+	vertical-align: middle;
+	padding: 12px 10px;
+}
+
+div.menu-horizontal ul.menu li a {
+	font-size: 16px;
+}
+
+div.menu-horizontal ul.menu li a:hover {
+	text-decoration: none;
 }
 
 #links {
@@ -183,21 +212,16 @@ span.logo a:hover {
 	margin-left:30px;
 	height:45px;
 	min-width: 400px;
-	line-height: 45px;
 	display: inline-block;
 }
 
 #links>a {
-	color: #FFFFFF;
+	color: #000000;
 	margin-left: 1px;
 	margin-right: 1px;
 	display: inline-block;
 	font-weight: bold;
 	line-height: 23px;
-}
-
-#links>a:hover {
-	text-decoration: none;
 }
 
 #links>div.spacer {
@@ -228,7 +252,7 @@ span.logo a:hover {
 }
 
 #login .login-link-text {
-	color: #FFFFFF;
+	color: #000000;
 	text-decoration:none;
 	font-weight: bold;
 }

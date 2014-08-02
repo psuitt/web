@@ -1,19 +1,21 @@
 <template name="mainLayout">
 	<head>
-		<title>No-Foods: A Food Guide</title>
+		<title>NoFoodz: A Food Guide</title>
 		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>-->
 	</head>
 	<div id="menu">
-		<div id="links">
-			<span class="logo"><a href="/" >No-Foods</a></span>
-			<a href="/explore" >Explore</a>		
-			{{#if currentUser}}
-			<div class='spacer'></div>
-			<a href='/myfoods'>MyFoods</a>
-			<a href='/food/add'>Add</a>
-			{{/if}}
+		<div id="links" class="menu-horizontal">
+			<span class="logo"><a href="/" >NoFoodz</a></span>
+			<ul class="menu">
+				<li><a href="/explore" >Explore</a>	</li>
+				{{#if currentUser}}		
+				<li class="spacer"></li>	
+				<li><a href='/myfoods'>MyFoods</a></li>
+				<li><a href='/food/add'>Add</a></li>
+				{{/if}}
+			</ul>	
 		</div>
 		<div id="login">	
 			<div class="searchbar">	
