@@ -1,16 +1,3 @@
-var PAGE_LIMIT = 2,
-		LETTER_NUMBER_REGEX = /^[0-9a-z]+$/i;
-
-var PageNumber = Match.Where(function (x) {
-  check(x, Number);
-  return x < 101 && x > 0;
-});
-
-var NonEmptyString = Match.Where(function (x) {
-  check(x, String);
-  return x.trim().length !== 0 && LETTER_NUMBER_REGEX.test(x);
-});
-
 Meteor.methods({
 	
 	getUserFoodRatings: function (options) {
@@ -18,8 +5,8 @@ Meteor.methods({
 		check(options, {
       page: PageNumber,
       count: Match.Optional(Boolean),
-			user_id: Match.Optional(NonEmptyString),
-			search: Match.Optional(NonEmptyString)
+			user_id: Match.Optional(NonEmptyStringNoSpecialCharacters),
+			search: Match.Optional(NonEmptyStringNoSpecialCharacters)
     });
 		
 		var response = false,
@@ -164,86 +151,6 @@ Meteor.methods({
   		
 			if (response.ratings.length > 0) {
 				var drinksQuery = addSearch({ _id: { $in: drink_ids } }, options);
-				response.drinks = Drinks.find( drinksQuery ).fetch();			
-			}  		
-  		
-  	}
-  	
-  	return response;
-	},
-	
-	getUserWishlist: function (options) {
-		
-		check(options, {
-      page: PageNumber,
-      count: Match.Optional(Boolean),
-			user_id: Match.Optional(NonEmptyString),
-			search: Match.Optional(NonEmptyString)
-    });
-		
-		var response = false,
-				page = options.page;
-		
-		if (this.userId) {
-			
-			var query = {
-				_id : this.userId
-			};
-			
-			var filter = {
-				sort: {date: -1},
-				fields: {
-					profile: 1			
-				}
-			};
-			
-			var drink_ids = [];
-			var food_ids = [];
-
-			response = {
-				wishlist: []
-			};		
-			
-			var profile = Meteor.user().profile,
-					wishlist = profile.wishlist
-					
-			if (!wishlist) {
-				return response;			
-			}
-			
-  		if (options.count) {
-				
-				// set the total count.
-  			response.count = wishlist.length;
-  			response.maxPageSize = PAGE_LIMIT;
-  			
-  		}
-  		
-  		var offset = PAGE_LIMIT*(page-1),
-					offsetMax = PAGE_LIMIT*(page),	
-					len = wishlist.length;
-
-			if (len > offsetMax) {
-				len = offsetMax;
-			}
-		
-			for (var i = offset; i < len; i += 1) {
-				var wish = wishlist[i];
-				if (wish.food_id) {
-					food_ids.push(wish.food_id)
-				} else {
-					drink_ids.push(wish.drink_id);
-				}
-  			response.wishlist.push(wish);
-			}	
-			
-			if (food_ids.length > 0) {
-				var foodsQuery = addSearch({ _id: { $in: food_ids } }, options);
-				response.foods = Foods.find( foodsQuery ).fetch();		
-			} 
-  		
-			if (drink_ids.length > 0) {
-				var drinksQuery = addSearch({ _id: { $in: drink_ids } }, options);;
 				response.drinks = Drinks.find( drinksQuery ).fetch();			
 			}  		
   		

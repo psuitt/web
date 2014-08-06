@@ -208,17 +208,20 @@ AddAchievement('COUNT_SAT', "Rate Something", 'Rate %cap different food items.',
 /**
  * Increment when any update ratings occur.
  */
-AddAchievement('COUNT_UD', "Undecided", 'Update %cap different items.', 'RATING', 10, [
-	{cap: 1, title: 'Update your First Item', description: 'Update a single item.', difficulty: 10 },
-	{cap: 100, title: 'Undecided I', difficulty: 20 },
-	{cap: 200, title: 'Undecided II', difficulty: 20 },
-	{cap: 300, title: 'Undecided III', difficulty: 20 },
-	{cap: 400, title: 'Undecided IV', difficulty: 20 },
-	{cap: 500, title: 'Undecided V', difficulty: 20 },
+AddAchievement('COUNT_UD', "Undecided", 'Update %cap different items.', 'RATING', 5, [
+	{cap: 1, title: 'Update your First Item', description: 'Update a single item.', difficulty: 5 },
+	{cap: 25, title: 'Update 25 Items', difficulty: 5 },
+	{cap: 50, title: 'Update 50 Items', difficulty: 5 },
+	{cap: 75, title: 'Update 75 Items', difficulty: 5 },
+	{cap: 100, title: 'Undecided I', difficulty: 10 },
+	{cap: 200, title: 'Undecided II', difficulty: 10 },
+	{cap: 300, title: 'Undecided III', difficulty: 10 },
+	{cap: 400, title: 'Undecided IV', difficulty: 10 },
+	{cap: 500, title: 'Undecided V', difficulty: 10 },
 	{cap: 1000, title: 'Undecided VI', difficulty: 30 },
 	{cap: 2000, title: 'Undecided VII', difficulty: 30 },
 	{cap: 3000, title: 'Undecided VIII', difficulty: 30 },
 	{cap: 4000, title: 'Undecided IX', difficulty: 30 },
 	{cap: 5000, title: 'Undecided X', difficulty: 30 },
-	{cap: 100000, title: 'Supreme Grand Master Rater of the Universe', difficulty: 1000, hidden: true }
+	{cap: 100000, title: 'Supreme Grand Master Rater of the Universe', difficulty: 500, hidden: true }
 ]);

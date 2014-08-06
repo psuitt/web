@@ -10,7 +10,7 @@ Template.foodsAdd.destroyed = function () {
 
 Template.foodsAdd.rendered = function() {
 	
-	var data = Router.getData();
+	var data = this.data;
 	
 	setPath();
 	

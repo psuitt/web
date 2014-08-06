@@ -2,7 +2,7 @@ DoSearchFlag = false;
 
 Template.results.rendered = function() {
 	setPath();
-	var data = Router.getData();
+	var data = this.data;
 	DoSearch(data.type, data.search);
 	DoSearchFlag = true;
 };

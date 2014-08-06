@@ -47,7 +47,7 @@ Router.map(function () {
     yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-		onData: function() {
+		onAfterAction: function() {
 			DoSearchFlag && DoSearch(this.params.type, this.params.search);
 		},
 		data: function() {

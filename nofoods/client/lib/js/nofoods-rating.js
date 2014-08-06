@@ -55,7 +55,7 @@
 		
 		var _setValue = function(i) {
 			self.find('span.rating').each(function() {
-				$(this).toggleClass('x100', $(this).index() <= i);						
+				$(this).toggleClass('x100', $(this).index() < i);						
 			});	
 		};
 

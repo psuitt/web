@@ -76,7 +76,9 @@ var done = function() {
 		var ratingSub = Meteor.subscribe('ratings_myfood', food._id, function() {
 			var userRating = Ratings.findOne({user_id: Meteor.userId()});
 			if (userRating) {
-				setRatingSelected(userRating.rating);
+				nofoodsRating.setValue(userRating.rating);
+			} else {
+				nofoodsRating.setValue(0);
 			}
 			ratingSub.stop();
 		});
@@ -108,12 +110,6 @@ var reload = function(response) {
 	$('.totalRating').html(response.data.rating_calc);
 	$('.totalCount').html(response.data.ratingcount_calc);
 
-};
-
-var setRatingSelected = function(n) {
-	$('div.ratingDiv span.rating').each(function() {
-		$(this).toggleClass('x100', $(this).index() <= (n-1));						
-	});	
 };
 
 

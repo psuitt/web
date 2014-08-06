@@ -74,7 +74,10 @@ NoFoods.achievements = function() {
 	
 	var _updateAchievements = function(codeList, list) {
 	
-		var updates = [];	
+		var updates = [];
+		
+		if (!list)
+			list = [];	
 	
 		for (var i = 0, l = codeList.length; i < l; i += 1) {
 

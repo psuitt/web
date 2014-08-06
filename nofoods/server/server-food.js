@@ -79,12 +79,28 @@ Meteor.methods({
 			countrycode: options.countrycode
 		};
 			
-		var brand_id = options.brand_id || Brands.insert({
-			_id: Random.id(),
-			name: options.brand,
-			locations: [address],
-			date: Date.now()
-		});
+		var brand_id = false;
+		
+		if (options.brand_id) {
+			brand_id = options.brand_id
+		} else {
+		
+			var brand = Brands.findOne({name: options.brand});
+			
+			// Matching name exists merge
+			if (brand) {
+				brand_id = brand._id;
+			} else {
+				// Create a new one
+				brand_id = Brands.insert({
+										_id: Random.id(),
+										name: options.brand,
+										locations: [], //[address], Empty for now.
+										date: Date.now()
+									});
+			}
+		
+		}
 
 		var ratingObj = {
 			_id: Random.id(),
@@ -102,7 +118,8 @@ Meteor.methods({
 			name: options.name,
 			rating_calc: options.rating,
 			ratingcount_calc: 1,
-			date: Date.now()
+			date: Date.now(),
+			user_id: this.userId
 		},
 			countryStat = false;
 			

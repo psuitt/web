@@ -73,10 +73,6 @@
 			var val = self.val().trim(),
 					type = _searchTypeMainDisplayText.html().toLowerCase();
 			if (val.length > 0) {
-				Router.setData({
-					type: type,
-					search: val
-				});
 				Router.go('results', {
 					type: type,
 					search: val
