@@ -1,5 +1,6 @@
 Meteor.startup(function () {
 
+		/*
     var myjson = {};
 		myjson = JSON.parse(Assets.getText("data/words.json"));
 			  
@@ -10,6 +11,7 @@ Meteor.startup(function () {
 				}
 			}
 		}
+		*/
 		
 		setUpStatistics();
  		

@@ -1,0 +1,1 @@
+AddAchievement('NEW', "Noob", 'Create an account.', 'NONE', 5);

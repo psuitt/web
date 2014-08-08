@@ -7,6 +7,10 @@ Accounts.config({
 Accounts.validateNewUser(function (user) {
 	if (user.username && user.username.length > 3) {
 		check(user.username, NonEmptyStringNoSpaceCharacters);
+		Statistics.update(
+			{_type: 'usercount'}, 
+			{ $inc: { count: 1 } }
+		);
 	  return true;
 	}
 	throw new Meteor.Error(403, "Username must have at least 4 alphanumeric characters");
@@ -19,10 +23,6 @@ Accounts.onCreateUser(function(options, user) {
 		date: new Date(),
 		achievements: [NoFoods.achievements.updateAchievement('NEW').updates[0].updated]	
 	};
-	Statistics.update(
-		{_type: 'usercount'}, 
-		{ $inc: { count: 1 } }
-	);
 	return user;
 });
 

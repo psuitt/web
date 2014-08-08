@@ -25,8 +25,6 @@ AddAchievement = function(code, title, description, type, difficulty, tiers) {
 	
 };
 
-AddAchievement('NEW', "Noob", 'Create an account.', 'NONE', 0);
-
 // GLOBAL FUNCTIONS
 
 NoFoods.achievements = function() {
