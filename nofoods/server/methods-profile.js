@@ -201,3 +201,20 @@ Meteor.methods({
 	}
 
 });
+
+var addSearch = function(query, options) {
+	
+	/*
+	if (options['search']) {	
+		
+		var newQuery = { $and: [ query, { keywords: {
+    	$regex: '.*' + options['search'] + '.*',
+    	$options: 'i'
+		} } ]}	
+			
+		return newQuery;	
+	}*/
+	
+	return query;
+
+};

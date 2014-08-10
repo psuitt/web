@@ -1,8 +1,3 @@
-var TypeCheck = Match.Where(function (x) {
-  check(x, String);
-  return x.toLowerCase() === "food" || x.toLowerCase() === "brand";
-});
-
 Meteor.methods({
 	
 	foodSearch: function(options) {
@@ -27,7 +22,7 @@ Meteor.methods({
     if (options.type && options.type.toLowerCase() === 'brand') {
 			var query = {
 				brand_view : {
-			    $regex: ".*" + options.search + ".*",
+			    $regex: ".*" + NoFoodz.utils.StripCharacters(options.search) + ".*",
 			    $options: 'i'
 				}
 			};  
@@ -35,7 +30,7 @@ Meteor.methods({
 	  	return response;  
     }
 	
-		var tokens = options['search'].toLowerCase().split(" "),
+		var tokens = NoFoodz.utils.Tokenize(options['search']),
 				length = 0,
 				rCountPrev = -1;
 	
@@ -94,7 +89,7 @@ Meteor.methods({
     if (options.type && options.type.toLowerCase() === 'brand') {
 			var query = {
 				brand_view : {
-			    $regex: ".*" + options.search + ".*",
+			    $regex: ".*" + NoFoodz.utils.StripCharacters(options.search) + ".*",
 			    $options: 'i'
 				}
 			};  
@@ -102,7 +97,7 @@ Meteor.methods({
 	  	return response;  
     }
 	
-		var tokens = options['search'].toLowerCase().split(" "),
+		var tokens = NoFoodz.utils.Tokenize(options['search']),
 				length = 0,
 				rCountPrev = -1;	
 	

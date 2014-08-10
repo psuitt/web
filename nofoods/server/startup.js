@@ -1,5 +1,16 @@
 Meteor.startup(function () {
 
+	var settings = Settings.findOne({'_type' : 'accounts'});
+	
+	if (!settings) {
+		var settings = {
+			_id: Random.id(),
+			_type: 'accounts',
+			disableUserCreate: false
+		};	
+			
+		Settings.insert(settings);
+	}
 		/*
     var myjson = {};
 		myjson = JSON.parse(Assets.getText("data/words.json"));

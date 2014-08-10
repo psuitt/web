@@ -3,11 +3,6 @@ Meteor.publish("foods_item", function (id) {
   return Foods.find({_id: id});
 });
 
-Meteor.publish("foods_brand", function (id) {
-	check(id, String);
-  return Foods.find( { brand_id: id } );
-});
-
 Meteor.publish("foods_toprated", function () {
 	var filter = {
 			sort: {
@@ -22,11 +17,6 @@ Meteor.publish("foods_toprated", function () {
 Meteor.publish("drinks_item", function (id) {
 	check(id, String);
   return Drinks.find({_id: id});
-});
-
-Meteor.publish("drinks_brand", function (id) {
-	check(id, String);
-  return Drinks.find( { brand_id: id } );
 });
 
 Meteor.publish("drinks_toprated", function () {

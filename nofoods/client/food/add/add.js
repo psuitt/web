@@ -26,11 +26,11 @@ Template.foodsAdd.rendered = function() {
 				$('#foodsadd-brand').attr("disabled", "disabled").val(brand.name);
 			} else {
 				brand_id = false;
-				$('#foodsadd-brand').nofoodsautocomplete();			
+				//$('#foodsadd-brand').nofoodsautocomplete();			
 			}
 		});
 	} else {
-		$('#foodsadd-brand').nofoodsautocomplete();
+		//$('#foodsadd-brand').nofoodsautocomplete();
 	}
 
 	

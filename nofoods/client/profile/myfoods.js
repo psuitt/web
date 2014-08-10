@@ -31,7 +31,6 @@ Template.myfoods.rendered = function() {
 	if (!Meteor.userId()) {
 		$("#myfoods-ratingsfoods").append("Please log in to view your ratings.");	
 		$("#myfoods-ratingsdrinks").append("Please log in to view your ratings.");		
-		alert("Not logged in!");
 		return;	
 	}
 

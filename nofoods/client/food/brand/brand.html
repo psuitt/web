@@ -1,14 +1,7 @@
 <template name="brandsTemplate">
 
-	<div class="content"> 
+	<div class="side-section left">
 	
-		<div class="brand pageheader">
-			<span></span>
-			{{#if currentUser}}
-			<a class='button' href='/food/add/{{brand_id}}'>Add Food</a>
-			{{/if}}
-		</div>
-		
 		<div id="brands-nav" class="nofoods-pagenav">
 			<ul class="nav nav-list">
     		<li class="active"><a href="#brand-details">Details</a></li>
@@ -16,6 +9,17 @@
     		<li class=""><a href="#brand-foods">Foods</a></li>
     		<li class=""><a href="#brand-drinks">Drinks</a></li>
     	</ul>
+		</div>
+		
+	</div>
+
+	<div class="content middle"> 
+	
+		<div class="brand pageheader">
+			<span></span>
+			{{#if currentUser}}
+			<a class='button' href='/food/add/{{brand_id}}'>Add Food</a>
+			{{/if}}
 		</div>
 		
 		<div id="brand-pages" class="tab-content nofoods-navpages">
@@ -38,4 +42,9 @@
 		</div>
 		
 	</div>
+	
+	<div class="side-section right">
+	
+	</div>
+	
 </template>

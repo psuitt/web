@@ -30,3 +30,8 @@ PageNumber = Match.Where(function (x) {
   check(x, Number);
   return x < 101 && x > 0;
 });
+
+TypeCheck = Match.Where(function (x) {
+  check(x, String);
+  return x.toLowerCase() === "food" || x.toLowerCase() === "brand";
+});

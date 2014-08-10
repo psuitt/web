@@ -90,3 +90,30 @@ div.imagesbutton span {
 	vertical-align: middle;
 	cursor: pointer;
 }
+
+/* Menu row */
+div.side-section {
+	display: inline-block;
+	width: 18%;
+	height: 100%;
+	position: relative;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+}
+
+div.side-section.left {
+	text-align: right;
+}
+
+div.side-section.right {
+	text-align: left;
+}
+
+div.content.middle {
+	width: 60%;
+}
+
+div.side-section .nofoods-pagenav {
+	margin: 0;
+}

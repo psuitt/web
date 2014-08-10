@@ -147,13 +147,15 @@ div.content>h3 {
 /* FOOTER */
 
 #footer {
-	bottom: 0;
+	width: 96%;
 	text-align: right;
 	color: #DAA520;
 	background: #222222;
 	display: block;
-	padding: 5px 10px;
+	padding: 5px 2%;
 	margin-top: 0;
+	position: absolute;
+	bottom: 0;
 }
 
 #footer .totalusers {

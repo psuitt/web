@@ -5,14 +5,23 @@ Accounts.config({
 
 // Validate username, sending a specific error message on failure.
 Accounts.validateNewUser(function (user) {
+	
+	var settings = Settings.findOne({'_type' : 'accounts'});
+	
+	if (settings && settings.disableUserCreate) 
+		throw new Meteor.Error(500, "Username creation is currently disabled");
+	
 	if (user.username && user.username.length > 3) {
 		check(user.username, NonEmptyStringNoSpaceCharacters);
+		// Lower case only.
+		user.username = user.username.toLowerCase();
 		Statistics.update(
 			{_type: 'usercount'}, 
 			{ $inc: { count: 1 } }
 		);
 	  return true;
 	}
+	
 	throw new Meteor.Error(403, "Username must have at least 4 alphanumeric characters");
 });
 

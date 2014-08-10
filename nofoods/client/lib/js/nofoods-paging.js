@@ -17,13 +17,15 @@
 		
 		if (options)
 			_options = $.extend(_options, options);	
+			
+		_options.max = Math.round(_options.max);
 
 		var firstArrow = $("<span class='first arrow' title='First Page'>&#60;&#60;</span>"),
 				leftArrow = $("<span class='left arrow disabled' title='Page Left'>&#60;</span>"),
 				rightArrow = $("<span class='right arrow' title='Page Right'>&#62;</span>"),
 				lastArrow = $("<span class='last arrow' title='Last Page'>&#62;&#62;</span>"),
 				lastPage = MAX_PAGE_AMOUNT,
-				maxVal = Math.round(_options.max);
+				maxVal = _options.max;
 				
 		self.addClass('pagingdiv');
 		
@@ -34,7 +36,7 @@
 			_options.max = newMax;
 			
 			lastPage = MAX_PAGE_AMOUNT;
-			maxVal= Math.round(_options.max);
+			maxVal= _options.max;
 			
 			if (maxVal < lastPage) 
 				lastPage = maxVal;
@@ -103,7 +105,7 @@
 			}
 		};
 		
-		if (_options.max < MAX_PAGE_AMOUNT) {
+		if (_options.max < 2) {
 			// Return now there is no paging needed.
 			self.addClass('no-border');			
 			return obj;

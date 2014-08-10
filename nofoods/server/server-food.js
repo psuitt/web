@@ -23,17 +23,6 @@ Drinks.allow({
     return false;
   }
 });
-
-var tokenize = function(s) {
-	var l = s.toLowerCase();
-	var sp = l.split(" ");
-	var uniqueArray = [];
-	for (var i = 0, l = sp.length; i < l ; i += 1) {
-		if (uniqueArray.indexOf(sp[i]) === -1)
-			uniqueArray.push(sp[i]);	
-	};
-	return uniqueArray;
-};
  
 Meteor.methods({
 
@@ -63,7 +52,7 @@ Meteor.methods({
     if (!Meteor.user().active) 
     	throw new Meteor.Error(500, "Adding is currently disabled for your account.");
 
-		var tokens = tokenize(options.name + " " + options.brand);
+		var tokens = NoFoodz.utils.Tokenize(options.name + " " + options.brand);
 
 		Meteor.call('validate', tokens);
 		
@@ -96,7 +85,8 @@ Meteor.methods({
 										_id: Random.id(),
 										name: options.brand,
 										locations: [], //[address], Empty for now.
-										date: Date.now()
+										date: Date.now(),
+										user_id: this.userId
 									});
 			}
 		
