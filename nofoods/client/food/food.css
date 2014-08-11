@@ -95,6 +95,7 @@ div.imagesbutton span {
 div.side-section {
 	display: inline-block;
 	width: 18%;
+	min-height: 600px;
 	height: 100%;
 	position: relative;
 	vertical-align: top;
@@ -111,6 +112,7 @@ div.side-section.right {
 }
 
 div.content.middle {
+	min-height: 600px;
 	width: 60%;
 }
 

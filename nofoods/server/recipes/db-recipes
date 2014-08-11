@@ -1,6 +1,6 @@
-Words = new Meteor.Collection("words");
+Recipes = new Meteor.Collection("recipes");
 
-Words.allow({
+Recipes.allow({
   insert: function () {
     return false;
   },
@@ -11,10 +11,4 @@ Words.allow({
     // not possibly yet
     return false;
   }
-});
-
-Meteor.methods({
-
-
-
 });

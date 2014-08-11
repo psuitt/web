@@ -54,7 +54,39 @@ NoFoods.lib.key = function() {
 
 NoFoods.widgetlib = function() {
 	
+	var _floatMenu = function(div) {
+	
+		var $sidebar   = div, 
+        $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 15;
+
+    $window.scroll(function() {
+    	var st = $(window).scrollTop();
+	    var ot = $("#mainContent").offset().top;
+	    var s = div;
+	    if(st > ot) {
+	        s.css({
+	            position: "fixed",
+	            top: "30%"
+	        });
+	    } else {
+	        if(st <= ot) {
+	            s.css({
+	                position: "relative",
+	                top: ""
+	            });
+	        }
+	    }
+    });
+    	
+	};
+	
 	return {
+		
+		floatMenu: function(div) {
+			_floatMenu(div);
+		},
 		
 		createRatingDiv: function(rating) {
 

@@ -2,8 +2,9 @@
 
 	<div class="side-section left">
 	
-		<div id="brands-nav" class="nofoods-pagenav">
+		<div id="brands-nav" class="nofoods-pagenav floating">
 			<ul class="nav nav-list">
+				<li class="nav-header brand-name nofoodz-header">Ratings</li>
     		<li class="active"><a href="#brand-details">Details</a></li>
     		<li class="nav-header">Ratings</li>
     		<li class=""><a href="#brand-foods">Foods</a></li>
@@ -16,7 +17,7 @@
 	<div class="content middle"> 
 	
 		<div class="brand pageheader">
-			<span></span>
+			<span class="brand-name"></span>
 			{{#if currentUser}}
 			<a class='button' href='/food/add/{{brand_id}}'>Add Food</a>
 			{{/if}}

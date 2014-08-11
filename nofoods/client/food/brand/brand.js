@@ -17,6 +17,8 @@ Template.brandsTemplate.rendered = function() {
 		$(this).tab('show');	
 	}); 
 	
+	NoFoods.widgetlib.floatMenu($('#brands-nav'));
+	
 };
 
 var done = function() {
@@ -26,7 +28,7 @@ var done = function() {
 	if(!brand)
 		Router.go('/404');
 
-	$('.brand.pageheader span').html(brand.name);
+	$('.brand-name').html(brand.name);
 	
 	var obj = {
 		brand_id: PARAMS._id	

@@ -1,5 +1,14 @@
+html {
+	min-height: 100%;
+	height: auto;
+	margin: 0;
+}
+
 body {
 	font-family: 'Lato', helvetica, sans-serif;
+	min-height:100%;
+	height: auto;
+	margin: 0;
 }
 
 /* BOOTSTRAP OVERRIDE */
@@ -23,6 +32,11 @@ a {
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
 	background-color: #255DAF;
+}
+
+.nav-header.nofoodz-header {
+	color: #800000;
+	font-size: 16px;
 }
 
 /* DEFAULTS  */
@@ -70,6 +84,8 @@ div.page-message {
 }
 
 #mainContent {
+	min-height: 600px;
+	height: auto;
 	background: rgb(245,245,245);/* rgb(240,248,255); Alice Blue */
 	/*background-image: url('/backgrounds/denver_colorado.png');*/
 	background-repeat: repeat-y;
@@ -145,6 +161,11 @@ div.content>h3 {
 }
 
 /* FOOTER */
+
+footer {
+	position: absolute;
+	width: 100%;
+}
 
 #footer {
 	width: 96%;
