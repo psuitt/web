@@ -137,7 +137,7 @@ Meteor.methods({
 				throw new Meteor.Error(501, "The server does not support this functionality");
 		}
 		
-		var rating_Id = Ratings.insert(ratingObj);
+		var rating_Id = NoFoodz.rating.create(ratingObj);
 		
 		if (countryStat) {
 			Meteor.call('addCountry', countryStat);
@@ -180,13 +180,13 @@ Meteor.methods({
 			if (options.rating === 6)
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
-			var rating_Id = NoFoods.rating.create({
+			var rating_Id = NoFoodz.rating.create({
 				_id: Random.id(),
 				food_id: options._id,
 				user_id: this.userId, 
 				rating: options.rating,
 				date: Date.now()
-			}, this.userId);
+			});
 			
 		} else {
 			
@@ -199,7 +199,7 @@ Meteor.methods({
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
 			
-			NoFoods.rating.updateOne(userRating, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
+			NoFoodz.rating.updateOne(userRating, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
 		
 		}
 
@@ -254,13 +254,13 @@ Meteor.methods({
 			if (options.rating === 6)
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 
-			var rating_Id = NoFoods.rating.create({
+			var rating_Id = NoFoodz.rating.create({
 				_id: Random.id(),
 				drink_id: options._id,
 				user_id: this.userId, 
 				rating: options.rating,
 				date: Date.now()
-			}, this.userId);
+			});
 
 		} else {
 			if (userRating.rating === 6 && options.rating !== 6) {
@@ -268,7 +268,7 @@ Meteor.methods({
 			} else if (userRating.rating !== 6 && options.rating === 6) {
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": -1 } } );
 			}
-			NoFoods.rating.updateOne(userRating, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
+			NoFoodz.rating.updateOne(userRating, { $set: { rating: options.rating, date: Date.now() } }, this.userId );
 		}
 
 		//Recalculate Rating total

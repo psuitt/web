@@ -84,7 +84,7 @@ Meteor.methods({
     });
     
     if (!this.userId)
-      throw new Meteor.Error(403, "You must be logged in");
+      throw new Meteor.Error(403, "You must be logged in to perform this function");
 		
 		var query = {
 			_id: this.userId, 
@@ -100,8 +100,15 @@ Meteor.methods({
 				date: Date.now()
 			};
 			
-			Meteor.users.update({_id: this.userId}, { $addToSet: { "profile.links": link } });
+			Meteor.users.update({_id: this.userId}, { $push: { "profile.links": link } });
+			
 		}
+		
+		var notification = {
+			user_id: this.userId
+		};
+		
+		Meteor.users.update({username: options.username}, { $addToSet: { "notifications": notification } });	
 
 	},
 
@@ -112,9 +119,10 @@ Meteor.methods({
     });
     
     if (!this.userId)
-      throw new Meteor.Error(403, "You must be logged in");
+      throw new Meteor.Error(403, "You must be logged in to perform this function");
 		
 		Meteor.users.update({_id: this.userId}, { $pull: { "profile.links": { username: options.username } } });
+		Meteor.users.update({username: options.username}, { $pull: { "notifications": { user_id: this.userId } } });
 
 	},
 	

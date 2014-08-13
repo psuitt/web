@@ -35,7 +35,7 @@ NoFoods.lib = function() {
 		},
 		
 		createBrandLink: function(id, name) {
-			return $("<a></a>").attr('href', '/brand/page/' + id).html(name);
+			return $('<a></a>').attr('href', '/brand/page/' + id).html(name);
 		}
 		
 	};
@@ -56,29 +56,7 @@ NoFoods.widgetlib = function() {
 	
 	var _floatMenu = function(div) {
 	
-		var $sidebar   = div, 
-        $window    = $(window),
-        offset     = $sidebar.offset(),
-        topPadding = 15;
-
-    $window.scroll(function() {
-    	var st = $(window).scrollTop();
-	    var ot = $("#mainContent").offset().top;
-	    var s = div;
-	    if(st > ot) {
-	        s.css({
-	            position: "fixed",
-	            top: "30%"
-	        });
-	    } else {
-	        if(st <= ot) {
-	            s.css({
-	                position: "relative",
-	                top: ""
-	            });
-	        }
-	    }
-    });
+		div.jScroll( { top: 50 } );
     	
 	};
 	
