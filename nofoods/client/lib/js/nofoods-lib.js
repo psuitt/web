@@ -56,7 +56,7 @@ NoFoods.widgetlib = function() {
 	
 	var _floatMenu = function(div) {
 	
-		div.jScroll( { top: 50 } );
+		div.jScroll();
     	
 	};
 	

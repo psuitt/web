@@ -174,6 +174,9 @@ Meteor.methods({
 		if (bonusHearts < 1 && options.rating > 5) {
 			throw new Meteor.Error(500, "You can not rate thins above a 5");
 		}
+		
+		var ratingDiff = options.rating,
+				countDiff = 1;
 	
 		if (!userRating) {
 
@@ -190,6 +193,10 @@ Meteor.methods({
 			
 		} else {
 			
+			// No adjustments are needed.
+			countDiff = 0;
+			ratingDiff -= userRating.rating;
+			
 			if (userRating.rating === 6 && options.rating !== 6) {
 				
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": 1 } } );
@@ -204,22 +211,30 @@ Meteor.methods({
 		}
 
 		//Recalculate Rating total
-		var foodRatings = Ratings.find({food_id: options._id}),
-				count = foodRatings.count();
-		var total = 0;
-
-		foodRatings.forEach(function(rating) {
-			total += rating.rating;
-		});
-
+		var food = Foods.findOne( { _id : options._id } ),
+				total = 0;
+		
+		if (!food.ratingtotal_calc) {
+			total = food.rating_calc * food.ratingcount_calc;	
+		} else {
+			total = food.ratingtotal_calc;
+		}
+		
+		total += ratingDiff;
+		count = food.ratingcount_calc + countDiff
+		
 		var avg = (total/parseFloat(count)).toFixed(2);
-
+		
 		if (avg.lastIndexOf('0') === 3) {
 			avg = avg.substring(0, 3);
 			avg = avg.replace('.0', '');
 		}
 
-		Foods.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
+		Foods.update(options._id, { $set: {
+			rating_calc: avg, 
+			ratingtotal_calc: total,
+			ratingcount_calc: count 
+			} } );
 		
 		return {rating_calc: avg, ratingcount_calc: count};
 
@@ -248,6 +263,9 @@ Meteor.methods({
 		if (bonusHearts < 1 && options.rating > 5) {
 			throw new Meteor.Error(500, "You can not rate this above a 5");
 		}
+		
+		var ratingDiff = options.rating,
+				countDiff = 1;
 
 		if (!userRating) {
 			
@@ -263,6 +281,11 @@ Meteor.methods({
 			});
 
 		} else {
+			
+			// No adjustments are needed.
+			countDiff = 0;
+			ratingDiff -= userRating.rating;
+			
 			if (userRating.rating === 6 && options.rating !== 6) {
 				Meteor.users.update({_id: this.userId}, { $inc: { "profile.bonusHearts": 1 } } );
 			} else if (userRating.rating !== 6 && options.rating === 6) {
@@ -272,22 +295,30 @@ Meteor.methods({
 		}
 
 		//Recalculate Rating total
-		var drinkRatings = Ratings.find({drink_id: options._id}),
-				count = drinkRatings.count();
-		var total = 0;
-
-		drinkRatings.forEach(function(rating) {
-			total += rating.rating;
-		});
-
+		var drink = Drinks.findOne( { _id : options._id } ),
+				total = 0;
+		
+		if (!drink.ratingtotal_calc) {
+			total = drink.rating_calc * drink.ratingcount_calc;	
+		} else {
+			total = drink.ratingtotal_calc;
+		}
+		
+		total += ratingDiff;
+		count = drink.ratingcount_calc + countDiff
+		
 		var avg = (total/parseFloat(count)).toFixed(2);
-
+		
 		if (avg.lastIndexOf('0') === 3) {
 			avg = avg.substring(0, 3);
 			avg = avg.replace('.0', '');
 		}
 
-		Drinks.update(options._id, { $set: {rating_calc: avg, ratingcount_calc: count } } );
+		Drinks.update(options._id, { $set: {
+			rating_calc: avg, 
+			ratingtotal_calc: total,
+			ratingcount_calc: count 
+			} } );
 
 		return {rating_calc: avg, ratingcount_calc: count};
 

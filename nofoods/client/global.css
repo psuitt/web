@@ -200,14 +200,19 @@ span.logo a:hover {
 	vertical-align: middle;
 	line-height: 24px;
 }
+/* Menu CSS */
 
 #menu {
+	position:fixed;
+	top: 0;
+	min-width: 1000px;
+	width: 100%;
 	padding: 0;
 	margin: 0;
 	background: rgb(245,245,245);
 	height: 45px;
-	min-width: 1000px;
 	overflow: visible;
+	z-index: 500;
 }
 
 div.menu-horizontal ul {
@@ -232,6 +237,19 @@ div.menu-horizontal ul.menu li a:hover {
 
 div.menu-horizontal ul.menu li.selected {
 	background: rgb(230,230,230);
+}
+
+div.menu-horizontal ul.menu li ul {
+	display: none;
+	position: absolute;
+	background: rgb(245,245,245);
+	border: 1px solid #800000;
+	border-top: 0;
+	top:45px;
+}
+
+div.menu-horizontal ul.menu li:hover > ul {
+	display: block;
 }
 
 #links {
@@ -316,6 +334,7 @@ div.searchbar button:hover {
 /* Header */
 
 #header {
+	margin-top: 45px;
 	min-height: 200px;
 	background: rgb(245,245,245);
 	background-image: url('/backgrounds/denver_colorado.png');

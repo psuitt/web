@@ -77,6 +77,20 @@ Router.map(function () {
 			return this.params;
 		}
   });
+  
+  this.route('addRecipe', {
+    path:'/food/addrecipe',
+    template: 'addRecipe',
+		layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    onBeforeAction: function () {
+    },
+		data: function() {
+		
+		}
+  });
 
 	this.route('foodsPage', {
     path: '/food/page/:_id',
