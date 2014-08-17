@@ -17,7 +17,7 @@ UPDATE_METHODS['RATING'] = function(code) {
 		self = _.extend(self, tier);
 		self.description = self.description.replace('%cap', tier.cap);
 		
-		returned.nextAchievement = false;		
+		returned.nextAchievement = self;		
 		
 	} else {
 		
@@ -33,7 +33,7 @@ UPDATE_METHODS['RATING'] = function(code) {
 		
 	} else if (self.progress.current > self.cap && parentAchievement.tiers) {
 		
-		var nextLevel = self.tierLevel += 1,
+		var nextLevel = self.tierLevel + 1,
 				tier = parentAchievement.tiers[nextLevel],
 				len = parentAchievement.tiers.length;
 				

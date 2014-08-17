@@ -57,6 +57,10 @@ NoFoods.widgetlib = function() {
 	var _floatMenu = function(div) {
 	
 		div.jScroll();
+		div.on('click', 'li>a', function() {
+			$('html, body').animate(
+				{scrollTop: ($("#mainContent").offset().top - 45)}, 200);		
+		});
     	
 	};
 	

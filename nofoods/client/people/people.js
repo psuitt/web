@@ -13,7 +13,7 @@ Template.people.rendered = function() {
 		
 		var displayName = user.profile.name ? user.profile.name : user.username;	
 		
-		$('#people-name').html(displayName);		
+		$('.people-name').html(displayName);		
 		
 		findUserRatings(user);
 		
@@ -23,6 +23,8 @@ Template.people.rendered = function() {
 		});
 		
 		loadUserData();
+		
+		NoFoods.widgetlib.floatMenu($('#people-nav'));
 		
 	});
 	

@@ -51,7 +51,7 @@
 		// Private 
 		function location($element)
 		{
-			this.min = $element.offset().top;
+			this.min = $element.offset().top - 50;
 			this.originalMargin = parseInt($element.css("margin-top"), 10) || 0;
 			
 			this.getMargin = function ($window)
@@ -74,7 +74,7 @@
     // Public: Default values
     $.fn.jScroll.defaults = {
         speed	:	"fast",
-				top		:	45
+				top		:	0
     };
 
 })(jQuery);

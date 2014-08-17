@@ -27,6 +27,8 @@ Template.myfoods.rendered = function() {
 		e.preventDefault();	
 		$(this).tab('show');	
 	});
+	
+	NoFoods.widgetlib.floatMenu($('#myfoods-nav'));
 
 	if (!Meteor.userId()) {
 		$("#myfoods-ratingsfoods").append("Please log in to view your ratings.");	

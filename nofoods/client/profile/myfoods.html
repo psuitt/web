@@ -1,9 +1,9 @@
 <template name="myfoods">
-	<div class="content" >
-		<div class="alertmessage alert alert-success" >Success message test!</div>
-		<h3 class="pagetitle" >MyFoods</h3>
-		<div id="myfoods-nav">
+	
+	<div class="side-section left">
+		<div id="myfoods-nav" class="nofoods-pagenav floating">
 			<ul class="nav nav-list">
+				<li class="nav-header nofoodz-header">MyFoodz</li>
     		<li class="active"><a href="#myfoods-profile">Profile</a></li>
     		<li class="nav-header">Ratings</li>
     		<li class=""><a href="#myfoods-foods">Foods</a></li>
@@ -14,6 +14,12 @@
 				<li class=""><a href="#myfoods-achievementspage">Achievements</a></li>
     	</ul>
 		</div>
+	</div>
+	
+	<div class="content middle" >
+		<div class="alertmessage alert alert-success" >Success message test!</div>
+		<h3 class="pagetitle" >MyFoodz</h3>
+		
 		<div id="myfoods-pages" class="tab-content">
 
 			<div class="tab-pane active" id="myfoods-profile">
@@ -25,36 +31,37 @@
 			</div>
 	
 			<div class="tab-pane" id="myfoods-foods">
-				<div class="pagetitle">Food Ratings</div>
 				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your foods...">
 				<div id="myfoods-ratingsfoods"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 			
 			<div class="tab-pane" id="myfoods-drinks">
-				<div class="pagetitle">Drink Ratings</div>
 				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your drinks...">
 				<div id="myfoods-ratingsdrinks"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 
 			<div class="tab-pane" id="myfoods-wishlistpage">
-				<div class="pagetitle">Wishlist</div>
 				<div id="myfoods-wishlist"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 			
 			<div class="tab-pane" id="myfoods-linkspage">
-				<div class="pagetitle">Links</div>
 				<div id="myfoods-links"></div>
 			</div>
 			
 			<div class="tab-pane" id="myfoods-achievementspage">
-				<div class="pagetitle">Achievements<span class="achievementPoints"></span></div>
+				<div class="pagetitle">Achievement Points<span class="achievementPoints"></span></div>
 				<div id="myfoods-achievements"></div>
 			</div>
 		
 		</div>
 		
 	</div>
+	
+	<div class="side-section right">
+	
+	</div>
+	
 </template>

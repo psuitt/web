@@ -1,18 +1,24 @@
 <template name="people">
-	<div class="content" >
-		<h3 class='pagetitle username'>
-			<span id="people-name"></span>
-			<span class="wishstar" title="Click to link"></span>
-		</h3>
-		
-		<div id="people-nav" class="nofoods-pagenav">
+
+	<div class="side-section left">
+	
+		<div id="people-nav" class="nofoods-pagenav floating">
 			<ul class="nav nav-list">
+				<li class="nav-header people-name nofoodz-header">Ratings</li>
     		<li class="active"><a href="#people-details">Details</a></li>
     		<li class="nav-header">Ratings</li>
     		<li class=""><a href="#people-foods">Foods</a></li>
     		<li class=""><a href="#people-drinks">Drinks</a></li>
     	</ul>
 		</div>
+		
+	</div>
+
+	<div class="content middle" >
+		<h3 class='pagetitle username'>
+			<span class="people-name"></span>
+			<span class="wishstar" title="Click to link"></span>
+		</h3>
 		
 		<div id="people-pages" class="tab-content nofoods-navpages paging">
 
@@ -21,13 +27,11 @@
 			</div>
 	
 			<div class="tab-pane" id="people-foods">
-				<label>Foods List</label>
 				<div id="people-foodsList"></div>
 				<div class="people-paging"></div>
 			</div>
 			
 			<div class="tab-pane" id="people-drinks">
-				<label>Drinks List</label>
 				<div id="people-drinksList"></div>
 				<div class="people-paging"></div>
 			</div>
@@ -35,4 +39,9 @@
 		</div>
 
 	</div>
+	
+	<div class="side-section right">
+		
+	</div>
+	
 </template>

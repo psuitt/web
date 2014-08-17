@@ -13,8 +13,10 @@ Template.brandsTemplate.rendered = function() {
 	});
 	
 	$('.nofoods-pagenav a').click(function(e) {
-		e.preventDefault();	
-		$(this).tab('show');	
+		if (!$(this).hasClass('button')) {
+			e.preventDefault();
+			$(this).tab('show');	
+		}
 	}); 
 	
 	NoFoods.widgetlib.floatMenu($('#brands-nav'));

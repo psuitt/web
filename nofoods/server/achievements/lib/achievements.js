@@ -88,15 +88,11 @@ NoFoods.achievements = function() {
 			
 			var update = _handleSingleUpdate(codeList[i], oldAchievement);
 			
-			if (aIndex) {
-				list[aIndex] = update.updated;			
-			} else {
-				list.push(update.updated);			
-			}
-			
 			if (update.nextAchievement)	{
 				list.push(update.nextAchievement);			
-			}		
+			}	else if (aIndex && update.updated) {
+				list[aIndex] = update.updated;			
+			}
 			
 			updates.push(update);
 		

@@ -9,6 +9,10 @@
     		<li class="nav-header">Ratings</li>
     		<li class=""><a href="#brand-foods">Foods</a></li>
     		<li class=""><a href="#brand-drinks">Drinks</a></li>
+    		<li class="nav-header">Options</li>
+    		{{#if currentUser}}
+					<li class=""><a class="button" href="/food/add/{{brand_id}}">Add Food</a></li>
+				{{/if}}
     	</ul>
 		</div>
 		
@@ -18,9 +22,6 @@
 	
 		<div class="brand pageheader">
 			<span class="brand-name"></span>
-			{{#if currentUser}}
-			<a class='button' href='/food/add/{{brand_id}}'>Add Food</a>
-			{{/if}}
 		</div>
 		
 		<div id="brand-pages" class="tab-content nofoods-navpages">
@@ -31,12 +32,10 @@
 			</div>
 	
 			<div class="tab-pane" id="brand-foods">
-				<label>Foods List</label>
 				<div id="brand-foodsList"></div>
 			</div>
 			
 			<div class="tab-pane" id="brand-drinks">
-				<label>Drinks List</label>
 				<div id="brand-drinksList"></div>
 			</div>
 		

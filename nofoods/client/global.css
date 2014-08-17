@@ -35,8 +35,10 @@ a {
 }
 
 .nav-header.nofoodz-header {
-	color: #800000;
+	color: #DAA520;
 	font-size: 16px;
+	text-transform: none;
+	border-bottom: 2px solid;
 }
 
 /* DEFAULTS  */
@@ -45,7 +47,8 @@ div.pageheader {
 	color: #DAA520;
 	padding: 3px 10px;
 	background-color: #222222;
-	line-height: 40px;
+	line-height: normal;
+	padding: 7px 10px;
 	margin-bottom:10px;
 	font-size: 24.5px;
 	font-weight: 700;
@@ -55,28 +58,9 @@ h3.pagetitle.username {
 	color: #FFFFFF;
 }
 
-h3.pagetitle span {
-	vertical-align: middle;
-}
-
-div.pageheader a {
-	float: right;
-	display: inline-block;
-	padding: 0;
-	font-size: 16px;
-	margin: auto;
-	vertical-align: middle;
-}
-
-div.pageheader a.button {
-	text-align: center;
-	color: white;
-	cursor: pointer;
-}
-
-div.pageheader a:hover {
-	text-decoration: none;
-	color: #255DAF;
+h3.pagetitle span.wishstar {
+	vertical-align: top;
+	margin-top: 3.5px;
 }
 
 div.page-message {
@@ -243,13 +227,21 @@ div.menu-horizontal ul.menu li ul {
 	display: none;
 	position: absolute;
 	background: rgb(245,245,245);
-	border: 1px solid #800000;
 	border-top: 0;
 	top:45px;
+	box-shadow: 0 2px 5px 2px #255DAF;
+	-moz-box-shadow: 0 2px 5px #255DAF;
+	-webkit-box-shadow: 0 2px 5px #255DAF;
 }
 
 div.menu-horizontal ul.menu li:hover > ul {
 	display: block;
+}
+
+div.menu-horizontal ul.menu li ul li {
+	font-size: 14px;
+	line-height: 14px;
+	padding: 5px 20px 5px 5px;
 }
 
 #links {
@@ -412,6 +404,27 @@ div.nofoods-pagenav {
 	margin-right:10px;
 	vertical-align: top;
 	display:inline-block;
+}
+
+div.nofoods-pagenav a.button {
+	float: right;
+	display: inline-block;
+	padding: 0;
+	font-size: 16px;
+	margin: auto;
+	vertical-align: middle;
+}
+
+div.nofoods-pagenav  a.button {
+	text-align: center;
+	color: #800000;
+	cursor: pointer;
+}
+
+div.nofoods-pagenav a.button:hover {
+	text-decoration: none;
+	background-color: inherit;
+	color: #800000;
 }
 
 div.nofoods-navpages {
