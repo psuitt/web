@@ -27,9 +27,11 @@ Meteor.publish("userdata", function () {
 
 //Search user names
 Meteor.publish("users_search", function (username) {
-  if (this.userId) {
-		check(username, String);
 	
+	check(username, NonEmptyStringNoSpaceCharacters);
+	
+  if (this.userId) {
+
 		var query = {
 		username : {
     	$regex: ".*" + username + ".*",

@@ -28,7 +28,7 @@ NoFoodz.notifications = function () {
 				Meteor.users.update({_id: element.user_id}, { 
 					$push: { "profile.notifications": {
 						$each: [notification],
-						$slice: -15
+						$slice: -10
 						} } 
 				});
 			});
