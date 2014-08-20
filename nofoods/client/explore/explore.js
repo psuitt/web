@@ -111,8 +111,8 @@ var menuClick = function() {
 		collection.find({}).forEach(function(item) {
 			var listItem = $("<li></li>");
 			var div = $("<div class='myrating myfoods'></div>");
-			var title = $("<span class='name myfoods'><a target='_blank' ></a></span>");
-			var brand = $("<span class='brand myfoods'><a target='_blank' ></a></span>");
+			var title = $("<span class='name myfoods'><a></a></span>");
+			var brand = $("<span class='brand myfoods'><a></a></span>");
 
 			title.addClass("lower");									
 				

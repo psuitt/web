@@ -6,19 +6,25 @@ NoFoodz.rating = function() {
 		
 		var rating_Id = Ratings.insert(json);
 		var user_id = json.user_id;
-		var	user = Meteor.users.findOne( {_id: user_id} );
+		var	user = Meteor.users.findOne( {_id: user_id}, {
+			fields: {
+				achievements: 1				
+			}
+		} );
+		
 		var achievements = false;
 		
 		if (json.food_id) {
-			achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_F'], user.profile.achievements).updatedList;			
+			achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_F'], user.achievements).updatedList;			
 		} else {
-			achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_D'], user.profile.achievements).updatedList;			
+			achievements = NoFoods.achievements.updateAchievement(['COUNT_A', 'COUNT_D'], user.achievements).updatedList;			
 		}
 
 		if (achievements)
-			Meteor.users.update({_id: user_id}, { $set: { "profile.achievements": achievements } } );
+			Meteor.users.update({_id: user_id}, { $set: { "achievements": achievements } } );
 			
-		NoFoodz.notifications.notify(user_id, {date: new Date()});
+		var noti = NoFoodz.notifications.create(NoFoodz.notifications.types.RATING, json);
+		NoFoodz.notifications.notify(user_id, noti);
 			
 		return rating_Id;
 	
@@ -32,19 +38,21 @@ NoFoodz.rating = function() {
 		
 		if (user_id) {
 			
-			var	user = Meteor.users.findOne( {_id: user_id} );
+			var	user = Meteor.users.findOne( {_id: user_id}, {
+				fields: {
+					achievements: 1				
+				}
+			} );
 			var achievements = false;
 			
 			if (ratingUpdate.food_id) {
-				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.achievements).updatedList;			
 			} else {
-				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.profile.achievements).updatedList;			
+				achievements = NoFoods.achievements.updateAchievement(['COUNT_UD'], user.achievements).updatedList;			
 			}
 
 			if (achievements)
-				Meteor.users.update({_id: user_id}, { $set: { "profile.achievements": achievements } } );
-				
-			NoFoodz.notifications.notify(user_id, {date: new Date()});
+				Meteor.users.update({_id: user_id}, { $set: { "achievements": achievements } } );
 			
 		}
 	

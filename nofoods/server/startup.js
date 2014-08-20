@@ -1,16 +1,5 @@
 Meteor.startup(function () {
-
-	var settings = Settings.findOne({'_type' : 'accounts'});
 	
-	if (!settings) {
-		var settings = {
-			_id: Random.id(),
-			_type: 'accounts',
-			disableUserCreate: false
-		};	
-			
-		Settings.insert(settings);
-	}
 		/*
     var myjson = {};
 		myjson = JSON.parse(Assets.getText("data/words.json"));
@@ -24,7 +13,9 @@ Meteor.startup(function () {
 		}
 		*/
 		
-		setUpStatistics();
+	setUpStatistics();
+		
+	runBatchFixes();
  		
 });
 
@@ -47,5 +38,22 @@ var setUpStatistics = function() {
 			Statistics.insert(stat);
 			
 		}
+
+};
+
+var runBatchFixes = function() {
+
+	var userCursor = Meteor.users.find({});
+	
+	userCursor.forEach(function(user) {
+
+		if (user.profile.achievements) {
+			
+			Meteor.users.update({_id: user._id}, { $set: { "achievements": user.profile.achievements } } );
+			Meteor.users.update({_id: user._id}, { $unset: { "profile.achievements": 1 } } );
+		
+		}
+
+	});
 
 };

@@ -2,11 +2,67 @@ NoFoodz = typeof NoFoodz === 'undefined' ? {} : NoFoodz;
 
 NoFoodz.notifications = function () {
 
-	var _notification = function(options) {
+	var _types = {
+		GENERIC: "generic",
+		RATING: "rating"
+	};
+	
+	var _messageMethods = {};
+	
+	_messageMethods[_types.RATING] = function() {
+
+		var item;
+		var href;
+		var	user = Meteor.users.findOne( {_id: this.user_id}, {
+			fields: {
+				username: 1				
+			}
+		} );
+		var filter = {
+			fields: {
+				name: 1		
+			}
+		};
+	
+		if (this.food_id) {
+			item = Foods.findOne( { _id: this.food_id}, filter );
+			href = NoFoodz.consts.urls.FOOD;
+			href += this.food_id;
+		} else {
+			item = Drinks.findOne( { _id: this.drink_id}, filter );
+			href = NoFoodz.consts.urls.DRINK;
+			href += this.drink_id;	
+		}
+		
+		var message = '';
+		
+		message += user.username;
+		message += ' rated <a href=\''
+		message += href
+		message += '\'>';
+		message += item.name;
+		message += '</a> '
+		message += this.rating;
+		message += ' hearts.';
+		
+		return message;
+	
+	};
+
+	var _createNotification = function(type, options) {
+	
+		var message = options.message;	
+	
+		if (_messageMethods[type]) {
+			message = _messageMethods[type].call(options);		
+		}	
 	
 		var notification = {
-			date: options.date		
+			message: message,
+			date: new Date()	
 		};	
+		
+		return notification;
 	
 	};
 
@@ -38,8 +94,9 @@ NoFoodz.notifications = function () {
 	};
 
 	return {
-		notify: function(user_id, notification) { _notify(user_id, notification); },
-		createNotification: function(options) { return _notification(options); }
+		types: function() { return _.extend({}, _types); }(),
+		notify: function(user_id, notification) { return _notify(user_id, notification); },
+		create: function(type, options) { return _createNotification(type, options); }
 	};
 
 }();

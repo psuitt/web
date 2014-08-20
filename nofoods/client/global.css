@@ -271,8 +271,56 @@ div.menu-horizontal ul.menu li ul li {
 }
 
 #menu-logindiv {
-	margin-top:13px;
+	margin-top:11px;
 	vertical-align: top;
+	overflow: visible;
+	height: auto;
+}
+
+#notifications {
+	color: #FFF;
+	background: none repeat scroll 0% 0% #255DAF;
+	padding: 2px 8px;
+	font-size: 18px;
+	font-weight: 700;
+	cursor: pointer;
+	opacity: 0.8;
+	vertical-align: middle;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+#notifications.open {
+	opacity: 1;
+}
+
+#notifications:hover {
+	opacity: 1;
+}
+
+#notificationsList {
+	display: none;
+	position: fixed;
+	background: rgb(245,245,245);
+	border-top: 0;
+	top:45px;
+	box-shadow: 0 2px 5px 2px #255DAF;
+	-moz-box-shadow: 0 2px 5px #255DAF;
+	-webkit-box-shadow: 0 2px 5px #255DAF;
+	list-style: none;
+}
+
+#notificationsList.open {
+	display: block;
+}
+
+#notificationsList li {
+	display: block;
+	text-align: left;
+}
+
+#login-buttons {
+	vertical-align: middle;
 }
 
 /* MAIN SEARCH */

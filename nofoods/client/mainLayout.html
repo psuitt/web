@@ -27,6 +27,11 @@
 				<input type="text" />
 			</div>
 			<div id="menu-logindiv">
+				{{#if currentUser}}		
+				<span id="notifications">+</span>
+				<ul id="notificationsList">
+				</ul>	
+				{{/if}}	
 		  	{{> loginButtons align="right"}}
 		  </div>
 		</div>

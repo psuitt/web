@@ -16,7 +16,7 @@ Meteor.publish("userdata", function () {
 			fields: {
 				username: 1,
 				profile: 1,
-				notifications: 1				
+				achievements: 1				
 			}
 		};
   	return Meteor.users.find(query, filter);

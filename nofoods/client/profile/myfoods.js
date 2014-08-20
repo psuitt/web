@@ -46,9 +46,7 @@ Template.myfoods.rendered = function() {
 			$('#myfoods-name').val(user.profile.name);
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			loadLinks(user.profile.links);
-			loadAchievements(user.profile.achievements);
-			var test = NoFoods.achievements.updateAchievement('COUNT_X', user.profile.achievements);
-			var achievements = test.updatedList;			
+			loadAchievements(user.achievements);		
 
 		}
 		
@@ -160,6 +158,8 @@ var loadAchievements = function(achievements) {
 		
 		var parentDiv = $('#myfoods-achievements'),
 				points = 0;
+				
+		parentDiv.html("");
 		
 		for (var i = 0, l = achievements.length; i < l; i += 1) {
 			var achievement = achievements[i];

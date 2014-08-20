@@ -3,7 +3,7 @@ Meteor.methods({
 	foodSearch: function(options) {
 		
 		check(options, {
-      'search': NonEmptyStringNoSpecialCharacters,
+      'search': NonEmptyString,
       'type': Match.Optional(TypeCheck)
     });
     
@@ -70,7 +70,7 @@ Meteor.methods({
 	drinkSearch: function(options) {
 		
 		check(options, {
-      'search': NonEmptyStringNoSpecialCharacters,
+      'search': NonEmptyString,
       'type': Match.Optional(TypeCheck)
     });
     
