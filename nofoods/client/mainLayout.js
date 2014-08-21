@@ -39,35 +39,40 @@ Template.mainLayout.rendered = function() {
 
 var loadNotifications = function() {
 
+	var li = $('<li class=\'title\'></li>');
+	li.html("Notifications");
+	$('#notificationsList').append(li);	
+
 	Meteor.call('getUserNotifications', function(err, data) {
 	
 		if (!err) {
 			
-			if (data) {
+			if (data && data.length > 0) {	
 				
 				_.each(data, function(notification, index, list) {
 					if (notification.message) {
-						var li = $('<li></li>');
+						var li = $('<li></li>'),
+								span = $('<span></span>');
+								
 						li.html(notification.message);
+						span.html(NoFoods.lib.formatDateTime(notification.date));						
+						
+						li.prepend(span);
 						$('#notificationsList').append(li);
 					}
 				});
 				
-				$('#notificationsList').position({
-					/* Where the 2nd object will attach. Horizontal Vertical */
-					my: 'right top',	
-					/* Where the base object will attach. Horizontal (Left, Right, Center) Vertical(Top, Bottom, Center) */
-					at: 'right bottom',
-					/* Horizontal Vertical */
-					offset: '0 10',
-					/* What to do if it collides with the window. */
-					collision: '',
-					of: $('#notifications')[0]
-				});
-				
+			} else {
+				var li = $('<li></li>');
+				li.html("No notifications available");
+				$('#notificationsList').append(li);							
 			}
 			
-		}			
+		}	else {
+			var li 	= $('<li></li>');
+			li.html(err);
+			$('#notificationsList').append(li);							
+		}		
 	
 	});
 

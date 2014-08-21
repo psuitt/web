@@ -300,13 +300,13 @@ div.menu-horizontal ul.menu li ul li {
 
 #notificationsList {
 	display: none;
-	position: fixed;
+	position: absolute;
 	background: rgb(245,245,245);
 	border-top: 0;
 	top:45px;
-	box-shadow: 0 2px 5px 2px #255DAF;
-	-moz-box-shadow: 0 2px 5px #255DAF;
-	-webkit-box-shadow: 0 2px 5px #255DAF;
+	right: 0;
+	border-left: 3px solid #255DAF;
+	border-bottom: 3px solid #255DAF;
 	list-style: none;
 }
 
@@ -317,6 +317,20 @@ div.menu-horizontal ul.menu li ul li {
 #notificationsList li {
 	display: block;
 	text-align: left;
+	padding: 5px;
+	font-size: 14px;
+}
+
+#notificationsList li.title {
+	color: #800000;	
+	font-weight: 700;
+	font-size: 16px;
+}
+
+#notificationsList li span {
+	color: #255DAF;
+	font-weight: 500;
+	margin-right: 5px;
 }
 
 #login-buttons {

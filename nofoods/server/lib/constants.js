@@ -6,6 +6,7 @@ NoFoodz.consts = {};
 
 NoFoodz.consts.urls = {
 	FOOD : '/food/page/',
-	DRINK : '/drink/page/'
+	DRINK : '/drink/page/',
+	PEOPLE : '/people/page/'
 }
 		

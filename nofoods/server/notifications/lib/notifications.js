@@ -2,6 +2,8 @@ NoFoodz = typeof NoFoodz === 'undefined' ? {} : NoFoodz;
 
 NoFoodz.notifications = function () {
 
+	var MAX_NOTIFICATIONS = 8;
+
 	var _types = {
 		GENERIC: "generic",
 		RATING: "rating"
@@ -36,12 +38,17 @@ NoFoodz.notifications = function () {
 		
 		var message = '';
 		
+		message += '<a href=\'';
+		message += NoFoodz.consts.urls.PEOPLE;
 		message += user.username;
-		message += ' rated <a href=\''
-		message += href
+		message += '\'>';
+		message += user.username;
+		message += '</a>';
+		message += ' rated <a href=\'';
+		message += href;
 		message += '\'>';
 		message += item.name;
-		message += '</a> '
+		message += '</a> ';
 		message += this.rating;
 		message += ' hearts.';
 		
@@ -84,7 +91,7 @@ NoFoodz.notifications = function () {
 				Meteor.users.update({_id: element.user_id}, { 
 					$push: { "profile.notifications": {
 						$each: [notification],
-						$slice: -10
+						$slice: -MAX_NOTIFICATIONS
 						} } 
 				});
 			});
