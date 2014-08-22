@@ -50,7 +50,7 @@ Template.foodsAdd.events({
 			rating: rating,
 			name: name,
 			brand: brand,
-			type: type			
+			type: type.toLowerCase()		
 		};
 
 		if (brand_id) {

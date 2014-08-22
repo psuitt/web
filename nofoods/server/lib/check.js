@@ -23,7 +23,7 @@ RatingCheck = Match.Where(function (x) {
 
 FoodTypeCheck = Match.Where(function (x) {
   check(x, String);
-  return x === "Drink" || x === "Food";
+  return x === "drink" || x === "food";
 });
 
 PageNumber = Match.Where(function (x) {

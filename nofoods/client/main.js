@@ -91,6 +91,21 @@ Router.map(function () {
 		
 		}
   });
+  
+  this.route('foods', {
+    path: '/pages/:type/:_id',
+    template: 'foods',
+    layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+    onBeforeAction: function () {	  
+			PARAMS = this.params;   
+    },
+    data: function() {
+			return {type: this.params.type.substring(0, 1).toUpperCase() + this.params.type.substring(1)};
+		}
+	});
 
 	this.route('foodsPage', {
     path: '/food/page/:_id',

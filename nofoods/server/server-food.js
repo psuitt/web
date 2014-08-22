@@ -123,12 +123,12 @@ Meteor.methods({
 			fooddrink.image = options.image;
 
 		switch (options.type) {
-			case "Food":
+			case "food":
 				Foods.insert(fooddrink);
 				ratingObj.food_id = options._id;
 				countryStat.food_id = options._id;
 				break;
-			case "Drink":
+			case "drink":
 				Drinks.insert(fooddrink);
 				ratingObj.drink_id = options._id;
 				countryStat.drink_id = options._id;
