@@ -1,4 +1,6 @@
-var nofoodsRating;
+var nofoodsRating,
+		idField,
+		updateMethod;
 
 Template.foods.destroyed = function () {
 };
@@ -9,6 +11,14 @@ Template.foods.rendered = function() {
 		_id: PARAMS._id,
 		type: PARAMS.type
 	}	
+	
+	if (PARAMS.type === NoFoodz.consts.FOOD) {
+		updateMethod = updateFood;
+		idField = "food_id";
+	} else {
+		updateMethod = updateDrink;
+		idField = "drink_id";
+	}
 	
 	Meteor.call('getFoodDrinkById', obj, done);
 	
@@ -21,22 +31,17 @@ Template.foods.rendered = function() {
 					_id: PARAMS._id		
 				};			
 			
-			if (PARAMS.type === NoFoodz.consts.FOOD) {
-				updateFood(options, reload);
-			} else {
-				updateDrink(options, reload);
-			}
+			updateMethod(options, reload);
 			
 		}
 	});	
 
 	$('span.wishstar').on('click', function() {
 		var options = {};
-		if (PARAMS.type === NoFoodz.consts.FOOD) {
-			Meteor.call('addToWishList', {food_id: PARAMS._id});
-		}	else {
-			Meteor.call('addToWishList', {drink_id: PARAMS._id});
-		}	
+		
+		options[idField] = PARAMS._id;		
+		
+		Meteor.call('addToWishList', options);
 		
 		$(".wishstar").toggleClass("x100", true);	
 	});
@@ -80,7 +85,7 @@ var done = function(err, data) {
 		Router.go('/404');
 	}
 
-	var item = data;
+	var item = data.item;
 
 	$('.name').html(item.name);
 	$('.brand').html(NoFoods.lib.createBrandLink(item.brand_id, item.brand_view));
@@ -88,25 +93,16 @@ var done = function(err, data) {
 	$('.totalCount').html(item.ratingcount_calc);
 	$('.foods-location').html(item.address_view);
 
+	if (data.userRating) {
+		nofoodsRating.setValue(data.userRating.rating);
+	} else {
+		nofoodsRating.setValue(0);
+	}
+
   if (Meteor.user()) {
 		loadUserData();
-		
-		var subscription = 'ratings_myfood';
-		
-		if (PARAMS.type === NoFoodz.consts.DRINK)
-			subscription = 'ratings_mydrink';
-
-		var ratingSub = Meteor.subscribe(subscription, item._id, function() {
-			var userRating = Ratings.findOne({user_id: Meteor.userId()});
-			if (userRating) {
-				nofoodsRating.setValue(userRating.rating);
-			} else {
-				nofoodsRating.setValue(0);
-			}
-			ratingSub.stop();
-		});
-
-  }  
+	}
+ 
 };
 
 var loadUserData = function() {
@@ -117,10 +113,7 @@ var loadUserData = function() {
 
 		if (user.profile.wishlist) {
 			for (var i = 0, l = user.profile.wishlist.length; i < l; i += 1) {
-				if (PARAMS.type === NoFoodz.consts.FOOD && user.profile.wishlist[i].food_id === PARAMS._id) {
-					$(".wishstar").toggleClass("x100", true);
-					break;
-				} else if (user.profile.wishlist[i].drink_id === PARAMS._id) {
+				if (user.profile.wishlist[i][idField] === PARAMS._id) {
 					$(".wishstar").toggleClass("x100", true);
 					break;
 				}
@@ -137,6 +130,3 @@ var reload = function(response) {
 	$('.totalCount').html(response.data.ratingcount_calc);
 
 };
-
-
-

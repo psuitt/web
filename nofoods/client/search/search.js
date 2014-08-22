@@ -82,7 +82,7 @@ var doSearchPeople = function(search) {
 						//icon.addClass('itemIcon');
 						name.addClass('itemName');
 						
-						aName.attr('href', '/people/page/' + user.username);
+						aName.attr('href', NoFoodz.consts.urls.PEOPLE + user.username);
 						aName.html(user.username);
 
 						name.append(aName);	
@@ -173,7 +173,7 @@ var getFoodsPage = function(page) {
 			
 	for (var i = offset; i < len; i += 1) {
 		var food = foodResults[i];
-		$('#search-foods div.search-results').append(getSearchRow('/food/page/', food));	
+		$('#search-foods div.search-results').append(getSearchRow(NoFoodz.consts.urls.FOOD, food));	
 	}				
 		
 };
@@ -251,7 +251,7 @@ var getDrinksPage = function(page) {
 			
 	for (var i = offset; i < len; i += 1) {
 		var drink = drinkResults[i];
-		$('#search-drinks div.search-results').append(getSearchRow('/drink/page/', drink));	
+		$('#search-drinks div.search-results').append(getSearchRow(NoFoodz.consts.urls.DRINK, drink));	
 	}					
 		
 };
@@ -274,7 +274,7 @@ var getSearchRow = function(link, item) {
 	aName.attr('href', link + item._id);
 	aName.html(item.name);
 
-	aBrand.attr('href', '/brand/page/' + item.brand_id);
+	aBrand.attr('href', NoFoodz.consts.urls.BRAND + item.brand_id);
 	aBrand.html(item.brand_view);
 
 	rating.attr("title", item.rating_calc)

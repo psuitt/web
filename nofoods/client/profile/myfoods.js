@@ -132,7 +132,7 @@ var loadLinks = function(links) {
 
 			title.addClass("lower");
 			
-			title.attr('href', '/people/page/' + username);
+			title.attr('href', NoFoodz.consts.urls.PEOPLE + username);
 			title.html(username);
 
 			removeLink.data('username', username);
@@ -235,8 +235,8 @@ var getFoodsPage = function(page, obj, count) {
 			
 			for (var f = 0, len = data.foods.length; f < len; f += 1) {
 				var food = data.foods[f];
-				$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
-				$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+				$("." + food._id + " .name a").attr('href', NoFoodz.consts.urls.FOOD + food._id).html(food.name);
+				$("." + food._id + " .brand a").attr('href', NoFoodz.consts.urls.BRAND + food.brand_id).html(food.brand_view);
 			}		
 			
 			if (len === 0) {
@@ -283,8 +283,8 @@ var getDrinksPage = function(page, obj, count) {
 			
 			for (var f = 0, len = data.drinks.length; f < len; f += 1) {
 				var drink = data.drinks[f];
-				$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
-				$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
+				$("." + drink._id + " .name a").attr('href', NoFoodz.consts.urls.DRINK + drink._id).html(drink.name);
+				$("." + drink._id + " .brand a").attr('href', NoFoodz.consts.urls.BRAND + drink.brand_id).html(drink.brand_view);
 			}	
 			
 			if (len === 0) {
@@ -356,15 +356,15 @@ var getWishlistPage = function(page, obj, count) {
 				if (data.foods)
 					for (var f = 0, len = data.foods.length; f < len; f += 1) {
 						var food = data.foods[f];
-						$("." + food._id + " .name a").attr('href', '/food/page/' + food._id).html(food.name);
-						$("." + food._id + " .brand a").attr('href', '/brand/page/' + food.brand_id).html(food.brand_view);
+						$("." + food._id + " .name a").attr('href', NoFoodz.consts.urls.FOOD + food._id).html(food.name);
+						$("." + food._id + " .brand a").attr('href', NoFoodz.consts.urls.BRAND + food.brand_id).html(food.brand_view);
 					}		
 				
 				if (data.drinks)
 					for (var f = 0, len = data.drinks.length; f < len; f += 1) {
 						var drink = data.drinks[f];
-						$("." + drink._id + " .name a").attr('href', '/drink/page/' + drink._id).html(drink.name);
-						$("." + drink._id + " .brand a").attr('href', '/brand/page/' + drink.brand_id).html(drink.brand_view);
+						$("." + drink._id + " .name a").attr('href', NoFoodz.consts.urls.DRINK + drink._id).html(drink.name);
+						$("." + drink._id + " .brand a").attr('href', NoFoodz.consts.urls.BRAND + drink.brand_id).html(drink.brand_view);
 					}	
 				
 			}

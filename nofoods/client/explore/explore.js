@@ -120,8 +120,8 @@ var menuClick = function() {
 			div.append(brand);
 			div.append(NoFoods.widgetlib.createHeart(item.rating_calc, item.ratingcount_calc));
 
-			title.find('a').attr('href', '/' + dataType + '/page/' + item._id).html(item.name);
-			brand.find('a').attr('href', '/brand/page/' + item.brand_id).html(item.brand_view);
+			title.find('a').attr('href', NoFoodz.consts.urls[dataType.toUpperCase()] + item._id).html(item.name);
+			brand.find('a').attr('href', NoFoodz.consts.urls.BRAND + item.brand_id).html(item.brand_view);
 		
 			listItem.append(div);
 			list.append(listItem);

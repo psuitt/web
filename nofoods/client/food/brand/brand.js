@@ -59,7 +59,7 @@ var done = function() {
 							div = $("<div></div>"),
 							link = $("<a target='_blank' ></a>");
 					
-					link.attr('href', '/food/page/' + food._id).html(food.name);
+					link.attr('href', NoFoodz.consts.urls.FOOD + food._id).html(food.name);
 					
 					div.append(link);			
 					
@@ -78,7 +78,7 @@ var done = function() {
 							div = $("<div></div>"),
 							link = $("<a target='_blank' ></a>");
 					
-					link.attr('href', '/drink/page/' + drink._id).html(drink.name);
+					link.attr('href', NoFoodz.consts.urls.DRINK + drink._id).html(drink.name);
 					
 					div.append(link);
 					
