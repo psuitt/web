@@ -1,10 +1,10 @@
 Meteor.methods({
 	
-	getFoodDrinkById: function (options) {
+	getItemById: function (options) {
 		
 		check(options, {
-      _id: NonEmptyStringNoSpaceCharacters,
-      type: FoodTypeCheck
+			_id: NonEmptyStringNoSpaceCharacters,
+			type: FoodTypeCheck
     });
 		
 		var response = {};
@@ -22,7 +22,7 @@ Meteor.methods({
 				response.item = Foods.findOne( query, filter );
 				if (this.userId)
 					response.userRating = Ratings.findOne({
-						user_id: Meteor.userId(),
+						user_id: this.userId,
 						food_id: options._id
 					}, { fields: {rating: 1} });
 				break;
@@ -30,7 +30,7 @@ Meteor.methods({
 				response.item = Drinks.findOne( query, filter );
 				if (this.userId)
 					response.userRating = Ratings.findOne({
-						user_id: Meteor.userId(),
+						user_id: this.userId,
 						drink_id: options._id
 					}, { fields: {rating: 1} });
 				break;

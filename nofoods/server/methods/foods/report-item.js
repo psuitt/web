@@ -1,4 +1,4 @@
-var typeCheck = Match.Where(function (x) {
+var reportCheck = Match.Where(function (x) {
   check(x, String);
   return x === "drink" || x === "food" || x === "brand";
 });
@@ -9,7 +9,7 @@ Meteor.methods({
 		
 		check(options, {
       _id: NonEmptyStringNoSpaceCharacters,
-      type: typeCheck
+      type: reportCheck
     });
  
 		if (!this.userId)
@@ -63,6 +63,6 @@ Meteor.methods({
 				throw new Meteor.Error(501, "The server does not support this functionality");
 		}	 		
 		
-	}
+	}	
 	
 });
