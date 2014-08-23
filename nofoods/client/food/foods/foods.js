@@ -87,7 +87,7 @@ var done = function(err, data) {
 
 	var item = data.item;
 
-	$('.name').html(item.name);
+	$('.food-name').html(item.name);
 	$('.brand').html(NoFoods.lib.createBrandLink(item.brand_id, item.brand_view));
 	$('.totalRating').html(item.rating_calc);
 	$('.totalCount').html(item.ratingcount_calc);

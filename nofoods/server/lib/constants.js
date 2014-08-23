@@ -9,5 +9,9 @@ NoFoodz.consts.urls = {
 	DRINK : '/pages/drink/',
 	BRAND : '/brand/page/',
 	PEOPLE : '/people/page/'
-}
+};
+
+NoFoodz.consts.flags = {
+	REPORTED : 'R'
+};
 		
