@@ -21,24 +21,25 @@ DoSearch = function(type, search) {
 	
 	if (!type || !search) 
 		return;	
+		
+	$('#search-foodslink').toggle(false);
+	$('#search-drinkslink').toggle(false);
+	$('#search-peoplelink').toggle(false);
+	$('#searchTabs li').removeClass('active');
+	$('#searchTabsContent div').removeClass('active');	
 	
 	switch(type) {
 		case "food":
 		case "brand":
-			$('#search-peoplelink').toggle(false);
-			$('#search-people').toggle(false);
+			$('#search-foodslink').toggle(true);
+			$('#search-drinkslink').toggle(true);
+			$('#search-foodslink').tab('show');
 			doSearchFoods(search, type);
 			doSearchDrinks(search, type);
 			break;
 		case "people":
-			$('#search-foodslink').toggle(false);
-			$('#search-foods').toggle(false);
-			$('#search-drinkslink').toggle(false);
-			$('#search-drinks').toggle(false);
-			$('#searchTabs li').removeClass('active');
-			$('#searchTabsContent div').removeClass('active');
-			$('#search-peoplelink').parent().addClass('active');
-			$('#search-people').addClass('active');
+			$('#search-peoplelink').toggle(true);
+			$('#search-peoplelink').tab('show');
 			doSearchPeople(search);
 			break;
 		default:
@@ -60,6 +61,7 @@ var doSearchPeople = function(search) {
 
 		if (count < 1) {
 
+			$('#search-peoplelink').html("People (" + 0 + ")");
 			$('#search-people').html("<div class='resultsTotals'>No results found</div>");
 
 		} else {

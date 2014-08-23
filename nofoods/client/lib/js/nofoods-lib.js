@@ -58,8 +58,13 @@ NoFoods.widgetlib = function() {
 	
 		div.jScroll();
 		div.on('click', 'li>a', function() {
-			$('html, body').animate(
-				{scrollTop: ($("#mainContent").offset().top - 45)}, 200);		
+			
+			var currentTop = $(window).scrollTop(),
+					newTop = $("#mainContent").offset().top - 45;
+			
+			if (currentTop > newTop)
+				$('html, body').animate({scrollTop: newTop}, 200);	
+				
 		});
     	
 	};

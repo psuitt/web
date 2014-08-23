@@ -66,11 +66,7 @@ Template.foodsAdd.events({
 			if (response.error) {
 				$(".page-message.message").addClass("alert alert-error").html(response.error.reason);									
 			} else {
-				if (type === "Food") {
-					Router.go('foodsPage', {_id:response.id});
-				} else {
-					Router.go('drinksPage', {_id:response.id});
-				}
+				Router.go('foods', {_id:response.id, type: type.toLowerCase()});
 			}
 
 		});

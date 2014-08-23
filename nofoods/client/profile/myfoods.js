@@ -189,7 +189,7 @@ var loadAchievements = function(achievements) {
 				info.append('<div class=\'progress\' title=\''
 					+ achievement.progress.current + '/' + achievement.cap
 					+'\'>' 
-					+ '<div class=\'bar\' style=\'width: ' + percent + '%\'><div>' 
+					+ '<div class=\'progress-bar\' style=\'width: ' + percent + '%\'><div>' 
 					+ '</div>');					
 				
 			}

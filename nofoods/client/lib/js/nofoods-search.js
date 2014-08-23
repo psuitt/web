@@ -15,11 +15,11 @@
 								.addClass("nofoodssearch type btn-group")
 								.insertBefore(this),
 				_goButton = $("<button>Go</button>")
-								.addClass("nofoodssearch go btn ")
+								.addClass("nofoodssearch go btn btn-default")
 								.insertAfter(this);
 								
 		var _searchTypeMainDisplay = $("<a data-toggle='dropdown'></a>")
-								.addClass("btn dropdown-toggle"),
+								.addClass("btn dropdown-toggle btn-default"),
 				_searchTypeMainDisplayText = $("<span></span>")
 								.addClass("nofoodssearch text"),
 				_searchTypeMainDisplayCaret = $("<span></span>")
@@ -47,7 +47,8 @@
 			
 		}
 		
-		self.attr('placeholder', 'Search');	
+		self.attr('placeholder', 'Search');
+		self.addClass('form-control inline')	
 		
 		self.keyup(function( event ) {
 

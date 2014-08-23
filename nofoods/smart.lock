@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "iron-router": {},
-      "jquery-ui": {}
+      "jquery-ui": {},
+      "bootstrap-3": {}
     },
     "packages": {
       "iron-router": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
         "tag": "v1.9.2",
         "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.2.0-1",
+        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",

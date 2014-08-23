@@ -107,30 +107,6 @@ Router.map(function () {
 		}
 	});
 
-	this.route('foodsPage', {
-    path: '/food/page/:_id',
-    template: 'foodsTemplate',
-    layoutTemplate: 'mainLayout',
-		yieldTemplates: {
-			'footer': {to: 'footer'}		
-		},
-    onBeforeAction: function () {	  
-			PARAMS = this.params;   
-    }
-	});
-
-	this.route('drinksPage', {
-    path: '/drink/page/:_id',
-    template: 'drinksTemplate',
-    layoutTemplate: 'mainLayout',
-		yieldTemplates: {
-			'footer': {to: 'footer'}		
-		},
-    onBeforeAction: function () {	  
-			PARAMS = this.params;   
-    }
-	});
-
 	this.route('brandsPage', {
     path: '/brand/page/:_id',
     template: 'brandsTemplate',

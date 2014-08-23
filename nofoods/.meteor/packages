@@ -7,7 +7,6 @@ standard-app-packages
 accounts-ui
 accounts-password
 d3
-bootstrap
 email
 audit-argument-checks
 iron-router
@@ -15,3 +14,4 @@ jquery
 jquery-ui
 http
 underscore
+bootstrap-3

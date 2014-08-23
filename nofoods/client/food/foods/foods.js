@@ -86,7 +86,9 @@ Template.foods.rendered = function() {
 			updateMethod(options, reload);
 			
 		}
-	});	
+	});
+	
+	NoFoods.widgetlib.floatMenu($('#foods-nav'));	
 
 	$('span.wishstar').on('click', function() {
 		var options = {};
@@ -126,11 +128,3 @@ Template.foods.rendered = function() {
 	});
 	
 };
-
-Template.foodsTemplate.events({
-		
-});
-
-
-
-
