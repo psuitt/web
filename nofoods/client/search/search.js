@@ -25,8 +25,12 @@ DoSearch = function(type, search) {
 	$('#search-foodslink').toggle(false);
 	$('#search-drinkslink').toggle(false);
 	$('#search-peoplelink').toggle(false);
+	$('#search-foods').addClass('hide');
+	$('#search-drinks').addClass('hide');
+	$('#search-people').addClass('hide');
 	$('#searchTabs li').removeClass('active');
 	$('#searchTabsContent div').removeClass('active');	
+	$('div.loading').removeClass('hide');	
 	
 	switch(type) {
 		case "food":
@@ -97,6 +101,7 @@ var doSearchPeople = function(search) {
 
 		$('div.loading').addClass('hide');	
 		$('#resultsDiv').show();
+		$('#search-people').removeClass('hide');
 
 	});
 
@@ -156,6 +161,7 @@ var doSearchFoods = function(search, type) {
 		
 		$('div.loading').addClass('hide');
 		$('#resultsDiv').show();
+		$('#search-foods').removeClass('hide');
 		
   });
 };
@@ -234,6 +240,7 @@ var doSearchDrinks = function(search, type) {
 		
 		$('div.loading').addClass('hide');	
 		$('#resultsDiv').show();
+		$('#search-drinks').removeClass('hide');
 		
   });
 };

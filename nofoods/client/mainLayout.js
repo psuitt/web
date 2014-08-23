@@ -35,6 +35,8 @@ Template.mainLayout.rendered = function() {
 	
 	});
 	
+	addReportDialog();
+	
 };
 
 var loadNotifications = function() {
@@ -73,6 +75,16 @@ var loadNotifications = function() {
 			li.html(err);
 			$('#notificationsList').append(li);							
 		}		
+	
+	});
+
+};
+
+var addReportDialog = function() {
+
+	$(document).on('click', '.button.report', function() {
+		
+		
 	
 	});
 

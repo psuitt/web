@@ -335,18 +335,18 @@ div.menu-horizontal ul.menu li ul li {
 }
 
 #menu-logindiv {
-	margin-top: 9px;
+	margin-top: 8px;
 	vertical-align: top;
 	overflow: visible;
 	height: auto;
 }
 
 #notifications {
-	height: 28px;
-	color: #FFF;
-	background: none repeat scroll 0% 0% #255DAF;
-	padding: 1px 8px;
+	text-align: center;
 	font-size: 18px;
+	padding: 5px;
+	color: #FFFFFF;
+	background-color: #255DAF;
 	font-weight: 700;
 	cursor: pointer;
 	opacity: 0.8;
@@ -382,7 +382,7 @@ div.menu-horizontal ul.menu li ul li {
 #notificationsList li {
 	display: block;
 	text-align: left;
-	padding: 5px;
+	padding: 5px 25px 5px 15px;
 	font-size: 14px;
 }
 
@@ -390,6 +390,7 @@ div.menu-horizontal ul.menu li ul li {
 	color: #800000;	
 	font-weight: 700;
 	font-size: 16px;
+	padding: 5px;
 }
 
 #notificationsList li span {
@@ -447,6 +448,10 @@ div.searchbar button {
 	border: 0;
 	padding: 4px 8px;
 	background: #DAA520;
+}
+
+div.searchbar button.go {
+	color:	#FFFFFF;
 }
 
 div.searchbar button:hover {

@@ -14,8 +14,8 @@
 				_searchType = $("<div></div>")
 								.addClass("nofoodssearch type btn-group")
 								.insertBefore(this),
-				_goButton = $("<button>Go</button>")
-								.addClass("nofoodssearch go btn btn-default")
+				_goButton = $("<button></button>")
+								.addClass("nofoodssearch go btn btn-default glyphicon glyphicon-search")
 								.insertAfter(this);
 								
 		var _searchTypeMainDisplay = $("<a data-toggle='dropdown'></a>")
@@ -33,7 +33,6 @@
 		_searchType.append(_searchTypeMainDisplay);
 		_searchType.append(_searchTypeDropdown);
 		
-		_goButton.html('Go');
 		_searchTypeMainDisplayText.html(options.defaultValue);
 		
 		// Add the options now.
