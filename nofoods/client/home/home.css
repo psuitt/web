@@ -13,6 +13,11 @@
 	margin-left: -5px;
 }
 
+#homeDiv>div>input,
+#homeDiv>div>div {
+	margin-top: 1px;
+}
+
 #home-searchtype {
 	text-align: left;
 }

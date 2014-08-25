@@ -345,22 +345,25 @@ div.menu-horizontal ul.menu li ul li {
 	text-align: center;
 	font-size: 18px;
 	padding: 5px;
-	color: #FFFFFF;
-	background-color: #255DAF;
+	color: #222222;
 	font-weight: 700;
 	cursor: pointer;
-	opacity: 0.8;
 	vertical-align: middle;
 	margin-right: 5px;
 	display: inline-block;
 }
 
+#notifications.new {
+	color: #800000;
+}
+
 #notifications.open {
-	opacity: 1;
+	color: #FFFFFF;
+	background-color: #255DAF;
 }
 
 #notifications:hover {
-	opacity: 1;
+	color: #800000;
 }
 
 #notificationsList {

@@ -82,9 +82,14 @@ var loadNotifications = function() {
 
 var addReportDialog = function() {
 
+	var reportDialog = $('#report-dialog').modal({
+		show: false,
+  	keyboard: false
+	});
+
 	$(document).on('click', '.button.report', function() {
-		
-		
+
+	  $('#report-dialog').modal('show');
 	
 	});
 

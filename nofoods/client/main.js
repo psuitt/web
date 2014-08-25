@@ -103,7 +103,10 @@ Router.map(function () {
 			PARAMS = this.params;   
     },
     data: function() {
-			return {type: this.params.type.substring(0, 1).toUpperCase() + this.params.type.substring(1)};
+			return {
+				id: this.params._id,
+				type: this.params.type.substring(0, 1).toUpperCase() + this.params.type.substring(1)
+				};
 		}
 	});
 
