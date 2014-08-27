@@ -14,4 +14,13 @@ NoFoodz.consts.urls = {
 NoFoodz.consts.flags = {
 	REPORTED : 'R'
 };
+
+NoFoodz.consts.filters = {
+	HIDDEN_FOODS : {
+			fields: {
+				keywords: 0,
+				reporters: 0	
+			}
+		}
+}
 		

@@ -17,6 +17,20 @@ setPath = function () {
 	}
 }
 
+Template.mainLayout.events({
+	'click #login-buttons-password'	: function(event, templ) {
+			var email = t.find('#login-email').value, 
+					password = t.find('#login-password').value;
+			
+			Meteor.loginWithPassword(
+				email.toLowerCase(), 
+				password, 
+				function(errorObject) {});
+		}
+
+
+}); 
+
 Template.mainLayout.rendered = function() {
 	
 	$('.searchbar input').nofoodssearch();
@@ -34,8 +48,6 @@ Template.mainLayout.rendered = function() {
 		}
 	
 	});
-	
-	addReportDialog();
 	
 };
 
@@ -75,21 +87,6 @@ var loadNotifications = function() {
 			li.html(err);
 			$('#notificationsList').append(li);							
 		}		
-	
-	});
-
-};
-
-var addReportDialog = function() {
-
-	var reportDialog = $('#report-dialog').modal({
-		show: false,
-  	keyboard: false
-	});
-
-	$(document).on('click', '.button.report', function() {
-
-	  $('#report-dialog').modal('show');
 	
 	});
 

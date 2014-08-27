@@ -4,14 +4,13 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-accounts-ui
 accounts-password
 d3
 email
 audit-argument-checks
-iron-router
+cmather:iron-router@0.8.2
 jquery
-jquery-ui
+mrt:jquery-ui@1.9.2
 http
 underscore
-bootstrap-3
+accounts-ui

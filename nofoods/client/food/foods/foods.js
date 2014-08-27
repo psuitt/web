@@ -18,6 +18,11 @@ var done = function(err, data) {
 	$('.totalRating').html(item.rating_calc);
 	$('.totalCount').html(item.ratingcount_calc);
 	$('.foods-location').html(item.address_view);
+	
+	if (item.flags && item.flags.indexOf(NoFoodz.consts.flags.REPORTED) !== -1) 
+		$('.button.report').addClass('reported')
+											 .html('Reported')
+											 .attr('title', 'This item has been reported.');
 
 	if (data.userRating) {
 		nofoodsRating.setValue(data.userRating.rating);

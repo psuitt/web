@@ -104,6 +104,9 @@ div.nofoods-pagenav a.button.report:hover {
 	color: #800000;
 }
 
+div.nofoods-pagenav  a.button.report.reported {
+}
+
 
 /* DEFAULTS  */
 h3.pagetitle,
@@ -213,7 +216,7 @@ footer {
 }
 
 #footer {
-	width: 96%;
+	width: 100%;
 	text-align: right;
 	color: #DAA520;
 	background: #222222;
@@ -335,10 +338,49 @@ div.menu-horizontal ul.menu li ul li {
 }
 
 #menu-logindiv {
-	margin-top: 8px;
 	vertical-align: top;
 	overflow: visible;
 	height: auto;
+}
+
+#loginDiv {
+	display:inline-block;
+}
+
+#loginList {
+	display:inline-block;
+	display: table-cell;
+	list-style: none;
+	height:45px;
+	margin: 0;
+  vertical-align: middle;
+}
+
+#loginList li {
+	height: 45px;
+	line-height: 45px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#loginList li.dropdown>a {
+	font-weight: 700;
+}
+
+#loginList li.dropdown.open,
+#loginList li.dropdown.open>a {
+	color: #FFFFFF;
+	background-color: #255DAF;
+}
+
+#loginList li.dropdown>a:hover {
+	text-decoration: none;
+}
+
+#loginList .dropdown-menu {
+	left: auto;
+	top: 42px;
+	right: 0;
 }
 
 #notifications {
@@ -348,7 +390,8 @@ div.menu-horizontal ul.menu li ul li {
 	color: #222222;
 	font-weight: 700;
 	cursor: pointer;
-	vertical-align: middle;
+	vertical-align: top;
+	margin-top: 8px;
 	margin-right: 5px;
 	display: inline-block;
 }
@@ -571,6 +614,23 @@ input.save:hover {
 	background: #255DAF;
 }
 
+/* Report Dialog */
+.modal-header.warning {
+	color: #FFFFFF;	
+	background: #DAA520;
+	font-weight: 700;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.modal-header .close {
+	font-size: 30px;
+}
+
 /* PAGING */
 
 .tab-content.paging {
@@ -712,6 +772,7 @@ div.nofoods-autocomplete.message {
 /* SEARCH */
 .nofoodssearch.type {
 	text-align: left;
+	margin-top: 1px;
 }
 
 .nofoodssearch.type>a {

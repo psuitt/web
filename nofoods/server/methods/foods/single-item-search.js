@@ -16,6 +16,8 @@ Meteor.methods({
 		var filter = {
 			sort: {name: -1}
 		};			
+		
+		filter = _.extend(filter, NoFoodz.consts.filters.HIDDEN_FOODS);
 			
 		switch (options.type) {
 			case "food":

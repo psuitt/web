@@ -19,3 +19,7 @@ NoFoodz.consts = function() {
 	}
 	
 }();
+
+NoFoodz.consts.flags = {
+	REPORTED : 'R'
+};

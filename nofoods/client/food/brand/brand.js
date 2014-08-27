@@ -1,16 +1,12 @@
-var brandSub;
-
 Template.brandsTemplate.destroyed = function () {
-	brandSub && brandSub.stop();
+
 };
 
 Template.brandsTemplate.rendered = function() {
 	
 	//setUp();
 	
-	brandSub = Meteor.subscribe('brands_item', PARAMS._id, function() {
-		done();
-	});
+	fetchData();
 	
 	$('.nofoods-pagenav a').click(function(e) {
 		if (!$(this).hasClass('button')) {
@@ -23,14 +19,7 @@ Template.brandsTemplate.rendered = function() {
 	
 };
 
-var done = function() {
-	// This can sometime contain more data if froming from another page.
-	var brand = Brands.findOne({_id : PARAMS._id});
-
-	if(!brand)
-		Router.go('/404');
-
-	$('.brand-name').html(brand.name);
+var fetchData = function() {
 	
 	var obj = {
 		brand_id: PARAMS._id	
@@ -39,6 +28,18 @@ var done = function() {
 	Meteor.call('getFoodDrinkByBrand', obj, function(err, data) {
 		
 		if (!err) {
+			
+			var brand = data.brand;			
+			
+			if(!brand)
+				Router.go('/404');
+		
+			$('.brand-name').html(brand.name);
+			
+			if (brand.flags && brand.flags.indexOf(NoFoodz.consts.flags.REPORTED) !== -1) 
+				$('.button.report').addClass('reported')
+													 .html('Reported')
+													 .attr('title', 'This item has been reported.');
 			
 			var foodRating = 0,
 					foodTotal = 0;

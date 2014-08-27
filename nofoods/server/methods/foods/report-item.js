@@ -19,11 +19,7 @@ Meteor.methods({
 		
 		var query = {
 			_id: options._id
-		};
-		
-		var filter = {
-			sort: {name: -1}
-		};			
+		};	
 			
 		switch (options.type) {
 			case "food":
@@ -32,8 +28,7 @@ Meteor.methods({
 						$addToSet: { 
 							flags: NoFoodz.consts.flags.REPORTED,
 							reporters: this.userId 
-						},
-						$inc: { reporters_len: 1 } 
+						}
 					} 
 				);
 				break;
@@ -43,8 +38,7 @@ Meteor.methods({
 						$addToSet: { 
 							flags: NoFoodz.consts.flags.REPORTED,
 							reporters: this.userId 
-						},
-						$inc: { reporters_len: 1 } 
+						}
 					} 
 				);
 				break;
@@ -54,8 +48,7 @@ Meteor.methods({
 						$addToSet: { 
 							flags: NoFoodz.consts.flags.REPORTED,
 							reporters: this.userId 
-						},
-						$inc: { reporters_len: 1 }
+						}
 					} 
 				);
 				break;
