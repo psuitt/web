@@ -97,6 +97,7 @@ div.nofoods-pagenav a.button:hover {
 }
 
 div.nofoods-pagenav  a.button.report {
+	margin-top: 40px;
 	color: #800000;
 }
 
@@ -107,6 +108,13 @@ div.nofoods-pagenav a.button.report:hover {
 div.nofoods-pagenav  a.button.report.reported {
 }
 
+div.nofoods-pagenav.position li>a {
+	display: inline-block;
+}
+
+div.nofoods-pagenav.position li>a:hover {
+	background: inherit;
+}
 
 /* DEFAULTS  */
 h3.pagetitle,

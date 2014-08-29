@@ -1,21 +1,19 @@
 #homeDiv {
 	background: #FFF;
-	padding-top: 100px;
+	padding-top: 125px;
 	padding-bottom: 20px;
 	width: 100%;
 	text-align: center;
 }
 
-#homeDiv input,
-#homeDiv button {
-	margin: 0;
-	vertical-align: middle;
-	margin-left: -5px;
+#homeDiv h1 {
+	color: #DAA520;
+	font-weight: 700;
 }
 
-#homeDiv>div>input,
-#homeDiv>div>div {
-	margin-top: 1px;
+#homeDiv>div {
+	padding-top: 25px;
+	text-align: center;
 }
 
 #home-searchtype {
@@ -39,11 +37,13 @@
 	display: inline-block;
 }
 
-#home-search {
-	border-radius: 0;
-	max-width:450px;
-	width: 85%;
-	display: inline-block;
+#search-btn-group {
+	max-width:550px;
+	margin: auto;
+}
+
+#home-searchgo {
+	margin-top: -1px;
 }
 
 #searchResults {

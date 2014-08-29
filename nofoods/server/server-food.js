@@ -48,7 +48,7 @@ Meteor.methods({
     });
 
     if (!this.userId)
-      throw new Meteor.Error(403, "You must be logged in");
+      throw new Meteor.Error(403, "You must be logged in to add an item");
     if (!Meteor.user().active) 
     	throw new Meteor.Error(500, "Adding is currently disabled for your account.");
 

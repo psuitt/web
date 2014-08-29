@@ -30,9 +30,14 @@ var done = function(err, data) {
 		nofoodsRating.setValue(0);
 	}
 
-  if (Meteor.user()) {
-		loadUserData();
-	}
+	loadUserData();
+	
+	// Create the additional info div with the items data
+	$("#infoDiv").nofoodzadditionalinfo({
+		type: PARAMS.type,
+		info: item.info,
+		update: item.user_id ===  Meteor.user()._id	
+	});
  
 };
 

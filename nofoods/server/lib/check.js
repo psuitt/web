@@ -26,6 +26,11 @@ FoodTypeCheck = Match.Where(function (x) {
   return x === "drink" || x === "food";
 });
 
+FoodSubTypeCheck = Match.Where(function (x) {
+  check(x, String);
+  return x === "alcohol" || x === "default";
+});
+
 PageNumber = Match.Where(function (x) {
   check(x, Number);
   return x < 101 && x > 0;

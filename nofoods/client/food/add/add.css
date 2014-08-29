@@ -7,13 +7,28 @@ span.rating.selected {
 	font-weight:bold;
 }
 
-#foodsadd-food,
-#foodsadd-drink,
-label[for='foodsadd-food'],
-label[for='foodsadd-drink'] {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
+#foodsadd-typeselect .btn {
+	width:75px;
+}
+
+#foodsadd-typeselect .btn.selected {
+	color: #FFFFFF;
+	background: #255DAF;
+}
+
+#foodsadd-name,
+#foodsadd-brand {
+	width: 250px;
+}
+
+div.input-spacing,
+#foodsadd-name,
+#foodsadd-brand {
+	margin-bottom: 15px;
+}
+
+#foodsadd-drinkType {
+
 }
 
 #foodsadd-map {
@@ -22,6 +37,6 @@ label[for='foodsadd-drink'] {
 }
 
 #save {
-	margin-top: 10px;
+	margin-top: 15px;
 	display: block;
 }

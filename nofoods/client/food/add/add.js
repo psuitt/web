@@ -1,11 +1,10 @@
-var brandSub,
-		placeauto,
+var placeauto,
 		map,
 		nofoodsRating,
 		brand_id = false;
 		
 Template.foodsAdd.destroyed = function () {
-	brandSub && brandSub.stop();
+	
 };
 
 Template.foodsAdd.rendered = function() {
@@ -18,17 +17,26 @@ Template.foodsAdd.rendered = function() {
 
 	if (data && data.brand_id) {
 		brand_id = data.brand_id;
-		brandSub = Meteor.subscribe('brands_item', brand_id, function() {
-			// This can sometime contain more data if froming from another page.
-			var brand = Brands.findOne({_id : brand_id});
+		var obj = {
+			brand_id : data.brand_id		
+		};
+		Meteor.call('getBrand', obj, function(err, data) {
 		
-			if(brand) {
-				$('#foodsadd-brand').attr("disabled", "disabled").val(brand.name);
-			} else {
-				brand_id = false;
-				//$('#foodsadd-brand').nofoodsautocomplete();			
+			if (!err) {
+				
+				var brand = data.brand;
+				
+				if(brand) {
+					$('#foodsadd-brand').attr("disabled", "disabled").val(brand.name);
+				} else {
+					brand_id = false;
+					//$('#foodsadd-brand').nofoodsautocomplete();			
+				}				
+				
 			}
+			
 		});
+
 	} else {
 		//$('#foodsadd-brand').nofoodsautocomplete();
 	}
@@ -40,7 +48,7 @@ Template.foodsAdd.rendered = function() {
 
 Template.foodsAdd.events({
 	'click #save': function (event, template) {
-		var type = $("input[name='type']:checked").attr("value"),
+		var type = $('#foodsadd-typeselect .btn.selected').attr("value"),
 				name = template.find("#foodsadd-name").value,
 				brand = template.find("#foodsadd-brand").value,
 				brandId = $("#foodsadd-brand").data("brand_id"),
@@ -64,13 +72,19 @@ Template.foodsAdd.events({
 		createFood(data, function(response) {
 
 			if (response.error) {
-				$(".page-message.message").addClass("alert alert-error").html(response.error.reason);									
+				$(".page-message.message").addClass("alert alert-danger").html(response.error.reason);									
 			} else {
 				Router.go('foods', {_id:response.id, type: type.toLowerCase()});
 			}
 
 		});
 
+	},
+	
+	'click #foodsadd-typeselect .btn': function (event, template) {
+		var selected = $('#foodsadd-typeselect .btn.selected');
+		selected.removeClass('selected');
+		$(event.currentTarget).addClass('selected');
 	}
 
 });

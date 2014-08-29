@@ -1,10 +1,12 @@
 <template name="foodsAdd">
 	<div class="content middle">
 		<h3 class="pagetitle" >Add Food or Drink</h3>
-		<div class="page-message message"></div>
 		<div class="subcontent">
-			<input id="foodsadd-food" class="type" type="radio" name="type" value="Food" checked /><label for="foodsadd-food">Food</label>
-			<input id="foodsadd-drink" class="type" type="radio" name="type" value="Drink" /><label for="foodsadd-drink">Drink</label>
+			<div class="page-message message"></div>
+			<div id="foodsadd-typeselect" class="input-spacing">
+				<button type="button" id="foodsadd-food" class="btn btn-default selected" value="Food">Food</button>
+				<button type="button" id="foodsadd-drink" class="btn btn-default" value="Drink">Drink</button>	
+			</div>		
 			<label>Name</label><input id="foodsadd-name" type="text" placeholder="Name, Beef, ect..." />
 			<label>Brand</label><input id="foodsadd-brand" type="text" class="typeahead" placeholder="Brand, Company, Restaurant..." />
 			<label>Rating</label>

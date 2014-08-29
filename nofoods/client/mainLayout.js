@@ -63,7 +63,7 @@ var loadNotifications = function() {
 			
 			if (data && data.length > 0) {	
 				
-				_.each(data, function(notification, index, list) {
+				_.each(data.reverse(), function(notification, index, list) {
 					if (notification.message) {
 						var li = $('<li></li>'),
 								span = $('<span></span>');
