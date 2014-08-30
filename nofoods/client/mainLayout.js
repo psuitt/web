@@ -49,6 +49,10 @@ Template.mainLayout.rendered = function() {
 	
 	});
 	
+	$(document).on('keyup blur', '#login-username-or-email', function(event) {
+		this.value = this.value.toLowerCase();	
+	});
+	
 };
 
 var loadNotifications = function() {

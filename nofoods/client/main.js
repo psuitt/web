@@ -55,7 +55,7 @@ Router.map(function () {
 		}
 	});
 
-	this.route('myfoods', {
+	this.route('myfoodz', {
     path:'/myfoods',
     template: 'myfoods',
 		layoutTemplate: 'mainLayout',

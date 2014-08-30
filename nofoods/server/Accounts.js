@@ -8,10 +8,19 @@ Accounts.validateNewUser(function (user) {
 	
 	var settings = Settings.findOne({'_type' : 'accounts'});
 	
-	if (settings && settings.disableUserCreate) 
-		throw new Meteor.Error(500, "Username creation is currently disabled");
+	if (settings) {
+		if (settings.disableUserCreate)
+			throw new Meteor.Error(500, "Username creation is currently disabled");
+		if (settings.specialPrefix && settings.specialPrefix !== '') {
+			if (user.username.indexOf(settings.specialPrefix) === 0) {
+				user.username = user.username.replace(settings.specialPrefix, '');			
+			}	else {
+				throw new Meteor.Error(500, "Username creation is currently disabled");
+			}
+		}
+	}
 	
-	if (user.username && user.username.length > 3) {
+	if (user.username && user.username.length > 3 && user.username.length < 16) {
 		check(user.username, NonEmptyStringNoSpaceCharacters);
 		// Lower case only.
 		user.username = user.username.toLowerCase();
@@ -22,7 +31,7 @@ Accounts.validateNewUser(function (user) {
 	  return true;
 	}
 	
-	throw new Meteor.Error(403, "Username must have at least 4 alphanumeric characters");
+	throw new Meteor.Error(403, "Username must have at least 4-15 alphanumeric characters");
 });
 
 Accounts.onCreateUser(function(options, user) {

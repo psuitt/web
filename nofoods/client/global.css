@@ -394,13 +394,13 @@ div.menu-horizontal ul.menu li ul li {
 #notifications {
 	text-align: center;
 	font-size: 18px;
-	padding: 5px;
 	color: #222222;
 	font-weight: 700;
 	cursor: pointer;
 	vertical-align: top;
-	margin-top: 8px;
-	margin-right: 5px;
+	padding: 0 5px;
+	margin-top: 0 0 0 5px;
+	line-height: 45px;
 	display: inline-block;
 }
 

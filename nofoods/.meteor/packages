@@ -13,4 +13,5 @@ jquery
 mrt:jquery-ui@1.9.2
 http
 underscore
-accounts-ui
+ian:accounts-ui-bootstrap-3
+
