@@ -43,17 +43,4 @@ var setUpStatistics = function() {
 
 var runBatchFixes = function() {
 
-	var userCursor = Meteor.users.find({});
-	
-	userCursor.forEach(function(user) {
-
-		if (user.profile.achievements) {
-			
-			Meteor.users.update({_id: user._id}, { $set: { "achievements": user.profile.achievements } } );
-			Meteor.users.update({_id: user._id}, { $unset: { "profile.achievements": 1 } } );
-		
-		}
-
-	});
-
 };
