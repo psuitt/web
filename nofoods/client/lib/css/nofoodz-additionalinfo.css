@@ -7,3 +7,26 @@ div.nofoodz-additionalinfo .info-header {
 	font-weight: 700;
 	font-size: 18px;
 }
+
+div.nofoodz-additionalinfo .btn.edit {
+	background: #255DAF;
+	color: #FFFFFF;
+	text-shadow: initial;
+	opacity: .8;
+}
+
+div.nofoodz-additionalinfo .btn.edit:hover {
+	opacity: 1;
+}
+
+div.nofoodz-additionalinfo .btn span.glyphicon {
+	margin-right: 3px;
+}
+
+div.nofoodz-additionalinfo .save-section {
+	text-align: right;
+}
+
+div.nofoodz-additionalinfo button:first-child {
+	margin-right: 5px;
+}

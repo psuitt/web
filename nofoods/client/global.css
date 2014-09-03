@@ -835,40 +835,80 @@ span.rating.x10 {
 	background-image: url('/rating/heart_1.svg');
 }
 
+span.rating.x10.blue {
+	background-image: url('/rating/heart_1_blue.svg');
+}
+
 span.rating.x20 {
 	background-image: url('/rating/heart_2.svg');
+}
+
+span.rating.x20.blue {
+	background-image: url('/rating/heart_2_blue.svg');
 }
 
 span.rating.x30 {
 	background-image: url('/rating/heart_3.svg');
 }
 
+span.rating.x30.blue {
+	background-image: url('/rating/heart_3_blue.svg');
+}
+
 span.rating.x40 {
 	background-image: url('/rating/heart_4.svg');
+}
+
+span.rating.x40.blue {
+	background-image: url('/rating/heart_4_blue.svg');
 }
 
 span.rating.x50 {
 	background-image: url('/rating/heart_half.svg');
 }
 
+span.rating.x50.blue {
+	background-image: url('/rating/heart_half_blue.svg');
+}
+
 span.rating.x60 {
 	background-image: url('/rating/heart_6.svg');
+}
+
+span.rating.x60.blue {
+	background-image: url('/rating/heart_6_blue.svg');
 }
 
 span.rating.x70 {
 	background-image: url('/rating/heart_7.svg');
 }
 
+span.rating.x70.blue {
+	background-image: url('/rating/heart_7_blue.svg');
+}
+
 span.rating.x80 {
 	background-image: url('/rating/heart_8.svg');
+}
+
+span.rating.x80.blue {
+	background-image: url('/rating/heart_8_blue.svg');
 }
 
 span.rating.x90 {
 	background-image: url('/rating/heart_9.svg');
 }
 
+span.rating.x90.blue {
+	background-image: url('/rating/heart_9_blue.svg');
+}
+
 span.rating.x100 {
 	background-image: url('/rating/heart_full.svg');
+}
+
+span.rating.x100.blue {
+	background-image: url('/rating/heart_full_blue.svg');
 }
 
 span.rating.dashed.x100 {
@@ -884,7 +924,7 @@ span.rating.x120 {
 }
 
 span.rating.tempx100 {
-	background-image: url('/rating/heart_full.svg');
+	background-image: url('/rating/heart_full_blue.svg');
 }
 
 span.rating.dashed.tempx100 {

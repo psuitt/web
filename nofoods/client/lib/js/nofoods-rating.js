@@ -28,7 +28,7 @@
 		self.find('span.rating').bind('click', function() {
 			var index = $(this).index();			
 			self.find('span.rating').each(function() {
-				$(this).toggleClass('x100', $(this).index() <= index);						
+				$(this).toggleClass('x100 blue', $(this).index() <= index);						
 			});
 			_options.select && _options.select(_getValue());		
 		});
@@ -54,8 +54,17 @@
 		// Functions
 		
 		var _setValue = function(i) {
+			var lastClass = 'x' + (Math.round((i - Math.round(i))*10)*10).toString(),
+					rounded = Math.round((i * 2)),
+					lastVal = 'x' + (rounded*10).toString();
 			self.find('span.rating').each(function() {
-				$(this).toggleClass('x100', $(this).index() < i);						
+				$(this).toggleClass('blue', false).toggleClass('x100', $(this).index() < i);						
+			});	
+		};
+		
+		var _setUserValue = function(i) {
+			self.find('span.rating').each(function() {
+				$(this).toggleClass('x100 blue', $(this).index() < i);						
 			});	
 		};
 
@@ -67,6 +76,9 @@
 		return {
 			setValue: function(i) {
 				_setValue(i);			
+			},
+			setUserValue: function(i) {
+				_setUserValue(i);			
 			},
 			getValue: function() {
 				return _getValue();			

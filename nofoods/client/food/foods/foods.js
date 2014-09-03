@@ -25,9 +25,9 @@ var done = function(err, data) {
 											 .attr('title', 'This item has been reported.');
 
 	if (data.userRating) {
-		nofoodsRating.setValue(data.userRating.rating);
+		nofoodsRating.setUserValue(data.userRating.rating);
 	} else {
-		nofoodsRating.setValue(0);
+		nofoodsRating.setValue(item.rating_calc);
 	}
 
 	loadUserData();
