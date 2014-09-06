@@ -34,9 +34,10 @@ var done = function(err, data) {
 	
 	// Create the additional info div with the items data
 	$("#infoDiv").nofoodzadditionalinfo({
+		_id: item._id,
 		type: PARAMS.type,
 		info: item.info,
-		update: item.user_id ===  Meteor.user()._id	
+		update: item.user_id ===  Meteor.user()._id
 	});
  
 };

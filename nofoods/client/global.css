@@ -116,6 +116,16 @@ div.nofoods-pagenav.position li>a:hover {
 	background: inherit;
 }
 
+/* BOOTSTRAP - Combo */
+
+div.nofoodz-combo .dropdown-menu > li > a:hover {
+	cursor: pointer;
+}
+
+div.nofoodz-combo .caret{
+	margin-left: 3px;
+}
+
 /* DEFAULTS  */
 h3.pagetitle,
 div.pageheader {

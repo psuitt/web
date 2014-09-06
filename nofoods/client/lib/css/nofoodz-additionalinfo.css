@@ -8,11 +8,20 @@ div.nofoodz-additionalinfo .info-header {
 	font-size: 18px;
 }
 
+div.nofoodz-additionalinfo .display-section {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
 div.nofoodz-additionalinfo .btn.edit {
 	background: #255DAF;
 	color: #FFFFFF;
 	text-shadow: initial;
 	opacity: .8;
+	font-weight: normal;
+	font-size: 14px;
+	float: right;
 }
 
 div.nofoodz-additionalinfo .btn.edit:hover {
@@ -29,4 +38,8 @@ div.nofoodz-additionalinfo .save-section {
 
 div.nofoodz-additionalinfo button:first-child {
 	margin-right: 5px;
+}
+
+div.nofoodz-additionalinfo ul.column {
+	list-style: none;
 }

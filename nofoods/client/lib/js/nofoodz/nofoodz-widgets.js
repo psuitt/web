@@ -1,57 +1,5 @@
 NoFoods = typeof NoFoods === 'undefined' ? {} : NoFoods;
 
-NoFoods.lib = function() {
-
-	var MAX_PAGE_AMOUNT = 3;
-
-	return {
-		
-		formatDate: function(date) {
-			return (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
-		},
-		
-		formatDateTime: function(date) {
-
-			var time = [],
-					hours = date.getHours() + 1;
-			
-			time.push((date.getMonth() + 1));
-			time.push('/');
-			time.push(date.getDate());
-			time.push('/');
-			time.push(date.getFullYear());
-			time.push(' ');
-			time.push((hours % 12));
-			time.push(':');
-			time.push((date.getMinutes() + 1));
-						
-			if (hours > 11 && hours !== 24) {
-				time.push(' PM');
-			} else {
-				time.push(' AM');			
-			}
-			
-			return time.join('');
-		},
-		
-		createBrandLink: function(id, name) {
-			return $('<a></a>').attr('href', '/brand/page/' + id).html(name);
-		}
-		
-	};
-
-}();
-
-NoFoods.lib.key = function() {
-
-	return {
-		getCode: function(e) {
-			return e.keyCode || e.which;
-		}
-	};
-
-}();
-
 NoFoods.widgetlib = function() {
 	
 	var _floatMenu = function(div) {
@@ -126,10 +74,31 @@ NoFoods.widgetlib = function() {
 			
 			return div;
 		
-		}
+		},
+		
+		createEmptySelect: function() {
+
+			var searchType = $("<div></div>")
+									.addClass("type btn-group nofoodz-combo"),
+					searchTypeMainDisplay = $("<a data-toggle='dropdown'></a>")
+									.addClass("btn dropdown-toggle btn-default"),
+					searchTypeMainDisplayText = $("<span></span>")
+									.addClass("text"),
+					searchTypeMainDisplayCaret = $("<span></span>")
+									.addClass("caret"),
+					searchTypeDropdown = $("<ul></ul>")
+									.addClass("dropdown-menu");
+									
+			searchTypeMainDisplay.append(searchTypeMainDisplayText);
+			searchTypeMainDisplay.append(searchTypeMainDisplayCaret);
+			
+			searchType.append(searchTypeMainDisplay);
+			searchType.append(searchTypeDropdown);
+			
+			return searchType;
+		
+		},
 		
 	};
 
 }();
-
-

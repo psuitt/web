@@ -4,12 +4,16 @@ var placeauto,
 		brand_id = false;
 		
 Template.foodsAdd.destroyed = function () {
-	
+	// reset brand id.	
+	brand_id = false
 };
 
 Template.foodsAdd.rendered = function() {
 	
 	var data = this.data;
+
+  // reset brand id.	
+	brand_id = false
 	
 	setPath();
 	

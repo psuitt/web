@@ -1,6 +1,11 @@
 var LETTER_NUMBER_REGEX = /^[0-9a-z\s]+$/i;
 var LETTER_NUMBER_NO_SPACE_REGEX = /^[0-9a-z]+$/i;
 
+NoFoodzString = Match.Where(function (x) {
+  check(x, String);
+  return x.trim().length !== 0 && x.length < 400;
+});
+
 NonEmptyStringNoSpaceCharacters = Match.Where(function (x) {
   check(x, String);
   return x.trim().length !== 0 && LETTER_NUMBER_NO_SPACE_REGEX.test(x);
@@ -40,3 +45,12 @@ TypeCheck = Match.Where(function (x) {
   check(x, String);
   return x.toLowerCase() === "food" || x.toLowerCase() === "brand";
 });
+
+InfoCheck = Match.Where(function (x) {
+	check(x, Object);	
+  return x;
+});
+
+InfoCheckMap = {
+	subtype : FoodSubTypeCheck
+};
