@@ -36,6 +36,11 @@ div.nofoodz-additionalinfo .save-section {
 	text-align: right;
 }
 
+div.nofoodz-additionalinfo .save-section .alert {
+	text-align: left;
+	padding: 5px 15px;
+}
+
 div.nofoodz-additionalinfo button:first-child {
 	margin-right: 5px;
 }

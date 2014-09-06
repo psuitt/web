@@ -33,7 +33,7 @@ Meteor.methods({
 				if (item.user_id !== this.userId)		
 					throw new Meteor.Error(403, "You do not have permissions to update this");	
 					
-				Foods.update({_id: options._id}, { $set: { "info": _options.info } } );	
+				Foods.update({_id: options._id}, { $set: { "info": options.info } } );	
 				
 				break;
 			case "drink":
@@ -43,7 +43,7 @@ Meteor.methods({
 				if (item.user_id !== this.userId)		
 					throw new Meteor.Error(403, "You do not have permissions to update this");					
 				
-				Drinks.update({_id: options._id}, { $set: { "info": _options.info } } );					
+				Drinks.update({_id: options._id}, { $set: { "info": options.info } } );					
 				
 				break;
 			default:

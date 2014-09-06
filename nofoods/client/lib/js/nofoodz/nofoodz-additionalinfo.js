@@ -12,7 +12,8 @@
 	var _mode = Mode.INITIAL,
 			_enableUpdates = false,
 			SubTypes = {
-				DEFAULT: 'default' 			
+				DEFAULT: 'default',
+				ALCH: 'alcohol' 			
 			},
 			FieldTypes = {
 				COMBO: 'COMBO' 			
@@ -140,7 +141,8 @@
 		
 		_updateInfo();
 		
-		_toggleMode(Mode.DISPLAY);
+		_saveButton.hide();
+		_cancelButton.hide();
 		
 		var obj = {
 			_id: _options._id,
@@ -154,14 +156,33 @@
 	
 	var _saveComplete = function(err, data) {
 	
+		_saveSection.find('.alert').remove();
+	
+		var alertMessage = $('<div class=\'alert fade in\' role=\'alert\'></div>'),
+				button = $('<button type=\'button\' class="close" data-dismiss=\'alert\'><span aria-hidden=\'true\'>×</span><span class=\'sr-only\'>Close</span></button>');
+	
 		if (err) {
-			alert(err);
+			_saveButton.show();
+			_cancelButton.show();
+			alertMessage.addClass('alert-danger');
+			alertMessage.html(err);
+			alertMessage.prepend(button);
+			_saveSection.prepend(alertMessage);
 			return;
 		}
-	
-		alert("Saved!");
 		
+		alertMessage.addClass('alert-success');
+		alertMessage.html('Update successful!');
+		alertMessage.prepend(button);
+		
+		_saveSection.prepend(alertMessage);
+		
+		 setTimeout(function(){
+        alertMessage && alertMessage.remove();
+   	 }, 3000);
 	
+		_toggleMode(Mode.DISPLAY);
+		
 	};
 	
 	var _cancel = function () {
@@ -174,7 +195,7 @@
 			var infoType = $(this).attr('info-type'),
 					infoValue = $(this).attr('info-value');
 					
-			_options.info[infoType] = infoValue;
+			_options.info[infoType] = infoValue.toLowerCase();
 		
 		});
 	};
@@ -266,12 +287,16 @@
 	// Widget creation functions
 	var _createCombo = function(list) {
 		
-		var combo = NoFoods.widgetlib.createEmptySelect();
+		var combo = NoFoods.widgetlib.createEmptySelect(),
+				initialVal = list[0];
+				
+		if (this.field in _options.info)
+			initialVal = NoFoodz.format.camelCase(_options.info[this.field]);
 		
 		combo.addClass('nofoodz-field')
 				 .attr('info-type', this.field)
-				 .attr('info-value', list[0]);
-		combo.find('.text').html(list[0]);
+				 .attr('info-value', initialVal);
+		combo.find('.text').html(initialVal);
 		
 		// Add the options now.
 		for (var i = 0, length = list.length ; i < length ; i += 1) {
@@ -326,6 +351,10 @@
 		optionsDrink: ['Default', 'Alcohol'] };
 	
 	SubTypesFieldLists[SubTypes.DEFAULT] = [
+			Fields['subtype']
+	];
+	
+	SubTypesFieldLists[SubTypes.ALCH] = [
 			Fields['subtype']
 	];
 
