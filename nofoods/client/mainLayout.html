@@ -6,40 +6,53 @@
 		<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>-->
 		<meta name="google-site-verification" content="oFUzNJMbqgZgVJxxkqz7mT-ipWJptEuMjP9wWqDStsk" />
 	</head>
-	<div id="menu">
-		<div id="links" class="menu-horizontal">
-			<span class="logo"><a href="/" >NoFoodz</a></span>
-			<ul class="menu">
-				<li><a href="/explore" >Explore</a>	</li>
-				{{#if currentUser}}		
-				<li class="spacer"></li>	
-				<li><a href='/myfoods'>MyFoodz</a></li>
-				<li><a href='/food/add'>Add+</a>
-					<ul>
-						<li><a href='/food/addrecipe'>Add a Recipe</a></li>
-					</ul>				
-				</li>
-				{{/if}}
-			</ul>	
-		</div>
-		<div id="login">	
-			<div class="searchbar">	
-				<input type="text" />
-			</div>
-			<div id="menu-logindiv">
-				{{#if currentUser}}		
-				<span id="notifications" class="glyphicon glyphicon-flag"></span>
-				<ul id="notificationsList">
-				</ul>	
-				{{/if}}
-				<div id="loginDiv">
-					<ul id="loginList">
-					{{> loginButtons align="right"}}
-					</ul>
-				</div>	
-		  </div>
-		</div>
-	</div>
+	<nav id="menu" class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand logo" href="/">NoFoodz</a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="/explore" >Explore</a></li>
+	        {{#if currentUser}}	
+	        <li><a href='/myfoods'>MyFoodz</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+	          	<li><a href='/food/add'>Add</a></li>
+	            <li><a href='/food/addrecipe'>Add a Recipe</a></li>
+	          </ul>
+	        </li>
+	        {{/if}}
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><div class="searchbar"><input type="text" /></div></li>
+	        {{#if currentUser}}	
+	        <li>	
+						<span id="notifications" class="glyphicon glyphicon-flag"></span>
+						<ul id="notificationsList">
+						</ul>	
+					</li>
+					{{/if}}
+					<li>
+						<div id="loginDiv">
+							<ul id="loginList">
+							{{> loginButtons align="right"}}
+							</ul>
+						</div>					
+					</li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
 	<div id="header">
 	</div>
 	<div id="subMenu">

@@ -65,11 +65,12 @@ Template.foodsAdd.events({
 			type: type.toLowerCase()		
 		};
 
+		/*
 		if (brand_id) {
 			data.brand_id = brand_id;
 		} else if (brandId) {
 			data.brand_id = brandId;
-		}
+		}*/
 	
 		//setPlaceDetails(data); LOCATION		
 	

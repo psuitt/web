@@ -252,7 +252,7 @@ footer {
 }
 
 /* MENU */
-span.logo {
+#menu .logo {
 	font-weight: bold;
 	display: inline-block;
 	color: #DAA520;
@@ -282,75 +282,19 @@ span.logo a:hover {
 	z-index: 500;
 }
 
-div.menu-horizontal ul {
-	display:inline-block;
-	margin: 0;
+#menu .nav > li > a {
+	padding: 15px;
 }
 
-div.menu-horizontal ul li {
-	display:inline-block;
-	zoom: 1;
-	vertical-align: middle;
-	padding: 12px 10px;
-	height: 45px;
+#loginDiv {
+	margin-left: 10px;
 }
 
-div.menu-horizontal ul.menu li a {
-	font-size: 16px;
-}
-
-div.menu-horizontal ul.menu li a:hover {
-	text-decoration: none;
-}
-
-div.menu-horizontal ul.menu li.selected {
-	background: rgb(230,230,230);
-}
-
-div.menu-horizontal ul.menu li ul {
-	display: none;
-	position: absolute;
-	background: rgb(245,245,245);
-	border-top: 0;
-	top:45px;
-	box-shadow: 0 2px 5px 2px #255DAF;
-	-moz-box-shadow: 0 2px 5px #255DAF;
-	-webkit-box-shadow: 0 2px 5px #255DAF;
-}
-
-div.menu-horizontal ul.menu li:hover > ul {
-	display: block;
-}
-
-div.menu-horizontal ul.menu li ul li {
-	font-size: 14px;
-	line-height: 14px;
-	padding: 5px 20px 5px 5px;
-	height: auto;
-}
-
-#links {
-	float:left;
-	margin-left:30px;
-	height:45px;
-	min-width: 400px;
+#loginDiv>div {
 	display: inline-block;
 }
 
-#login {
-	float: right;
-	height: 45px;
-	min-width: 520px;
-	margin-right: 30px;
-	text-align: right;
-	display: inline-block;
-}
-
-#login>div {
-	display: inline-block;
-}
-
-#login .login-link-text {
+#loginDiv .login-link-text {
 	text-decoration:none;
 	font-weight: bold;
 }
@@ -359,10 +303,6 @@ div.menu-horizontal ul.menu li ul li {
 	vertical-align: top;
 	overflow: visible;
 	height: auto;
-}
-
-#loginDiv {
-	display:inline-block;
 }
 
 #loginList {
@@ -409,8 +349,8 @@ div.menu-horizontal ul.menu li ul li {
 	cursor: pointer;
 	vertical-align: top;
 	padding: 0 5px;
-	margin-top: 0 0 0 5px;
-	line-height: 45px;
+	margin: 0 0 0 10px;
+	line-height: 50px;
 	display: inline-block;
 }
 
@@ -428,14 +368,15 @@ div.menu-horizontal ul.menu li ul li {
 }
 
 #notificationsList {
+	width: 400px;
 	display: none;
 	position: absolute;
 	background: rgb(245,245,245);
 	border-top: 0;
-	top:45px;
+	top:49px;
 	right: 0;
-	border-left: 3px solid #255DAF;
-	border-bottom: 3px solid #255DAF;
+	border: 3px solid #255DAF;
+	border-top: 0;
 	list-style: none;
 }
 
@@ -469,8 +410,8 @@ div.menu-horizontal ul.menu li ul li {
 
 /* MAIN SEARCH */
 
-#login>div.searchbar {
-	margin:8px 20px 0 0;
+#menu div.searchbar {
+	margin:8px 0 0 0;
 	color: white;
 }
 
@@ -845,12 +786,20 @@ span.rating.x10 {
 	background-image: url('/rating/heart_1.svg');
 }
 
+span.rating.dashed.x10 {
+	background-image: url('/rating/heart_1_gold_dashed.svg');
+}
+
 span.rating.x10.blue {
 	background-image: url('/rating/heart_1_blue.svg');
 }
 
 span.rating.x20 {
 	background-image: url('/rating/heart_2.svg');
+}
+
+span.rating.dashed.x20 {
+	background-image: url('/rating/heart_2_gold_dashed.svg');
 }
 
 span.rating.x20.blue {
@@ -861,12 +810,20 @@ span.rating.x30 {
 	background-image: url('/rating/heart_3.svg');
 }
 
+span.rating.dashed.x30 {
+	background-image: url('/rating/heart_3_gold_dashed.svg');
+}
+
 span.rating.x30.blue {
 	background-image: url('/rating/heart_3_blue.svg');
 }
 
 span.rating.x40 {
 	background-image: url('/rating/heart_4.svg');
+}
+
+span.rating.dashed.x40 {
+	background-image: url('/rating/heart_4_gold_dashed.svg');
 }
 
 span.rating.x40.blue {
@@ -877,12 +834,20 @@ span.rating.x50 {
 	background-image: url('/rating/heart_half.svg');
 }
 
+span.rating.dashed.x50 {
+	background-image: url('/rating/heart_half_gold_dashed.svg');
+}
+
 span.rating.x50.blue {
 	background-image: url('/rating/heart_half_blue.svg');
 }
 
 span.rating.x60 {
 	background-image: url('/rating/heart_6.svg');
+}
+
+span.rating.dashed.x60{
+	background-image: url('/rating/heart_6_gold_dashed.svg');
 }
 
 span.rating.x60.blue {
@@ -893,6 +858,10 @@ span.rating.x70 {
 	background-image: url('/rating/heart_7.svg');
 }
 
+span.rating.dashed.x70 {
+	background-image: url('/rating/heart_7_gold_dashed.svg');
+}
+
 span.rating.x70.blue {
 	background-image: url('/rating/heart_7_blue.svg');
 }
@@ -901,12 +870,20 @@ span.rating.x80 {
 	background-image: url('/rating/heart_8.svg');
 }
 
+span.rating.dashed.x80 {
+	background-image: url('/rating/heart_8_gold_dashed.svg');
+}
+
 span.rating.x80.blue {
 	background-image: url('/rating/heart_8_blue.svg');
 }
 
 span.rating.x90 {
 	background-image: url('/rating/heart_9.svg');
+}
+
+span.rating.dashed.x90 {
+	background-image: url('/rating/heart_9_gold_dashed.svg');
 }
 
 span.rating.x90.blue {
@@ -921,14 +898,8 @@ span.rating.x100.blue {
 	background-image: url('/rating/heart_full_blue.svg');
 }
 
-span.rating.dashed.x100 {
-	background-image: url('/rating/heart_full_gold_dashed.svg');
-}
-
-span.rating.x110 {
-	background-image: url('/rating/heart_full_gold_dashed.svg');
-}
-
+span.rating.dashed.x100,
+span.rating.x110,
 span.rating.x120 {
 	background-image: url('/rating/heart_full_gold_dashed.svg');
 }

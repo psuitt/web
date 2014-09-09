@@ -70,9 +70,9 @@ Meteor.methods({
 			
 		var brand_id = false;
 		
-		if (options.brand_id) {
-			brand_id = options.brand_id
-		} else {
+		//if (options.brand_id) {
+		//	brand_id = options.brand_id
+		//} else {
 		
 			var brand = Brands.findOne({name: options.brand});
 			
@@ -90,7 +90,7 @@ Meteor.methods({
 									});
 			}
 		
-		}
+		//}
 
 		var ratingObj = {
 			_id: Random.id(),

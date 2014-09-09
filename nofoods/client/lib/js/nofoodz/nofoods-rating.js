@@ -30,6 +30,7 @@
 			self.find('span.rating').each(function() {
 				$(this).toggleClass('x100 blue', $(this).index() <= index);						
 			});
+			self.find('span.rating').removeClass('x10 x20 x30 x40 x50 x60 x70 x80 x90');
 			_options.select && _options.select(_getValue());		
 		});
 		
@@ -54,11 +55,20 @@
 		// Functions
 		
 		var _setValue = function(i) {
-			var lastClass = 'x' + (Math.round((i - Math.round(i))*10)*10).toString(),
-					rounded = Math.round((i * 2)),
-					lastVal = 'x' + (rounded*10).toString();
-			self.find('span.rating').each(function() {
-				$(this).toggleClass('blue', false).toggleClass('x100', $(this).index() < i);						
+			var f = parseFloat(i),
+					floor = Math.floor(i),
+					lastClass = 'x' + (Math.round((f - floor)*10)*10).toString();
+
+			if (f === floor)	
+				lastClass = 'x100';				
+					
+			self.find('span.rating').each(function(index) {
+				$(this).toggleClass('blue', false).toggleClass('x100', index < (f-1));
+				if (index >= (f - 1)) {
+					$(this).toggleClass('blue', false).toggleClass(lastClass, true);
+					// Done Processing					
+					return false;
+				}
 			});	
 		};
 		
