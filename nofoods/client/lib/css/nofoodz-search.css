@@ -1,0 +1,28 @@
+/* SEARCH */
+.nofoodssearch.type {
+	text-align: left;
+	margin-top: 1px;
+}
+
+.nofoodssearch.type>a {
+	text-align: left;
+}
+
+.nofoodssearch.type ul {
+	width: auto;
+	right: inherit;
+}
+
+.nofoodssearch.type ul li a {
+	cursor: pointer;
+}
+
+.nofoodssearch.type span.text {
+	width: 50px;
+	display: inline-block;
+	line-height: 24px;
+}
+
+.nofoodssearch.type span.caret {
+	margin-top: 0;
+}

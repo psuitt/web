@@ -254,36 +254,48 @@ footer {
 /* MENU */
 #menu .logo {
 	font-weight: bold;
-	display: inline-block;
 	color: #DAA520;
-	font-size: 18px;
-	vertical-align: middle;
 }
 
 span.logo a,
 span.logo a:hover {
 	color: #DAA520;
 	text-decoration: none;
-	vertical-align: middle;
-	line-height: 24px;
 }
 /* Menu CSS */
 
 #menu {
 	position:fixed;
 	top: 0;
-	min-width: 1000px;
 	width: 100%;
 	padding: 0;
 	margin: 0;
 	background: rgb(245,245,245);
-	height: 45px;
 	overflow: visible;
 	z-index: 500;
+	border-radius: 0;
+}
+
+#menu .navbar-header button.navbar-toggle,
+#menu .navbar-header button.navbar-toggle:hover {
+	background: #FFFFFF;
+}
+
+#menu .navbar-header button.navbar-toggle span.icon-bar {
+	background: #255DAF;
 }
 
 #menu .nav > li > a {
 	padding: 15px;
+	color: #255DAF;
+}
+
+#menu-navbar {
+	overflow: visible;
+}
+
+#menu-navbar li.text-center {
+	text-align: center;
 }
 
 #loginDiv {
@@ -373,7 +385,7 @@ span.logo a:hover {
 	position: absolute;
 	background: rgb(245,245,245);
 	border-top: 0;
-	top:49px;
+	top:51px;
 	right: 0;
 	border: 3px solid #255DAF;
 	border-top: 0;
@@ -467,7 +479,7 @@ div.searchbar button:hover {
 /* Header */
 
 #header {
-	margin-top: 45px;
+	margin-top: 50px;
 	min-height: 200px;
 	background: rgb(245,245,245);
 	background-image: url('/backgrounds/denver_colorado.png');
@@ -726,34 +738,6 @@ div.nofoods-autocomplete.message {
 	margin-top: 2px;
 	margin-left: 5px;
 	vertical-align: top;
-}
-
-/* SEARCH */
-.nofoodssearch.type {
-	text-align: left;
-	margin-top: 1px;
-}
-
-.nofoodssearch.type>a {
-	text-align: left;
-}
-
-.nofoodssearch.type ul {
-	width: auto;
-}
-
-.nofoodssearch.type ul li a {
-	cursor: pointer;
-}
-
-.nofoodssearch.type span.text {
-	width: 50px;
-	display: inline-block;
-	line-height: 24px;
-}
-
-.nofoodssearch.type span.caret {
-	margin-top: 0;
 }
 
 /* NoFoods - RATING */

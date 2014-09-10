@@ -51,7 +51,7 @@
 		// Private 
 		function location($element)
 		{
-			this.min = $element.offset().top - 50;
+			this.min = $element.offset().top - 57;
 			this.originalMargin = parseInt($element.css("margin-top"), 10) || 0;
 			
 			this.getMargin = function ($window)
