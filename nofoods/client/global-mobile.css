@@ -1,0 +1,22 @@
+@media only screen and (max-width: 992px) 
+{
+    .nav-tabs li
+    {
+      width:100%!important;
+    }
+    .tab-content .tab-pane
+    {
+    	display:block!important; 
+    }
+    div.content.middle 
+    {
+    	min-width: 0!important;
+    	width:100%!important;
+    }
+    span.rating {
+    	height: 48px!important;
+    	width: 48px!important;
+    	background-size: 48px 44px!important;
+    }
+    
+}

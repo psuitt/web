@@ -21,6 +21,11 @@ Template.myfoods.destroyed = function() {
 
 Template.myfoods.rendered = function() {
 	
+	if (!Meteor.userId()) {
+		Router.go('home');
+		return;
+	}
+	
 	setPath();
 
 	$('#myfoods-nav a').click(function(e) {
@@ -29,12 +34,6 @@ Template.myfoods.rendered = function() {
 	});
 	
 	NoFoods.widgetlib.floatMenu($('#myfoods-nav'));
-
-	if (!Meteor.userId()) {
-		$("#myfoods-ratingsfoods").append("Please log in to view your ratings.");	
-		$("#myfoods-ratingsdrinks").append("Please log in to view your ratings.");		
-		return;	
-	}
 
 	userDataSub = Meteor.subscribe('userdata', function() { 
 		var user = Meteor.user(),

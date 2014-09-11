@@ -10,6 +10,11 @@ Template.foodsAdd.destroyed = function () {
 
 Template.foodsAdd.rendered = function() {
 	
+	if (!Meteor.userId()) {
+		Router.go('home');
+		return;
+	}
+	
 	var data = this.data;
 
   // reset brand id.	

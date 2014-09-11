@@ -148,6 +148,12 @@ h3.pagetitle span.wishstar {
 	margin-top: 3.5px;
 }
 
+h4.section-title {
+	color: #008000;
+	font-size: 22px;
+	border-bottom: 1px dashed;
+}
+
 div.page-message {
 	display: inline-block;
 }
@@ -315,6 +321,12 @@ span.logo a:hover {
 	vertical-align: top;
 	overflow: visible;
 	height: auto;
+}
+
+#menu-navbar.collapse.in #login-dropdown-list {
+	top: 40px;
+	left: 0;
+	right: auto;
 }
 
 #loginList {
@@ -554,6 +566,7 @@ div.loading.hide {
 div.nofoods-navpages {
 	vertical-align: top;
 	display:inline-block;
+	width: 100%;
 }
 
 div.myfoods span.brand,

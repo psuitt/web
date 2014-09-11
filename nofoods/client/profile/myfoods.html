@@ -1,6 +1,6 @@
 <template name="myfoods">
 	
-	<div class="side-section left">
+	<div class="side-section left hidden-xs hidden-sm">
 		<div id="myfoods-nav" class="nofoods-pagenav floating">
 			<ul class="nav nav-list">
 				<li class="nav-header nofoodz-header">MyFoodz</li>
@@ -29,29 +29,34 @@
 				<label>Bonus Hearts</label><span id="myfoods-bonus"></span>
 				<input id="myfoods-save" type="button" class="save" value="Save Changes"/>
 			</div>
-	
+
 			<div class="tab-pane" id="myfoods-foods">
+				<h4 class="section-title visible-xs-block visible-sm-block">Food Ratings</h4>
 				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your foods...">
 				<div id="myfoods-ratingsfoods"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 			
 			<div class="tab-pane" id="myfoods-drinks">
+				<h4 class="section-title visible-xs-block visible-sm-block">Drink Ratings</h4>
 				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your drinks...">
 				<div id="myfoods-ratingsdrinks"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 
 			<div class="tab-pane" id="myfoods-linkspage">
+				<h4 class="section-title visible-xs-block visible-sm-block">Links</h4>
 				<div id="myfoods-links"></div>
 			</div>
 
 			<div class="tab-pane" id="myfoods-wishlistpage">
+				<h4 class="section-title visible-xs-block visible-sm-block">Wishlist</h4>
 				<div id="myfoods-wishlist"></div>
 				<div class="myfoods-paging"></div>
 			</div>
 
 			<div class="tab-pane" id="myfoods-achievementspage">
+				<h4 class="section-title visible-xs-block visible-sm-block">Achievements</h4>
 				<div class="pagetitle">Achievement Points<span class="achievementPoints"></span></div>
 				<div id="myfoods-achievements"></div>
 			</div>
@@ -60,7 +65,7 @@
 		
 	</div>
 	
-	<div class="side-section right">
+	<div class="side-section right hidden-xs hidden-sm">
 	
 	</div>
 	
