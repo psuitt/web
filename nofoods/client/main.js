@@ -22,6 +22,18 @@ Router.map(function () {
 		layoutTemplate: 'mainLayout'
   });
   
+  this.route('admin', {
+    path:'/admin',
+    template: 'admin',
+		layoutTemplate: 'mainLayout'
+  });
+  
+  this.route('reported', {
+    path:'/admin/reported',
+    template: 'reported',
+		layoutTemplate: 'mainLayout'
+  });
+  
   this.route('searchResultsEmpty', {
     path: '/search/:type/',
     template: 'search',

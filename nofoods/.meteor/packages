@@ -8,10 +8,10 @@ accounts-password
 d3
 email
 audit-argument-checks
-cmather:iron-router@0.8.2
 jquery
 mrt:jquery-ui@1.9.2
 http
 underscore
 accounts-ui
+iron:router
 

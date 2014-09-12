@@ -46,6 +46,11 @@ TypeCheck = Match.Where(function (x) {
   return x.toLowerCase() === "food" || x.toLowerCase() === "brand";
 });
 
+NullCheck = Match.Where(function (x) {
+	check(x, Object);	
+  return x;
+});
+
 InfoCheck = Match.Where(function (x) {
 	check(x, Object);	
   return x;
