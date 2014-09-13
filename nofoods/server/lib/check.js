@@ -28,7 +28,7 @@ RatingCheck = Match.Where(function (x) {
 
 FoodTypeCheck = Match.Where(function (x) {
   check(x, String);
-  return x === "drink" || x === "food";
+  return x === NoFoodz.consts.db.FOOD || x === NoFoodz.consts.db.DRINK;
 });
 
 FoodSubTypeCheck = Match.Where(function (x) {

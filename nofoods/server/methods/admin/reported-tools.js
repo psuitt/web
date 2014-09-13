@@ -8,8 +8,16 @@ Meteor.methods({
     });
     
     if (!this.userId)
-      throw new Meteor.Error(403, "You must be logged in");
-		// Check if admin
+      throw new Meteor.Error(403, 'You must be logged in');
+      
+    var user = Meteor.user();  
+      
+    if (!user.admin !== NoFoodz.consts.admin.SUPER)
+      throw new Meteor.Error(403, 'You must be logged in');
+      
+    var query = {
+    	 flags: { $in: [NoFoodz.consts.flags.REPORTED] }
+    };
 		
 		var filter = {
 			limit: 10,
@@ -35,16 +43,64 @@ Meteor.methods({
     	var item = options.items[i];
     	check(item, NullCheck); 
 			check(item._id, NonEmptyStringNoSpaceCharacters); 
-			check(item.type, NonEmptyStringNoSpaceCharacters);    
+			check(item.type, FoodTypeCheck);    
     }
     
     if (!this.userId)
       throw new Meteor.Error(403, "You must be logged in");
-		// Check if admin
+		
+		var user = Meteor.user();  
+      
+    if (!user.admin !== NoFoodz.consts.admin.SUPER)
+      throw new Meteor.Error(403, "You must be logged in");
+		
+		for (var i = 0, len = options.items.length; i < len; i += 1) {
+    	var item = options.items[i];
+    	var ratingRemoveObj = false;
+    	var brand_id = false;
+    	var Items = false;
+    	
+    	switch(item.type) {
+    	
+    		case NoFoodz.consts.db.FOOD:
+    			var food = Foods.findOne({ _id : item._id });
+    			if (food) {
+						ratingRemoveObj = { food_id : food._id };	
+						brand_id = food.brand_id;	  
+						Items = Foods;  			
+    			}
+    			break;
+    		case NoFoodz.consts.db.DRINK:
+    			var drink = Drinks.findOne({ _id : item._id });
+    			if (drink) {
+						ratingRemoveObj = { drink_id : drink._id };	
+						brand_id = drink.brand_id;
+						Drinks = Foods;
+						Drinks.remove({ _id : item._id }); 	    			
+    			}
+    			break;
+    			
+    	};
+    	
+    	// Remove the ratings.
+    	if (ratingRemoveObj && Items) {
+				NoFoodz.rating.remove(ratingRemoveObj);  
+				Items.remove({ _id : item._id });	
+    	}
+    	
+    	var brandCount = Ratings.find({ brand_id : brand_id}).count();	
+    	// Remove the brand if there are no more rating attached.
+    	if (brandCount === 0) {
+				Brands.remove({ _id: brand_id });    	
+    	}
+    	 
+    }
 		
 		// Delete all ratings
 		
 		// Delete the item
+		
+		// Brand
 
 	}
 	

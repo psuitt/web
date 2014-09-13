@@ -57,6 +57,17 @@ NoFoodz.rating = function() {
 		}
 	
 	}; 
+	
+	var _remove = function(json) {
+		
+		if (json.food_id) {
+			Ratings.remove({ food_id : json.food_id});			
+		} else if (json.drink_id) {
+			Ratings.remove({ drink_id : json.drink_id});						
+		}
+
+	
+	}; 
 
 	return {
 		
@@ -66,6 +77,10 @@ NoFoodz.rating = function() {
 		
 		updateOne: function(_id, update, user_id) {
 			return _updateOne(_id, update, user_id);
+		},
+		
+		remove: function(json) {
+			return _remove(json);
 		}
 		
 	};

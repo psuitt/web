@@ -22,5 +22,13 @@ NoFoodz.consts.filters = {
 				reporters: 0	
 			}
 		}
-}
-		
+};
+
+NoFoodz.consts.admin = {
+	SUPER : 'S'
+};
+	
+NoFoodz.consts.db = {
+	FOOD : 'food',
+	DRINK : 'drink'
+};	
