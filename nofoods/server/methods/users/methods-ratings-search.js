@@ -149,7 +149,7 @@ Meteor.methods({
   			
   		}
   		
-			if (response.ratings.length > 0) {
+  		if (response.ratings.length > 0) {
 				var drinksQuery = addSearch({ _id: { $in: drink_ids } }, options);
 				response.drinks = Drinks.find( drinksQuery ).fetch();			
 			}  		

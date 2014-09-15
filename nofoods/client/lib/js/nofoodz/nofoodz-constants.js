@@ -21,5 +21,6 @@ NoFoodz.consts = function() {
 }();
 
 NoFoodz.consts.flags = {
-	REPORTED : 'R'
+	REPORTED : 'R',
+	ADMIN_SUPER : 'S'
 };

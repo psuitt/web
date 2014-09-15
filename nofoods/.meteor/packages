@@ -12,6 +12,6 @@ jquery
 mrt:jquery-ui@1.9.2
 http
 underscore
-accounts-ui
 iron:router
+accounts-ui
 

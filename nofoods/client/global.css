@@ -158,6 +158,15 @@ div.page-message {
 	display: inline-block;
 }
 
+div.alertmessage {
+	top: 50px;
+	left: 0;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: 100;
+}
+
 #mainContent {
 	min-height: 600px;
 	height: auto;

@@ -14,6 +14,7 @@ Meteor.publish("userdata", function () {
 		};
 		var filter = {
 			fields: {
+				admin: 1,
 				username: 1,
 				profile: 1,
 				achievements: 1				

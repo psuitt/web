@@ -8,9 +8,10 @@ Template.myfoods.events({
 				name: template.find('#myfoods-name').value		
 			};
 			Meteor.call('updateProfile', profile, function(err) {
-				if (!err)
-					$('div.alertmessage').html('Save was successful!');
+				if (!err) {
+					$('div.alertmessage').html('Remove was successful!');
 					$('div.alertmessage').show().delay(3500).fadeOut(1000);
+				}
 			});
 		}	
 });
@@ -40,12 +41,22 @@ Template.myfoods.rendered = function() {
 				wishlist;
 
 		if (user && user.profile) {
+			
 			$('#myfoods-username').html(user.username);
 			$('#myfoods-joined').html("Joined " + NoFoods.lib.formatDate(user.profile.date));
 			$('#myfoods-name').val(user.profile.name);
 			$('#myfoods-bonus').html(user.profile.bonusHearts);
 			loadLinks(user.profile.links);
 			loadAchievements(user.achievements);		
+			
+			if (user.admin === NoFoodz.consts.flags.ADMIN_SUPER) {
+				var adminHeader = $('<li class=\'nav-header\'>Admin</li>');
+				var admin = $('<li class=\'\'><a href=\'/admin\'>Admin</a></li>');
+    		var adminReported = $('<li class=\'\'><a href=\'/admin/reported\'>Reported</a></li>');
+				$('#myfoods-nav .nav-list').append(adminHeader)
+																	 .append(admin)
+												 					 .append(adminReported);
+			}
 
 		}
 		

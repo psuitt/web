@@ -6,11 +6,6 @@ div.myrating {
 	width: 100%;
 }
 
-div.alertmessage {
-	display: none;
-	position:absolute;
-}
-
 span.name {
 	display: inline-block;
 	vertical-align: middle;

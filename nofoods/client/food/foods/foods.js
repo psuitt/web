@@ -7,7 +7,7 @@ Template.foods.destroyed = function () {
 
 var done = function(err, data) {
 	
-	if (err || !data) {
+	if (err || !data || !data.item) {
 		Router.go('/404');
 	}
 

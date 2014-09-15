@@ -1,3 +1,5 @@
+var MAX_LIMIT = 15;
+
 Meteor.methods({
 	
 	findReportedItems: function (options) {
@@ -10,33 +12,39 @@ Meteor.methods({
     if (!this.userId)
       throw new Meteor.Error(403, 'You must be logged in');
       
-    var user = Meteor.user();  
-      
-    if (!user.admin !== NoFoodz.consts.admin.SUPER)
-      throw new Meteor.Error(403, 'You must be logged in');
+    var user = Meteor.user(); 
+    
+    if (!user.admin || user.admin !== NoFoodz.consts.admin.SUPER)
+      throw new Meteor.Error(403, NoFoodz.messages.errors.ADMIN_TYPE);
       
     var query = {
     	 flags: { $in: [NoFoodz.consts.flags.REPORTED] }
     };
 		
 		var filter = {
-			limit: 10,
+			limit: MAX_LIMIT,
+			skip: MAX_LIMIT*(options.page - 1),
 			fields: {
 				name: 1,
+				brand_id: 1,
 				brand_view: 1			
 			}
 		};
 		
+		var response = {};
+		
 		// Return a reponse of reported items
 		response.foods = Foods.find( query, filter ).fetch();
-		response.drinks = Foods.find( query, filter ).fetch();
+		response.drinks = Drinks.find( query, filter ).fetch();
+		
+		return response;
 
 	},
 	
 	removeItems: function (options) {
 		
 		check(options, {
-			items: NullCheck
+			items: Array
     });
     
     for (var i = 0, len = options.items.length; i < len; i += 1) {
@@ -51,8 +59,8 @@ Meteor.methods({
 		
 		var user = Meteor.user();  
       
-    if (!user.admin !== NoFoodz.consts.admin.SUPER)
-      throw new Meteor.Error(403, "You must be logged in");
+    if (!user.admin || user.admin !== NoFoodz.consts.admin.SUPER)
+      throw new Meteor.Error(403, NoFoodz.messages.errors.ADMIN_TYPE);
 		
 		for (var i = 0, len = options.items.length; i < len; i += 1) {
     	var item = options.items[i];
@@ -65,19 +73,18 @@ Meteor.methods({
     		case NoFoodz.consts.db.FOOD:
     			var food = Foods.findOne({ _id : item._id });
     			if (food) {
-						ratingRemoveObj = { food_id : food._id };	
-						brand_id = food.brand_id;	  
-						Items = Foods;  			
+						brand_id = food.brand_id;	    			
     			}
+    			Items = Foods;
+    			ratingRemoveObj = { food_id : food._id };
     			break;
     		case NoFoodz.consts.db.DRINK:
     			var drink = Drinks.findOne({ _id : item._id });
     			if (drink) {
-						ratingRemoveObj = { drink_id : drink._id };	
-						brand_id = drink.brand_id;
-						Drinks = Foods;
-						Drinks.remove({ _id : item._id }); 	    			
+						brand_id = drink.brand_id;	    			
     			}
+    			Items = Drinks;	
+    			ratingRemoveObj = { drink_id : drink._id };
     			break;
     			
     	};
@@ -88,7 +95,9 @@ Meteor.methods({
 				Items.remove({ _id : item._id });	
     	}
     	
-    	var brandCount = Ratings.find({ brand_id : brand_id}).count();	
+    	var brandCount = Foods.find({ brand_id : brand_id}).count() 
+    	+ Drinks.find({ brand_id : brand_id}).count();	
+    	
     	// Remove the brand if there are no more rating attached.
     	if (brandCount === 0) {
 				Brands.remove({ _id: brand_id });    	
