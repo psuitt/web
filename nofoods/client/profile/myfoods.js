@@ -9,7 +9,7 @@ Template.myfoods.events({
 			};
 			Meteor.call('updateProfile', profile, function(err) {
 				if (!err) {
-					$('div.alertmessage').html('Remove was successful!');
+					$('div.alertmessage').html('Save was successful!');
 					$('div.alertmessage').show().delay(3500).fadeOut(1000);
 				}
 			});
@@ -18,6 +18,9 @@ Template.myfoods.events({
 
 Template.myfoods.destroyed = function() {
 	userDataSub && userDataSub.stop();
+	$('#mainContent').off('swiperight');
+	$('#mainContent').off('swipeleft');
+	$('#mainContent').removeClass('default');
 };
 
 Template.myfoods.rendered = function() {
@@ -34,7 +37,7 @@ Template.myfoods.rendered = function() {
 		$(this).tab('show');	
 	});
 	
-	NoFoods.widgetlib.floatMenu($('#myfoods-nav'));
+	NoFoods.widgetlib.staticOffCanvasMenu($('#myfoods-nav'));
 
 	userDataSub = Meteor.subscribe('userdata', function() { 
 		var user = Meteor.user(),
@@ -102,6 +105,15 @@ Template.myfoods.rendered = function() {
 			getDrinksPage(1);
 		}	
 	
+	});
+	
+	$('#mainContent').removeClass('default');	
+	
+	$('#mainContent').on('swiperight', function(){
+		$('.row.row-offcanvas').addClass('active');
+	});
+	$('#mainContent').on('swipeleft', function(){
+		$('.row.row-offcanvas').removeClass('active');
 	});
 	
 };

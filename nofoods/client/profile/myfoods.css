@@ -1,5 +1,14 @@
+.row div.left {
+	text-align: right;
+}
+
+.row div.right {
+	text-align: left;
+}
+
 #myfoods-nav {
 	width: auto;
+	position: relative;
 	min-width: 130px;
 	margin-right:10px;
 	vertical-align: top;

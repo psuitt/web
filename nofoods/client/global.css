@@ -177,6 +177,7 @@ div.alertmessage {
 	background-position: center center;
 	background-size: 100% auto;
 	text-align: center;
+	overflow: hidden;
 }
 
 #mainContent.white {
@@ -208,6 +209,22 @@ div.content {
   */
 }
 
+div.content.middle {
+	min-height: 600px;
+	width: 60%;
+}
+
+div.offcanvas-menu {
+	display: inline-block;
+	background: #FFF;
+	text-align: left;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 40px;
+	margin: 0;
+	min-height: 600px;
+}
+
 div.content .hidden {
 	display: none;
 }
@@ -237,6 +254,7 @@ div.contentbody {
 	padding: 0 10px 10px 10px;
 }
 
+div.offcanvas-menu>h3,
 div.content>h3 {
 	margin-top:0px;
 }
@@ -411,6 +429,7 @@ span.logo a:hover {
 	border: 3px solid #255DAF;
 	border-top: 0;
 	list-style: none;
+	z-index: 100;
 }
 
 #notificationsList.open {

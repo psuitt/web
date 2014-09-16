@@ -114,11 +114,6 @@ div.side-section.right {
 	text-align: left;
 }
 
-div.content.middle {
-	min-height: 600px;
-	width: 60%;
-}
-
 div.side-section .nofoods-pagenav {
 	margin: 45px 0 0 0;
 	border-right: 2px solid #255DAF;

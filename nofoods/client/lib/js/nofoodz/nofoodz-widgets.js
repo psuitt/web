@@ -17,10 +17,42 @@ NoFoods.widgetlib = function() {
     	
 	};
 	
+	var _staticOffCanvasMenu = function(div) {
+	
+		var $window = $(window),
+    		top = div.offset().top - 52;
+
+   	$window.scroll(function() {
+			var windowTop = $window.scrollTop(),
+					menuTop = $('#menu').offset().top;
+			if (windowTop > top) {
+				var newTop = (menuTop - top) + 'px'				
+				div.css('top', newTop);
+			} else {
+				div.css('top', 0);
+			}
+    });
+    
+		div.on('click', 'li>a', function() {
+			
+			var currentTop = $(window).scrollTop(),
+					newTop = $("#mainContent").offset().top - 45;
+			
+			if (currentTop > newTop)
+				$('html, body').animate({scrollTop: newTop}, 200);	
+				
+		});
+    	
+	};
+	
 	return {
 		
 		floatMenu: function(div) {
 			_floatMenu(div);
+		},
+		
+		staticOffCanvasMenu: function(div) {
+			_staticOffCanvasMenu(div);
 		},
 		
 		createRatingDiv: function(rating) {

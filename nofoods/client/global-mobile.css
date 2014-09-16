@@ -4,7 +4,7 @@
     {
       width:100%!important;
     }
-    .tab-content .tab-pane
+    #mainContent.default .tab-content .tab-pane
     {
     	display:block!important; 
     }
@@ -13,10 +13,13 @@
     	min-width: 0!important;
     	width:100%!important;
     }
+    #notificationsList {
+			width: 100%!important;
+		}
     span.rating {
-    	height: 48px!important;
-    	width: 48px!important;
+    	height: 49px!important;
+    	width: 49px!important;
     	background-size: 48px 44px!important;
     }
-    
+
 }

@@ -1,72 +1,75 @@
 <template name="myfoods">
 	
-	<div class="side-section left hidden-xs hidden-sm">
-		<div id="myfoods-nav" class="nofoods-pagenav floating">
-			<ul class="nav nav-list">
-				<li class="nav-header nofoodz-header">MyFoodz</li>
-    		<li class="active"><a href="#myfoods-profile">Profile</a></li>
-    		<li class="nav-header">Ratings</li>
-    		<li class=""><a href="#myfoods-foods">Foods</a></li>
-    		<li class=""><a href="#myfoods-drinks">Drinks</a></li>
-    		<li class="nav-header">Other</li>
-    		<li class=""><a href="#myfoods-linkspage">Links</a></li>
-    		<li class=""><a href="#myfoods-wishlistpage">Wishlist</a></li>
-				<li class=""><a href="#myfoods-achievementspage">Achievements</a></li>
-    	</ul>
-		</div>
-	</div>
+	<div class="row row-offcanvas row-offcanvas-left">
 	
-	<div class="content middle" >
-		<div class="alertmessage alert alert-success" >Success message test!</div>
-		<h3 class="pagetitle" >MyFoodz</h3>
-		
-		<div id="myfoods-pages" class="tab-content">
-
-			<div class="tab-pane active" id="myfoods-profile">
-				<h3 id="myfoods-username"></h3>
-				<span id="myfoods-joined" class="date" ></span>
-				<label>Name</label><input id="myfoods-name" type="text" />
-				<label>Bonus Hearts</label><span id="myfoods-bonus"></span>
-				<input id="myfoods-save" type="button" class="save" value="Save Changes"/>
+		<div class="left col-xs-11 col-sm-11 col-md-2 col-lg-2 sidebar-offcanvas" role="navigation">
+			<div id="myfoods-nav" class="nofoods-pagenav floating">
+				<ul class="nav nav-list">
+					<li class="nav-header nofoodz-header">MyFoodz</li>
+	    		<li class="active"><a href="#myfoods-profile">Profile</a></li>
+	    		<li class="nav-header">Ratings</li>
+	    		<li class=""><a href="#myfoods-foods">Foods</a></li>
+	    		<li class=""><a href="#myfoods-drinks">Drinks</a></li>
+	    		<li class="nav-header">Other</li>
+	    		<li class=""><a href="#myfoods-linkspage">Links</a></li>
+	    		<li class=""><a href="#myfoods-wishlistpage">Wishlist</a></li>
+					<li class=""><a href="#myfoods-achievementspage">Achievements</a></li>
+	    	</ul>
 			</div>
-
-			<div class="tab-pane" id="myfoods-foods">
-				<h4 class="section-title visible-xs-block visible-sm-block">Food Ratings</h4>
-				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your foods...">
-				<div id="myfoods-ratingsfoods"></div>
-				<div class="myfoods-paging"></div>
+		</div>
+		
+		<div class="offcanvas-menu col-xs-12 col-sm-12 col-md-8 col-lg-8" >
+			<div class="alertmessage alert alert-success" >Success message test!</div>
+			<h3 class="pagetitle" >MyFoodz</h3>
+			
+			<div id="myfoods-pages" class="tab-content">
+	
+				<div class="tab-pane active" id="myfoods-profile">
+					<h3 id="myfoods-username"></h3>
+					<span id="myfoods-joined" class="date" ></span>
+					<label>Name</label><input id="myfoods-name" type="text" />
+					<label>Bonus Hearts</label><span id="myfoods-bonus"></span>
+					<input id="myfoods-save" type="button" class="save" value="Save Changes"/>
+				</div>
+	
+				<div class="tab-pane" id="myfoods-foods">
+					<h4 class="section-title visible-xs-block visible-sm-block">Food Ratings</h4>
+					<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your foods...">
+					<div id="myfoods-ratingsfoods"></div>
+					<div class="myfoods-paging"></div>
+				</div>
+				
+				<div class="tab-pane" id="myfoods-drinks">
+					<h4 class="section-title visible-xs-block visible-sm-block">Drink Ratings</h4>
+					<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your drinks...">
+					<div id="myfoods-ratingsdrinks"></div>
+					<div class="myfoods-paging"></div>
+				</div>
+	
+				<div class="tab-pane" id="myfoods-linkspage">
+					<h4 class="section-title visible-xs-block visible-sm-block">Links</h4>
+					<div id="myfoods-links"></div>
+				</div>
+	
+				<div class="tab-pane" id="myfoods-wishlistpage">
+					<h4 class="section-title visible-xs-block visible-sm-block">Wishlist</h4>
+					<div id="myfoods-wishlist"></div>
+					<div class="myfoods-paging"></div>
+				</div>
+	
+				<div class="tab-pane" id="myfoods-achievementspage">
+					<h4 class="section-title visible-xs-block visible-sm-block">Achievements</h4>
+					<div class="pagetitle">Achievement Points<span class="achievementPoints"></span></div>
+					<div id="myfoods-achievements"></div>
+				</div>
+			
 			</div>
 			
-			<div class="tab-pane" id="myfoods-drinks">
-				<h4 class="section-title visible-xs-block visible-sm-block">Drink Ratings</h4>
-				<input type="text" class="ratingsearch" disabled="disabled" placeholder="Search your drinks...">
-				<div id="myfoods-ratingsdrinks"></div>
-				<div class="myfoods-paging"></div>
-			</div>
-
-			<div class="tab-pane" id="myfoods-linkspage">
-				<h4 class="section-title visible-xs-block visible-sm-block">Links</h4>
-				<div id="myfoods-links"></div>
-			</div>
-
-			<div class="tab-pane" id="myfoods-wishlistpage">
-				<h4 class="section-title visible-xs-block visible-sm-block">Wishlist</h4>
-				<div id="myfoods-wishlist"></div>
-				<div class="myfoods-paging"></div>
-			</div>
-
-			<div class="tab-pane" id="myfoods-achievementspage">
-				<h4 class="section-title visible-xs-block visible-sm-block">Achievements</h4>
-				<div class="pagetitle">Achievement Points<span class="achievementPoints"></span></div>
-				<div id="myfoods-achievements"></div>
-			</div>
-		
 		</div>
 		
-	</div>
-	
-	<div class="side-section right hidden-xs hidden-sm">
-	
+		<div class="right col-xs-11 col-sm-11 col-md-2 col-lg-2 sidebar-offcanvas">
+		
+		</div>
 	</div>
 	
 </template>

@@ -28,7 +28,7 @@ Template.reported.rendered = function() {
 var success = function(err) {
 
 	if (!err) {
-		$('div.alertmessage').html('Save was successful!');
+		$('div.alertmessage').html('Remove was successful!');
 		$('div.alertmessage').show().delay(3500).fadeOut(1000);
 	}
 
