@@ -83,8 +83,6 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    onBeforeAction: function () {
-    },
 		data: function() {
 			return this.params;
 		}
@@ -97,8 +95,6 @@ Router.map(function () {
 		yieldTemplates: {
 			'footer': {to: 'footer'}		
 		},
-    onBeforeAction: function () {
-    },
 		data: function() {
 		
 		}
@@ -112,7 +108,8 @@ Router.map(function () {
 			'footer': {to: 'footer'}		
 		},
     onBeforeAction: function () {	  
-			PARAMS = this.params;   
+			PARAMS = this.params;  
+			this.next(); 
     },
     data: function() {
 			return {
@@ -130,12 +127,24 @@ Router.map(function () {
 			'footer': {to: 'footer'}		
 		},
     onBeforeAction: function () {	  
-			PARAMS = this.params;   
+			PARAMS = this.params;
+			this.next();   
     },
 		data: function() {
 			return {brand_id: this.params._id};
 		}
 	});
+	
+	this.route('random', {
+    path:'/food/random',
+    template: 'random',
+		layoutTemplate: 'mainLayout',
+		yieldTemplates: {
+			'footer': {to: 'footer'}		
+		},
+		data: function() {
+		}
+  });
 	
 	this.route('explore', {
     path: '/explore',
@@ -146,7 +155,7 @@ Router.map(function () {
 		}
 	});
 	
-	this.route('explore', {
+	this.route('explore-maptype', {
     path: '/explore/:maptype',
     template: 'explore',
     layoutTemplate: 'mainLayout',
@@ -155,6 +164,7 @@ Router.map(function () {
 		},
     onBeforeAction: function () {	  
 			PARAMS = this.params;   
+			this.next();
     }
 	});
 	
@@ -166,7 +176,8 @@ Router.map(function () {
 			'footer': {to: 'footer'}		
 		},
     onBeforeAction: function () {	  
-			PARAMS = this.params;   
+			PARAMS = this.params; 
+			this.next();  
     }
 	});
 
