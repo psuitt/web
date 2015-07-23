@@ -1,6 +1,7 @@
 {
 	"data": [
-		{"word": "badword"}, 	
-		{"word": "badword1"}
+      {"word": "badword"},
+      {"word": "badword1"},
+	  {"word": "badword2"}
 	]
 }
